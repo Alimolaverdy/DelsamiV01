@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "ZarIran shopping cart page",
+  "SystemName": "ZarIran.Misc.ShoppingCartPage",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Nob Parts",
+  "DisplayOrder": 6,
+  "FileName": "ZarIran.Plugin.Misc.ShoppingCartPage.dll",
+  "Description": "This plugin provides new features in shopping cart page",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+}

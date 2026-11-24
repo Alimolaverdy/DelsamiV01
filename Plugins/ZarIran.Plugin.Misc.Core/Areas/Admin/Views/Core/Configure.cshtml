@@ -1,0 +1,110 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.Core.Configuration.SystemName").Text);
+}
+
+<form asp-controller="Core" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="UseManualGoldPrice" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="UseManualGoldPrice" asp-required="true" />
+                                <span asp-validation-for="UseManualGoldPrice"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ManualGoldPrice" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ManualGoldPrice" asp-required="true" />
+                                <span asp-validation-for="ManualGoldPrice"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="AllowGoldPriceAdjustment" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="AllowGoldPriceAdjustment" asp-required="false" />
+                                <span asp-validation-for="AllowGoldPriceAdjustment"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="GoldPriceAdjustment" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="GoldPriceAdjustment" asp-required="false" />
+                                <span asp-validation-for="GoldPriceAdjustment"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="NationalCodeAttributeId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="NationalCodeAttributeId" asp-required="true" />
+                                <span asp-validation-for="NationalCodeAttributeId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="AllProductsCategoryId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="AllProductsCategoryId" asp-required="true" />
+                                <span asp-validation-for="AllProductsCategoryId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Tax" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Tax" asp-required="true" />
+                                <span asp-validation-for="Tax"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="CoWorkerRoleId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="CoWorkerRoleId"
+                                            asp-items="Model.AvailableCustomerRoleIds" />
+                                <span asp-validation-for="CoWorkerRoleId"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

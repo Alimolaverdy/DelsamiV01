@@ -1,0 +1,63 @@
+@model ZarIran.Plugin.Misc.GoldPurchase.Models.GoldPayoutModel
+@using ZarIran.Plugin.Misc.GoldPurchase
+@using System.Globalization
+@{
+    Layout = "_ColumnsOne";
+    NopHtml.AddTitleParts("درخواست برداشت وجه فروش طلا");
+    NopHtml.AddCssFileParts("~/Plugins/ZarIran.Misc.GoldPurchase/Style/gold-wallet.css");
+}
+<div class="page gold-wallet-page" dir="rtl">
+    <header class="gold-page-heading">
+        <div>
+            <a class="gold-back" href="@Url.RouteUrl("CustomerRewardPoints")">کیف پول من ←</a>
+            <h1>درخواست برداشت وجه</h1>
+        </div>
+        <div class="gold-rate">
+            <span>اعتبار قابل برداشت از فروش طلا</span>
+            <strong>@Model.Available.ToString("N0") <small>تومان</small></strong>
+        </div>
+    </header>
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="message-success" role="status">@Model.Message</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="message-error" role="alert">@Model.Error</div>
+    }
+    <div class="gold-trade-layout">
+        <section class="gold-trade-card gold-payout-card">
+            <h2>برداشت به حساب بانکی</h2>
+            @if (Model.Shebas.Count == 0)
+            {
+                <p>برای ثبت درخواست، ابتدا شماره شبای حساب خود را ذخیره کنید.</p>
+            }
+            else
+            {
+                <form asp-controller="GoldWithdrawal" asp-action="RequestWithdrawal" asp-area="" method="post">
+                    <input type="hidden" name="requestKey" value="@Model.RequestKey" />
+                    <div class="gold-field">
+                        <label for="gold-payout-sheba">شماره شبا</label>
+                        <select id="gold-payout-sheba" name="shebaId" dir="ltr" asp-items="Model.Shebas" required>
+                            <option value="">انتخاب شماره شبا</option>
+                        </select>
+                    </div>
+                    <div class="gold-field">
+                        <label for="gold-payout-amount">مبلغ برداشت <small>تومان</small></label>
+                        <input id="gold-payout-amount" name="amount" type="number" inputmode="numeric" min="1" step="1"
+                               max="@Model.Available.ToString(CultureInfo.InvariantCulture)" required />
+                    </div>
+                    <button class="button-1 gold-submit" type="submit" disabled="@(Model.Available < 1)">ثبت درخواست برداشت</button>
+                    @if (Model.Available < 1)
+                    {
+                        <p class="gold-caption">در حال حاضر اعتبار قابل برداشت ندارید.</p>
+                    }
+                </form>
+            }
+        </section>
+        <section class="gold-trade-card gold-payout-card">
+            <h2>افزودن شماره شبا</h2>
+            @await Html.PartialAsync("~/Plugins/ZarIran.Misc.GoldPurchase/Views/_ShebaForm.cshtml", false)
+        </section>
+    </div>
+</div>

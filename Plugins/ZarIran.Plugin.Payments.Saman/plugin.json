@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Payment Methods",
+  "FriendlyName": "درگاه پرداخت بانک سامان",
+  "SystemName": "ZarIran.Payments.Saman",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 3,
+  "FileName": "ZarIran.Plugin.Payments.Saman.dll",
+  "Description": "پرداخت با درگاه بانک سامان",
+  "DependsOnSystemNames": [
+    "ZarIran.Misc.Core",
+    "ZarIran.Payment.Core"
+  ]
+}

@@ -1,0 +1,103 @@
+﻿@model ZarIranPaymentMethodCustomerRoleRestrictionModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Shipping.Restrictions").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodRoleRestriction.List.SystemName").Text);
+}
+
+
+<form asp-controller="PaymentMethodCustomerRoleRestriction" asp-action="Restrictions" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.PaymentMethod.CustomerRole.Restrictions")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="Providers">@T("Admin.Configuration.Shipping.Providers.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ShippingRestrictionListButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body" style="overflow-x: auto;">
+                            <p>@T("Admin.Configuration.PaymentMethod.Role.Restrictions.Description")</p>
+                            @if (Model.AvailableRoles.Count == 0)
+                            {
+                                <text>No role defined</text>
+                            }
+                            else if (Model.AvailablePaymentMethods.Count == 0)
+                            {
+                                <text>No payment methods available</text>
+                            }
+                            else
+                            {
+                                <script>
+                                    $(document).ready(function () {
+                                    @foreach (var sm in Model.AvailablePaymentMethods)
+                                    {
+                                        <text>
+                                                prepareTableCheckboxes('#selectall-@(sm.SystemName)', '@(sm.SystemName)');
+                                        </text>
+                                    }
+                                                                    });
+                                </script>
+
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <strong>@T("ZarIran.Plugin.Payment.ManagePaymentMethod.CustomerRoles")</strong>
+                                            </th>
+                                            @foreach (var sm in Model.AvailablePaymentMethods)
+                                            {
+                                                <th scope="col">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" id="selectall-@(sm.SystemName)" />
+                                                            <strong>@sm.FriendlyName</strong>
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var c in Model.AvailableRoles)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <span>@c.Name</span>
+                                                </td>
+                                                @foreach (var sm in Model.AvailablePaymentMethods)
+                                                {
+                                                    var restricted = Model.Restricted.ContainsKey(c.Id) && Model.Restricted[c.Id][sm.SystemName];
+                                                    <td>
+                                                        <input class="@(sm.SystemName)" type="checkbox" value="@(c.Id)" name="@(sm.SystemName)" @(restricted ? " checked=checked" : null) />
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

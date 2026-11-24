@@ -1,0 +1,78 @@
+﻿@model PaymentMethodDiscountSearchModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List.SystemName").Text);
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List")
+    </h1>
+
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                            Name = "price-inquiries-grid",
+                            UrlRead = new DataUrl("List", "PaymentMethodDiscount", new RouteValueDictionary{{"Area","Admin"}}),
+                            SearchButtonId = "search-customer-attribute-validations",
+                            Length = Model.PageSize,
+                            LengthMenu = Model.AvailablePageSizes,
+                            Filters = new List<FilterParameter>
+                            {
+
+                            },
+                            ColumnCollection = new List<ColumnProperty>
+                            {
+                                new ColumnProperty(nameof(PaymentMethodDiscountModel.PaymentMethodSystemName))
+                                {
+                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.PaymentMethodSystemName").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "100"
+                                },
+                                new ColumnProperty(nameof(PaymentMethodDiscountModel.DiscountPercent))
+                                {
+                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.DiscountPercent").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "80"
+                                },
+                                new ColumnProperty(nameof(PaymentMethodDiscountModel.StartDateStr))
+                                {
+                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.StartDateStr").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "80"
+                                },
+                                new ColumnProperty(nameof(PaymentMethodDiscountModel.EndDateStr))
+                                {
+                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.EndDateStr").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "80"
+                                }
+                            }
+                        })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

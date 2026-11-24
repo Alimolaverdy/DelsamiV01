@@ -1,0 +1,15 @@
+﻿<script asp-location="Footer">
+    $(document).on('click', '.decrease-quantity', function () {
+        var quantityElm = $(this).parent().parent().find(".quantityBox").first();
+
+        if (Number(quantityElm.val()) > 1)
+            quantityElm.val(Number(quantityElm.val()) - Number(1));
+    });
+
+
+    $(document).on('click', '.increase-quantity', function () {
+        var quantityElm = $(this).parent().parent().find(".quantityBox").first();
+
+        quantityElm.val(Number(quantityElm.val()) + Number(1));
+    });
+</script>

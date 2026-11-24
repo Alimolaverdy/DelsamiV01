@@ -1,0 +1,68 @@
+﻿@model PriceRangeModel
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MinWieght" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MinWieght" />
+                                <span asp-validation-for="MinWieght"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ToUpperWeight" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ToUpperWeight" />
+                                <span asp-validation-for="ToUpperWeight"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="MaxWeightContainer">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MaxWeight" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MaxWeight" />
+                                <span asp-validation-for="MaxWeight"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="NeighbouringPrice" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="NeighbouringPrice" />
+                                <span asp-validation-for="NeighbouringPrice"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="NonNeighbouringPrice" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="NonNeighbouringPrice" />
+                                <span asp-validation-for="NonNeighbouringPrice"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

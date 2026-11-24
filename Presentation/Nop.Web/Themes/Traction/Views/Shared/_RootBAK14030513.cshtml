@@ -1,0 +1,142 @@
+﻿@inject Nop.Core.IWebHelper webHelper
+@inject Nop.Services.Customers.ICustomerService customerService
+@inject Nop.Core.IWorkContext workContext
+
+@{
+    Layout = "_Root.Head";
+}
+@{
+    var homePage = String.Empty;
+    var additionalClass = String.Empty;
+    var homePageMainSliderHtml = String.Empty;
+
+    var controllerName = Url.ActionContext.RouteData.Values["controller"].ToString();
+
+    var isHomePage = controllerName.Equals("home", StringComparison.InvariantCultureIgnoreCase);
+    if (isHomePage)
+    {
+        homePage = "home";
+        var homePageMainSliderResult = await Component.InvokeAsync("Widget", new { widgetZone = "home_page_main_slider" });
+        homePageMainSliderHtml = await homePageMainSliderResult.RenderHtmlContentAsync();
+
+        if (!String.IsNullOrEmpty(homePageMainSliderHtml))
+        {
+            additionalClass = "home-slider";
+        }
+    }
+
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var isAuthenticated = await customerService.IsRegisteredAsync(customer);
+
+}
+
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@{
+    await Html.RenderPartialAsync("_Notifications");
+}
+@{
+    await Html.RenderPartialAsync("_JavaScriptDisabledWarning");
+}
+@{
+    await Html.RenderPartialAsync("_OldInternetExplorerWarning");
+}
+
+<div class="master-wrapper-page @homePage @additionalClass">
+    @await Component.InvokeAsync(typeof(AdminHeaderLinksViewComponent))
+    @{
+        await Html.RenderPartialAsync("_Header");
+    }
+    <div class="overlayOffCanvas"></div>
+    <div class="responsive-nav-wrapper-parent">
+        <div class="search-box store-search-box">
+
+
+
+            @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+        </div>
+    </div>
+
+    <div class="subheader-wrapper">
+        <div class="logo-wrapper">
+            <div class="header-logo">
+                @await Component.InvokeAsync(typeof(LogoViewComponent))
+            </div>
+            <div class="header-logo-mobile" style="float:right;width:40%; padding-right:20px;">
+                <a href="/" class="logo">
+                    @await Component.InvokeAsync(typeof(LogoViewComponent))
+                </a>
+            </div>
+            <div class="header-cart">
+
+                <div class="menu-title">
+                    <i class="bi bi-menu-button-wide" style="font-size:1.2rem"></i>
+                    <span>&nbsp;</span>
+                </div>
+
+                <a href="~/cart">
+                    <i class="bi bi-cart3"></i>
+                </a>
+                @if (isAuthenticated)
+                {
+                    <a href="/logout"><i class="bi bi-box-arrow-left"></i></a>
+
+                    <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">
+                        <i class="bi bi-person-fill"></i>
+                        @*<span>@T("Account.MyAccount")</span> @Model.CustomerName*@
+                    </a>
+                }
+                else
+                {
+                    var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
+                    ? url.ToString()
+                    : webHelper.GetRawUrl(Context.Request);
+
+                    <a href="@Url.RouteUrl("Login", new { returnUrl })">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="justAFixingDivBefore"></div>
+        <div class="headerMenuParent">
+            <div class="header-menu">
+                <div class="close-menu">
+                    <span>@T("SevenSpikes.Themes.Common.CloseMenu")</span>
+                </div>
+                @{
+                    var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
+                }
+                @if (String.IsNullOrEmpty(await menu.RenderHtmlContentAsync()))
+                {
+                    @await Component.InvokeAsync(typeof(TopMenuViewComponent))
+                }
+                else
+                {
+                    @menu
+                }
+            </div>
+        </div>
+    </div>
+    @Html.Raw(homePageMainSliderHtml)
+    <div class="master-wrapper-content">
+        <script asp-location="Footer">
+            var localized_data = {
+                AjaxCartFailure: "@T("AjaxCart.Failure")"
+            };
+            AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
+        </script>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore })
+        @*ajax loading window*@
+        <div class="ajax-loading-block-window" style="display: none">
+            <div class="loading-image">
+            </div>
+        </div>
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter })
+    </div>
+</div>
+@await Component.InvokeAsync(typeof(FooterViewComponent))
+@await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

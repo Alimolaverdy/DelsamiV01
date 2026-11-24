@@ -1,0 +1,88 @@
+﻿@using Nop.Core.Domain.Seo
+@inject Nop.Services.Localization.ILocalizationService localizationService
+@inject Nop.Core.IStoreContext storeContext
+@inject SeoSettings seoSettings
+@{
+    Layout = "_ColumnsOne";
+    var store = await storeContext.GetCurrentStoreAsync();
+    var homepageTitle = await localizationService.GetLocalizedAsync(store, s => s.HomepageTitle);
+    if (!String.IsNullOrEmpty(homepageTitle)) { NopHtml.AddTitleParts(homepageTitle); }
+    NopHtml.AddMetaDescriptionParts(await localizationService.GetLocalizedAsync(store, s => s.HomepageDescription));
+    NopHtml.AppendPageCssClassParts("html-home-page");
+    NopHtml.AddCanonicalUrlParts(store.Url, seoSettings.QueryStringInCanonicalUrlsEnabled);
+}
+<div class="page home-page zar-home">
+    <div class="page-body">
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageTop })
+        <div class="zar-trust-ribbon np-container">
+            <div><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#shield")"></use></svg><span><strong>جزئیات روشن خرید</strong><small>مشاهده اطلاعات محصول</small></span></div>
+            <div><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#gift")"></use></svg><span><strong>برای لحظه‌های ماندگار</strong><small>انتخابی برای هدیه</small></span></div>
+            <div><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#truck")"></use></svg><span><strong>ارسال سفارش</strong><small>انتخاب روش تحویل هنگام خرید</small></span></div>
+            <div><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#headphones")"></use></svg><span><strong>همراه انتخاب شما</strong><small><a href="@Url.RouteUrl("ContactUs")">ارتباط با گالری</a></small></span></div>
+        </div>
+        <section class="zar-home-search np-container" aria-label="جست‌وجوی محصولات">
+            @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_search_widget" })
+        </section>
+        <section class="zar-section np-container" id="zar-collections">
+            <div class="zar-section-heading"><div><span class="zar-kicker">انتخاب براساس سلیقه شما</span><h2>دسته‌بندی‌ها</h2></div><a class="zar-text-link" href="@Url.RouteUrl("ProductSearch")">مشاهده همه ←</a></div>
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
+            @await Component.InvokeAsync("Widget", new { widgetZone = "homepage-htmlwidget-categories-container" })
+            @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_categories" })
+            @await Component.InvokeAsync(typeof(HomepageCategoriesViewComponent))
+        </section>
+        @{
+            // Configure JCarousel's widget zone as home_page_before_products.
+            // Its own Title, selected products and display order control this slot.
+            var productCarousels = await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeProducts });
+        }
+        @if (!String.IsNullOrWhiteSpace(await productCarousels.RenderHtmlContentAsync()))
+        {
+            <section class="zar-section zar-home-product-carousels">
+                <div class="np-container">@productCarousels</div>
+            </section>
+        }
+        @{
+            var editorialWidget = await Component.InvokeAsync("Widget", new { widgetZone = "zariran_home_editorial" });
+        }
+        @if (!String.IsNullOrWhiteSpace(await editorialWidget.RenderHtmlContentAsync()))
+        {
+            <section class="zar-section np-container">@editorialWidget</section>
+        }
+        else
+        {
+        <section class="zar-editorial np-container">
+            <div class="zar-editorial-image"><img src="@Url.Content("~/Themes/Traction/Content/zariran/zar-iran-editorial.png")" alt="گردنبند ظریف با سنگ آبی" loading="lazy" width="1024" height="1536" /></div>
+            <div class="zar-editorial-copy"><span class="zar-kicker">دنیای زر ایران</span><h2>نرمی یک خاطره،<br />درخشش یک نشانه</h2><p>فرم‌های برگرفته از طبیعت، خطوط سبک و رنگ آبی آرام؛ برای کسانی که زیبایی را در جزئیات پیدا می‌کنند.</p><a class="zar-button zar-button-outline" href="@Url.RouteUrl("ProductSearch")">کشف محصولات ←</a></div>
+        </section>
+        }
+        @foreach (var zone in new[] { "homepage-htmlwidget-specialoffers", "homepage-htmlwidget-front-rear-brake-pads", "homepage-htmlwidget-clutch-kit", "homepage-htmlwidget-best-sales", "homepage-htmlwidget-suspension-system", "homepage-htmlwidget-lights" })
+        {
+            var content = await Component.InvokeAsync("Widget", new { widgetZone = zone });
+            if (!String.IsNullOrWhiteSpace(await content.RenderHtmlContentAsync()))
+            {
+                <section class="zar-section zar-widget-section np-container" data-widget-zone="@zone">@content</section>
+            }
+        }
+        <section class="zar-section np-container">
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
+            @await Component.InvokeAsync(typeof(HomepageBestSellersViewComponent))
+        </section>
+        @{
+            var giftWidget = await Component.InvokeAsync("Widget", new { widgetZone = "zariran_home_gift" });
+        }
+        @if (!String.IsNullOrWhiteSpace(await giftWidget.RenderHtmlContentAsync()))
+        {
+            <section class="zar-section np-container">@giftWidget</section>
+        }
+        else
+        {
+        <section class="zar-gift-section"><div class="np-container zar-gift-inner"><div><span class="zar-kicker">هدیه‌ای که از همان ابتدا خاص است</span><h2>لحظه‌ای به رنگ زر ایران</h2><p>برای یک مناسبت ویژه یا یک یادگاری هرروزه؛ انتخاب شما آغاز یک خاطره است.</p><a class="zar-text-link" href="@Url.RouteUrl("ProductSearch")">انتخاب هدیه ←</a></div><img src="@Url.Content("~/Themes/Traction/Content/zariran/zar-iran-packaging.jpeg")" alt="جعبه و روبان کرم و آبی زر ایران" loading="lazy" width="706" height="1536" /></div></section>
+        }
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
+        @await Component.InvokeAsync(typeof(HomepagePollsViewComponent))
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBottom })
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_bottom_banner" })
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_manufacturers_raw" })
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_manufacturers" })
+    </div>
+</div>

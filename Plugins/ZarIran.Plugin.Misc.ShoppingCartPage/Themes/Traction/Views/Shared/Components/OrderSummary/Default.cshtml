@@ -1,0 +1,968 @@
+﻿@model ShoppingCartModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Orders
+@using Nop.Core.Domain.Tax
+@using Nop.Services.Configuration
+@using Nop.Services.Customers
+
+@inject IWebHelper webHelper
+@inject IWorkContext workContext
+@inject OrderSettings orderSettings
+@inject ISettingService settingService
+@inject ICustomerService customerService
+@{
+    bool isOnePageCheckout = ViewContext.RouteData.Values["Controller"]?.ToString() == "ZarIranCheckout"
+             && ViewContext.RouteData.Values["Action"]?.ToString() == "OpcSavePaymentMethod";
+
+    var bwdkEnabled = settingService.GetSettingByKey<bool>
+    ("digikalashoppingsettings.enabled");
+    var restrictedRoles = settingService.GetSettingByKey<string>
+        ("digikalashoppingsettings.SelectedRestrictRoleIds")
+        ?.Split("-")
+        ?.Select(a => int.Parse(a))
+        .ToList() ?? new(); ;
+
+        var customer = await workContext.GetCurrentCustomerAsync();
+        var customerRoleIds = await customerService.GetCustomerRoleIdsAsync(customer);
+
+        var isRestricted = customerRoleIds.Any(x => restrictedRoles.Contains(x));
+        }
+        <style>
+            .divider {
+                position: relative;
+                text-align: center;
+                margin: 15px 0;
+            }
+
+                .divider::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background: #ddd;
+                    transform: translateY(-50%);
+                }
+
+                .divider span {
+                    position: relative;
+                    background: #fbfbfb;
+                    padding: 0 8px;
+                    color: #999;
+                    font-size: 14px;
+                }
+        </style>
+        <script src="https://digifycdn.com/front-statics/digify-bwdk-ui-kit/widget-sdk.min.js" Data-digify-widget async></script>
+        <div class="order-summary-content">
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryContentBefore, additionalData = Model })
+            @await Html.PartialAsync("_OrderReviewData", Model.OrderReviewData)
+            @if (Model.Items.Count > 0)
+            {
+            if (Model.Warnings.Count > 0)
+            {
+            <div class="message-error">
+                <ul>
+                    @foreach (var warning in Model.Warnings)
+                    {
+                    <li>@warning</li>
+                    }
+                </ul>
+            </div>
+            }
+            @*we add enctype = "multipart/form-data" because "File upload" attribute control type requires it*@
+            @* POST directly to the native Cart action: /cart is also mapped to CustomCart by the plugin. *@
+            <form action="@Url.RouteUrl("Default", new { controller = "ShoppingCart", action = "Cart" })" method="post" asp-antiforgery="true" enctype="multipart/form-data" id="shopping-cart-form">
+                <div class="cart-wrapper">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-12 col-md-8">
+                                @if (bwdkEnabled && !isRestricted)
+                                {
+                                <div class="cart">
+                                    <digify-clickable-box id="widget"></digify-clickable-box>
+                                </div>
+                                <script>
+
+                                    (() => {
+
+                                        const widgetElement = document.getElementById("widget");
+
+                                        // Prevent duplicate event registration
+                                        if (widgetElement && !widgetElement.dataset.orderEventBound) {
+
+                                            widgetElement.dataset.orderEventBound = "true";
+
+                                            widgetElement.addEventListener("click", async () => {
+
+                                                // Prevent double submission
+                                                if (widgetElement.dataset.submitting === "true")
+                                                    return;
+
+                                                widgetElement.dataset.submitting = "true";
+
+                                                try {
+                                                    const response = await fetch(
+                                                        "/DigiKalaShopping/CreateOrder"
+                                                    );
+
+                                                    if (!response.ok) {
+                                                        alert("خطا در ثبت سفارش با دیجی کالا");
+                                                        return;
+                                                    }
+
+                                                    const dataJson = await response.json();
+
+                                                    if (!dataJson.isSuccess) {
+                                                        alert(dataJson.message);
+                                                        return;
+                                                    }
+
+                                                    window.location.href = dataJson.data;
+
+                                                } catch (error) {
+
+                                                    console.error("CreateOrder error:", error);
+                                                    alert("خطایی در ارتباط با سرور رخ داد");
+
+                                                } finally {
+
+                                                    delete widgetElement.dataset.submitting;
+
+                                                }
+                                            });
+                                        }
+
+                                        // Initialize Digify Widget
+                                        const initWidget = () => {
+
+                                            const widget = window.DigifyWidget?.default;
+
+                                            if (!widget?.init) {
+                                                console.error("Digify widget SDK failed to load");
+                                                return;
+                                            }
+
+                                            widget.init();
+                                        };
+
+                                        if (window.DigifyWidget?.default?.init) {
+
+                                            initWidget();
+
+                                        } else {
+
+                                            const sdkScript = document.querySelector(
+                                                "script[data-digify-widget]"
+                                            );
+
+                                            if (sdkScript) {
+                                                sdkScript.addEventListener(
+                                                    "load",
+                                                    initWidget,
+                                                    { once: true }
+                                                );
+                                            }
+                                        }
+
+                                    })();
+
+                                </script>
+                                }
+
+
+                                <div class="cart">
+                                    @foreach (var item in Model.Items)
+                                    {
+                                    <div class="cart-item">
+                                        @if (Model.ShowVendorName)
+                                        {
+                                        <div class="vendor">
+                                            <span class="vendor-name">@* @item.VendorName *@ @T("pagetitle.shoppingcart")</span>
+                                        </div>
+                                        }
+
+                                        <div class="item-image-quantity-details">
+                                            <div class="item-image-quantity">
+                                                @if (Model.ShowProductImages)
+                                                {
+                                                <div class="product-picture">
+                                                    <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))">
+                                                        <img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title" />
+                                                    </a>
+                                                </div>
+                                                }
+
+                                                <div class="quantity">
+                                                    @if (Model.IsEditable)
+                                                    {
+                                                    if (item.AllowedQuantities.Count > 0)
+                                                    {
+                                                    <select name="itemquantity@(item.Id)" id="itemquantity@(item.Id)" class="qty-dropdown">
+                                                        @foreach (var qty in item.AllowedQuantities)
+                                                        {
+                                                        <option selected="@qty.Selected" value="@qty.Value">@qty.Value</option>
+                                                        }
+                                                    </select>
+                                                    <div id="dots-spinner@(item.Id)" class="dots-spinner" style="display: none; margin: 15px auto;"></div>
+
+                                                    <script asp-location="Footer">
+
+                                                        $("#itemquantity37035").change(function () { console.log('salam'); });
+                                                        $("#itemquantity@(item.Id)").change(function () { console.log('2322'); });
+
+                                                        console.log($("#itemquantity@(item.Id)").length);
+                                                        console.log("#itemquantity@(item.Id)");
+
+                                                        $("#itemquantity@(item.Id)").on("change", function () {
+
+                                                            let newQuantity = $(this).val();
+
+                                                            var postData = {
+                                                                productId: @item.ProductId,
+                                                                quantity: $(this).val()
+                                                            };
+
+                                                            addAntiForgeryToken(postData);
+
+                                                            $.ajax({
+                                                                cache: false,
+                                                                type: "POST",
+                                                                url: "@Url.RouteUrl("UpdateQuantity")",
+                                                                data: postData,
+                                                                dataType: "json",
+                                                                beforeSend: function () {
+                                                                    $("#itemquantity@(item.Id)").css("display", "none");
+                                                                    $("#itemquantity@(item.Id)").prop("disabled", "disabled");
+                                                                    $("#dots-spinner@(item.Id)").css("display", "inline-block")
+                                                                    $(".decrease-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                    $(".increase-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                    $(".remove-btn@(item.Id)").prop("disabled", "disabled");
+                                                                },
+                                                                success: function (data, textStatus, jqXHR) {
+                                                                    if (data.IsSucceed) {
+                                                                        $("#itemquantity@(item.Id)").attr("prevVal", $("#itemquantity@(item.Id)").val());
+
+                                                                        if ($("#itemquantity@(item.Id)").val() == 0)
+                                                                            $("#itemquantity@(item.Id)").closest("tr").fadeOut();
+
+                                                                        $(".total-info").html(data.OrderTotals);
+                                                                        $(".cart-qty").text(data.TotalQuantity);
+                                                                        $("#flyout-cart").replaceWith(data.FlayoutShopping);
+                                                                        $(".product-subtotal@(item.Id)").text(data.SubTotal);
+
+                                                                        updateCartItemQuantityTotal();
+
+                                                                        if (postData.quantity <= 0) {
+                                                                            jQuery($("#itemquantity@(item.Id)")).closest('.cart-item').remove();
+                                                                            if (jQuery('div.cart.footable-loaded.footable .cart-item').length <= 0) {
+                                                                                jQuery('.header-cart-button-mobile').remove();
+
+                                                                                jQuery('.order-summary-content').html(
+                                                                                    `
+                                                                                                                                                                                                        <div class="no-data">
+                                                                                                                                                                                                            <img src="/images/Empty-Basket.svg">
+                                                                                                                                                                                                            سبد خرید شما خالی است!
+                                                                                                                                                                                                            <div class="common-buttons">
+                                                                                                                                                                                                                <a class="button-1" href="/">بازگشت به فروشگاه</a>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    `
+                                                                                );
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    else {
+                                                                        $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
+                                                                        data.Warnings.forEach(function (warning) { alert(warning) });
+                                                                    }
+                                                                },
+                                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                                    $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
+
+                                                                    alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                },
+                                                                complete: function () {
+
+                                                                    setTimeout(function () {
+                                                                        $("#itemquantity@(item.Id)").css("display", "inline-block");
+                                                                        $("#itemquantity@(item.Id)").prop("disabled", "");
+                                                                        $("#dots-spinner@(item.Id)").css("display", "none")
+                                                                        $(".decrease-quantity@(item.Id)").prop("disabled", "");
+                                                                        $(".increase-quantity@(item.Id)").prop("disabled", "");
+                                                                        $(".remove-btn@(item.Id)").prop("disabled", "");
+
+                                                                    }, 500);
+                                                                },
+                                                            });
+
+                                                        });
+                                                    </script>
+                                                    }
+                                                    else
+                                                    {
+                                                    <button type="button" class="increase-quantity@(item.Id)" aria-label="افزایش تعداد">
+                                                        <span aria-hidden="true">+</span>
+                                                    </button>
+                                                    <input name="itemquantity@(item.Id)" id="itemquantity@(item.Id)" type="text" value="@(item.Quantity)" class="qty-input" aria-label="@T(" ShoppingCart.Quantity")" />
+                                                    <div id="dots-spinner@(item.Id)" class="dots-spinner" style="display: none;"></div>
+                                                    <button type="button" class="decrease-quantity@(item.Id)" aria-label="کاهش تعداد">
+                                                        <span aria-hidden="true">−</span>
+                                                    </button>
+
+                                                    <script asp-location="Footer">
+                                                        $(document).ready(function () {
+
+                                                            $("#itemquantity@(item.Id)").attr("prevVal", $("#itemquantity@(item.Id)").val());
+
+
+                                                            $(".decrease-quantity@(item.Id)").on("click", function () {
+
+                                                                $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) - Number(1));
+
+                                                                var postData = {
+                                                                    productId: @item.ProductId,
+                                                                    quantity: $("#itemquantity@(item.Id)").val()
+                                                                };
+
+                                                                addAntiForgeryToken(postData);
+
+                                                                $.ajax({
+                                                                    cache: false,
+                                                                    type: "POST",
+                                                                    url: "@Url.RouteUrl("UpdateQuantity")",
+                                                                    data: postData,
+                                                                    dataType: "json",
+                                                                    beforeSend: function () {
+                                                                        $("#itemquantity@(item.Id)").css("display", "none");
+                                                                        $("#itemquantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $("#dots-spinner@(item.Id)").css("display", "inline-block")
+                                                                        $(".decrease-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".increase-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".remove-btn@(item.Id)").prop("disabled", "disabled");
+                                                                    },
+                                                                    success: function (data, textStatus, jqXHR) {
+                                                                        if (data.IsSucceed) {
+                                                                            $("#itemquantity@(item.Id)").attr("prevVal", $("#itemquantity@(item.Id)").val());
+
+                                                                            if ($("#itemquantity@(item.Id)").val() == 0)
+                                                                                $("#itemquantity@(item.Id)").closest("tr").fadeOut();
+
+                                                                            $(".total-info").html(data.OrderTotals);
+                                                                            $(".cart-qty").text(data.TotalQuantity);
+                                                                            $("#flyout-cart").replaceWith(data.FlayoutShopping);
+                                                                            $(".product-subtotal@(item.Id)").text(data.SubTotal);
+
+                                                                            updateCartItemQuantityTotal();
+
+                                                                            if (postData.quantity <= 0) {
+                                                                                jQuery($("#itemquantity@(item.Id)")).closest('.cart-item').remove();
+                                                                                if (jQuery('div.cart.footable-loaded.footable .cart-item').length <= 0) {
+                                                                                    jQuery('.header-cart-button-mobile').remove();
+
+                                                                                    jQuery('.order-summary-content').html(
+                                                                                        `
+                                                                                                                                                                                                            <div class="no-data">
+                                                                                                                                                                                                                <img src="/images/Empty-Basket.svg">
+                                                                                                                                                                                                                سبد خرید شما خالی است!
+                                                                                                                                                                                                                <div class="common-buttons">
+                                                                                                                                                                                                                    <a class="button-1" href="/">بازگشت به فروشگاه</a>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        `
+                                                                                    );
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        else {
+                                                                            if (data.ForceRefresh) {
+                                                                                window.location.reload();
+                                                                                return;
+                                                                            }
+                                                                            $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
+                                                                            data.Warnings.forEach(function (warning) { alert(warning) });
+                                                                        }
+                                                                    },
+                                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                                        $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
+
+                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                    },
+                                                                    complete: function () {
+
+                                                                        setTimeout(function () {
+                                                                            $("#itemquantity@(item.Id)").css("display", "inline-block");
+                                                                            $("#itemquantity@(item.Id)").prop("disabled", "");
+                                                                            $("#dots-spinner@(item.Id)").css("display", "none")
+                                                                            $(".decrease-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".increase-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".remove-btn@(item.Id)").prop("disabled", "");
+
+                                                                        }, 500);
+                                                                    },
+                                                                });
+                                                            });
+
+                                                            $(".increase-quantity@(item.Id)").on("click", function () {
+
+                                                                $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
+
+                                                                var postData = {
+                                                                    productId: @item.ProductId,
+                                                                    quantity: $("#itemquantity@(item.Id)").val()
+                                                                };
+
+                                                                addAntiForgeryToken(postData);
+
+                                                                $.ajax({
+                                                                    cache: false,
+                                                                    type: "POST",
+                                                                    url: "@Url.RouteUrl("UpdateQuantity")",
+                                                                    data: postData,
+                                                                    dataType: "json",
+                                                                    beforeSend: function () {
+                                                                        $("#itemquantity@(item.Id)").css("display", "none");
+                                                                        $("#itemquantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $("#dots-spinner@(item.Id)").css("display", "inline-block")
+                                                                        $(".decrease-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".increase-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".remove-btn@(item.Id)").prop("disabled", "disabled");
+                                                                    },
+                                                                    success: function (data, textStatus, jqXHR) {
+                                                                        if (data.IsSucceed) {
+                                                                            $("#itemquantity@(item.Id)").attr("prevVal", $("#itemquantity@(item.Id)").val());
+
+                                                                            if ($("#itemquantity@(item.Id)").val() == 0)
+                                                                                $("#itemquantity@(item.Id)").closest("tr").fadeOut();
+
+                                                                            updateCartItemQuantityTotal();
+
+                                                                            $(".total-info").html(data.OrderTotals);
+                                                                            $(".cart-qty").text(data.TotalQuantity);
+                                                                            $("#flyout-cart").replaceWith(data.FlayoutShopping);
+                                                                            $(".product-subtotal@(item.Id)").text(data.SubTotal);
+                                                                        }
+                                                                        else {
+                                                                            if (data.ForceRefresh) {
+                                                                                window.location.reload();
+                                                                                return;
+                                                                            }
+                                                                            $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) - Number(1));
+
+                                                                            data.Warnings.forEach(function (warning) { alert(warning) });
+                                                                        }
+                                                                    },
+                                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                                        $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) - Number(1));
+
+                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                    },
+                                                                    complete: function () {
+
+                                                                        setTimeout(function () {
+                                                                            $("#itemquantity@(item.Id)").css("display", "inline-block");
+                                                                            $("#itemquantity@(item.Id)").prop("disabled", "");
+                                                                            $("#dots-spinner@(item.Id)").css("display", "none")
+                                                                            $(".decrease-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".increase-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".remove-btn@(item.Id)").prop("disabled", "");
+
+                                                                        }, 500);
+                                                                    },
+                                                                });
+                                                            });
+
+                                                            // Example usage:
+
+                                                            $("#itemquantity@(item.Id)").keyup(delay(function (e) {
+
+                                                                var postData = {
+                                                                    productId: @item.ProductId,
+                                                                    quantity: $("#itemquantity@(item.Id)").val()
+                                                                };
+
+                                                                addAntiForgeryToken(postData);
+
+                                                                $.ajax({
+                                                                    cache: false,
+                                                                    type: "POST",
+                                                                    url: "@Url.RouteUrl("UpdateQuantity")",
+                                                                    data: postData,
+                                                                    dataType: "json",
+                                                                    beforeSend: function () {
+                                                                        $("#itemquantity@(item.Id)").css("display", "none");
+                                                                        $("#itemquantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $("#dots-spinner@(item.Id)").css("display", "inline-block")
+                                                                        $(".decrease-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".increase-quantity@(item.Id)").prop("disabled", "disabled");
+                                                                        $(".remove-btn@(item.Id)").prop("disabled", "disabled");
+                                                                    },
+                                                                    success: function (data, textStatus, jqXHR) {
+                                                                        if (data.IsSucceed) {
+                                                                            $("#itemquantity@(item.Id)").attr("prevVal", $("#itemquantity@(item.Id)").val());
+
+                                                                            if ($("#itemquantity@(item.Id)").val() == 0)
+                                                                                $("#itemquantity@(item.Id)").closest("tr").fadeOut();
+
+                                                                            $(".total-info").html(data.OrderTotals);
+                                                                            $(".cart-qty").text(data.TotalQuantity);
+                                                                            $("#flyout-cart").replaceWith(data.FlayoutShopping);
+                                                                            $(".product-subtotal@(item.Id)").text(data.SubTotal);
+
+                                                                            updateCartItemQuantityTotal();
+
+                                                                            if (postData.quantity <= 0) {
+                                                                                jQuery($("#itemquantity@(item.Id)")).closest('.cart-item').remove();
+                                                                                if (jQuery('div.cart.footable-loaded.footable .cart-item').length <= 0) {
+                                                                                    jQuery('.header-cart-button-mobile').remove();
+
+                                                                                    jQuery('.order-summary-content').html(
+                                                                                        `
+                                                                                                                                                                                                            <div class="no-data">
+                                                                                                                                                                                                                <img src="/images/Empty-Basket.svg">
+                                                                                                                                                                                                                سبد خرید شما خالی است!
+                                                                                                                                                                                                                <div class="common-buttons">
+                                                                                                                                                                                                                    <a class="button-1" href="/">بازگشت به فروشگاه</a>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        `
+                                                                                    );
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (data.ForceRefresh) {
+                                                                                window.location.reload();
+                                                                                return;
+                                                                            }
+                                                                            $("#itemquantity@(item.Id)").val($("#itemquantity@(item.Id)").attr("prevVal"));
+
+                                                                            data.Warnings.forEach(function (warning) { alert(warning) });
+                                                                        }
+                                                                    },
+                                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                                        $("#itemquantity@(item.Id)").val($("#itemquantity@(item.Id)").attr("prevVal"));
+
+                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                    },
+                                                                    complete: function () {
+
+                                                                        setTimeout(function () {
+                                                                            $("#itemquantity@(item.Id)").css("display", "inline-block");
+                                                                            $("#itemquantity@(item.Id)").prop("disabled", "");
+                                                                            $("#dots-spinner@(item.Id)").css("display", "none")
+                                                                            $(".decrease-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".increase-quantity@(item.Id)").prop("disabled", "");
+                                                                            $(".remove-btn@(item.Id)").prop("disabled", "");
+
+                                                                        }, 500);
+                                                                    },
+                                                                });
+
+                                                            }, 500));
+                                                        });
+
+                                                        function ChangeQuantityBeginRequest() {
+
+                                                            $("#itemquantity@(item.Id)").css("display", "none");
+                                                            $("#itemquantity@(item.Id)").prop("disabled", "disabled");
+                                                            $("#dots-spinner@(item.Id)").css("display", "inline-block")
+                                                            $(".decrease-quantity@(item.Id)").prop("disabled", "disabled");
+                                                            $(".increase-quantity@(item.Id)").prop("disabled", "disabled");
+                                                            $(".remove-btn@(item.Id)").prop("disabled", "disabled");
+                                                        }
+
+                                                        function ChangeQuantityCompleteRequest() {
+                                                            setTimeout(function () {
+                                                                $("#itemquantity@(item.Id)").css("display", "inline-block");
+                                                                $("#itemquantity@(item.Id)").prop("disabled", "");
+                                                                $("#dots-spinner@(item.Id)").css("display", "none")
+                                                                $(".decrease-quantity@(item.Id)").prop("disabled", "");
+                                                                $(".increase-quantity@(item.Id)").prop("disabled", "");
+                                                                $(".remove-btn@(item.Id)").prop("disabled", "");
+
+                                                            }, 500);
+
+                                                        }
+
+                                                        function delay(callback, ms) {
+                                                            var timer = 0;
+                                                            return function () {
+                                                                var context = this, args = arguments;
+                                                                clearTimeout(timer);
+                                                                timer = setTimeout(function () {
+                                                                    callback.apply(context, args);
+                                                                }, ms || 0);
+                                                            };
+                                                        }
+
+                                                    </script>
+                                                    }
+                                                    }
+                                                    else
+                                                    {
+                                                    <span class="product-quantity">@item.Quantity</span>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div class="item-details">
+                                                <div class="product">
+                                                    <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))" class="product-name">@item.ProductName</a>
+                                                    @if (!string.IsNullOrEmpty(item.AttributeInfo))
+                                                    {
+                                                    <div class="attributes">
+                                                        @Html.Raw(item.AttributeInfo)
+                                                    </div>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(item.RecurringInfo))
+                                                    {
+                                                    <div class="recurring-info">
+                                                        @Html.Raw(item.RecurringInfo)
+                                                    </div>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(item.RentalInfo))
+                                                    {
+                                                    <div class="rental-info">
+                                                        @Html.Raw(item.RentalInfo)
+                                                    </div>
+                                                    }
+                                                    @if (Model.IsEditable && item.AllowItemEditing)
+                                                    {
+                                                    var editCartItemUrl = Url.RouteUrl<Product>
+                                                        (new { SeName = item.ProductSeName }, webHelper.GetCurrentRequestProtocol());
+                                                        editCartItemUrl = webHelper.ModifyQueryString(editCartItemUrl, "updatecartitemid", item.Id.ToString());
+                                                        <div class="edit-item">
+                                                            <a href="@editCartItemUrl">@T("Common.Edit")</a>
+                                                        </div>
+                                                        }
+                                                        @if (item.Warnings.Count > 0)
+                                                        {
+                                                        <div class="message-error">
+                                                            <ul>
+                                                                @foreach (var warning in item.Warnings)
+                                                                {
+                                                                <li>@Html.Raw(warning)</li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                        }
+                                                </div>
+                                                <div class="subtotal-remove-container">
+                                                    <span class="product-subtotal@(item.Id)">@item.SubTotal</span>
+                                                    @if (!string.IsNullOrEmpty(item.Discount))
+                                                    {
+                                                    <div class="discount">
+                                                        @T("ShoppingCart.ItemYouSave", item.Discount)
+                                                    </div>
+                                                    if (item.MaximumDiscountedQty.HasValue)
+                                                    {
+                                                    <div class="discount-additional-info">
+                                                        @T("ShoppingCart.MaximumDiscountedQty", item.MaximumDiscountedQty.Value)
+                                                    </div>
+                                                    }
+                                                    }
+
+                                                    <a href="javascript:void(0);" class="remove" onclick="removeItem(@item.ProductId,@item.Id)">
+                                                        <svg class="zar-icon" aria-label="حذف محصول"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#close")"></use></svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="cart-footer">
+                                    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryCartFooter, additionalData = Model })
+                                    <div class="cart-collaterals">
+                                        <div class="deals">
+                                            @await Html.PartialAsync("~/Views/Shared/_DiscountBox.cshtml", Model.DiscountBox)
+                                            @* @await Html.PartialAsync("_GiftCardBox", Model.GiftCardBox) *@
+                                            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryContentDeals, additionalData = Model })
+                                        </div>
+                                    </div>
+                                    @if (Model.IsEditable)
+                                    {
+
+                                    }
+                                    <div class="totals">
+                                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryTotals, additionalData = Model })
+
+                                        <div class="order-total-hidden d-none">
+                                            @await Component.InvokeAsync(typeof(OrderTotalsViewComponent), new { isEditable = Model.IsEditable })
+                                        </div>
+
+                                        @if (!isOnePageCheckout)
+                                        {
+                                        @await Component.InvokeAsync(typeof(OrderTotalsViewComponent), new { isEditable = Model.IsEditable })
+                                        }
+                                        @if (Model.IsEditable)
+                                        {
+                                        if (!string.IsNullOrEmpty(Model.MinOrderSubtotalWarning))
+                                        {
+                                        <div class="min-amount-warning">
+                                            @Model.MinOrderSubtotalWarning
+                                        </div>
+                                        }
+                                        }
+                                        @if (Model.IsEditable)
+                                        {
+                                        if (Model.TermsOfServiceOnShoppingCartPage)
+                                        {
+                                        <div id="terms-of-service-warning-box" title="@T(" Checkout.TermsOfService")" style="display: none;">
+                                            <p>@T("Checkout.TermsOfService.PleaseAccept")</p>
+                                        </div>
+                                        <div class="terms-of-service">
+                                            <input id="termsofservice" type="checkbox" name="termsofservice" />
+                                            <label for="termsofservice">@T("Checkout.TermsOfService.IAccept")</label>
+                                            @if (Model.TermsOfServicePopup)
+                                            {
+                                            <a class="read" id="read-terms">@T("Checkout.TermsOfService.Read")</a>
+                                            <script asp-location="Footer">
+                                                $(document).ready(function () {
+                                                    $('#read-terms').on('click',
+                                                        function (e) {
+                                                            e.preventDefault();
+                                                            displayPopupContentFromUrl(
+                                                                '@Url.RouteUrl("TopicPopup", new { SystemName = "conditionsofuse" })', '@T("Checkout.TermsOfService")');
+                                                        });
+                                                });</script>
+                                            }
+                                            else
+                                            {
+                                            <a class="read" id="read-terms" href="@Url.RouteTopicUrl(" conditionsofuse")">@T("Checkout.TermsOfService.Read")</a>
+                                            }
+                                        </div>
+                                        }
+                                        <div class="checkout-buttons">
+                                            @if (string.IsNullOrEmpty(Model.MinOrderSubtotalWarning) && !Model.HideCheckoutButton)
+                                            {
+                                            <script asp-location="Footer">
+                                                $(document).ready(function () {
+                                                    $('#checkout').on('click', function () {
+                                                        //terms of service
+                                                        var termOfServiceOk = true;
+                                                        if ($('#termsofservice').length > 0) {
+                                                            //terms of service element exists
+                                                            if (!$('#termsofservice').is(':checked')) {
+                                                                $("#terms-of-service-warning-box").dialog();
+                                                                termOfServiceOk = false;
+                                                            } else {
+                                                                termOfServiceOk = true;
+                                                            }
+                                                        }
+                                                        return termOfServiceOk;
+                                                    });
+                                                });
+                                            </script>
+                                            if (orderSettings.CheckoutDisabled)
+                                            {
+                                            <div class="checkout-disabled">
+                                                @T("Checkout.Disabled")
+                                            </div>
+                                            }
+                                            else
+                                            {
+                                            <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
+                                                @T("Checkout.Button")
+                                            </button>
+                                            }
+                                            }
+                                        </div>
+                                        <div class="addon-buttons">
+                                            @*Payment method buttons (e.g. GoogleCheckoutButton, Paypal Express)*@
+                                            @foreach (var pm in Model.ButtonPaymentMethodViewComponents)
+                                            {
+                                            @await Component.InvokeAsync(pm)
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="bnpl-list d-none">
+                                    <div class="digi-pay">
+                                        <div>
+                                            <img src="/images/icons/bnpls/digi-pay.svg">
+                                        </div>
+                                        <div>
+                                            <div>امکان پرداخت قسطی با دیجی پی</div>
+                                            <div class="description">پرداخت در 4 قسط</div>
+                                        </div>
+                                    </div>
+                                    <div class="torob-pay">
+                                        <div>
+                                            <img src="/images/icons/bnpls/torob-pay.svg">
+                                        </div>
+                                        <div>
+                                            <div>امکان پرداخت قسطی با ترب‌پی</div>
+                                            <div class="description">پرداخت در 4 قسط</div>
+                                        </div>
+                                    </div>
+                                    <div class="tara-pay">
+                                        <div>
+                                            <img src="/images/icons/bnpls/tara-pay.svg">
+                                        </div>
+                                        <div>
+                                            <div>امکان پرداخت قسطی با تارا</div>
+                                            <div class="description">پرداخت در 4 قسط</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditable && Model.Items.Count > 0 && Model.DisplayTaxShippingInfo)
+                {
+                var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+                //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
+                //of course, you can modify appropriate locales to include VAT info there
+                <div class="tax-shipping-info">
+                    @T(inclTax ? "ShoppingCart.TaxShipping.InclTax" : "ShoppingCart.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
+                </div>
+                }
+                <div class="cart-options">
+                    @if (Model.IsEditable)
+                    {
+                    <div class="common-buttons d-none">
+                        <button type="submit" name="updatecart" id="updatecart" class="button-2 update-cart-button" style="display:none">@T("ShoppingCart.UpdateCart")</button>
+
+                        <button type="submit" name="continueshopping" class="button-2 continue-shopping-button">@T("ShoppingCart.ContinueShopping")</button>
+                        @await Component.InvokeAsync(typeof(ShoppingCartEstimateShippingViewComponent))
+                    </div>
+                    }
+                    @if (Model.IsEditable)
+                    {
+                    @await Html.PartialAsync("_CheckoutAttributes", Model)
+                    }
+                    @await Component.InvokeAsync(typeof(SelectedCheckoutAttributesViewComponent))
+                </div>
+
+                <div class="cart-options-mobile">
+                    @if (Model.IsEditable)
+                    {
+                    <div class="common-buttons">
+                        <button type="submit" name="updatecart" id="updatecart" class="button-2 update-cart-button" style="display:none">@T("ShoppingCart.UpdateCart")</button>
+
+                        <button type="submit" name="continueshopping" class="button-2 d-none continue-shopping-button">@T("ShoppingCart.ContinueShopping")</button>
+                        @await Component.InvokeAsync(typeof(ShoppingCartEstimateShippingViewComponent))
+                    </div>
+                    }
+                    @if (Model.IsEditable)
+                    {
+                    @await Html.PartialAsync("_CheckoutAttributes", Model)
+                    }
+                    @await Component.InvokeAsync(typeof(SelectedCheckoutAttributesViewComponent))
+                </div>
+
+                @if (Model.IsEditable)
+                {
+                @await Component.InvokeAsync(typeof(CrossSellProductsViewComponent))
+                }
+            </form>
+            }
+            else
+            {
+            <div class="no-data">
+                <img src="/images/Empty-Basket.svg" />
+                @T("ShoppingCart.CartIsEmpty")
+                <div class="common-buttons">
+                    <a class="button-1" href="/">@T("ShoppingCart.ContinueShopping")</a>
+                </div>
+            </div>
+            }
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryContentAfter, additionalData = Model })
+        </div>
+
+
+        <script asp-location="Footer">
+
+
+            function updateCartItemQuantityTotal() {
+                let cartItemQuantityTotal = 0;
+                jQuery('.cart-item .quantity input.qty-input').each(function (i, e) {
+                    cartItemQuantityTotal += Number(jQuery(this).val());
+                })
+
+                jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').html(cartItemQuantityTotal);
+
+                if (cartItemQuantityTotal <= 0) {
+                    jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').remove();
+                    jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Empty.svg');
+                }
+
+            }
+
+            function removeItem(productId, itemId) {
+                if (!productId) return;
+
+                var postData = {
+                    productId: productId,
+                    quantity: 0
+                };
+
+                addAntiForgeryToken(postData);
+
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: "@Url.RouteUrl("UpdateQuantity")",
+                    data: postData,
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#itemquantity" + itemId).css("display", "none");
+                        $("#itemquantity" + itemId).prop("disabled", "disabled");
+                        $("#dots-spinner" + itemId).css("display", "inline-block")
+                        $(".decrease-quantity" + itemId).prop("disabled", "disabled");
+                        $(".increase-quantity" + itemId).prop("disabled", "disabled");
+                        $(".remove-btn" + itemId).prop("disabled", "disabled");
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        if (data.IsSucceed) {
+                            $(".total-info").html(data.OrderTotals);
+                            $(".cart-qty").text(data.TotalQuantity);
+                            $("#flyout-cart").replaceWith(data.FlayoutShopping);
+
+                            updateCartItemQuantityTotal();
+
+                            $("#itemquantity" + itemId).closest(".cart-item .item-image-quantity-details").animate({ height: 0, opacity: 0 }, function () {
+                                $("#itemquantity" + itemId).closest('.cart-item').remove();
+
+                                if (jQuery('div.cart.footable-loaded.footable .cart-item').length <= 0) {
+                                    jQuery('.header-cart-button-mobile').remove();
+                                    window.location.reload();
+                                }
+                            });
+
+                        } else {
+                            $("#itemquantity" + itemId).val(Number($("#itemquantity" + itemId).val()) + Number(1));
+                            data.Warnings.forEach(function (warning) { alert(warning) });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#itemquantity" + itemId).val(Number($("#itemquantity" + itemId).val()) + Number(1));
+
+                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                    },
+                    complete: function () {
+
+                        setTimeout(function () {
+                            $("#itemquantity" + itemId).css("display", "inline-block");
+                            $("#itemquantity" + itemId).prop("disabled", "");
+                            $("#dots-spinner" + itemId).css("display", "none")
+                            $(".decrease-quantity" + itemId).prop("disabled", "");
+                            $(".increase-quantity" + itemId).prop("disabled", "");
+                            $(".remove-btn" + itemId).prop("disabled", "");
+
+                        }, 500);
+                    },
+                });
+
+            }
+
+        </script>

@@ -1,0 +1,12 @@
+﻿@model LogoModel
+@{
+    var themeLogo = await Component.InvokeAsync("Widget", new { widgetZone = "traction_theme_logo" });
+}
+@if (!String.IsNullOrWhiteSpace(await themeLogo.RenderHtmlContentAsync()))
+{
+    <a href="@Url.RouteUrl("Homepage")" class="logo">@themeLogo</a>
+}
+else
+{
+    @await Html.PartialAsync("_ZarBrand")
+}

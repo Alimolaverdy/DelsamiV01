@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_ColumnsOne";
+    var url = ViewData["Url"];
+}
+@using Nop.Web.Framework;
+
+<h1 style="width:100%;height:100%;text-align:center;">
+    لطفا تا ارسال به پرداخت الکترونیکی شکیبا باشید.
+</h1>
+
+<script type="text/javascript" asp-location="Footer">
+    document.referrerPolicy = "origin";
+    window.onload = function () {
+        window.location.href = "@url";
+    }
+</script>

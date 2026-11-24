@@ -1,0 +1,92 @@
+﻿@model PaymentMethodShippingRestrictionModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Payments.Restrictions").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodShippingRestriction.SystemName").Text);
+}
+
+
+<form asp-controller="PaymentMethodRestriction" asp-action="SaveShippingMethodRestrictions" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.Payments.Restrictions")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ShippingRestrictionListButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body" style="overflow-x: auto;">
+
+
+                            @if (Model.AvailablePaymentMethods.Count == 0)
+                            {
+                                <text>No Payment Method defined</text>
+                            }
+                            else if (Model.AvailableShippingMethods.Count == 0)
+                            {
+                                <text>No Shpping Method defined</text>
+
+                            }
+                            else
+                            {
+
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <strong>@T("ZarIran.Plugin.Payments.ManagePaymentMethod.shipping")</strong>
+                                            </th>
+                                            @foreach (var sm in Model.AvailablePaymentMethods)
+                                            {
+                                                <th scope="col">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" id="selectall-@(sm.SystemName)" />
+                                                            <strong>@sm.FriendlyName</strong>
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var sm in Model.AvailableShippingMethods)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <span>@sm.Name</span>
+                                                </td>
+                                                @foreach (var pm in Model.AvailablePaymentMethods)
+                                                {
+                                                    var restricted = Model.Restricted.ContainsKey(sm.Id) && Model.Restricted[sm.Id][pm.SystemName];
+                                                    <td>
+                                                        <input class="restrict_@(pm.SystemName)" type="checkbox" value="@(sm.Id)" name="restrict_@(pm.SystemName)" @(restricted ? " checked=checked" : null) />
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+

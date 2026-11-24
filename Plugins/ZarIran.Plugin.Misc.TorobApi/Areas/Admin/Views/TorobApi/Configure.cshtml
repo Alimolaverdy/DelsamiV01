@@ -1,0 +1,66 @@
+﻿@model ConfigurationModel
+
+@{
+	Layout = "_ConfigurePlugin";
+	NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.SMSManagement.Configuration.SystemName").Text);
+}
+
+<form asp-controller="TorobApi" asp-action="Configure" method="post">
+	<section class="content">
+		<div class="container-fluid">
+			<div class="cards-group">
+				<div class="card card-default">
+					<div class="card-body">
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="LogEnabled" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="LogEnabled" asp-required="true" />
+								<span asp-validation-for="LogEnabled"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="LogEnabledOrderRequest" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="LogEnabledOrderRequest" asp-required="true" />
+								<span asp-validation-for="LogEnabledOrderRequest"></span>
+							</div>
+
+						</div>
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="TorobPublicKey" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="TorobPublicKey" asp-required="true" />
+								<span asp-validation-for="TorobPublicKey"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="IsActive" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="IsActive" asp-required="true" />
+								<span asp-validation-for="IsActive"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-9 offset-md-3">
+								<button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>

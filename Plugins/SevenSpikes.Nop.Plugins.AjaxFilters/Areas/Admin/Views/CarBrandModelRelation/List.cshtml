@@ -1,0 +1,77 @@
+﻿@model CarBrandModelRelationSearchModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelation.List").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelation.List.SystemName").Text);
+
+    const string hideSearchBlockAttributeName = "CarBrandModelRelationPage.HideSearchBlock";
+
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelation.List")
+    </h1>
+
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                            Name = "price-inquiries-grid",
+                            UrlRead = new DataUrl("List", "CarBrandModelRelation", new RouteValueDictionary{{"Area","Admin"}}),
+                            SearchButtonId = "search-customer-attribute-validations",
+                            Length = Model.PageSize,
+                            LengthMenu = Model.AvailablePageSizes,
+                            Filters = new List<FilterParameter>
+                            {
+
+                            },
+                            ColumnCollection = new List<ColumnProperty>
+                            {
+                                new ColumnProperty(nameof(CarBrandModelRelationModel.CarBrandSpecificationAttributeOptionName))
+                                {
+                        Title = T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelation.CarBrandModelRelationModel.CarBrand").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "100"
+                                },
+                                new ColumnProperty(nameof(CarBrandModelRelationModel.ModelSpecificationAttributeOptionName))
+                                {
+                        Title = T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelation.CarBrandModelRelationModel.Model").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Width = "80"
+                                },
+
+                                new ColumnProperty(nameof(CarBrandModelRelationModel.Id))
+                                {
+                                    Title = T("Admin.Common.Edit").Text,
+                                    Width = "80",
+                                    ClassName =  NopColumnClassDefaults.Button,
+                                    Render = new RenderButtonEdit(new DataUrl("Edit"))
+                                }
+                            }
+                        })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

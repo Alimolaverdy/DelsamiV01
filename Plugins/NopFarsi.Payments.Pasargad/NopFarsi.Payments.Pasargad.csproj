@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Condition=" '$(EAZFUSCATOR_NET_HOME)' != '' and Exists('$(EAZFUSCATOR_NET_HOME)\Integration\MSBuild\Eazfuscator.NET.targets') " Project="$(EAZFUSCATOR_NET_HOME)\Integration\MSBuild\Eazfuscator.NET.targets" />
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Copyright>Copyright © nopFarsi, Ltd</Copyright>
+		<Company>nopFarsi Solutions, Ltd</Company>
+		<Authors>nopFarsi Solutions, Ltd</Authors>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>http://www.nopFarsi.ir/</PackageProjectUrl>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<RepositoryType>Git</RepositoryType>
+		<EazfuscatorIntegration>MSBuild</EazfuscatorIntegration>
+		<EazfuscatorActiveConfiguration>Release</EazfuscatorActiveConfiguration>
+		<EazfuscatorCompatibilityVersion>2019.1</EazfuscatorCompatibilityVersion>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\NopFarsi.Payments.Pasargad</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="1-Doc\**" />
+		<Compile Remove="2-doc\**" />
+		<Compile Remove="2-Library\**" />
+		<Compile Remove="Connected Services\**" />
+		<EmbeddedResource Remove="1-Doc\**" />
+		<EmbeddedResource Remove="2-doc\**" />
+		<EmbeddedResource Remove="2-Library\**" />
+		<EmbeddedResource Remove="Connected Services\**" />
+		<None Remove="1-Doc\**" />
+		<None Remove="2-doc\**" />
+		<None Remove="2-Library\**" />
+		<None Remove="Connected Services\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Persian.dll" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="ZarIran.Plugin.Misc.Core">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="ZarIran.Plugin.Payment.Core">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Payment.Core\ZarIran.Plugin.Payment.Core.dll</HintPath>
+		  <Private>False</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj">
+	    <Private>False</Private>
+	  </ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<WCFMetadata Include="Connected Services" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="logo.jpg">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="logo.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="plugin.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\Configure.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\RedirectPage.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\pay.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\PaymentInfo.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\PaymentMelli\Configure.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\PaymentMelli\Error.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\PaymentMelli\Pay.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\PaymentMelli\PaymentInfo.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<PropertyGroup>
+		<PostBuildEvent>REM Eazfuscator.NET is integrated with this project at MSBuild level: https://www.gapotchenko.com/eazfuscator.net/kb/100036</PostBuildEvent>
+	</PropertyGroup>
+
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+	</Target>
+</Project>

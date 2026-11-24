@@ -1,0 +1,81 @@
+﻿@model ZarIranPaymentMethodRestrictionModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Payments.Restrictions").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodRestriction.List.SystemName").Text);
+}
+
+
+<form asp-controller="PaymentMethodRestriction" asp-action="Restrictions" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.Payments.Restrictions")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ShippingRestrictionListButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body" style="overflow-x: auto;">
+
+
+                            @if (Model.AvailableStateProvinces.Count == 0)
+                            {
+                                <text>No StateProvinces defined</text>
+                            }
+                            else
+                            {
+                                <script>
+
+                                    $(document).ready(function () {
+                                        loadRestrictions($('#SelectedStateProviceId').val());
+                                    });
+
+                                    function loadRestrictions(selectedId) {
+                                        $.ajax({
+                                            url: '@Url.Action("GetPaymentRestrictions", "PaymentMethodRestriction")',
+                                            type: 'GET',
+                                            data: { stateProvinceId: selectedId },
+                                            success: function (data) {
+                                                $('#restrictions-table-container').html(data);
+                                            },
+                                            error: function () {
+                                                alert('Error loading restrictions.');
+                                            }
+                                        });
+                                    }
+
+                                </script>
+
+                                <div class="form-group row col-md-5">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="SelectedStateProviceId" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-select asp-for="SelectedStateProviceId" asp-items="Model.AvailableStateProvinces" onchange="loadRestrictions(this.value)" />
+                                    </div>
+                                </div>
+                           
+                                <div id="restrictions-table-container"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+

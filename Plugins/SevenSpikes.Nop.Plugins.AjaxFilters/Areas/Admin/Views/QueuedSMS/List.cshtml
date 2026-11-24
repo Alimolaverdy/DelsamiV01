@@ -1,0 +1,149 @@
+﻿@model QueuedSMSSearchModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("NobParts.Plugin.Misc.SMS.QueuedSMS.List").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("NobParts.Plugin.Misc.SMS.QueuedSMS.List.SystemName").Text);
+
+    const string hideSearchBlockAttributeName = "QueuedSMSPage.HideSearchBlock";
+
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("NobParts.Plugin.Misc.SMS.QueuedSMS.List")
+    </h1>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default card-search">
+                    <div class="card-body">
+                        <div class="row search-row opened" data-hideAttribute="@hideSearchBlockAttributeName">
+                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                            <div class="icon-collapse"><i class="far fa-angle-up" aria-hidden="true"></i></div>
+                        </div>
+
+                        <div class="search-body">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="SenderNumber" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="SenderNumber" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="ReceiverNumber" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="ReceiverNumber" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="Body" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="Body" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="text-center col-12">
+                                    <button type="button" id="search-queued-sms" class="btn btn-primary btn-search"><i class="fas fa-search"></i>@T("Admin.Common.Search")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                        Name = "queued-sms-grid",
+                        UrlRead = new DataUrl("List", "QueuedSMS", new RouteValueDictionary{{"Area","Admin"}}),
+                        SearchButtonId = "search-queued-sms",
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        Filters = new List<FilterParameter>
+                        {
+                        new FilterParameter(nameof(Model.SenderNumber)),
+                        new FilterParameter(nameof(Model.ReceiverNumber)),
+                        new FilterParameter(nameof(Model.Body))
+                        },
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                        //new ColumnProperty(nameof(QueuedSMSModel.Id))
+                        //{
+                        //    IsMasterCheckBox = true,
+                        //    Render = new RenderCheckBox("checkbox_queued-sms"),
+                        //    ClassName =  NopColumnClassDefaults.CenterAll,
+                        //    Width = "30"
+                        //},
+                        new ColumnProperty(nameof(QueuedSMSModel.SenderNumber))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.SenderNumber").Text,
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        Width = "100"
+                        },
+                        new ColumnProperty(nameof(QueuedSMSModel.ReceiverNumber))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.ReceiverNumber").Text,
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        Width = "80"
+                        },
+                        new ColumnProperty(nameof(QueuedSMSModel.Body))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.Body").Text,
+                        Width = "100",
+                        ClassName = NopColumnClassDefaults.CenterAll,
+                        },
+                        new ColumnProperty(nameof(QueuedSMSModel.CreatedDateTimeStr))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.CreatedDateTimeStr").Text,
+                        Width = "80",
+                        ClassName =  NopColumnClassDefaults.CenterAll
+                        },
+                        new ColumnProperty(nameof(QueuedSMSModel.SentTries))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.SentTries").Text,
+                        Width = "150",
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        },
+                        new ColumnProperty(nameof(QueuedSMSModel.SentDateTimeStr))
+                        {
+                        Title = T("NobParts.Plugin.Misc.SMS.QueuedSMSs.Fields.SentDateTimeStr").Text,
+                        Width = "150",
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        }
+
+                        }
+                        })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

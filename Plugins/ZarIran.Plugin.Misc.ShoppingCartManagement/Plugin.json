@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Shopping Cart Management",
+  "SystemName": "ZarIran.Misc.ShoppingCartManagement",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Nob Parts",
+  "DisplayOrder": 3,
+  "FileName": "ZarIran.Plugin.Misc.ShoppingCartManagement.dll",
+  "Description": "Managing shopping cart Items",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+}

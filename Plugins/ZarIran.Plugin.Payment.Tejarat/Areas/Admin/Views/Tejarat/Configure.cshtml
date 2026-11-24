@@ -1,0 +1,67 @@
+﻿@model ZarIran.Plugin.Payment.Tejarat.Areas.Admin.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payment.Tejarat.Configuration.SystemName").Text);
+}
+
+<form asp-controller="Tejarat" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="TerminalId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TerminalId" />
+                                <span asp-validation-for="TerminalId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="AcceptorId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="AcceptorId" />
+                                <span asp-validation-for="AcceptorId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PassPhrase" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PassPhrase" />
+                                <span asp-validation-for="PassPhrase"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="RsaPublicKey" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="RsaPublicKey" />
+                                <span asp-validation-for="RsaPublicKey"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

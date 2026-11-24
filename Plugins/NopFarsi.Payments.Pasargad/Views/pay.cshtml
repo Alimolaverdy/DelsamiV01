@@ -1,0 +1,15 @@
+﻿@model string
+@{
+    Layout = "_Root";
+}
+<div style="margin:80px">
+    <h2>
+@Html.Raw(Model)
+<br />
+<br />
+<a href="/orderdetails/@ViewBag.orderId">نمايش جزئيات سفارش</a>
+    </h2>
+</div>
+    <script type="text/javascript" asp-location="Footer">
+    $("#frmpay").trigger("submit");
+    </script>

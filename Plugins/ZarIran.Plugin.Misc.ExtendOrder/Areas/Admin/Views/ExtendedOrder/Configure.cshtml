@@ -1,0 +1,98 @@
+﻿@model ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ExtendedOrder.Configuration.SystemName").Text);
+}
+
+<form asp-controller="ExtendedOrder" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="OrderCompleteAsDays" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="OrderCompleteAsDays" />
+                                <span asp-validation-for="OrderCompleteAsDays"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SelectedShippingMethods" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="SelectedShippingMethods" asp-items="Model.AvailableShippingMethods" asp-required="true" asp-multiple="true" />
+                                <script>
+                                    $(document).ready(function () {
+                                        var selectedIdsInput = $('#@Html.IdFor(model => model.SelectedShippingMethods)')
+                                            .data("kendoMultiSelect");
+                                        selectedIdsInput.setOptions({
+                                            autoClose: false,
+                                            filter: "contains",
+                                            placeholder: "لطفا روش های ارسال را انتخاب نمایید"
+
+                                        });
+
+                                    @if (Model.AvailableShippingMethods.Count == 0)
+                                    {
+                                            <text>
+                                                    selectedIdsInput.setOptions({
+                                                        enable: false,
+                                                        placeholder: 'No Shipping Method Available'
+                                                    });
+                                                selectedIdsInput._placeholder();
+                                                selectedIdsInput._enable();
+                                            </text>
+                                    }
+                                    });
+                                </script>
+                                <span asp-validation-for="SelectedShippingMethods"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="OrderExpirationAsMinutes" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="OrderExpirationAsMinutes" />
+                                <span asp-validation-for="OrderExpirationAsMinutes"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SystemSubStatusId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="SystemSubStatusId" asp-items="Model.AvailableSubStatuses" />
+                                <span asp-validation-for="SystemSubStatusId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="FulfillmentDecisionBaseUrl" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="FulfillmentDecisionBaseUrl" />
+                                <span asp-validation-for="FulfillmentDecisionBaseUrl"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

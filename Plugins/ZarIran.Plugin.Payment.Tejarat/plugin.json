@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Payment",
+  "FriendlyName": "درگاه پرداخت ایران کیش",
+  "SystemName": "ZarIran.Payment.Tejarat",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 18,
+  "FileName": "ZarIran.Plugin.Payment.Tejarat.dll",
+  "Description": "Payment via tejarat payment gateway",
+  "DependsOnSystemNames": [ "ZarIran.Payment.Core" ]
+}

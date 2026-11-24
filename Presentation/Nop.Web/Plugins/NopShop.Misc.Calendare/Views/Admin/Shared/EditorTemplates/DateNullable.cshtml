@@ -1,0 +1,66 @@
+﻿@model DateTime?
+@using System.Globalization
+@{
+    //var lan = (await EngineContext.Current.Resolve<IWorkContext>().GetWorkingLanguageAsync()).UniqueSeoCode;
+    string lan = "fa";
+
+    NopHtml.AppendCssFileParts("~/Plugins/NopShop.Misc.Calendare/Content/css/jquery.md.bootstrap.datetimepicker.style.css");
+    NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/NopShop.Misc.Calendare/Content/js/jquery.md.bootstrap.datetimepicker.js", "");
+}
+@if (lan == "fa")
+{
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text cursor-pointer" id="@Html.IdForModel()-date">
+                <i class="far fa-calendar"></i>
+            </span>
+        </div>
+        <input type="text" id="@Html.IdForModel()" name="@Html.IdForModel()" class="form-control" placeholder="" aria-label="@Html.IdForModel()-date"
+               aria-describedby="@Html.IdForModel()-date" value="">
+    </div>
+    <hr>
+
+    @if (Model.HasValue)
+    {
+        <script>
+            $('#@Html.IdForModel()-date').MdPersianDateTimePicker({
+                targetTextSelector: '#@Html.IdForModel()',
+                enableTimePicker: false,
+                modalMode: false,
+                englishNumber: true,
+                selectedDate: new Date('@Model.Value.ToString(CultureInfo.InvariantCulture)')
+            });
+        </script>
+    }
+    else
+    {
+        <script>
+            $('#@Html.IdForModel()-date').MdPersianDateTimePicker({
+                targetTextSelector: '#@Html.IdForModel()',
+                enableTimePicker: false,
+                modalMode: false,
+                englishNumber: true
+            });
+        </script>
+    }
+}
+else
+{
+    <input id="@Html.IdForModel()" name="@Html.NameForModel()" value="@(Model > DateTime.MinValue || Model.HasValue ? Model.Value.ToShortDateString() : null)" />
+    <script>
+        $(document).ready(function () {
+            $("#@Html.IdForModel()").kendoDatePicker();
+        });
+    </script>
+     <style>
+    .input-group-prepend {
+        height: 38px !important;
+    }
+
+    .mds-bootstrap-persian-datetime-picker-popover {
+        max-width: 100% !important;
+        right: unset !important;
+    }
+</style>
+
+}

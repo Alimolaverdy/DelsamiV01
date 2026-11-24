@@ -1,0 +1,57 @@
+using System.Collections.Generic;
+using System.Linq;
+using Nop.Core.Domain.Catalog;
+using Nop.Core.Infrastructure;
+using Nop.Data;
+using Nop.Services.Catalog;
+
+namespace SevenSpikes.Nop.Plugins.AjaxFilters.Pro.Extensions;
+
+public static class ServiceExtensions
+{
+    public static SpecificationAttribute GetSpecificationAttributeByName(
+        this ISpecificationAttributeService specificationAttributeService,
+        string name)
+    {
+        return EngineContext.Current
+            .Resolve<IRepository<SpecificationAttribute>>()
+            .Table
+            .FirstOrDefault(attribute => attribute.Name == name);
+    }
+
+    public static IList<SpecificationAttribute> GetSpecificationAttributeByIds(
+        this ISpecificationAttributeService specificationAttributeService,
+        int[] ids)
+    {
+        if (ids == null || ids.Length == 0)
+            return new List<SpecificationAttribute>();
+
+        var attributesById = EngineContext.Current
+            .Resolve<IRepository<SpecificationAttribute>>()
+            .Table
+            .Where(attribute => ids.Contains(attribute.Id))
+            .ToDictionary(attribute => attribute.Id);
+
+        return ids
+            .Where(attributesById.ContainsKey)
+            .Select(id => attributesById[id])
+            .ToList();
+    }
+
+    public static IList<Manufacturer> GetManufacturersByIds(
+        this IManufacturerService manufacturerService,
+        int[] ids)
+    {
+        if (ids == null || ids.Length == 0)
+            return new List<Manufacturer>();
+
+        return EngineContext.Current
+            .Resolve<IRepository<Manufacturer>>()
+            .Table
+            .Where(manufacturer => ids.Contains(manufacturer.Id)
+                                   && !manufacturer.Deleted
+                                   && manufacturer.Published)
+            .OrderBy(manufacturer => manufacturer.DisplayOrder)
+            .ToList();
+    }
+}

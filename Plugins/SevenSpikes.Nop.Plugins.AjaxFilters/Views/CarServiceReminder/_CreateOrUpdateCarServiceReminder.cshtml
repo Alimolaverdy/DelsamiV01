@@ -1,0 +1,44 @@
+﻿@model CarServiceReminderModel
+<link href="~/plugins/NobParts.Misc.CarInfo/content/lib/persiandatepicker/persiandatepicker-default.css" rel="stylesheet" />
+<script src="~/plugins/NobParts.Misc.CarInfo/content/lib/persiandatepicker/persiandatepicker.min.js"></script>
+
+<input class="customercar-id" asp-for="Id" type="hidden" />
+<div class="edit-address">
+
+    <div class="inputs">
+        <label asp-for="CustomerCarId" asp-postfix=":"></label>
+        <select asp-for="CustomerCarId" asp-items="Model.AvailabeCustomerCars">
+            <option value="0">@T("NobParts.Plugin.Misc.CarInfo.CustomerCarId.SelectDefaultOptionText")</option>
+        </select>
+        <nop-required />
+        <span asp-validation-for="CustomerCarId"></span>
+    </div>
+
+    <div class="inputs">
+        <label asp-for="CarServiceReminderType" asp-postfix=":"></label>
+        <select asp-for="CarServiceReminderType" asp-items="Model.AvailabeCarServiceReminderTypes">
+            <option value="">@T("NobParts.Plugin.Misc.CarInfo.CarServiceReminderType.SelectDefaultOptionText")</option>
+        </select>
+        <nop-required />
+        <span asp-validation-for="CarServiceReminderType"></span>
+    </div>
+
+    <div class="inputs">
+        <label asp-for="DueDateStr" asp-postfix=":"></label>
+        <input name="DueDateStr" class="int-input" type="text" id="DueDateStr" value="@Model.DueDateStr" autocomplete="off" />
+        <span asp-validation-for="DueDateStr"></span>
+    </div>
+
+    <div class="inputs">
+        <label asp-for="Message" asp-postfix=":"></label>
+        <input class="int-input" asp-for="Message" />
+        <span asp-validation-for="Message"></span>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#DueDateStr").persianDatepicker();
+    });
+</script>

@@ -1,0 +1,113 @@
+@model ZarIran.Plugin.Misc.GoldPurchase.Models.GoldPurchaseModel
+@using System.Globalization
+@using ZarIran.Plugin.Misc.GoldPurchase
+@using ZarIran.Plugin.Misc.GoldPurchase.Services
+@{
+    Layout = "_ColumnsOne";
+    NopHtml.AddTitleParts("کیف طلای من | خرید و فروش طلا");
+    NopHtml.AddCssFileParts("~/Plugins/ZarIran.Misc.GoldPurchase/Style/gold-wallet.css");
+    var inv = CultureInfo.InvariantCulture;
+    var sell = Model.ActiveTab == "sell";
+    var maxSaleAmount = GoldPricing.GetSellAmount(Model.WalletBalanceGrams, Model.Sell.SellPricePerGram);
+    var saleAmount = Model.Sell.TargetAmount.HasValue
+        ? Math.Min(Model.Sell.TargetAmount.Value, maxSaleAmount)
+        : Model.Sell.GoldWeightGrams > 0
+            ? Math.Min(GoldPricing.GetSellAmount(Model.Sell.GoldWeightGrams, Model.Sell.SellPricePerGram), maxSaleAmount)
+            : (decimal?)null;
+    var pnl = Model.Portfolio.ProfitLoss;
+    var pnlClass = pnl > 0 ? "is-profit" : pnl < 0 ? "is-loss" : "is-neutral";
+}
+<div class="page gold-wallet-page" dir="rtl" data-buy-price="@Model.BuyPricePerGram.ToString(inv)" data-sell-price="@Model.Sell.SellPricePerGram.ToString(inv)" data-balance="@Model.WalletBalanceGrams.ToString(inv)" data-cash-balance="@Model.CashWalletBalance.ToString(inv)">
+    <header class="gold-page-heading"><div><a class="gold-back" href="@Url.RouteUrl("CustomerInfo")">حساب کاربری من ←</a><h1>کیف طلای من</h1><p>خرید و فروش طلا، به اندازهٔ انتخاب شما</p></div><div class="gold-rate"><span>قیمت فعلی هر گرم طلا</span><strong>@Model.GoldPricePerGram.ToString("N0") <small>تومان</small></strong></div></header>
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage)) { <div role="status" class="message-success">@Model.SuccessMessage</div> }
+    @if (!Model.IsActive) { <div class="message-error">خرید و فروش طلا در حال حاضر غیرفعال است.</div> }
+    <div asp-validation-summary="All" id="gold-server-errors" class="message-error" role="alert" tabindex="-1"></div>
+    <section class="gold-overview" aria-label="خلاصه دارایی">
+        <div class="gold-balance"><span class="gold-eyebrow">دارایی طلای شما</span><strong>@Model.WalletBalanceGrams.ToString("0.########") <small>گرم</small></strong><p>ارزش فعلی دارایی</p><b>@Model.Portfolio.CurrentValue.ToString("N0") <small>تومان</small></b></div>
+        <div class="gold-stat"><span>مجموع مبلغ پرداختی شما</span><strong>@Model.Portfolio.TotalPaid.ToString("N0") <small>تومان</small></strong><p>خریدهای پرداخت‌شده و ثبت‌شده در کیف طلا</p></div>
+        <div class="gold-stat"><span>بهای خرید طلای باقی‌مانده</span><strong>@Model.Portfolio.RemainingCost.ToString("N0") <small>تومان</small></strong><p>بر اساس میانگین بهای خرید؛ با کسر طلای فروخته‌شده</p></div>
+        <div class="gold-stat gold-pnl @(Model.Portfolio.IsComplete ? pnlClass : "is-neutral")">
+        @if (Model.Portfolio.IsComplete) {
+            <span>@(pnl > 0 ? "سود شما" : pnl < 0 ? "ضرر شما" : "تغییر ارزش دارایی")</span>
+            <strong>@Math.Abs(pnl).ToString("N0") <small>تومان</small></strong>
+            @if (Model.Portfolio.ProfitPercent.HasValue) { <b dir="ltr">@(pnl > 0 ? "+" : "")@Model.Portfolio.ProfitPercent.Value.ToString("0.##")٪</b> }
+            <p>تفاوت ارزش فعلی و بهای خرید طلای موجود</p>
+        } else { <span>سود و ضرر</span><strong>نیازمند بررسی سوابق</strong><p>سوابق تراکنش با موجودی فعلی تطابق ندارد.</p> }
+        </div>
+    </section>
+    <p class="gold-explanation">ارزش دارایی با نرخ فعلی و پیش از کارمزد فروش محاسبه شده است. سود و ضرر بالا فقط مربوط به طلای موجود است.</p>
+    @if (Model.Portfolio.HasManualCredits) { <p class="gold-explanation">طلای افزوده‌شده توسط مدیر، بدون پرداخت شما و با بهای خرید صفر در محاسبه لحاظ می‌شود.</p> }
+    <div class="gold-trade-layout">
+        <section class="gold-trade-card">
+            <div class="gold-tabs" role="tablist" aria-label="خرید یا فروش طلا">
+                <a id="gold-buy-tab" class="gold-tab" role="tab" aria-controls="gold-buy-panel" aria-selected="@((!sell).ToString().ToLowerInvariant())" tabindex="@(sell ? -1 : 0)" href="@Url.RouteUrl(GoldPurchaseDefaults.ChargeRoute)">خرید طلا</a>
+                <a id="gold-sell-tab" class="gold-tab" role="tab" aria-controls="gold-sell-panel" aria-selected="@(sell.ToString().ToLowerInvariant())" tabindex="@(sell ? 0 : -1)" href="@Url.RouteUrl(GoldPurchaseDefaults.SellRoute)">فروش طلا</a>
+            </div>
+            <div id="gold-buy-panel" class="gold-tab-panel" role="tabpanel" aria-labelledby="gold-buy-tab" hidden="@sell">
+                <h2>به دارایی طلای خود اضافه کنید</h2>
+                <p class="gold-caption">نرخ نهایی خرید هر گرم با کارمزد @Model.BuyCommission.ToString("0.##")٪: <strong>@Model.BuyPricePerGram.ToString("N0") تومان</strong></p>
+                <p class="gold-caption">مبلغ خرید یا وزن دلخواه را وارد کنید تا مقدار دیگر با نرخ لحظه‌ای و کارمزد محاسبه شود.</p>
+                <form asp-route="ZarIran.Plugin.Misc.GoldPurchase.Buy" method="post" id="gold-purchase-form">
+                    <input type="hidden" id="gold-quote-by" name="quoteBy" value="@Model.QuoteBy" />
+                    <div class="gold-field"><label for="gold-buy-weight">وزن طلا <small>گرم</small></label><input id="gold-buy-weight" name="goldWeightGrams" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" value="@GoldPricingRound(Model.GoldWeightGrams)" required /></div>
+                    <div class="gold-field"><label for="gold-buy-amount">مبلغ پرداختی شامل کارمزد <small>تومان</small></label><input id="gold-buy-amount" name="purchaseAmount" type="text" maxlength="64" inputmode="numeric" dir="ltr" data-min="@Model.MinimumAmount.ToString(inv)" data-max="@Model.MaximumAmount.ToString(inv)" value="@Model.Amount.ToString(inv)" required /><small>از @Model.MinimumAmount.ToString("N0") تا @Model.MaximumAmount.ToString("N0") تومان</small></div>
+                    @if (Model.CashWalletBalance > 0)
+                    {
+                        <div class="gold-cash-options">
+                            <label for="gold-use-cash">
+                                <input id="gold-use-cash" type="checkbox" name="useCashWallet" value="true" checked="@Model.UseCashWallet" />
+                                استفاده از کیف پول‌
+                            </label>
+                            <p class="gold-caption">موجودی کیف پول @Model.CashWalletBalance.ToString("N0") تومان</p>
+                            <div class="gold-field">
+                                <label for="gold-cash-amount">مبلغ پرداخت از کیف پول <small>تومان</small></label>
+                                <input id="gold-cash-amount" name="cashWalletAmount" type="number" min="1" step="1"
+                                       max="@Model.CashWalletBalance.ToString(inv)" value="@(Model.CashWalletAmount?.ToString(inv))" />
+                                <small>برای استفاده از بیشترین مبلغ ممکن، کادر را خالی بگذارید.</small>
+                            </div>
+                        </div>
+                    }
+                    <div class="gold-trade-preview" aria-live="polite"><span>سهم درگاه<strong id="gold-buy-preview">—</strong></span><span>سهم کیف پول<strong id="gold-cash-preview">—</strong></span><span>طلای دریافتی<strong id="gold-buy-grams-preview">—</strong></span></div>
+                    <p id="gold-buy-error" class="message-error" role="alert" hidden></p>
+                    <button type="submit" class="button-1 gold-submit" disabled="@(!Model.IsActive)">پرداخت و خرید طلا</button>
+                </form>
+            </div>
+            <div id="gold-sell-panel" class="gold-tab-panel" role="tabpanel" aria-labelledby="gold-sell-tab" hidden="@(!sell)">
+                <h2>فروش از موجودی طلای شما</h2><p class="gold-caption">نرخ نهایی هر گرم پس از کارمزد: <strong>@Model.Sell.SellPricePerGram.ToString("N0") تومان</strong> <span>(کارمزد @Model.Sell.CommissionPercent.ToString("0.##")٪)</span></p>
+                <form asp-route="ZarIran.Plugin.Misc.GoldPurchase.Sell" method="post" id="gold-sell-form">
+                    <input type="hidden" id="gold-sell-quote-by" name="sellQuoteBy" value="@Model.Sell.QuoteBy" />
+                    <div class="gold-field"><div class="gold-field-heading"><label for="gold-sell-weight">وزن فروش <small>گرم</small></label><button type="button" class="gold-text-button" id="gold-sell-all">فروش همهٔ موجودی</button></div><input id="gold-sell-weight" name="goldWeightGrams" type="number" inputmode="decimal" min="0.00000001" max="@Model.WalletBalanceGrams.ToString(inv)" step="0.00000001" value="@(Model.Sell.GoldWeightGrams > 0 ? Model.Sell.GoldWeightGrams.ToString(inv) : "")" required /><small>حداکثر @Model.WalletBalanceGrams.ToString("0.########") گرم</small></div>
+                    <div class="gold-field">
+                        <label for="gold-sell-amount">مبلغی که می‌خواهید دریافت کنید <small>تومان، پس از کارمزد</small></label>
+                        <input id="gold-sell-amount" name="saleAmount" type="text" maxlength="64" inputmode="numeric" dir="ltr"
+                               data-max="@maxSaleAmount.ToString(inv)" value="@(saleAmount?.ToString(inv))"
+                               aria-describedby="gold-sell-limit" disabled="@(maxSaleAmount <= 0)" />
+                        <small id="gold-sell-limit">حداکثر مبلغ دریافتی @maxSaleAmount.ToString("N0") تومان</small>
+                    </div>
+                    <div class="gold-trade-preview" aria-live="polite"><span>مبلغ دریافتی پس از کارمزد<strong id="gold-sell-preview">—</strong></span></div>
+                    <button type="submit" class="button-1 gold-submit" disabled="@(!Model.IsActive || Model.WalletBalanceGrams <= 0)">تأیید و فروش طلا</button>
+                    <p class="gold-caption">با تأیید فروش، مبلغ پس از کارمزد به کیف پول‌ شما واریز می‌شود.</p>
+                </form>
+            </div>
+        </section>
+        <aside class="gold-guide"><span class="gold-guide-mark" aria-hidden="true">✦</span><h2>طلای شما، شفاف و در دسترس</h2><p>مبلغ خرید و مقدار طلا پیش از پرداخت مشخص است. خرید پس از پرداخت موفق به موجودی شما اضافه می‌شود.</p><dl><div><dt>مجموع مبلغ فروش‌های ثبت‌شده</dt><dd>@Model.Portfolio.SaleProceeds.ToString("N0") تومان</dd></div><div><dt>واحد وزن</dt><dd>گرم، تا ۸ رقم اعشار</dd></div></dl><p>مبلغ نهایی فروش هنگام ثبت، با نرخ سرور محاسبه می‌شود؛ پیش‌نمایش به‌تنهایی تضمین نرخ نیست.</p></aside>
+    </div>
+    <section id="gold-sell-payout" class="gold-trade-card gold-payout-card gold-sell-payout" hidden="@(!sell)">
+            <h2>شماره شبا و برداشت وجه</h2>
+            @if (Model.Shebas.Length > 0)
+            {
+                <ul class="gold-sheba-list">
+                @foreach (var number in Model.Shebas)
+                {
+                    <li><bdi dir="ltr">@number</bdi></li>
+                }
+                </ul>
+            }
+            @await Html.PartialAsync("~/Plugins/ZarIran.Misc.GoldPurchase/Views/_ShebaForm.cshtml", true)
+            <a class="gold-text-button gold-payout-link" href="@Url.RouteUrl(GoldPurchaseDefaults.WithdrawalRoute)">درخواست برداشت از حساب</a>
+    </section>
+</div>
+<script src="~/Plugins/ZarIran.Misc.GoldPurchase/Scripts/gold-wallet-v116.js" asp-location="Footer"></script>
+@functions {
+    string GoldPricingRound(decimal grams) => ZarIran.Plugin.Misc.GoldPurchase.Services.GoldPricing.RoundGrams(grams).ToString(CultureInfo.InvariantCulture);
+}

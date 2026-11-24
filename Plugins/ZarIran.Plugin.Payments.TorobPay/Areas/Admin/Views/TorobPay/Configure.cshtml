@@ -1,0 +1,116 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payments.TorobPay.Configuration.SystemName").Text);
+}
+
+<form asp-controller="TorobPay" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ClientId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ClientId" asp-required="true" />
+                                <span asp-validation-for="ClientId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ClientSecret" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ClientSecret" asp-required="true" />
+                                <span asp-validation-for="ClientSecret"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Username" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Username" asp-required="true" />
+                                <span asp-validation-for="Username"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Password" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Password" asp-required="true" />
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BaseUrl" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="BaseUrl" asp-required="true" />
+                                <span asp-validation-for="BaseUrl"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="TokenCacheMinutes" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TokenCacheMinutes" asp-required="true" />
+                                <span asp-validation-for="TokenCacheMinutes"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MinimumAllowedAmount" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MinimumAllowedAmount" asp-required="true" />
+                                <span asp-validation-for="MinimumAllowedAmount"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MaximumAllowedAmount" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MaximumAllowedAmount" asp-required="true" />
+                                <span asp-validation-for="MaximumAllowedAmount"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="TimeoutSeconds" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TimeoutSeconds" asp-required="true" />
+                                <span asp-validation-for="TimeoutSeconds"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

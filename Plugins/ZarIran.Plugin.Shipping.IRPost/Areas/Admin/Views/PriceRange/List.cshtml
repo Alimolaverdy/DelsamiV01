@@ -1,0 +1,89 @@
+﻿@model PriceRangeSearchModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List.SystemName").Text);
+
+    const string hideSearchBlockAttributeName = "PriceRangePage.HideSearchBlock";
+
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List")
+    </h1>
+
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                            Name = "price-inquiries-grid",
+                                                UrlRead = new DataUrl("List", "PriceRange", new RouteValueDictionary { { "Area", "Admin" } }),
+                                                UrlDelete = new DataUrl("Delete", "PriceRange", null),
+                                                SearchButtonId = "search-customer-attribute-validations",
+                                                Length = Model.PageSize,
+                                                LengthMenu = Model.AvailablePageSizes,
+                                                Filters = new List<FilterParameter>
+                                                {
+
+                                                },
+                                                ColumnCollection = new List<ColumnProperty>
+                                                {
+                                                new ColumnProperty(nameof(PriceRangeModel.MinWieght))
+                                                {
+                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.MinWieght").Text,
+                                                ClassName =  NopColumnClassDefaults.CenterAll,
+                                                Width = "100"
+                                                },
+                                                new ColumnProperty(nameof(PriceRangeModel.MaxWeight))
+                                                {
+                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.MaxWeight").Text,
+                                                ClassName =  NopColumnClassDefaults.CenterAll,
+                                                Width = "80"
+                                                },
+                                                new ColumnProperty(nameof(PriceRangeModel.NeighbouringPrice))
+                                                {
+                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.NeighbouringPrice").Text,
+                                                ClassName =  NopColumnClassDefaults.CenterAll,
+                                                Width = "80"
+                                                },
+                                                new ColumnProperty(nameof(PriceRangeModel.NonNeighbouringPrice))
+                                                {
+                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.NonNeighbouringPrice").Text,
+                                                ClassName =  NopColumnClassDefaults.CenterAll,
+                                                Width = "80"
+                                                },
+                                                new ColumnProperty(nameof(PriceRangeModel.Id))
+                                                {
+                                                Title = T("Admin.Common.Delete").Text,
+                                                Width = "40",
+                                                Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                                                ClassName =  NopColumnClassDefaults.Button
+                                                }
+                                                }
+                                                })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

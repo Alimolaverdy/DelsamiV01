@@ -1,0 +1,90 @@
+﻿@model NopFarsiIR.Plugin.Payments.BankPasargad.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<script>
+	
+
+    
+</script>
+
+<form asp-controller="BankPasargad" asp-action="Configure" method="post">
+    <div class="cards-group">
+        <div class="card card-default">
+            <div class="card-body">
+                
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="PasswordOverrideForStore" asp-input="Password" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Password" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Password" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="UsernameOverrideForStore" asp-input="Username" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Username" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Username" />
+                        <span asp-validation-for="Username"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="UserPasswordOverrideForStore" asp-input="TerminalCode" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="TerminalCode" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TerminalCode" />
+                        <span asp-validation-for="TerminalCode"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IsTomanOverrideForStore" asp-input="IsToman" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="IsToman" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IsToman" />
+                        <span asp-validation-for="IsToman"></span>
+                    </div>
+                </div>
+                <div class="form-group row row">
+                    <div class="col-md-3">
+
+                        <nop-label asp-for="CurrencyId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="CurrencyId" asp-items="(IEnumerable<SelectListItem>)ViewBag.CurrencyItems" />
+                        <span asp-validation-for="CurrencyId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="ConfirmTransaction" asp-input="IsToman" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="ConfirmTransaction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ConfirmTransaction" />
+                        <span asp-validation-for="ConfirmTransaction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,822 @@
+/* Zar Iran retail skin, based on the supplied Prototype_Source.
+   Loaded only by Traction's PUBLIC layout. Existing nop/SevenSpikes selectors,
+   form controls, AJAX targets, prices and carousel engines remain functional. */
+@font-face{font-family:ZarRetail;src:url('../fonts/woff2/IRANSansX-Regular.woff2') format('woff2');font-display:swap}
+body.zar-retail{--zar-cream:#fdfbf7;--zar-sand:#f8f3eb;--zar-blue:#e2edf7;--zar-blue-light:#f3f8fc;--zar-gold:#ac8236;--zar-gold-dark:#7d5b20;--zar-ink:#25303a;--zar-muted:#5f6870;--zar-border:#e8e4de;background:var(--zar-cream);color:var(--zar-ink);font-family:ZarRetail,Tahoma,Arial,sans-serif;font-size:14px;line-height:1.8;margin:0}
+body.zar-retail *{box-sizing:border-box}
+body.zar-retail img{max-width:100%}
+body.zar-retail [hidden]{display:none!important}
+body.zar-retail a{color:inherit;text-decoration:none}
+body.zar-retail button,body.zar-retail input,body.zar-retail select,body.zar-retail textarea{font-family:inherit}
+body.zar-retail :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid #7198bd;outline-offset:4px}
+body.zar-retail .np-container{width:min(calc(100% - 72px),1360px);max-width:1360px;margin-inline:auto;padding-inline:0}
+body.zar-retail .master-wrapper-page{background:transparent;min-height:60vh}
+body.zar-retail .master-wrapper-content{width:min(calc(100% - 72px),1360px);max-width:1360px;margin:0 auto;padding-top:30px}
+body.zar-retail .home .master-wrapper-content{width:100%;max-width:none;padding:0}
+body.zar-retail .center-1,body.zar-retail .center-2{background:transparent;min-width:0}
+body.zar-retail .center-1>.np-container,body.zar-retail .center-2 .np-container{width:100%}
+body.zar-retail .page{padding:20px 0 80px}
+body.zar-retail .page-title{margin:12px 0 38px;border:0;padding:0;text-align:start;background:transparent}
+body.zar-retail .page-title h1{font-size:clamp(26px,3.3vw,44px);font-weight:500;color:var(--zar-ink);line-height:1.5}
+body.zar-retail .breadcrumb{margin:0 0 24px;padding:0;background:transparent;color:var(--zar-muted);font-size:12px}
+body.zar-retail .breadcrumb li{line-height:2}
+body.zar-retail .zar-icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+body.zar-retail .zar-rate-bar{min-height:35px;padding:7px 16px;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--zar-blue);color:#344554;font-size:11px}
+body.zar-retail .zar-rate-bar strong{font-size:12px;font-weight:600}
+body.zar-retail .zar-rate-dot{width:6px;height:6px;border-radius:50%;background:#4d7b65;box-shadow:0 0 0 4px #4d7b6519}
+body.zar-retail .zar-header{display:block!important;width:100%;max-width:none;margin:0;background:var(--zar-cream);border-bottom:1px solid var(--zar-border);position:relative;z-index:110;padding:0}
+body.zar-retail .zar-header-row.header-links-wrapper{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;min-height:104px;position:static!important;float:none;width:min(calc(100% - 72px),1360px);height:auto;background:transparent;box-shadow:none;padding:0}
+body.zar-retail .zar-header-tools{display:flex;align-items:center;gap:8px;min-width:0}
+body.zar-retail .zar-icon-button{display:inline-grid;place-items:center;width:42px;height:42px;min-width:42px;border:0;padding:0;border-radius:50%;background:transparent;color:var(--zar-ink);cursor:pointer}
+body.zar-retail .zar-icon-button:hover{background:var(--zar-blue)}
+body.zar-retail .zar-menu-toggle{display:none}
+body.zar-retail .zar-logo{display:inline-flex!important;align-items:center;gap:11px;width:auto!important;height:auto!important;margin:0!important;padding:0!important;float:none!important;background:none!important;text-align:center}
+body.zar-retail .zar-logo__arch{display:grid;place-items:center;width:44px;height:54px;border:1.5px solid var(--zar-gold);border-radius:25px 25px 2px 2px;color:var(--zar-gold);background:var(--zar-blue)}
+body.zar-retail .zar-logo__arch .zar-icon{width:27px;height:30px;stroke-width:1.2}
+body.zar-retail .zar-logo__type{display:flex;flex-direction:column;gap:2px;align-items:center}
+body.zar-retail .zar-logo__type strong{font-size:24px;font-weight:500;color:var(--zar-gold-dark);line-height:1.5}
+body.zar-retail .zar-logo__type small{font-family:Georgia,serif;direction:ltr;color:var(--zar-gold);font-size:8px;letter-spacing:1.5px;white-space:nowrap}
+body.zar-retail .header-links{display:block!important;position:static!important;width:auto!important;float:none;background:none;padding:0;margin:0;justify-self:end}
+body.zar-retail .header-links>ul{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+body.zar-retail .header-links>ul>li{position:relative;display:block;float:none;margin:0;border:0;padding:0}
+body.zar-retail .header-links :is(.ico-account,.ico-login,.ico-wishlist,.ico-cart){display:inline-flex;align-items:center;justify-content:center;position:relative;width:40px;height:40px;padding:0!important;font-size:0;background:none!important;border:0;color:var(--zar-ink)}
+body.zar-retail .header-links :is(.ico-account,.ico-login,.ico-wishlist,.ico-cart)::before{display:none}
+body.zar-retail .header-links .zar-icon{width:21px;height:21px}
+body.zar-retail .header-links :is(.cart-label,.wishlist-label){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+body.zar-retail .header-links .cart-qty,body.zar-retail .header-links .wishlist-qty{position:absolute;inset:0 auto auto 0;min-width:17px;height:17px;padding:0 3px;border-radius:50%;background:var(--zar-gold);color:white;font-size:9px;line-height:17px;text-align:center}
+body.zar-retail .header-links :is(.ico-register,.ico-logout){font-size:10px;padding:5px;border:0;background:transparent}
+body.zar-retail .header-links .ico-register{display:none}
+body.zar-retail #flyout-cart{z-index:300;background:white;border:1px solid var(--zar-border);border-radius:12px;box-shadow:0 16px 50px #25303a15;color:var(--zar-ink)}
+body.zar-retail .zar-navigation.subheader-wrapper{position:relative!important;top:auto!important;z-index:100;width:100%;height:auto;margin:0;border:0;border-bottom:1px solid var(--zar-border);background:var(--zar-cream)}
+body.zar-retail .zar-navigation .headerMenuParent{display:block;padding:0;min-height:47px}
+body.zar-retail .zar-navigation .header-menu{position:static!important;transform:none!important;width:100%!important;height:auto;float:none;border:0;box-shadow:none;background:transparent;margin:0;padding:0;overflow:visible}
+body.zar-retail .zar-navigation :is(.top-menu,.mega-menu){display:flex!important;justify-content:center;align-items:center;flex-wrap:wrap;gap:clamp(18px,2.6vw,42px);min-height:47px;list-style:none;padding:0;margin:0;background:none}
+body.zar-retail .zar-navigation :is(.top-menu,.mega-menu)>li{float:none;margin:0;border:0;background:transparent;position:relative}
+body.zar-retail .zar-navigation :is(.top-menu,.mega-menu)>li>a{display:block;padding:12px 0;font-size:12px;font-weight:400;color:var(--zar-ink);background:transparent;text-transform:none}
+body.zar-retail .zar-navigation :is(.top-menu,.mega-menu)>li>a:hover{color:var(--zar-gold-dark)}
+body.zar-retail .zar-navigation :is(.sublist,.dropdown){background:var(--zar-cream);border:1px solid var(--zar-border);box-shadow:0 15px 40px #25303a12;border-radius:8px;text-align:start}
+body.zar-retail .zar-navigation .sublist{display:none;min-width:210px}
+body.zar-retail .zar-navigation li:hover>.sublist,body.zar-retail .zar-navigation li:focus-within>.sublist{display:block}
+body.zar-retail .zar-navigation :is(.menu-title,.close-menu,.mega-menu-responsive,.mobile-menu){display:none!important}
+body.zar-retail .zar-search-panel{padding:22px 0;background:var(--zar-blue-light);border-bottom:1px solid var(--zar-border)}
+body.zar-retail .zar-search-panel .search-box{position:relative!important;display:block!important;transform:none!important;float:none;max-width:760px;margin:auto;z-index:120}
+body.zar-retail .zar-search-panel .search-box form{display:flex;align-items:center;width:100%;height:auto;gap:8px;background:transparent}
+body.zar-retail .zar-search-panel .search-box input[type=text]{width:100%;height:48px;border:1px solid var(--zar-border);border-radius:6px;background:white;padding:0 16px}
+body.zar-retail .zar-search-panel .search-box-button{position:static!important;flex-shrink:0;min-width:80px;height:48px;background:var(--zar-ink);color:var(--zar-cream);text-indent:0;border-radius:6px}
+/* Home: live slider and product modules stay owned by SevenSpikes. */
+body.zar-retail .zar-hero{width:min(calc(100% - 40px),1480px);min-height:600px;margin:20px auto 0;display:grid;grid-template-columns:54% 46%;direction:ltr;border-radius:4px 4px 90px 4px;overflow:hidden;background:var(--zar-sand)}
+body.zar-retail .zar-hero-media{grid-column:1;min-width:0;position:relative;min-height:600px;overflow:hidden}
+body.zar-retail .zar-hero-media>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:30% center}
+body.zar-retail .zar-hero-media :is(.slider-wrapper,.anywhere-slider,.nivoSlider){max-width:100%;margin:0;border:0}
+body.zar-retail .zar-hero-media .slider-wrapper{height:100%}
+body.zar-retail .zar-hero-media .nivoSlider{height:100%!important;min-height:600px}
+body.zar-retail .zar-hero-media .nivo-main-image{height:600px!important;object-fit:cover}
+body.zar-retail .zar-hero-copy{grid-column:2;grid-row:1;align-self:center;padding:60px clamp(30px,5vw,85px);direction:rtl;text-align:right}
+body.zar-retail .zar-kicker{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--zar-gold-dark)}
+body.zar-retail .zar-hero-copy h1{font-size:clamp(36px,4.6vw,66px);font-weight:400;line-height:1.6;letter-spacing:-1px;margin:15px 0 20px;color:var(--zar-ink)}
+body.zar-retail .zar-hero-copy h1 em{font-style:normal;color:var(--zar-gold-dark)}
+body.zar-retail .zar-hero-copy p{font-size:15px;line-height:2.2;color:var(--zar-muted);max-width:450px;margin:0}
+body.zar-retail .zar-hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:30px}
+body.zar-retail .zar-button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:18px;background:var(--zar-ink);color:#fff;padding:12px 25px;border:1px solid var(--zar-ink);border-radius:5px;font-weight:600;font-size:13px;transition:background .2s,transform .2s}
+body.zar-retail .zar-button:hover{background:#111a21;color:#fff;transform:translateY(-2px)}
+body.zar-retail .zar-button-outline{background:transparent;color:var(--zar-ink)}
+body.zar-retail .zar-text-link{display:inline-block;font-size:12px;font-weight:600;border-bottom:1px solid #d5b46c;padding-bottom:4px;line-height:1.8}
+body.zar-retail .zar-home{padding:0}
+body.zar-retail .zar-home .page-body{padding:0}
+body.zar-retail .zar-trust-ribbon{display:grid;grid-template-columns:repeat(4,1fr);min-height:112px;align-items:center;border-bottom:1px solid var(--zar-border)}
+body.zar-retail .zar-trust-ribbon>div{display:flex;justify-content:center;align-items:center;gap:14px;padding:15px;border-inline-end:1px solid var(--zar-border)}
+body.zar-retail .zar-trust-ribbon>div:last-child{border:0}
+body.zar-retail .zar-trust-ribbon .zar-icon{color:var(--zar-gold);width:26px;height:26px}
+body.zar-retail .zar-trust-ribbon span{display:flex;flex-direction:column;gap:3px}
+body.zar-retail .zar-trust-ribbon strong{font-size:12px;font-weight:600}
+body.zar-retail .zar-trust-ribbon small{font-size:10px;color:var(--zar-muted)}
+body.zar-retail .zar-section{padding-block:80px}
+body.zar-retail .zar-section:empty,body.zar-retail .zar-widget-section:empty{display:none}
+body.zar-retail .zar-section-blue{background:var(--zar-blue-light);border-block:1px solid #7198bd20}
+body.zar-retail .zar-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:32px}
+body.zar-retail .zar-section-heading h2{font-size:clamp(25px,3vw,38px);font-weight:500;line-height:1.6;margin:8px 0 0}
+body.zar-retail .zar-home-search:empty{display:none}
+body.zar-retail .zar-home-search .home-page-filters-wrapper{position:static;max-width:100%;margin:30px auto 0!important;background:white;border:1px solid var(--zar-border);box-shadow:none;border-radius:8px;padding:20px}
+body.zar-retail .home-page-filters.np-container{width:100%}
+body.zar-retail .home-page-filters .k-dropdown{background:var(--zar-sand);border-color:var(--zar-border);border-radius:4px}
+body.zar-retail .zar-editorial{display:grid;grid-template-columns:55% 45%;background:var(--zar-blue);margin-block:90px;min-height:600px;border-radius:100px 4px 4px 4px;overflow:hidden}
+body.zar-retail .zar-editorial-image{min-height:600px;position:relative}
+body.zar-retail .zar-editorial-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%}
+body.zar-retail .zar-editorial-copy{padding:55px clamp(28px,5vw,80px);align-self:center}
+body.zar-retail .zar-editorial-copy h2{font-size:clamp(26px,3.5vw,46px);font-weight:400;line-height:1.8;margin:12px 0 20px}
+body.zar-retail .zar-editorial-copy p{color:var(--zar-muted);line-height:2.2;margin-bottom:30px}
+body.zar-retail .zar-gift-section{padding:80px 0;background:var(--zar-sand)}
+body.zar-retail .zar-gift-inner{display:grid;grid-template-columns:43% 51%;gap:6%;align-items:center}
+body.zar-retail .zar-gift-inner>div{max-width:480px}
+body.zar-retail .zar-gift-inner h2{font-size:clamp(24px,3.2vw,40px);font-weight:500;line-height:1.8;margin:10px 0 20px}
+body.zar-retail .zar-gift-inner p{color:var(--zar-muted);line-height:2.2;margin-bottom:25px}
+body.zar-retail .zar-gift-inner>img{width:100%;height:460px;object-fit:cover;object-position:center 49%;border-radius:4px 80px 4px 4px}
+/* Cards use real catalog data; JCarousel remains responsible for slide widths. */
+body.zar-retail :is(.product-grid,.category-grid)>.title,body.zar-retail .nop-jcarousel>.title{text-align:start;font-size:28px;font-weight:500;color:var(--zar-ink);background:none;border:0;margin-bottom:28px}
+body.zar-retail .product-grid:not(.nop-jcarousel) .item-grid,body.zar-retail .category-grid:not(.nop-jcarousel) .item-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px;margin:0}
+body.zar-retail :is(.product-grid,.category-grid):not(.nop-jcarousel) .item-box{float:none!important;width:auto!important;margin:0!important;padding:0;border:0;background:none}
+body.zar-retail .product-item{position:relative;height:100%;overflow:visible;background:transparent;border:0;border-radius:0;box-shadow:none;text-align:start;padding:0}
+body.zar-retail .product-item>.picture{margin:0!important;padding:0!important;border:0;border-radius:6px;background:var(--zar-sand);aspect-ratio:1;overflow:hidden;height:auto!important}
+body.zar-retail .product-item>.picture>a{display:block;position:relative;width:100%;height:100%}
+body.zar-retail .product-item>.picture a::before{display:none!important}
+body.zar-retail .product-item>.picture img{position:relative!important;inset:auto!important;display:block;margin:auto;max-width:100%;width:100%;height:100%;max-height:none;object-fit:contain;transition:transform .35s}
+body.zar-retail .product-item:hover>.picture img{transform:scale(1.035)}
+body.zar-retail .product-item>.picture .swiper{height:100%}
+body.zar-retail .product-item .details{padding:15px 2px 0;background:transparent;position:static!important;height:auto!important;min-height:0!important}
+body.zar-retail .product-item .product-title{display:block!important;min-height:0;height:auto!important;margin:0 0 9px;padding:0;line-height:1.9;font-size:14px;font-weight:500}
+body.zar-retail .product-item .product-title a{color:var(--zar-ink)}
+body.zar-retail .product-item .product-title-mob{display:none!important}
+body.zar-retail .product-item .sku{font-size:10px;color:var(--zar-muted);margin-bottom:8px}
+body.zar-retail .product-item .description{font-size:11px;line-height:1.9;color:var(--zar-muted);height:auto;max-height:42px;overflow:hidden;margin:6px 0 10px}
+body.zar-retail .product-item .description[data-short-description=none]{display:none}
+body.zar-retail .product-item .add-info{height:auto!important;min-height:0;position:static;transform:none}
+body.zar-retail .product-item .item-box-footer{position:static;transform:none;background:none;padding:0;border:0}
+body.zar-retail .product-item .button-price-container{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0!important;min-height:40px}
+body.zar-retail .product-item .prices{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:none;padding:0;text-align:start;flex:1}
+body.zar-retail .product-item .actual-price{font-size:14px;font-weight:700;color:var(--zar-ink)}
+body.zar-retail .product-item .old-price{font-size:11px;color:#999;text-decoration:line-through}
+body.zar-retail .product-item .prices-discount-percent{position:absolute;inset:12px 12px auto auto;background:var(--zar-cream);color:var(--zar-gold-dark);font-size:11px;padding:4px 9px;border-radius:3px;z-index:3}
+body.zar-retail .product-item .buttons{position:static!important;display:flex;order:2;opacity:1;transform:none;width:auto;padding:0;background:transparent;z-index:5}
+body.zar-retail .product-item .buttons .product-box-add-to-cart-button{height:auto;min-height:32px;width:auto;padding:5px 10px;font-size:10px;background:transparent!important;color:var(--zar-ink)!important;border:1px solid var(--zar-border);border-radius:4px;text-indent:0}
+body.zar-retail .product-item .dummy-link{z-index:1}
+body.zar-retail .product-item .details a,body.zar-retail .product-item .buttons{position:relative;z-index:2}
+body.zar-retail .category-item{position:relative;border:0;background:var(--zar-sand);overflow:hidden;border-radius:4px;text-align:start;padding:0}
+body.zar-retail .category-item .picture{padding:0;margin:0;aspect-ratio:4/5;height:auto}
+body.zar-retail .category-item .picture a{display:block;height:100%}
+body.zar-retail .category-item .picture a::before{display:none}
+body.zar-retail .category-item .picture img{position:relative;width:100%;height:100%;object-fit:cover;inset:auto;max-height:none}
+body.zar-retail .category-item .title{position:absolute;inset:auto 0 0;z-index:2;font-size:20px;font-weight:500;margin:0;padding:45px 20px 22px;background:linear-gradient(transparent,#25303a99);color:white;text-align:start}
+body.zar-retail .category-item .title a{color:white}
+body.zar-retail .nop-jcarousel{max-width:100%;margin-block:20px}
+body.zar-retail .nop-jcarousel .item-box{padding:0 8px;background:transparent}
+body.zar-retail .nop-jcarousel .carousel-title{background:none;color:var(--zar-ink)}
+body.zar-retail .nop-jcarousel .carousel-title h3{color:var(--zar-ink)}
+/* Catalog filters, product details and real attribute/price controls. */
+body.zar-retail .master-column-wrapper:has(>.side-2){display:grid;grid-template-columns:250px minmax(0,1fr);gap:38px;align-items:start}
+body.zar-retail .master-column-wrapper:has(>.side-2)>.side-2{grid-column:1;grid-row:1;width:auto;float:none;margin:0}
+body.zar-retail .master-column-wrapper:has(>.side-2)>.center-2{grid-column:2;grid-row:1;width:auto;float:none;margin:0}
+body.zar-retail .center-2 .product-grid:not(.nop-jcarousel) .item-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.zar-retail .side-2 .block,body.zar-retail .nopAjaxFilters7Spikes{border:1px solid var(--zar-border);background:white;border-radius:8px;padding:18px;margin-bottom:18px}
+body.zar-retail .side-2 .block .title,body.zar-retail .filtersGroupPanel .title{background:none;color:var(--zar-ink);border:0;font-size:14px;text-align:start;padding:0 0 12px;margin:0 0 12px;border-bottom:1px solid var(--zar-border)}
+body.zar-retail .side-2 .block .list a{font-size:12px;line-height:2}
+body.zar-retail .product-selectors{background:transparent;border-block:1px solid var(--zar-border);padding:15px 0;margin-bottom:28px;font-size:12px}
+body.zar-retail .product-selectors select{border:1px solid var(--zar-border);border-radius:4px;background:white;min-height:36px}
+body.zar-retail .pager li a,body.zar-retail .pager li span{border:1px solid var(--zar-border);border-radius:50%;background:white;color:var(--zar-ink)}
+body.zar-retail .pager li.current-page span{background:var(--zar-ink);color:white}
+.html-product-details-page body.zar-retail .master-column-wrapper:has(>.side-2){display:block}
+.html-product-details-page body.zar-retail .side-2{display:none}
+.html-product-details-page body.zar-retail .center-2{width:100%}
+body.zar-retail .product-details-page .product-essential{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;border:0;padding:0;background:none;margin-bottom:60px}
+body.zar-retail .product-details-page .gallery{width:auto;float:none;margin:0;background:var(--zar-sand);border-radius:8px;overflow:hidden;min-width:0}
+body.zar-retail .product-details-page .gallery .picture{background:transparent;border:0;max-width:100%}
+body.zar-retail .product-details-page .overview{width:auto;float:none;margin:0;padding:20px 0;background:transparent;border:0;min-width:0}
+body.zar-retail .product-details-page .product-name{background:none;margin:0 0 24px;text-align:start}
+body.zar-retail .product-details-page .product-name h1{font-size:clamp(24px,3vw,38px);font-weight:500;line-height:1.7;color:var(--zar-ink)}
+body.zar-retail .product-details-page .short-description{color:var(--zar-muted);font-size:13px;line-height:2.1}
+body.zar-retail .product-details-page .product-price{font-size:28px;font-weight:600;color:var(--zar-ink);margin-block:22px}
+body.zar-retail .product-details-page :is(.attributes,.product-specs-box){background:white;border:1px solid var(--zar-border);border-radius:8px;padding:20px;margin-block:20px}
+body.zar-retail .product-details-page .attributes :is(select,input[type=text],textarea){width:100%;min-height:44px;border:1px solid var(--zar-border);border-radius:5px;background:var(--zar-cream)}
+body.zar-retail .product-details-page .attributes dt{font-size:13px;font-weight:500;margin-bottom:10px}
+body.zar-retail .product-details-page .add-to-cart{padding:20px 0;border:0;background:none}
+body.zar-retail .product-details-page .add-to-cart-button{min-height:50px;width:auto;min-width:220px;border:0;border-radius:5px;background:var(--zar-ink);color:#fff;font-size:14px}
+body.zar-retail .product-details-page .qty-input{height:50px;width:65px;border:1px solid var(--zar-border);border-radius:5px;background:white;color:var(--zar-ink)}
+body.zar-retail .product-details-page .full-description{font-size:14px;line-height:2.2;color:var(--zar-muted)}
+body.zar-retail .product-details-page .ui-tabs{background:transparent;border:0}
+body.zar-retail .product-details-page .ui-tabs-nav{border-bottom:1px solid var(--zar-border);background:none}
+body.zar-retail .product-details-page .ui-tabs-nav li{background:none;border:0}
+body.zar-retail .product-details-page .ui-tabs-nav .ui-tabs-active a{color:var(--zar-gold-dark);border-bottom:2px solid var(--zar-gold)}
+body.zar-retail .related-products-grid{margin-top:60px}
+/* Common customer forms; server validation and posting targets remain unchanged. */
+body.zar-retail :is(.button-1,input.button-1,.search-button){min-height:44px;background:var(--zar-ink);border:1px solid var(--zar-ink);border-radius:5px;color:white;font-size:13px;padding:10px 24px;box-shadow:none}
+body.zar-retail :is(.button-1,.search-button):hover{background:#111a21;color:#fff}
+body.zar-retail .button-1:disabled,body.zar-retail .search-button:disabled{opacity:.45;cursor:not-allowed}
+body.zar-retail .button-2{border-radius:5px;border:1px solid var(--zar-border);background:var(--zar-cream);color:var(--zar-ink);padding:8px 16px;font-size:12px}
+body.zar-retail :is(.inputs,.form-fields) :is(input[type=text],input[type=email],input[type=tel],input[type=password],input[type=number],select,textarea){border:1px solid #dedbd5;border-radius:6px;background:white;color:var(--zar-ink);min-height:46px;padding:10px 12px;box-shadow:none;font-size:13px;max-width:100%}
+body.zar-retail input[type=checkbox],body.zar-retail input[type=radio]{accent-color:var(--zar-gold);width:17px;height:17px}
+body.zar-retail .inputs label{font-size:12px;color:var(--zar-ink)}
+body.zar-retail :is(.fieldset,.section,.form-fields){border-color:var(--zar-border)}
+body.zar-retail .fieldset>.title,body.zar-retail .section>.title{background:transparent;border:0;color:var(--zar-ink);font-size:18px;font-weight:500}
+body.zar-retail .message-error,body.zar-retail .field-validation-error{color:#a63731;font-size:12px;line-height:1.9}
+body.zar-retail .message-error:not(:empty){padding:12px;background:#fff1ef;border-radius:6px}
+body.zar-retail .message-success{color:#386d50;background:#eef7f0;border-radius:6px;padding:12px}
+body.zar-retail .no-data{text-align:center;padding:65px 24px;background:var(--zar-blue-light);border:1px solid var(--zar-border);border-radius:12px}
+/* Cart: retain every quantity/removal/coupon handler supplied by ShoppingCartPage. */
+body.zar-retail .shopping-cart-page .cart-item{border:1px solid var(--zar-border);border-radius:10px;background:white;box-shadow:none;padding:24px;margin-bottom:18px}
+body.zar-retail .shopping-cart-page .cart-item .vendor{border:0;background:none;font-size:11px;color:var(--zar-gold-dark);padding:0 0 12px}
+body.zar-retail .shopping-cart-page .product-picture img{border-radius:6px;background:var(--zar-sand);object-fit:contain}
+body.zar-retail .shopping-cart-page .cart-item .product-name{font-size:16px;font-weight:500;line-height:1.9;color:var(--zar-ink)}
+body.zar-retail .shopping-cart-page .cart-item .attributes{color:var(--zar-muted);font-size:12px}
+body.zar-retail .shopping-cart-page .subtotal-remove-container{color:var(--zar-ink);font-size:15px;font-weight:600}
+body.zar-retail .shopping-cart-page .quantity{border:1px solid var(--zar-border);border-radius:5px;background:var(--zar-cream);overflow:hidden}
+body.zar-retail .shopping-cart-page .quantity input{border:0;background:none;text-align:center;color:var(--zar-ink)}
+body.zar-retail .shopping-cart-page .cart-footer{border:1px solid var(--zar-border);border-radius:12px;background:white;padding:25px;box-shadow:0 10px 30px #25303a04}
+body.zar-retail .shopping-cart-page .cart-footer .totals{float:none;width:100%;margin:0;padding:0;background:none;border:0}
+body.zar-retail .cart-total{width:100%;font-size:12px;border:0;border-collapse:collapse;background:none}
+body.zar-retail .cart-total td{padding:12px 0;border:0;background:transparent;color:var(--zar-muted)}
+body.zar-retail .cart-total .cart-total-right{text-align:end;color:var(--zar-ink)}
+body.zar-retail .cart-total .order-total td{border-top:1px solid var(--zar-border);padding-top:20px;font-size:15px;font-weight:600;color:var(--zar-ink)}
+body.zar-retail .checkout-buttons .checkout-button{display:block;width:100%;min-height:50px;background:var(--zar-ink);color:white;border-radius:5px}
+body.zar-retail .cart-collaterals .deals{background:transparent;padding:0;border:0}
+body.zar-retail .coupon-box input[type=text]{min-height:42px;border:1px solid var(--zar-border);border-radius:5px;max-width:100%}
+body.zar-retail .shopping-cart-page .cart td{background:white;border-color:var(--zar-border)}
+/* Checkout: visual skin only; no replacement of forms, token handling or step lifecycle. */
+body.zar-retail .checkout-page .page-title{margin-bottom:30px}
+body.zar-retail .checkout-page .opc{padding:0;list-style:none;border:0;background:transparent}
+body.zar-retail .checkout-page .opc>li{border:1px solid var(--zar-border);border-radius:10px;background:white;padding:22px;margin-bottom:18px;overflow:visible}
+body.zar-retail .checkout-page .opc .step-title{background:transparent;border:0;padding:0 0 16px;color:var(--zar-ink)}
+body.zar-retail .checkout-page .opc .step-title .number{background:var(--zar-blue);color:var(--zar-gold-dark);border-radius:50%;width:30px;height:30px;line-height:30px;margin-inline-end:10px}
+body.zar-retail .checkout-page .opc .step-title .title{font-size:18px;color:var(--zar-ink)}
+body.zar-retail .checkout-page .opc .step{border:0;background:transparent;padding:0;margin:0}
+body.zar-retail .checkout-page .order-info-confirm{border:1px solid var(--zar-border);border-radius:12px;background:white;padding:24px}
+body.zar-retail .checkout-page .order-info-confirm .button-1{width:100%;margin-top:12px}
+body.zar-retail .checkout-page :is(.address-item,.address,.shipping-method .method-list li,.payment-method .method-list li){border-color:var(--zar-border);border-radius:8px;background:var(--zar-cream)}
+body.zar-retail .checkout-page :is(.shipping-method,.payment-method) .method-list li{padding:16px;margin-bottom:12px;border:1px solid var(--zar-border)}
+body.zar-retail .checkout-page .method-list label{color:var(--zar-ink);font-size:13px}
+body.zar-retail .checkout-page .method-description{font-size:12px;color:var(--zar-muted)}
+body.zar-retail .order-progress ul{background:transparent;display:flex;justify-content:center;gap:12px;border:0}
+body.zar-retail .order-progress a{color:var(--zar-muted);border-color:var(--zar-border);background:var(--zar-sand);border-radius:25px}
+body.zar-retail .order-progress .active-step a{background:var(--zar-blue);color:var(--zar-ink)}
+/* Accounts, addresses, orders, authentication and wholesale customer roles use live models. */
+body.zar-retail .account-page .page-body,body.zar-retail .order-list-page .page-body{background:transparent}
+body.zar-retail .block-account-navigation{background:white;border:1px solid var(--zar-border);border-radius:10px;padding:22px}
+body.zar-retail .block-account-navigation .list a{display:block;padding:10px 12px;border-radius:6px;color:var(--zar-muted)}
+body.zar-retail .block-account-navigation .list a.active,body.zar-retail .block-account-navigation .list a:hover{background:var(--zar-blue);color:var(--zar-ink)}
+body.zar-retail :is(.account-page,.order-list-page,.address-list-page) :is(.order-item,.address-item,.form-fields){padding:24px;border:1px solid var(--zar-border);border-radius:10px;background:white;margin-bottom:20px}
+body.zar-retail .account-page .buttons{margin-top:20px}
+body.zar-retail :is(.order-item,.address-item) .title{font-size:15px;font-weight:500;color:var(--zar-ink);border-bottom:1px solid var(--zar-border);background:none;padding-bottom:14px}
+body.zar-retail .order-status{background:var(--zar-blue);color:#385872;border-radius:20px;padding:4px 12px;font-size:11px}
+body.zar-retail .login-page,body.zar-retail .registration-page,body.zar-retail .password-recovery-page{max-width:900px;margin:auto}
+body.zar-retail .login-page .returning-wrapper,body.zar-retail .login-page .new-wrapper{background:white;border:1px solid var(--zar-border);border-radius:12px;padding:30px}
+body.zar-retail :is(.login-page,.registration-page) .page-title{text-align:center}
+body.zar-retail .login-page .title{font-size:18px;font-weight:500;color:var(--zar-ink)}
+body.zar-retail .wishlist-page .cart,body.zar-retail .order-details-page .data-table{border-color:var(--zar-border);background:white}
+body.zar-retail .order-details-page .section{background:white;border:1px solid var(--zar-border);border-radius:10px;padding:22px;margin-bottom:22px}
+body.zar-retail .contact-page .form-fields,body.zar-retail .topic-page .page-body{background:white;border:1px solid var(--zar-border);border-radius:10px;padding:28px;line-height:2.1}
+/* Footer: real Topics, social links, newsletter and certificate widgets. */
+body.zar-retail .zar-footer.footer{margin:0;padding:clamp(36px,4vw,58px) 0 0;width:100%;max-width:none;background:var(--zar-cream);border-top:1px solid var(--zar-border);text-align:start;color:var(--zar-ink)}
+body.zar-retail .zar-footer-grid{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,56px);align-items:start;padding-bottom:36px}
+body.zar-retail .zar-footer .footer-block{float:none;width:auto;margin:0;padding:0;padding-inline-start:clamp(18px,3vw,50px);background:none;border:0;border-inline-start:1px solid var(--zar-border);text-align:start}
+body.zar-retail .zar-footer .footer-block .title{padding:0;margin:0 0 12px;border:0;background:none;font-size:14px;color:var(--zar-ink);text-align:start}
+body.zar-retail .zar-footer .footer-block ul{list-style:none;margin:0;padding:0;display:block!important}
+body.zar-retail .zar-footer .footer-block li{display:block;margin:0;font-size:13px;line-height:1.6}
+body.zar-retail .zar-footer p{font-size:12px;color:var(--zar-muted);line-height:2.1;margin:18px 0}
+body.zar-retail .zar-footer .zar-logo__arch{width:36px;height:44px}
+body.zar-retail .zar-footer .zar-logo__type strong{font-size:20px}
+body.zar-retail .zar-footer-bottom{border-top:1px solid var(--zar-border);display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:22px;font-size:11px;color:var(--zar-muted)}
+body.zar-retail .zar-footer-bottom .social-sharing{margin:0;padding:0}
+body.zar-retail .zar-footer-certificates:not(:empty){padding-bottom:20px}
+body.zar-retail .zar-footer-certificates img{max-height:100px;width:auto}
+body.zar-retail .eu-cookie-bar-notification{background:var(--zar-ink);color:white;box-shadow:0 -4px 20px #25303a10}
+@media(min-width:1200px){
+ body.zar-retail .zar-navigation .top-menu.mobile{display:none!important}
+ body.zar-retail .shopping-cart-page .cart-footer,body.zar-retail .checkout-page .order-info-confirm{position:sticky;top:24px}
+}
+@media(max-width:1199px){
+ body.zar-retail .np-container,body.zar-retail .master-wrapper-content{width:calc(100% - 40px)}
+ body.zar-retail .zar-header-row.header-links-wrapper{width:calc(100% - 40px)}
+ body.zar-retail .zar-menu-toggle{display:inline-grid}
+ body.zar-retail .zar-navigation{display:none}
+ body.zar-retail .zar-navigation.zar-nav-open{display:block}
+ body.zar-retail .zar-navigation .header-menu{max-height:65vh;overflow:auto}
+ body.zar-retail .zar-navigation :is(.top-menu,.mega-menu){display:flex!important;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px}
+ body.zar-retail .zar-navigation .top-menu.mobile{display:none!important}
+ body.zar-retail .zar-navigation :is(.top-menu,.mega-menu)>li{border-bottom:1px solid var(--zar-border)}
+ body.zar-retail .zar-navigation :is(.sublist,.dropdown){position:static;box-shadow:none;border:0;padding:0 15px;max-width:100%;width:auto;transform:none;visibility:visible;opacity:1}
+ body.zar-retail .zar-navigation .sublist a{padding:8px;font-size:12px}
+ body.zar-retail .zar-hero{min-height:480px}
+ body.zar-retail .zar-hero-media{min-height:480px}
+ body.zar-retail .zar-hero-media .nivoSlider{min-height:480px}
+ body.zar-retail .zar-hero-copy{padding:35px}
+ body.zar-retail .zar-hero-copy h1{font-size:42px}
+ body.zar-retail .zar-editorial,body.zar-retail .zar-editorial-image{min-height:500px}
+ body.zar-retail .master-column-wrapper:has(>.side-2){grid-template-columns:220px minmax(0,1fr);gap:24px}
+ body.zar-retail .center-2 .product-grid:not(.nop-jcarousel) .item-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.zar-retail .product-details-page .product-essential{gap:30px}
+}
+@media(max-width:767px){
+ body.zar-retail{font-size:13px}
+ body.zar-retail .np-container,body.zar-retail .master-wrapper-content{width:calc(100% - 32px)}
+ body.zar-retail .master-wrapper-content{padding-top:20px}
+ body.zar-retail .zar-header-row.header-links-wrapper{width:calc(100% - 24px);min-height:82px;gap:5px}
+ body.zar-retail .zar-header-tools{gap:0}
+ body.zar-retail .zar-icon-button{width:34px;height:38px;min-width:34px}
+ body.zar-retail .zar-header .zar-logo{gap:6px}
+ body.zar-retail .zar-header .zar-logo__arch{width:30px;height:39px}
+ body.zar-retail .zar-header .zar-logo__arch .zar-icon{width:21px}
+ body.zar-retail .zar-header .zar-logo__type strong{font-size:19px}
+ body.zar-retail .zar-header .zar-logo__type small{font-size:5px;letter-spacing:.8px}
+ body.zar-retail .header-links>ul{gap:0}
+ body.zar-retail .header-links :is(.ico-account,.ico-login,.ico-wishlist,.ico-cart){width:33px;height:38px}
+ body.zar-retail .header-links .ico-wishlist,body.zar-retail .header-links .ico-logout{display:none}
+ body.zar-retail .header-links .zar-icon{width:19px;height:19px}
+ body.zar-retail .zar-rate-bar{font-size:9px;gap:7px}
+ body.zar-retail .zar-rate-bar strong{font-size:10px}
+ body.zar-retail .zar-hero{width:calc(100% - 24px);margin-top:12px;display:flex;flex-direction:column;min-height:0;border-radius:4px 4px 50px 4px}
+ body.zar-retail .zar-hero-media{min-height:300px;width:100%;order:0}
+ body.zar-retail .zar-hero-media>img{object-position:center 45%}
+ body.zar-retail .zar-hero-media .nivoSlider{min-height:300px}
+ body.zar-retail .zar-hero-media .nivo-main-image{height:300px!important}
+ body.zar-retail .zar-hero-copy{order:1;width:100%;padding:30px 24px 40px}
+ body.zar-retail .zar-hero-copy h1{font-size:38px;line-height:1.6;margin:10px 0 15px}
+ body.zar-retail .zar-hero-copy p{font-size:13px}
+ body.zar-retail .zar-hero-actions{margin-top:24px;gap:20px}
+ body.zar-retail .zar-button{font-size:12px;padding:11px 18px;min-height:44px}
+ body.zar-retail .zar-trust-ribbon{grid-template-columns:repeat(2,1fr);padding-block:15px;gap:5px;min-height:150px}
+ body.zar-retail .zar-trust-ribbon>div{justify-content:flex-start;padding:12px 6px;gap:10px}
+ body.zar-retail .zar-trust-ribbon>div:nth-child(2){border:0}
+ body.zar-retail .zar-trust-ribbon strong{font-size:10px}
+ body.zar-retail .zar-trust-ribbon small{font-size:9px}
+ body.zar-retail .zar-trust-ribbon .zar-icon{width:23px;height:23px}
+ body.zar-retail .zar-section{padding-block:45px}
+ body.zar-retail .zar-section-heading{margin-bottom:24px;gap:12px}
+ body.zar-retail .zar-section-heading h2{font-size:25px}
+ body.zar-retail .zar-kicker{font-size:10px}
+ body.zar-retail .zar-text-link{font-size:10px}
+ body.zar-retail :is(.product-grid,.category-grid):not(.nop-jcarousel) .item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+ body.zar-retail .product-item .details{padding-top:10px}
+ body.zar-retail .product-item .product-title{font-size:12px}
+ body.zar-retail .product-item .actual-price{font-size:11px}
+ body.zar-retail .product-item .button-price-container{flex-wrap:wrap;gap:6px}
+ body.zar-retail .product-item .buttons{width:100%;justify-content:flex-start}
+ body.zar-retail .product-item .description{font-size:10px}
+ body.zar-retail .category-item .title{font-size:16px;padding:35px 12px 15px}
+ body.zar-retail .zar-editorial{display:flex;flex-direction:column;margin-block:45px;min-height:0;border-radius:50px 4px 4px 4px}
+ body.zar-retail .zar-editorial-image{min-height:400px}
+ body.zar-retail .zar-editorial-copy{padding:30px 24px 40px;width:100%}
+ body.zar-retail .zar-editorial-copy h2{font-size:29px}
+ body.zar-retail .zar-editorial-copy p{font-size:12px}
+ body.zar-retail .zar-gift-section{padding-block:45px}
+ body.zar-retail .zar-gift-inner{display:flex;flex-direction:column-reverse;gap:28px;align-items:stretch}
+ body.zar-retail .zar-gift-inner>img{height:340px;border-radius:4px 50px 4px 4px}
+ body.zar-retail .zar-gift-inner h2{font-size:28px}
+ body.zar-retail .master-column-wrapper:has(>.side-2){display:flex;flex-direction:column}
+ body.zar-retail .master-column-wrapper:has(>.side-2)>.center-2{width:100%;order:2}
+ body.zar-retail .master-column-wrapper:has(>.side-2)>.side-2{width:100%;order:1}
+ body.zar-retail .side-2 .block{padding:14px}
+ body.zar-retail .side-2 .block .list{max-height:240px;overflow:auto}
+ body.zar-retail .product-details-page .product-essential{display:flex;flex-direction:column;gap:24px}
+ body.zar-retail .product-details-page .gallery,body.zar-retail .product-details-page .overview{width:100%;float:none}
+ body.zar-retail .product-details-page .overview{padding:0}
+ body.zar-retail .product-details-page .product-price{font-size:24px}
+ body.zar-retail .product-details-page .add-to-cart-button{min-width:180px}
+ body.zar-retail .shopping-cart-page .cart-item{padding:16px}
+ body.zar-retail .shopping-cart-page .cart-footer{padding:20px;margin-top:20px}
+ body.zar-retail .shopping-cart-page .cart-item .product-name{font-size:13px}
+ body.zar-retail .shopping-cart-page .item-image-quantity-details{gap:12px}
+ body.zar-retail .checkout-page .opc>li{padding:18px}
+ body.zar-retail .checkout-page .order-info-confirm{padding:20px;margin-top:20px}
+ body.zar-retail .inputs{padding:0;margin-bottom:18px}
+ body.zar-retail .inputs label{display:block;width:auto;text-align:start;margin-bottom:7px}
+ body.zar-retail .inputs :is(input[type=text],input[type=email],input[type=tel],input[type=password],select,textarea){width:100%}
+ body.zar-retail .zar-footer.footer{padding-top:40px}
+ body.zar-retail .zar-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px;padding-bottom:28px}
+ body.zar-retail .zar-footer-brand{grid-column:1/-1;padding-bottom:20px;border-bottom:1px solid var(--zar-border)}
+ body.zar-retail .zar-footer .footer-block{padding-inline-start:0;border-inline-start:0}
+ body.zar-retail .zar-footer-bottom{flex-wrap:wrap;gap:15px;font-size:10px}
+ body.zar-retail .page{padding-bottom:45px}
+}
+@media(prefers-reduced-motion:reduce){body.zar-retail *,body.zar-retail *::before,body.zar-retail *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Non-gallery widget content and descriptions must span both detail columns. */
+body.zar-retail .product-essential>.full-description,body.zar-retail .product-essential>.giftcard{grid-column:1/-1}
+/* Reset decorative rules inherited from the former automotive storefront. */
+body.zar-retail .zar-footer .footer-block .title strong{color:var(--zar-ink);font-size:14px;font-weight:600;background:none}
+body.zar-retail .zar-footer .footer-block :is(ul,li,a){border:0;background:none;box-shadow:none}
+body.zar-retail .zar-footer .footer-block ul li a{display:inline-flex;align-items:center;min-height:32px;padding:3px 0;color:var(--zar-muted);font-size:13px;overflow-wrap:anywhere}
+body.zar-retail .zar-footer .footer-block ul li a:is(:hover,:focus-visible){color:var(--zar-ink);text-decoration:underline;text-underline-offset:4px}
+body.zar-retail .zar-footer .footer-block ul li a::before,body.zar-retail .zar-footer .footer-block ul li::before{display:none}
+body.zar-retail .zar-navigation :is(.top-menu,.mega-menu)>li>a::first-letter{font-size:inherit;font-weight:inherit}
+body.zar-retail .product-item .button-price-container{border:0!important;outline:0;box-shadow:none!important}
+body.zar-retail .product-item .item-box-footer{min-height:0!important}
+/* All customer pages use the new header actions instead of legacy icon rails. */
+body.zar-retail .social-sharing,
+body.zar-retail .responsive-nav-wrapper-parent,
+body.zar-retail .responsive-nav-wrapper,
+body.zar-retail .header-cart-mobile,
+body.zar-retail .header-logout-mobile,
+body.zar-retail .header-links:not(.zar-header-row > .header-links),
+body.zar-retail .zar-header-tools > :not(.zar-icon-button){
+ display:none!important;
+}
+
+/* The legacy cart shortcut is outside the form. Keep checkout's step controls. */
+body.zar-retail .header-cart-button-mobile{display:none!important}
+body.zar-retail .shopping-cart-page .quantity button{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:4px;border:0;background:transparent;color:var(--zar-ink);font-size:22px;line-height:1}
+body.zar-retail .shopping-cart-page .quantity{display:flex;align-items:center;justify-content:center;gap:8px}
+body.zar-retail .shopping-cart-page .quantity .qty-input{width:48px;text-align:center}
+body.zar-retail .shopping-cart-page .remove .zar-icon{width:20px;height:20px}
+
+/* A single set of checkout actions, in the order summary on every screen size. */
+body.zar-retail .checkout-page .order-info-confirm #confirm-order-buttons-container{display:block!important}
+body.zar-retail .checkout-page .shipping-method .method-container > label{display:grid;grid-template-columns:24px 1fr;gap:8px 12px;align-items:center;width:100%;text-align:start;cursor:pointer}
+body.zar-retail .checkout-page .shipping-method .method-container .method-fee{grid-column:2}
+body.zar-retail .checkout-page .shipping-method input.zar-shipping-radio{display:inline-block!important;position:static!important;appearance:auto!important;opacity:1!important;visibility:visible!important;width:20px!important;height:20px!important;margin:0;accent-color:var(--zar-gold-dark);clip:auto;clip-path:none;transform:none}
+body.zar-retail .checkout-page .shipping-method .method-list li:has(input:checked){border:2px solid var(--zar-gold-dark);background:var(--zar-blue)}
+body.zar-retail .checkout-page .shipping-addresses .button-cirlce-blue-image{width:auto;height:auto;background:none;padding:8px;color:var(--zar-gold-dark);text-decoration:underline}
+
+/* The one-page checkout keeps one final payment action, with all choices visible. */
+body.zar-retail .checkout-page .continue-to-shpping-methods,
+body.zar-retail .checkout-page .continue-to-payment-methods{display:none!important}
+body.zar-retail .checkout-page .order-info-confirm .confirm-order-next-step-button{display:block!important}
+body.zar-retail .checkout-page .shipping-method .method-container{width:100%;min-width:0}
+body.zar-retail .checkout-page .shipping-method .method-container > label{display:grid!important;grid-template-columns:24px minmax(0,1fr);width:100%!important}
+body.zar-retail .checkout-page .shipping-method .method-name{width:auto!important;min-width:0;white-space:normal;word-break:normal}
+body.zar-retail .checkout-page .shipping-method input[name="shippingoption"]{display:inline-block!important;position:static!important;appearance:auto!important;opacity:1!important;visibility:visible!important;width:20px!important;height:20px!important;margin:0;accent-color:var(--zar-gold-dark)}
+
+/* Pending order countdown: do not let the SVG expand to the order column width. */
+body.zar-retail .order-timer{display:flex;align-items:center;gap:12px;color:var(--zar-gold-dark);font-size:13px;line-height:1.8;margin-bottom:20px}
+body.zar-retail .order-timer .timer-wrap{display:flex;flex:0 0 48px;width:48px;height:48px;align-items:center;justify-content:center}
+body.zar-retail .order-timer svg.clock{display:block;width:48px!important;height:48px!important;max-width:48px;max-height:48px;flex:none}
+body.zar-retail .order-timer .seconds{font-size:12px;fill:var(--zar-gold-dark)}
+
+/* Order history: explicit filter controls with a visible selected state. */
+body.zar-retail .order-list-page .filters{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:16px;border:1px solid var(--zar-border);border-radius:12px;background:white}
+body.zar-retail .order-list-page .filters .order-filter-label{flex-basis:100%;font-size:12px;color:var(--zar-muted);margin-bottom:4px}
+body.zar-retail .order-list-page .filters .orderstatus{display:inline-flex;align-items:center;justify-content:center;float:none;min-height:42px;padding:10px 18px;margin:0;border:1px solid var(--zar-border);border-radius:24px;background:var(--zar-cream);color:var(--zar-ink);font:inherit;font-size:13px;line-height:1.5;text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s}
+body.zar-retail .order-list-page .filters .orderstatus:hover{border-color:var(--zar-gold-dark);background:var(--zar-blue)}
+body.zar-retail .order-list-page .filters .orderstatus.active,body.zar-retail .order-list-page .filters .orderstatus[aria-pressed=true]{background:var(--zar-ink);border-color:var(--zar-ink);color:white;box-shadow:0 2px 6px #25303a12;transition:none}
+body.zar-retail .order-list-page .order-filter-empty{padding:22px;border:1px dashed var(--zar-border);border-radius:12px;text-align:center;color:var(--zar-muted);background:white}
+
+/* Homepage collections and carousels share the same gallery styling. */
+body.zar-retail .zar-home #zar-collections{padding-block:48px 36px}
+body.zar-retail .zar-home #zar-collections .zar-section-heading{margin-bottom:24px}
+body.zar-retail .zar-home #zar-collections .home-page-category-grid{background:none!important;padding:0!important;margin:0;min-height:0}
+body.zar-retail .zar-home #zar-collections .category-grid:not(.nop-jcarousel) .item-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px}
+body.zar-retail .zar-home #zar-collections .category-item{display:flex;flex-direction:column;background:white;border:1px solid var(--zar-border);border-radius:18px;padding:0;box-shadow:none;transition:border-color .2s,transform .2s}
+body.zar-retail .zar-home #zar-collections .category-item:hover{border-color:var(--zar-gold);transform:translateY(-3px)}
+body.zar-retail .zar-home #zar-collections .category-item .picture{order:0;margin:0;padding:18px;aspect-ratio:1;min-height:0;height:auto;background:var(--zar-sand);overflow:hidden;border-radius:17px 17px 0 0}
+body.zar-retail .zar-home #zar-collections .category-item .picture a{height:100%;padding:0;background:none}
+body.zar-retail .zar-home #zar-collections .category-item .picture img{position:relative;inset:auto;width:100%;height:100%;max-height:100%;object-fit:contain;transition:transform .2s}
+body.zar-retail .zar-home #zar-collections .category-item .title{order:1;position:static;inset:auto;display:block;margin:0;padding:16px 18px;background:none;color:var(--zar-ink);font-size:15px;font-weight:500;line-height:1.8;text-align:start;box-shadow:none}
+body.zar-retail .zar-home #zar-collections .category-item .title a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;background:none;color:inherit}
+body.zar-retail .zar-home #zar-collections .category-item .title a::after{content:'←';color:var(--zar-gold-dark);font-size:18px}
+body.zar-retail .zar-home .zar-home-product-carousels{padding-block:40px 52px;background:var(--zar-cream);border-top:1px solid var(--zar-border)}
+body.zar-retail .zar-home .jCarouselMainWrapper{margin:0 0 28px;padding:0;background:none;min-height:0}
+body.zar-retail .zar-home .jCarouselMainWrapper:last-child{margin-bottom:0}
+body.zar-retail .zar-home .nop-jcarousel{width:100%;max-width:none;margin:0;padding:0;background:none;min-height:0}
+body.zar-retail .zar-home .nop-jcarousel .carousel-title{display:flex;align-items:center;gap:10px;min-height:40px;margin:0 0 24px;padding:0;border:0;background:none;box-shadow:none;text-align:start}
+body.zar-retail .zar-home .nop-jcarousel .carousel-title h3{flex:1;min-width:0;margin:0;padding:0;background:none;color:var(--zar-ink);font-family:inherit;font-size:clamp(25px,3vw,38px);font-weight:500;line-height:1.6}
+body.zar-retail .zar-home .nop-jcarousel .carousel-title strong{display:inline;max-width:none;margin:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;font:inherit;color:inherit;text-transform:none}
+body.zar-retail .zar-home .jCarouselMainWrapper .slick-prev,body.zar-retail .zar-home .jCarouselMainWrapper .slick-next{position:static!important;display:inline-flex!important;align-items:center;justify-content:center;order:1;flex:0 0 38px;width:38px;height:38px;min-height:0;margin:0!important;padding:0;border:1px solid var(--zar-border);border-radius:50%;background:white!important;box-shadow:none;transform:none;font-size:0;color:var(--zar-ink);cursor:pointer}
+body.zar-retail .zar-home .jCarouselMainWrapper .slick-prev::before{content:'›';font:26px/1 Arial;color:inherit;opacity:1}
+body.zar-retail .zar-home .jCarouselMainWrapper .slick-next::before{content:'‹';font:26px/1 Arial;color:inherit;opacity:1}
+body.zar-retail .zar-home .jCarouselMainWrapper :is(.slick-prev,.slick-next):hover{border-color:var(--zar-gold);color:var(--zar-gold-dark)}
+body.zar-retail .zar-home .jCarouselMainWrapper :is(.slick-prev,.slick-next).slick-hidden{display:none!important}
+body.zar-retail .zar-home .jCarouselMainWrapper :is(.slick-prev,.slick-next).slick-disabled{opacity:.35;cursor:default}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .carousel-item{height:auto}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .carousel-item .item-box{padding:0 9px;background:none}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item{height:auto;min-height:0;margin:0;border:1px solid var(--zar-border);border-radius:18px;background:white;overflow:hidden;text-align:start;box-shadow:none}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item>.picture{border-radius:17px 17px 0 0;border:0;background:var(--zar-sand);aspect-ratio:1}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item>.picture img{object-fit:contain}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item .details{padding:18px;background:white}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item .product-title{font-size:15px;line-height:1.9;margin-bottom:12px}
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item .item-box-footer{padding-top:12px;border-top:1px solid var(--zar-border)}
+@media(max-width:767px){
+ body.zar-retail .zar-home #zar-collections{padding-block:32px 28px}
+ body.zar-retail .zar-home #zar-collections .category-grid:not(.nop-jcarousel) .item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ body.zar-retail .zar-home #zar-collections .category-item .picture{padding:12px}
+ body.zar-retail .zar-home #zar-collections .category-item .title{font-size:13px;padding:12px}
+ body.zar-retail .zar-home .zar-home-product-carousels{padding-block:28px 36px}
+ body.zar-retail .zar-home .nop-jcarousel .carousel-title{margin-bottom:20px;gap:8px}
+ body.zar-retail .zar-home .nop-jcarousel .carousel-title h3{font-size:25px}
+ body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item .details{padding:14px}
+}
+
+
+.zariran-home-carousel {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 28px);
+}
+
+.zariran-home-carousel > .nop-jcarousel {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.zariran-carousel-category {
+    flex: 0 0 16%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.zariran-carousel-category img {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    max-height: 160px;
+    object-fit: contain;
+}
+
+.zariran-carousel-category span {
+    color: var(--zar-gold-dark);
+}
+
+body.zar-retail .zar-home .zariran-home-carousel .carousel-title {
+    justify-content: flex-end;
+}
+
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-item .add-info {
+    opacity: 1;
+    border: 0;
+    box-shadow: none;
+    background: none;
+}
+
+body.zar-retail .zar-home .nop-jcarousel.product-grid .product-rating-box,
+body.zar-retail .zar-home .nop-jcarousel.product-grid .quick-view-button {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .zariran-home-carousel {
+        display: block;
+    }
+
+    .zariran-carousel-category {
+        flex-direction: row;
+        text-align: start;
+        margin-block-end: 12px;
+    }
+
+    .zariran-carousel-category img {
+        width: 54px;
+        height: 54px;
+    }
+
+    .zariran-carousel-category span {
+        margin-inline-start: auto;
+    }
+}
+
+body.zar-retail .zar-product-weight {
+    margin-block: 4px 10px;
+    color: var(--zar-muted);
+    font-size: 13px;
+}
+
+body.zar-retail .product-details-page .zar-product-description {
+    margin-block: clamp(24px, 4vw, 48px);
+    padding: clamp(18px, 3vw, 32px);
+    border: 1px solid var(--zar-border);
+    border-radius: 18px;
+    background: var(--zar-sand);
+    overflow-wrap: anywhere;
+    color: var(--zar-muted);
+    font-size: 14px;
+    line-height: 2.2;
+}
+
+body.zar-retail .zar-product-description h2 {
+    margin: 0 0 12px;
+    color: var(--zar-ink);
+    font-size: clamp(18px, 2vw, 24px);
+}
+
+body.zar-retail .zar-product-description img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Imported descriptions are displayed inline, without the source site's tab controls. */
+body.zar-retail .zar-product-description .c-product__tabs-header {
+    display: none;
+}
+
+body.zar-retail .zar-product-description :is(#tab-description, .c-product__tabs-panel, .woocommerce-Tabs-panel--description) {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+}
+
+body.zar-retail .zar-product-description :is(h5, h6) {
+    margin-block: 8px;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+body.zar-retail .zar-product-description h6 {
+    font-weight: normal;
+}
+
+body.zar-retail .zar-product-description a {
+    text-decoration: underline;
+}
+
+body.zar-retail .zar-fact-control {
+    display: none !important;
+}
+
+body.zar-retail .zar-product-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-block: 12px;
+}
+
+body.zar-retail .zar-product-facts > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--zar-border);
+    border-radius: 8px;
+    background: var(--zar-sand);
+}
+
+body.zar-retail .zar-product-facts dt {
+    color: var(--zar-muted);
+    font-weight: 400;
+}
+
+body.zar-retail .zar-product-facts dd {
+    margin: 0;
+    color: var(--zar-ink);
+    font-weight: 600;
+}
+
+body.zar-retail .zar-mobile-login .zar-mobile-login-brand,
+body.zar-retail .zar-mobile-login .login-hint {
+    display: block;
+    text-align: center;
+}
+
+body.zar-retail .login-page .zar-mobile-login .zar-mobile-login-number {
+    width: min(100%, 360px);
+    margin-inline: auto;
+    float: none;
+}
+
+body.zar-retail .login-page .zar-mobile-login-number input[type="tel"] {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+}
+
+body.zar-retail .zar-activation-form .change-phonenumber a::after {
+    content: none !important;
+}
+
+/* Cart product rows, including the storefront cart widget. */
+body.zar-retail .shopping-cart-page .zar-cart-products {
+    --zar-cart-thumb: clamp(64px, 10vw, 112px);
+    overflow: visible;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products :is(.cart, tbody) {
+    display: block;
+    width: 100%;
+    border: 0;
+    background: none;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products :is(colgroup, thead, .cart-item-row > .cart-item-index) {
+    display: none;
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-products .cart-item-row, .cart .cart-item) {
+    padding: clamp(14px, 2vw, 24px);
+    margin: 0 0 14px;
+    border: 1px solid var(--zar-border);
+    border-radius: 14px;
+    background: white;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .cart-item-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 16px;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .cart-item-row > td {
+    display: block;
+    width: auto;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    text-align: start;
+    overflow-wrap: anywhere;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .product-picture {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-products, .cart .cart-item) .product-picture img {
+    display: block;
+    width: var(--zar-cart-thumb, clamp(64px, 10vw, 112px));
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .product {
+    grid-column: 2 / -1;
+    grid-row: 1;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .cart-item-row:not(:has(.product-picture)) .product {
+    grid-column: 1 / -1;
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-products, .cart .cart-item) .product-name {
+    font-size: clamp(14px, 1.4vw, 18px);
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--zar-ink);
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .quantity {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .subtotal {
+    grid-column: 2;
+    grid-row: 3;
+    color: var(--zar-gold-dark);
+    font-weight: 600;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products .remove-from-cart {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: end;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products :is(.sku, .vendor, .unit-price) {
+    grid-column: 2 / -1;
+    color: var(--zar-muted);
+    font-size: 12px;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products :is(.quantity, .subtotal) > .td-title {
+    display: none;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-products :is(.sku, .vendor, .unit-price) > .td-title {
+    display: inline;
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-stepper, .cart .cart-item .quantity) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--zar-border);
+    border-radius: 999px;
+    background: var(--zar-sand);
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-stepper, .cart .cart-item .quantity) button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    color: var(--zar-ink);
+    cursor: pointer;
+}
+
+body.zar-retail .shopping-cart-page .zar-cart-stepper .qty-input {
+    width: 36px;
+    height: 32px;
+    padding: 0;
+}
+
+body.zar-retail .shopping-cart-page :is(.zar-cart-products, .cart .cart-item) .remove-btn {
+    min-width: 36px;
+    min-height: 36px;
+    border: 1px solid var(--zar-border);
+    border-radius: 50%;
+    background-color: var(--zar-cream);
+    cursor: pointer;
+}
+
+body.zar-retail .shopping-cart-page .cart .cart-item .item-image-quantity-details {
+    gap: 12px 16px;
+    min-width: 0;
+}
+
+body.zar-retail .shopping-cart-page .cart .cart-item .subtotal-remove-container {
+    color: var(--zar-gold-dark);
+}
+
+@media (max-width: 480px) {
+    body.zar-retail .shopping-cart-page .zar-cart-products .cart-item-row {
+        column-gap: 8px;
+    }
+
+    body.zar-retail .shopping-cart-page .zar-cart-products .subtotal {
+        font-size: 13px;
+    }
+}

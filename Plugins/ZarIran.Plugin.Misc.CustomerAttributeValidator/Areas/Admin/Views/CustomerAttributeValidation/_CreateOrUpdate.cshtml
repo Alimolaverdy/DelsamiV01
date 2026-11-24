@@ -1,0 +1,87 @@
+﻿@model CustomerAttributeValidationModel
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="CustomerAttributeId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="CustomerAttributeId" asp-items="Model.AvailableCustomerAttributes" asp-required="true" />
+                                <span asp-validation-for="CustomerAttributeId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row regex-pattern-container">
+                            <div class="col-md-3">
+                                <nop-label asp-for="RegexPattern" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="RegexPattern" asp-required="true" />
+                                <span asp-validation-for="RegexPattern"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="IsNationalCode" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="IsNationalCode" />
+                                <span asp-validation-for="IsNationalCode"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PreventFromShoppingInInvalidState" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PreventFromShoppingInInvalidState" />
+                                <span asp-validation-for="PreventFromShoppingInInvalidState"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Active" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Active" />
+                                <span asp-validation-for="Active"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        if ($("#IsNationalCode").is(':checked'))
+            $(".regex-pattern-container").hide();
+        else
+            $(".regex-pattern-container").show();
+
+        $("#IsNationalCode").on("change", function () {
+
+            if ($(this).is(':checked'))
+                $(".regex-pattern-container").hide();
+            else
+                $(".regex-pattern-container").show();
+
+        });
+    });
+</script>

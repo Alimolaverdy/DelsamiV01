@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Payment Methods",
+  "FriendlyName": "پرداخت قسطی با ترب پی",
+  "SystemName": "ZarIran.Payments.TorobPay",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 3,
+  "FileName": "ZarIran.Plugin.Payments.TorobPay.dll",
+  "Description": "پرداخت قسطی با ترب پی",
+  "DependsOnSystemNames": [
+    "ZarIran.Misc.Core",
+    "ZarIran.Payment.Core"
+  ]
+}

@@ -1,0 +1,101 @@
+﻿@model CatalogProductsModel
+
+@if (Model.Products.Count <= 0 &&
+     !Model.PriceRangeFilter.Enabled &&
+     !Model.SpecificationFilter.Enabled &&
+     !Model.ManufacturerFilter.Enabled)
+{
+    return;
+}
+
+<div class="product-selectors">
+
+
+    @if (Model.AllowProductViewModeChanging)
+    {
+        <div class="product-viewmode d-none">
+            <span>@T("Catalog.ViewMode")</span>
+            @if (Model.AvailableViewModes.Count > 1)
+            {
+                @Html.DropDownList("products-viewmode", Model.AvailableViewModes)
+            }
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                var $viewModeEl = $('#products-viewmode');
+                $viewModeEl.on('change', function () {
+                    CatalogProducts.getProducts();
+                });
+
+                $(CatalogProducts).on('before', function (e) {
+                    e.payload.urlBuilder
+                        .addParameter('viewmode', $viewModeEl.val());
+                });
+            });
+
+            function toggleFilters() {
+                jQuery('.nopAjaxFilters7Spikes').toggleClass('open');
+            }
+        </script>
+    }
+
+    <div class="product-show-filters d-block d-md-none">
+        <a href="javascript:void(0);" onclick="toggleFilters();">
+            <img src="/icons/nobparts-icon-pack/Filter-1.svg" />
+        </a>
+    </div>
+
+    @if (Model.AllowProductSorting)
+    {
+
+        <div id="product-orderBy-container">
+            <div class="order-title">@T("enums.nop.core.domain.catalog.productsortingenum.ordering"):</div>
+            @foreach (var sortMode in Model.AvailableSortOptions)
+            {
+                if (sortMode.Value == "5" || sortMode.Value == "6") continue;
+                    <label class="@(sortMode.Value == "0" ? "active" : "")">
+                        @sortMode.Text
+                        <input type="radio" value="@sortMode.Value" name="products-orderby" class="products-orderby d-none" />
+                    </label>
+            }
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                var $orderByEl = $('.products-orderby');
+
+                $orderByEl.on('click', function () {
+                    CatalogProducts.getProducts();
+                    $('#product-orderBy-container label').removeClass('active');
+                    $('.products-orderby:checked').parent().addClass('active');
+                });
+
+                $(CatalogProducts).on('before', function (e) {
+                    e.payload.urlBuilder
+                        .addParameter('orderby', $('.products-orderby:checked').val());
+                });
+            });
+        </script>
+    }
+
+    @if (Model.AllowCustomersToSelectPageSize)
+    {
+        <div class="product-page-size d-none">
+            <span>@T("Catalog.PageSize")</span>
+            @Html.DropDownList("products-pagesize", Model.PageSizeOptions, new { aria_label = T("Catalog.PageSize.Label") })
+            <span>@T("Catalog.PageSize.PerPage")</span>
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                var $pageSizeEl = $('#products-pagesize');
+                $pageSizeEl.on('change', function () {
+                    CatalogProducts.getProducts();
+                });
+
+                $(CatalogProducts).on('before', function (e) {
+                    e.payload.urlBuilder
+                        .addParameter('pagesize', $pageSizeEl.val());
+                });
+            });
+        </script>
+    }
+</div>

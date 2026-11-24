@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Extend and correct order features",
+  "SystemName": "ZarIran.Plugin.Misc.ExtendedOrder",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 4,
+  "FileName": "ZarIran.Plugin.Misc.ExtendedOrder.dll",
+  "Description": "This plugin extend and correct order features",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+}

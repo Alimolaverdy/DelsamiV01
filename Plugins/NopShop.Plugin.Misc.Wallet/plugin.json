@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "NopShop.Wallet",
+  "SystemName": "NopShop.Wallet",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "nopshop.ir",
+  "DisplayOrder": 1,
+  "FileName": "NopShop.Plugin.Misc.Wallet.dll",
+  "Description": "NopShop Wallet"
+}

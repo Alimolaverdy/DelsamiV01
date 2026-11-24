@@ -1,0 +1,38 @@
+﻿.int-input {
+    height: 38px;
+    min-height: 0;
+    padding-left: 5px;
+}
+
+.plate-input {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+    .plate-input input {
+        width: 96px;
+        height: 40px;
+    }
+
+    .plate-input select {
+        width: 60px;
+        height: 40px;
+    }
+
+.edit-car input::-webkit-outer-spin-button,
+.edit-car input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.edit-car input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.ico-car {
+    min-width: 110px;
+    appearance: none;
+    background: url(../Content/images/car.png) left center no-repeat;
+}
+

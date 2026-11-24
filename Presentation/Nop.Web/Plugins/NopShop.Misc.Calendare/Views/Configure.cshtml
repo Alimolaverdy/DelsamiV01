@@ -1,0 +1,87 @@
+﻿@using Nop.Web.Framework.UI
+@using NopShop.Plugin.Misc.Calendar.Models
+
+@model NopshopCalendarConfigureModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+<div class="content">
+    <div class="form-horizontal">
+        <form method="post" asp-controller="NopShopCalendare" asp-action="Configure">
+
+            @Html.HiddenFor(m => m.Activated)
+            @Html.AntiForgeryToken()
+
+            <div class="cards-group">
+                <div class="card card-default no-margin">
+                    <div class="card-heading">
+                        @T("Plugin.Misc.Calendare.Calendare")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Enabled_OverrideForStore"
+                                                             asp-input="Enabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <label asp-for="Enabled" asp-postfix=":"></label>
+                            </div>
+                            <div class="col-md-4">
+                                <nop-editor asp-for="Enabled" />
+                                <span asp-validation-for="Enabled"></span>
+                            </div>
+                        </div>
+
+                        @*  <div class="form-group row">
+                        <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IsPersianNumberOverrideForStore"
+                        asp-input="IsPersianNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <label asp-for="IsPersianNumber" asp-postfix=":"></label>
+                        </div>
+                        <div class="col-md-9">
+                        <nop-editor asp-for="IsPersianNumber" />
+                        <span asp-validation-for="IsPersianNumber"></span>
+                        </div>
+                        </div>*@
+
+                        <div class="list-seperator"></div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label asp-for="SystemCode" asp-postfix=":"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="SystemCode" type="text" readonly="readonly" class="system-code" />
+                                @*<label id="SystemCode" name="SystemCode" class="label label-info not-persian-number">@Model.SystemCode</label>*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label asp-for="SystemActivationCode" asp-postfix=":"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="SystemActivationCode" />
+                                <span asp-validation-for="SystemActivationCode"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-7">
+                            <input type="submit" name="save" class="btn bg-blue"
+                                   value="@T("Admin.Common.Save")" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

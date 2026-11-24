@@ -1,0 +1,181 @@
+﻿@model ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.Tipax.Configuration.SystemName").Text);
+}
+
+<form asp-controller="Tipax" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ShippingMethodId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="ShippingMethodId" asp-items="Model.AvailableShippingMethods" />
+                                <span asp-validation-for="ShippingMethodId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BaseUrl" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="BaseUrl" />
+                                <span asp-validation-for="BaseUrl"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Username" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Username" />
+                                <span asp-validation-for="Username"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Password" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Password" />
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ApiKey" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ApiKey" />
+                                <span asp-validation-for="ApiKey"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Packing" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="Packing" asp-items="@EnumHelper.ToSelectList<Packing>()" />
+                                <span asp-validation-for="Packing"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PackageContent" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="PackageContent" asp-items="@EnumHelper.ToSelectList<PackageContent>()" />
+                                <span asp-validation-for="PackageContent"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="IsUnusual" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="IsUnusual" />
+                                <span asp-validation-for="IsUnusual"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PackType" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="PackType" asp-items="@EnumHelper.ToSelectList<PackType>()" />
+                                <span asp-validation-for="PackType"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PaymentType" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="PaymentType" asp-items="@EnumHelper.ToSelectList<PaymentType>()" />
+                                <span asp-validation-for="PaymentType"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PickupType" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="PickupType" asp-items="@EnumHelper.ToSelectList<PickupType>()" />
+                                <span asp-validation-for="PickupType"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DistributionType" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="DistributionType" asp-items="@EnumHelper.ToSelectList<DistributionType>()" />
+                                <span asp-validation-for="DistributionType"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ServiceType" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="ServiceType" asp-items="@EnumHelper.ToSelectList<ServiceType>()" />
+                                <span asp-validation-for="ServiceType"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="TimeoutSeconds" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TimeoutSeconds" />
+                                <span asp-validation-for="TimeoutSeconds"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Multiplier" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Multiplier" />
+                                <span asp-validation-for="Multiplier"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

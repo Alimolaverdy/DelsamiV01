@@ -1,0 +1,415 @@
+﻿@using Nop.Services.Catalog
+@using Nop.Services.Directory;
+@using Nop.Services.Payments;
+@using Nop.Services.Plugins;
+@using Nop.Web.Areas.Admin.Factories;
+@using Nop.Web.Components;
+@using Nop.Web.Models.Customer;
+@using Nop.Web.Models.Order;
+@using NopShop.Plugin.Misc.Wallet;
+@using NopShop.Plugin.Misc.Wallet.Domain;
+@model CustomerRewardPointsModel
+@inject WalletSettings walletSettings
+@inject IWorkContext workContext
+@inject IThemeContext themeContext
+@inject ICountryService countryService
+@inject IShoppingCartModelFactory _shoppingCartModelFactory
+@inject IPriceFormatter _priceFormatter
+
+
+@inject IPaymentPluginManager _pluginService;
+
+
+@{
+
+	var listOfPaymentMethods = await _pluginService.LoadActivePluginsAsync();
+	var activePayments = listOfPaymentMethods.Where(c => c.PaymentMethodType == PaymentMethodType.Redirection);
+	var selectedPaymentMethod = "";
+	var theme = await themeContext.GetWorkingThemeNameAsync();
+	if (theme == "NopShopMarket")
+	{
+		Layout = "~/Themes/NopShopMarket/Views/Shared/Components/CustomerNavigation/Default.cshtml";
+		//title
+		NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+		//page class
+		NopHtml.AppendPageCssClassParts("html-account-page");
+		NopHtml.AppendPageCssClassParts("html-reward-points-page");
+
+		//title
+		NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+
+		ViewBag.BodyCssClass = "page-extra page-profile page-profile-rewardpoints";
+		ViewBag.ActiveTab = "rewardpoints";
+		NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib/kamadatepicker/kamadatepicker.min.js");
+		NopHtml.AppendCssFileParts("~/lib/kamadatepicker/kamadatepicker.min.css");
+		<style>
+			.validation-summary-errors {
+				color: #ff0040;
+				font-size: 22px;
+				text-align: center;
+			}
+
+			.marginTopBottom {
+				margin-bottom: 10px;
+				margin-top: 10px;
+			}
+
+			.required {
+				color: #ff0040;
+			}
+
+			#save-info-button {
+				background: lightgreen;
+				border: 0px;
+				padding: 10px;
+				width: 100px;
+				border-radius: 10px;
+			}
+
+			#Amount {
+				border: 1px solid lightgray;
+				border-radius: 8px;
+			}
+
+			#chargeDiv {
+				margin-top: 1.5em;
+			}
+
+			#h1Style {
+				font-size: 18px;
+			}
+
+			table, td, tr, th {
+				text-align: center;
+				border: 1px solid;
+			}
+
+			table {
+				width: 100%;
+			}
+
+			td, th {
+				padding: 10px;
+			}
+
+			th {
+				background: lightgray;
+			}
+
+			.pager {
+				margin: 10px;
+			}
+
+			#select-payment {
+				padding: 5px;
+				border-radius: 5px;
+			}
+		</style>
+
+		@section Breadcrumb{
+		<section class="km-breadcrumb">
+			<ul>
+				<li>
+					<a href="@Url.RouteUrl("Homepage")">صفحه اصلی</a>
+				</li>
+				<li>
+					<a href="@Url.RouteUrl("CustomerDashboard")">پروفایل کاربری</a>
+				</li>
+				<li class="km-active">
+					کیف پول
+				</li>
+			</ul>
+		</section>
+	}
+		@section mbSheet
+		{
+		@await Component.InvokeAsync("CustomerMbSheet", new { activeTab = "rewardpoints" })
+	}
+		<div class="km-box-style2 km-profile-detail-edit">
+			<div class="">
+				<h1 id="h1Style">@T("Account.MyAccount") - @T("Account.RewardPoints")</h1>
+			</div>
+			<div class="km-content after-clear">
+				<div class="right width-100 resp-mt-100 km-profile-detail-edit-personal">
+					<div class="km-form-style km-theme-1 after-clear">
+						<hr />
+						<div class="km-box-style2 km-profile-detail-edit" id="chargeDiv">
+							<div class="marginTopBottom">
+								<strong class="marginTopBottom">@T("NopShop.Plugin.Misc.Wallet.Charge.Title")</strong>
+							</div>
+							<form asp-route="@(WalletDefaults.ChargeWalletRoute)" method="post">
+								<div asp-validation-summary="All" class="message-error"></div>
+								<div class="fieldset">
+									<div class="form-fields">
+										<div class="inputs">
+											<label>@T("NopShop.Plugin.Misc.Wallet.Charge.Amount") @((await workContext.GetWorkingCurrencyAsync()).CurrencyCode):</label>
+											<input type="text" data-val="true" data-val-required="مبلغ مورد نیاز است" id="Amount" name="Amount" value="@(walletSettings.Amount)" aria-describedby="Amount-error" class="valid width-50" aria-invalid="false">
+											<nop-required />
+											<select id="select-payment" onchange="leaveChange()">
+												@{
+
+													foreach (var item in activePayments)
+													{
+														<option value="@item.PluginDescriptor.SystemName">@item.PluginDescriptor.FriendlyName</option>
+													}
+													if (activePayments.Any())
+													{
+														var pay = activePayments.FirstOrDefault();
+														if (pay != null) selectedPaymentMethod = pay.PluginDescriptor.SystemName;
+													}
+													<input id="paymentName" name="paymentName" type="text" style="display:none" value="@selectedPaymentMethod" />
+												}
+											</select>
+											<button type="submit" id="save-info-button" name="save-info-button" class="button-1 save-customer-info-button">@T("NopShop.Plugin.Misc.Wallet.Charge.Save")</button>
+											@*<span asp-validation-for="Email"></span>*@
+										</div>
+									</div>
+								</div>
+
+								<input type="text" style="visibility:hidden" value="@selectedPaymentMethod" />
+							</form>
+						</div>
+
+
+						<div class="km-box-style2 km-profile-detail-edit" id="chargeDiv">
+							<div class="marginTopBottom">
+								<div class="current-balance marginTopBottom">@T("RewardPoints.CurrentBalance", Model.RewardPointsAmount)</div>
+								@if (Model.MinimumRewardPointsBalance > 0)
+								{
+									<div class="min-balance marginTopBottom">@T("RewardPoints.MinimumBalance", Model.MinimumRewardPointsBalance, Model.MinimumRewardPointsAmount)</div>
+								}
+							</div>
+
+							@if (Model.RewardPoints.Count > 0)
+							{
+								<div class="table-wrapper">
+									<table class="data-table">
+										<colgroup>
+											<col width="1" />
+											<col width="1" />
+											<col width="1" />
+											<col width="1" />
+											<col />
+											<col width="1" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><span class="item-count">#</span></th>
+												<th class="date" data-hide="w410, w480">
+													@T("RewardPoints.Fields.CreatedDate")
+												</th>
+												<th class="points">
+													@T("RewardPoints.Fields.Points")
+												</th>
+												<th class="points-balance">
+													@T("RewardPoints.Fields.PointsBalance")
+												</th>
+												<th class="message" data-hide="w410, w480, w580">
+													@T("RewardPoints.Fields.Message")
+												</th>
+												<th class="endDate" data-hide="w410, w480">
+													@T("RewardPoints.Fields.EndDate")
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											@for (var i = 0; i < Model.RewardPoints.Count; i++)
+											{
+												var item = Model.RewardPoints[i];
+												<tr @(i % 2 == 0 ? Html.Raw(" class=\"odd\"") : Html.Raw(" class=\"even\""))>
+													<td><span class="item-count">@(i + 1)</span></td>
+													<td class="date">
+														@item.CreatedOn
+													</td>
+													<td class="points">
+														@item.Points
+													</td>
+													<td class="points-balance">
+														@item.PointsBalance
+													</td>
+													<td class="message">
+														@item.Message
+													</td>
+													<td class="endDate">
+														@item.EndDate
+													</td>
+												</tr>
+											}
+										</tbody>
+									</table>
+								</div>
+								var pager = await Html.PagerAsync(Model.PagerModel);
+								if (!string.IsNullOrEmpty(await pager.RenderHtmlContentAsync()))
+								{
+									<div class="pager">
+										@pager
+									</div>
+								}
+							}
+							else
+							{
+								<div class="no-data" style="text-align:center">
+									@T("RewardPoints.NoHistory")
+								</div>
+							}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else
+	{
+
+		Layout = "_ColumnsTwo";
+
+		//title
+		NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+		//page class
+		NopHtml.AppendPageCssClassParts("html-account-page");
+		NopHtml.AppendPageCssClassParts("html-reward-points-page");
+
+		@section left
+		{
+		@await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = CustomerNavigationEnum.RewardPoints })
+	}
+		<style>
+			.validation-summary-errors {
+				color: #ff0040;
+				font-size: 22px;
+				text-align: center;
+			}
+		</style>
+		<div class="page account-page reward-points-page">
+			<div class="page-title">
+				<h1>@T("Account.RewardPoints")</h1>
+			</div>
+			<div class="page-body">
+				<div class="reward-points-overview">
+
+					<div class="title">
+						@T("rewardpoints.currentbalance.title")
+					</div>
+					@if (Model.MinimumRewardPointsBalance > 0)
+					{
+						<div class="min-balance">@T("RewardPoints.MinimumBalance", Model.MinimumRewardPointsBalance, Model.MinimumRewardPointsAmount)</div>
+					}
+					<div class="current-balance">
+						@Model.RewardPointsAmount
+					</div>
+				</div>
+
+				<div class="section reward-points-add">
+					<div class="title">
+						@T("NopShop.Plugin.Misc.Wallet.Charge.Title")
+					</div>
+
+					<form asp-route="@(WalletDefaults.ChargeWalletRoute)" method="post">
+						<div asp-validation-summary="All" class="message-error"></div>
+						<div class="fieldset">
+							<div class="form-fields">
+								<div class="inputs">
+									<label>@T("NopShop.Plugin.Misc.Wallet.Charge.Amount") @((await workContext.GetWorkingCurrencyAsync()).CurrencyCode):</label>
+									<input type="text" data-val="true" data-val-required="مبلغ مورد نیاز است" id="Amount" name="Amount" value="@(walletSettings.Amount)" aria-describedby="Amount-error" class="valid" aria-invalid="false">
+									<nop-required />
+									@*<span asp-validation-for="Email"></span>*@
+								</div>
+							</div>
+						</div>
+						<div class="buttons">
+							<button type="submit" id="save-info-button" name="save-info-button" class="button-1 save-customer-info-button">@T("NopShop.Plugin.Misc.Wallet.Charge.Save")</button>
+						</div>
+					</form>
+				</div>
+
+				<div class="section reward-points-history">
+					<div class="title">
+						@T("wallet.transactions")
+					</div>
+					@if (Model.RewardPoints.Count > 0)
+					{
+						<div class="transactions-wrapper">
+
+							@for (var i = 0; i < Model.RewardPoints.Count; i++)
+							{
+
+								var item = Model.RewardPoints[i];
+
+								<div class="transaction-item">
+									<div>
+										@{
+											var transactionType = "deposite";
+											if (item.Points < 0) transactionType = "withdraw";
+										}
+
+										<div class="transaction-type @transactionType"></div>
+									</div>
+									<div>
+										<div class="message">
+											@item.Message
+										</div>
+										<div class="date">
+											@item.CreatedOn
+										</div>
+									</div>
+									<div class="points @transactionType">
+										@(await _priceFormatter.FormatPriceAsync(item.Points, true, false))
+									</div>
+								</div>
+							}
+
+								@{/*
+								<tbody>
+									@for (var i = 0; i < Model.RewardPoints.Count; i++)
+									{
+										var item = Model.RewardPoints[i];
+										<tr @(i % 2 == 0 ? Html.Raw(" class=\"odd\"") : Html.Raw(" class=\"even\""))>
+											<td><span class="item-count">@(i + 1)</span></td>
+											<td class="date">
+												@item.CreatedOn
+											</td>
+											<td class="points">
+												@item.Points
+											</td>
+											<td class="points-balance">
+												@item.PointsBalance
+											</td>
+											<td class="message">
+												@item.Message
+											</td>
+											<td class="endDate">
+												@item.EndDate
+											</td>
+										</tr>
+									}
+								</tbody>
+								*/}
+						</div>
+						var pager = await Html.PagerAsync(Model.PagerModel);
+						if (!string.IsNullOrEmpty(await pager.RenderHtmlContentAsync()))
+						{
+							<div class="pager">
+								@pager
+							</div>
+						}
+					}
+					else
+					{
+						<div class="no-data">
+							<img src="/images/Empty-Basket.svg" />
+							@T("RewardPoints.NoHistory")
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	}
+}
+
+<script>
+	function leaveChange() {
+		var valu = document.getElementById("select-payment").value;
+		document.getElementById("paymentName").value = valu;
+	}
+</script>

@@ -1,0 +1,61 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Nop.Services.Customers;
+using Nop.Services.Orders;
+using Nop.Services.Security;
+using Nop.Web.Areas.Admin.Controllers;
+using Nop.Web.Areas.Admin.Factories;
+using Nop.Web.Areas.Admin.Models.ShoppingCart;
+using System.Threading.Tasks;
+
+namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Controllers
+{
+    public class ZarIranShoppingCartManagementController : ShoppingCartController
+    {
+        #region Fields
+
+        private readonly IPermissionService _permissionService;
+        private readonly IShoppingCartModelFactory _shoppingCartModelFactory;
+
+        #endregion
+
+        #region Ctor
+
+        public ZarIranShoppingCartManagementController(ICustomerService customerService,
+                                                IPermissionService permissionService,
+                                                IShoppingCartService shoppingCartService,
+                                                IShoppingCartModelFactory shoppingCartModelFactory) : base(customerService, permissionService, shoppingCartService, shoppingCartModelFactory)
+        {
+            _shoppingCartModelFactory = shoppingCartModelFactory;
+            _permissionService = permissionService;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public override async Task<IActionResult> CurrentCarts()
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCurrentCarts))
+                return AccessDeniedView();
+
+            //prepare model
+            var model = await _shoppingCartModelFactory.PrepareShoppingCartSearchModelAsync(new ShoppingCartSearchModel());
+
+            return View("~/Plugins/ZarIran.Misc.ShoppingCartManagement/Areas/Admin/Views/ZarIranCurrentCarts.cshtml", model);
+        }
+
+        [HttpPost]
+        public override async Task<IActionResult> CurrentCarts(ShoppingCartSearchModel searchModel)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCurrentCarts))
+                return await AccessDeniedDataTablesJson();
+
+            //prepare model
+            var model = await _shoppingCartModelFactory.PrepareShoppingCartListModelAsync(searchModel);
+
+            return Json(model);
+        }
+
+        #endregion
+    }
+}

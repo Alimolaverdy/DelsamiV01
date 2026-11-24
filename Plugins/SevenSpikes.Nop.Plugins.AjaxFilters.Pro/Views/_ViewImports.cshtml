@@ -1,0 +1,20 @@
+﻿@inherits Nop.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@inject INopHtmlHelper NopHtml
+
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Nop.Web.Framework.UI
+@using Nop.Web.Framework.Extensions
+@using System.Text.Encodings.Web
+@using NobParts.Plugin.Misc.CarInfo.Models.CustomerCars
+@using NobParts.Plugin.Misc.CarInfo.Models.CarServiceReminders
+@using Nop.Web.Components
+@using Nop.Web.Framework.Models.DataTables
+@using Nop.Web.Areas.Admin.Models.Catalog
+@using Microsoft.AspNetCore.Routing
+@using NobParts.Plugin.Misc.CarInfo.Models.ManufacturerModelSpecificationOptions
+@using Nop.Core.Domain.Common
+@using Nop.Core.Infrastructure
+@using System.Globalization
+@using Nop.Services.Common

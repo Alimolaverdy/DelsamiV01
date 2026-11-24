@@ -1,0 +1,102 @@
+﻿@model CustomerCarSelectorModel
+<link href="~/Plugins/NobParts.Misc.CarInfo/Content/style.css" rel="stylesheet" />
+<li id="topcartlink">
+    <select id="CarSelector" class="ico-car">
+        <option>انتخاب خودرو</option>
+        @foreach (var customerCar in Model.CustomerCars)
+        {
+            <option value="@customerCar.Id" data-carBrandOptionId="@customerCar.CarBrandSpecificationAttributeOptionId" data-yearOptionId="@customerCar.YearSpecificationAttributeOptionId" data-modelOptionId="@customerCar.ModelSpecificationAttributeOptionId">@customerCar.ModelSpecificationAttributeOptionName - @customerCar.YearSpecificationAttributeOptionName</option>
+        }
+
+    </select>
+</li>
+
+<script>
+    $(document).ready(function () {
+
+
+
+        $("#CarSelector").on("change", function () {
+            if ($(this).val()) {
+
+                //$("#categories").val("@Model.AllProductsCategoryId");
+
+
+                var carBrandSpecAttrOptId = $("option:selected", this).attr("data-carBrandOptionId");
+
+                //$("#manufacturers").val(manufacturerId);
+
+                var modelSpecAttrOptId = $("option:selected", this).attr("data-modelOptionId");
+
+                //$("#specification_@Model.ModelSpecificationAttributeId").val(modelSpecAttrOptId);
+
+                var yearSpecAttrOptId = $("option:selected", this).attr("data-yearOptionId");
+
+                //var fields = {
+                //    categoryId: "@Model.AllProductsCategoryId",
+                //    manufacturerId: manufacturerId,
+                //    specificationOptions: modelSpecAttrOptId,
+                //    specificationOptions: yearSpecAttrOptId
+                //}
+                var $form = $('<form>', {
+                    action: "/AjaxFiltersProSearch/Search",
+                    method: 'post'
+                });
+
+                $('<input>').attr({
+                    type: "hidden",
+                    name: "categoryId",
+                    value: @Model.AllProductsCategoryId
+                                            }).appendTo($form);
+
+                $('<input>').attr({
+                    type: "hidden",
+                    name: "specificationOptions",
+                    value: carBrandSpecAttrOptId
+                }).appendTo($form);
+
+                $('<input>').attr({
+                    type: "hidden",
+                    name: "specificationOptions",
+                    value: modelSpecAttrOptId
+                }).appendTo($form);
+
+                if (yearSpecAttrOptId !== 0) {
+                    $('<input>').attr({
+                        type: "hidden",
+                        name: "specificationOptions",
+                        value: yearSpecAttrOptId
+                    }).appendTo($form);
+                }
+
+                $form.appendTo('body').submit();
+
+            }
+            else {
+                $("#categories").val("");
+                $("#manufacturers").val("");
+                $("#specification_@Model.ModelSpecificationAttributeId").val("");
+                $("#specification_@Model.YearSpecificationAttributeId").val("");
+            }
+        });
+
+        function PostRequest(url, fields) {
+
+            var $form = $('<form>', {
+                action: url,
+                method: 'post'
+            });
+
+            $.each(fields, function (key, val) {
+                $('<input>').attr({
+                    type: "hidden",
+                    name: key,
+                    value: val
+                }).appendTo($form);
+            });
+
+            console.log($form.fields)
+        }
+    });
+
+</script>

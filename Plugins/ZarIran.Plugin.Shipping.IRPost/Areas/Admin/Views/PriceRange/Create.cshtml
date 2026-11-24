@@ -1,0 +1,29 @@
+@model PriceRangeModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.AddNew").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.List.SystemName").Text);
+}
+
+<form asp-controller="PriceRange" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/_CreateOrUpdate.cshtml", Model)
+</form>

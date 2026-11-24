@@ -1,0 +1,29 @@
+@model PaymentMethodDiscountModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.AddNew").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List.SystemName").Text);
+}
+
+<form asp-controller="PaymentMethodDiscount" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/_CreateOrUpdate.cshtml", Model)
+</form>

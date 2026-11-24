@@ -1,0 +1,725 @@
+﻿@model ZarIranProductDetailsModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Seo
+@using Nop.Services.Html
+@using ZarIran.Plugin.Misc.ProductManagements
+@using System.Web;
+@using Nop.Core.Domain.Vendors
+@using System.Text.Json;
+@using System.Text.RegularExpressions;
+
+@inject CatalogSettings catalogSettings
+@inject ProductManagementSettings productManagementSettings
+@inject IHtmlFormatter htmlFormatter
+@inject IViewComponentSelector viewComponentSelector
+@inject IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject IWarehouseAddressCustomerDistanceService warehouseAddressCustomerDistanceService
+@inject IProductService productService
+@inject IWorkContext workContext
+@inject IStoreContext storeContext
+
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-product-details-page");
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl<Product>(new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(productUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image:url\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+    }
+
+    var showShareButton = catalogSettings.ShowShareButton;
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+    }
+
+    var customVariants = new List<CustomProductDetailsModel>();
+
+    foreach (var associatedProduct in Model.AssociatedProducts)
+    {
+        var product = await productService.GetProductByIdAsync(associatedProduct.Id);
+
+        if (product == null)
+            continue;
+
+        var distanceAsKm = await warehouseAddressCustomerDistanceService.GetDistanceAsync((await workContext.GetCurrentCustomerAsync()).Id, product.WarehouseId) / 1000;
+
+        customVariants.Add(new CustomProductDetailsModel
+        {
+            AddToCart = associatedProduct.AddToCart,
+            AllowAddingOnlyExistingAttributeCombinations = associatedProduct.AllowAddingOnlyExistingAttributeCombinations,
+            AssociatedProducts = associatedProduct.AssociatedProducts,
+            AvailableEndDate = associatedProduct.AvailableEndDate,
+            Breadcrumb = associatedProduct.Breadcrumb,
+            CompareProductsEnabled = associatedProduct.CompareProductsEnabled,
+            CurrentStoreName = associatedProduct.CurrentStoreName,
+            DefaultPictureModel = associatedProduct.DefaultPictureModel,
+            DefaultPictureZoomEnabled = associatedProduct.DefaultPictureZoomEnabled,
+            DeliveryDate = associatedProduct.DeliveryDate,
+            DisplayBackInStockSubscription = associatedProduct.DisplayBackInStockSubscription,
+            DisplayDiscontinuedMessage = associatedProduct.DisplayDiscontinuedMessage,
+            EmailAFriendEnabled = associatedProduct.EmailAFriendEnabled,
+            FreeShippingNotificationEnabled = associatedProduct.FreeShippingNotificationEnabled,
+            FullDescription = associatedProduct.FullDescription,
+            GiftCard = associatedProduct.GiftCard,
+            Gtin = associatedProduct.Gtin,
+            HasSampleDownload = associatedProduct.HasSampleDownload,
+            Id = associatedProduct.Id,
+            InStock = associatedProduct.InStock,
+            IsFreeShipping = associatedProduct.IsFreeShipping,
+            IsRental = associatedProduct.IsRental,
+            IsShipEnabled = associatedProduct.IsShipEnabled,
+            ManageInventoryMethod = associatedProduct.ManageInventoryMethod,
+            ManufacturerPartNumber = associatedProduct.ManufacturerPartNumber,
+            MetaDescription = associatedProduct.MetaDescription,
+            MetaKeywords = associatedProduct.MetaKeywords,
+            MetaTitle = associatedProduct.MetaTitle,
+            Name = associatedProduct.Name,
+            Weight = associatedProduct.Weight,
+            PageShareCode = associatedProduct.PageShareCode,
+            PictureModels = associatedProduct.PictureModels,
+            ProductAttributes = associatedProduct.ProductAttributes,
+            ProductEstimateShipping = associatedProduct.ProductEstimateShipping,
+            ProductManufacturers = associatedProduct.ProductManufacturers,
+            ProductPrice = associatedProduct.ProductPrice,
+            ProductReviewOverview = associatedProduct.ProductReviewOverview,
+            ProductSpecificationModel = associatedProduct.ProductSpecificationModel,
+            ProductTags = associatedProduct.ProductTags,
+            ProductType = associatedProduct.ProductType,
+            RentalEndDate = associatedProduct.RentalEndDate,
+            RentalStartDate = associatedProduct.RentalStartDate,
+            SeName = associatedProduct.SeName,
+            ShortDescription = associatedProduct.ShortDescription,
+            ShowGtin = associatedProduct.ShowGtin,
+            ShowManufacturerPartNumber = associatedProduct.ShowManufacturerPartNumber,
+            ShowSku = associatedProduct.ShowSku,
+            ShowVendor = associatedProduct.ShowVendor,
+            Sku = associatedProduct.Sku,
+            StockAvailability = associatedProduct.StockAvailability,
+            TierPrices = associatedProduct.TierPrices,
+            VendorModel = associatedProduct.VendorModel,
+            VideoModels = associatedProduct.VideoModels,
+            VisibleIndividually = associatedProduct.VisibleIndividually,
+            Distance = distanceAsKm.HasValue ? distanceAsKm == 0 ? T("ZarIran.Plugin.Misc.ExtendedVendor.CustomProductDetailsModel.Distance.LessThanOneKilometer").Text : string.Format(T("ZarIran.Plugin.Misc.ExtendedVendor.CustomProductDetailsModel.Distance.DistanceAsString").Text, distanceAsKm) : "",
+            DistanceAsInt = distanceAsKm ?? 0
+        });
+    }
+
+    Func<CustomProductDetailsModel, object> orderByFunc = productManagementSettings.GroupedProductOrderBy == GroupedProductOrderBy.Manufacturer ? x => x.ProductManufacturers.FirstOrDefault()?.Name :
+                                                          productManagementSettings.GroupedProductOrderBy == GroupedProductOrderBy.Vendor ? x => x.VendorModel.Name :
+                                                          x => x.DistanceAsInt;
+
+    customVariants = productManagementSettings.SortType == SortType.Descending ?
+                                                        customVariants.OrderByDescending(orderByFunc).ToList() :
+                                                        customVariants.OrderBy(orderByFunc).ToList();
+
+    var currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}";
+
+    var manufacturerNames = string.Join(" - ", Model.ProductManufacturers.Select(s => s.Name));
+
+
+    var fullDescriptionForSchema = !string.IsNullOrWhiteSpace(Model.FullDescription) ? HttpUtility.HtmlDecode(Regex.Replace(Model.FullDescription, @"<[^>]*>", string.Empty)) : "";
+    var pictureUrlsForSchema = string.Join(",", Model.PictureModels.Select(s => "\"" + s.ImageUrl + "\""));
+    var manufacturersForSchema = string.Join(",", Model.ProductManufacturers.Select(s => "\"" + s.Name + "\""));
+
+}
+
+<div class="page product-details-page np-container">
+    <div class="breadcrumb-container">
+        <!-- product breadcrumb -->
+        @await Html.PartialAsync("~/Views/Product/_ProductBreadcrumb.cshtml", Model.Breadcrumb)
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
+    </div>
+
+    <form asp-route="Product" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
+        <div class="row">
+            <div class="col-12 col-md-7">
+                <div class="productGalleryContainer mb-2 mb-md-4">
+                    <div class="gallery">
+                        @{
+                            var cloudZoom = await Component.InvokeAsync("Widget", new { widgetZone = "sevenspikes_cloud_zoom", additionalData = Model });
+                        }
+                        @if (!String.IsNullOrEmpty(await cloudZoom.RenderHtmlContentAsync()))
+                        {
+                            @cloudZoom
+                            @await Html.PartialAsync("~/Views/Product/_ProductDetailsVideos.cshtml", Model)
+                        }
+                        else
+                        {
+                            <!--product pictures-->
+                            @await Html.PartialAsync("~/Views/Product/_ProductDetailsPictures.cshtml", Model)
+                            <!--product videos-->
+                            @await Html.PartialAsync("~/Views/Product/_ProductDetailsVideos.cshtml", Model)
+                        }
+                    </div>
+                </div>
+
+                <div class="d-block d-md-none">
+                    <div class="productNameContainer">
+                        <h1>
+                            @Model.Name
+                        </h1>
+                        @await Html.PartialAsync("~/Views/Product/_ProductAttributes.cshtml", Model, new ViewDataDictionary(ViewData)
+                        {
+                            ["DisplayProductAttributesOnly"] = true
+                        })
+                        <!--
+                        <div class="bdp-specifications">
+                            <div class="bdp-brands"> BRANDS </div>
+                        </div>
+                        -->
+                        @await Component.InvokeAsync("Widget", new { widgetZone = "productname_bottom", additionalData = Model.Id })
+                    </div>
+
+                    <div class="product-specifications">
+                        @if (!string.IsNullOrWhiteSpace(manufacturerNames))
+                        {
+                            <div class="manufacturerName">
+                                @manufacturerNames
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(Model.BDPCategoriesName))
+                        {
+                            <div class="bdp-categories"> @Model.BDPCategoriesName </div>
+                        }
+                        @if (Model.ShowManufacturerPartNumber && !string.IsNullOrEmpty(Model.ManufacturerPartNumber))
+                        {
+                            <div class="manufacturerPartNumber">
+                                @T("products.manufacturerpartnumber"): @Html.Raw(Model.ManufacturerPartNumber)
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.AdminComment))
+                        {
+                            <div class="adminComment">
+                                @Html.Raw(Model.AdminComment)
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                                @Html.Raw(Model.ShortDescription)
+                            </div>
+                        }
+
+                        <div class="guarantee"> @T("Products.Guarantee") </div>
+                    </div>
+
+
+                    <div class="product-collateral">
+                        <!-- associated products -->
+                        <div class="product-variant-list">
+                            @if (customVariants.Count > 0)
+                            {
+                                @foreach (var variant in customVariants.OrderByDescending(o => o.InStock))
+                                {
+                                    <div class="product-variant-line" data-productid="@variant.Id">
+                                        <div class="product-variant-line-title">
+                                            @T("products.vendor")
+                                        </div>
+
+                                        <div class="variant-overview">
+                                            @if (!string.IsNullOrWhiteSpace(variant.Name))
+                                            {
+                                                <div class="variant-name d-none">
+                                                    @variant.Name
+                                                </div>
+                                            }
+                                            @if (false && !string.IsNullOrWhiteSpace(variant.ShortDescription))
+                                            {
+                                                <div class="variant-description">
+                                                    @Html.Raw(variant.ShortDescription)
+                                                </div>
+                                            }
+                                            <!--sample download-->
+                                            @await Html.PartialAsync("~/Views/Product/_DownloadSample.cshtml", variant)
+
+                                            <!--attributes-->
+                                            @{
+                                                var dataDictAttributes = new ViewDataDictionary(ViewData);
+                                                dataDictAttributes["ShowFixedProductAttributes"] = true;
+                                                dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_ProductAttributes.cshtml", variant, dataDictAttributes)
+                                            }
+
+                                            <!--SKU, MAN, GTIN, vendor-->
+                                            @await Html.PartialAsync("~/Plugins/ZarIran.Misc.ProductManagements/Views/Product/_SKU_Man_GTIN_Ven.cshtml", variant)
+                                            <!--delivery-->
+                                            @await Html.PartialAsync("~/Views/Product/_DeliveryInfo.cshtml", variant)
+                                            <!--gift card-->
+                                            @{
+                                                var dataDictGiftCard = new ViewDataDictionary(ViewData);
+                                                dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = $"giftcard_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_GiftCardInfo.cshtml", variant.GiftCard, dataDictGiftCard)
+                                            }
+                                            <!--rental info-->
+                                            @{
+                                                var dataDictRental = new ViewDataDictionary(ViewData);
+                                                dataDictRental.TemplateInfo.HtmlFieldPrefix = $"rental_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_RentalInfo.cshtml", variant, dataDictRental)
+                                            }
+                                            <!--estimate shipping-->
+                                            @{
+                                                var dataDictEstimateShipping = new ViewDataDictionary(ViewData);
+                                                dataDictEstimateShipping.TemplateInfo.HtmlFieldPrefix = $"estimate_shipping_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_ProductEstimateShipping.cshtml", variant.ProductEstimateShipping, dataDictEstimateShipping)
+                                            }
+                                            <!--prices-->
+                                            @{
+                                                var dataDictPrice = new ViewDataDictionary(ViewData);
+                                                dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{variant.Id}";
+                                                if (variant.InStock)
+                                                {
+                                                    @await Html.PartialAsync("~/Views/Product/_ProductPrice.cshtml", variant.ProductPrice, dataDictPrice)
+                                                }
+                                            }
+                                            <!--price breaks-->
+                                            @await Html.PartialAsync("~/themes/traction/Views/Product/_ProductTierPrices.cshtml", variant.TierPrices)
+                                            <!--add to cart-->
+
+                                            <div class="additional-details-badges">
+                                                <span>
+                                                    @T("Shippment-2hours-tehran")
+                                                </span>
+                                                <span>
+                                                    @T("Shippment-fast-everywhere")
+                                                </span>
+                                                <span>
+                                                    @T("product-warranty")
+                                                </span>
+                                            </div>
+
+
+                                            <!--availability-->
+                                            @await Html.PartialAsync("~/Views/Product/_Availability.cshtml", variant)
+
+                                            <!--wishlist-->
+                                            @*  @{
+                                    var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                    dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{variant.Id}";
+                                    @await Html.PartialAsync("_AddToWishlist", variant.AddToCart, dataDictAddToWishlist)
+                                    } *@
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            @if (Model.AssociatedProducts.Count == 0)
+                            {
+                                <div class="product-variant-line">
+                                    <div class="product-variant-line-title">
+                                        @T("products.vendor")
+                                    </div>
+
+                                    <div class="additional-details d-flex justify-content-between align-items-center">
+                                        <div class="product-vendor">
+                                            <span class="label">@T("Products.Vendor"):</span>
+                                            <span class="value">
+                                                <h4>@T("vendors.ZarIran")</h4>
+                                            </span>
+                                        </div>
+                                        <div class="no-associated-products">
+                                            @T("Products.NoAssociatedProducts")
+                                        </div>
+                                    </div>
+
+
+                                    <div class="additional-details-badges">
+                                        <span>
+                                            @T("Shippment-2hours-tehran")
+                                        </span>
+                                        <span>
+                                            @T("Shippment-fast-everywhere")
+                                        </span>
+                                        <span>
+                                            @T("product-warranty")
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+
+                @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model })
+
+                <div class="productMicrodataContainer">
+                    @if (seoSettings.MicrodataEnabled)
+                    {
+                        @await Html.PartialAsync("~/Views/Product/_Microdata.cshtml", Model)
+                    }
+                </div>
+                @if (Model.BundleProducts.Any())
+                {
+                    <div class="BDP_ONLY bdp-products mb-4">
+                        <h4 class="mb-3"> @T("bdp.products.title") </h4>
+
+                        <div class="bdp-products-list">
+                            @foreach (var bundleProduct in Model.BundleProducts)
+                            {
+
+
+                                <div class="bdp-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <a href="@bundleProduct.SeName">
+                                                <img src="@bundleProduct.Picture.ImageUrl" title="@bundleProduct.Picture.Title" alt="@bundleProduct.Picture.AlternateText" />
+                                            </a>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="bpd-product-title">
+                                                <a href="@bundleProduct.SeName">
+                                                    @bundleProduct.Name
+                                                </a>
+                                            </div>
+                                            <div class="bpp-product-brand">
+                                                <img class="brand-image" src="@bundleProduct.ManufacturerPicture.FullSizeImageUrl" />
+                                                <span>@bundleProduct.ManufacturerName</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-center">
+                                                <span class="bpd-quantity-in-pack">1 عدد</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="product-price">
+                                                <div class="old-price-discount-percent">
+                                                    @bundleProduct.DiscountPercent %
+                                                </div>
+                                                <div class="old-price">
+                                                    @bundleProduct.OldPriceStr
+                                                </div>
+                                                <div class="price-value-55228">
+                                                    @bundleProduct.PriceStr
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                }
+                <div class="productDescription">
+
+                    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsEssentialBottom, additionalData = Model })
+                    @{
+                        /*
+                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsBeforeCollateral, additionalData = Model })
+                        */
+                    }
+                    @await Html.PartialAsync("~/themes/traction/Views/Product/_ProductSpecifications.cshtml", Model.ProductSpecificationModel)
+                    @* @await Html.PartialAsync("_ProductTags", Model.ProductTags)*@
+                </div>
+            </div>
+
+            <div class="col-12 col-md-5">
+                @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsEssentialTop, additionalData = Model })
+
+                <div class="invisible visible-md h-0 h-md-auto">
+                    <div class="productNameContainer">
+                        <h1>
+                            @Model.Name
+                        </h1>
+                        @await Html.PartialAsync("~/Views/Product/_ProductAttributes.cshtml", Model, new ViewDataDictionary(ViewData)
+                        {
+                            ["DisplayProductAttributesOnly"] = true
+                        })
+                        <!--
+                        <div class="bdp-specifications">
+                            <div class="bdp-brands"> BRANDS </div>
+                        </div>
+                        -->
+                        @await Component.InvokeAsync("Widget", new { widgetZone = "productname_bottom", additionalData = Model.Id })
+                    </div>
+
+                    <div class="product-specifications">
+                        @if (!string.IsNullOrWhiteSpace(manufacturerNames))
+                        {
+                            <div class="manufacturerName">
+                                @manufacturerNames
+                            </div>
+                        }
+
+
+                        @if (!string.IsNullOrWhiteSpace(Model.BDPCategoriesName))
+                        {
+                            <div class="bdp-categories"> @Model.BDPCategoriesName </div>
+                        }
+
+                        @if (Model.ShowManufacturerPartNumber && !string.IsNullOrEmpty(Model.ManufacturerPartNumber))
+                        {
+                            <div class="manufacturerPartNumber">
+                                @T("products.manufacturerpartnumber"): @Html.Raw(Model.ManufacturerPartNumber)
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.AdminComment))
+                        {
+                            <div class="adminComment">
+                                @Html.Raw(Model.AdminComment)
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                                @Html.Raw(Model.ShortDescription)
+                            </div>
+                        }
+
+
+                        <div class="guarantee"> @T("Products.Guarantee") </div>
+                    </div>
+
+
+                    <div class="overview" style="display: none;">
+                        @await Html.PartialAsync("~/Views/Product/_Discontinued.cshtml", Model)
+                        @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                                @Html.Raw(Model.ShortDescription)
+                            </div>
+                        }
+                        <div class="buttons">
+                            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsBefore, additionalData = Model })
+                            @await Html.PartialAsync("~/Views/Product/_CompareProductsButton.cshtml", Model)
+                            @await Html.PartialAsync("~/Views/Product/_ProductEmailAFriendButton.cshtml", Model)
+                            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsAfter, additionalData = Model })
+                        </div>
+                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsOverviewTop, additionalData = Model })
+                        <!--product manufacturers-->
+                        @await Html.PartialAsync("~/Views/Product/_ProductManufacturers.cshtml", Model.ProductManufacturers)
+                        <!--product reviews-->
+                        @await Html.PartialAsync("~/Views/Product/_ProductReviewOverview.cshtml", Model.ProductReviewOverview)
+
+                        @if (showShareButton)
+                        {
+                            @await Html.PartialAsync("~/Views/Product/_ShareButton.cshtml", Model)
+                        }
+                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsOverviewBottom, additionalData = Model })
+                    </div>
+
+                    <div class="product-collateral">
+                        <!-- associated products -->
+                        <div class="product-variant-list">
+                            @if (customVariants.Count > 0)
+                            {
+                                @foreach (var variant in customVariants.OrderByDescending(o => o.InStock))
+                                {
+                                    <div class="product-variant-line" data-productid="@variant.Id">
+                                        <div class="product-variant-line-title">
+                                            @T("products.vendor")
+                                        </div>
+
+                                        <div class="variant-overview">
+                                            @if (!string.IsNullOrWhiteSpace(variant.Name))
+                                            {
+                                                <div class="variant-name d-none">
+                                                    @variant.Name
+                                                </div>
+                                            }
+                                            @if (false && !string.IsNullOrWhiteSpace(variant.ShortDescription))
+                                            {
+                                                <div class="variant-description">
+                                                    @Html.Raw(variant.ShortDescription)
+                                                </div>
+                                            }
+                                            <!--sample download-->
+                                            @await Html.PartialAsync("~/Views/Product/_DownloadSample.cshtml", variant)
+
+                                            <!--attributes-->
+                                            @{
+                                                var dataDictAttributes = new ViewDataDictionary(ViewData);
+                                                dataDictAttributes["ShowFixedProductAttributes"] = true;
+                                                dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_ProductAttributes.cshtml", variant, dataDictAttributes)
+                                            }
+
+                                            <!--SKU, MAN, GTIN, vendor-->
+                                            @await Html.PartialAsync("~/Plugins/ZarIran.Misc.ProductManagements/Views/Product/_SKU_Man_GTIN_Ven.cshtml", variant)
+                                            <!--delivery-->
+                                            @await Html.PartialAsync("~/Views/Product/_DeliveryInfo.cshtml", variant)
+                                            <!--gift card-->
+                                            @{
+                                                var dataDictGiftCard = new ViewDataDictionary(ViewData);
+                                                dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = $"giftcard_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_GiftCardInfo.cshtml", variant.GiftCard, dataDictGiftCard)
+                                            }
+                                            <!--rental info-->
+                                            @{
+                                                var dataDictRental = new ViewDataDictionary(ViewData);
+                                                dataDictRental.TemplateInfo.HtmlFieldPrefix = $"rental_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_RentalInfo.cshtml", variant, dataDictRental)
+                                            }
+                                            <!--estimate shipping-->
+                                            @{
+                                                var dataDictEstimateShipping = new ViewDataDictionary(ViewData);
+                                                dataDictEstimateShipping.TemplateInfo.HtmlFieldPrefix = $"estimate_shipping_{variant.Id}";
+                                                @await Html.PartialAsync("~/Views/Product/_ProductEstimateShipping.cshtml", variant.ProductEstimateShipping, dataDictEstimateShipping)
+                                            }
+                                            <!--prices-->
+                                            @{
+                                                var dataDictPrice = new ViewDataDictionary(ViewData);
+                                                dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{variant.Id}";
+                                                if (variant.InStock)
+                                                {
+                                                    @await Html.PartialAsync("~/Views/Product/_ProductPrice.cshtml", variant.ProductPrice, dataDictPrice)
+                                                }
+                                            }
+                                            <!--price breaks-->
+                                            @await Html.PartialAsync("~/themes/traction/Views/Product/_ProductTierPrices.cshtml", variant.TierPrices)
+                                            <!--add to cart-->
+
+                                            <div class="additional-details-badges">
+                                                <span>
+                                                    @T("Shippment-24hours-tehran-and-all-city")
+                                                </span>
+                                            </div>
+
+                                            @{
+                                                var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                                                dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{variant.Id}";
+                                                @await Html.PartialAsync("~/Plugins/ZarIran.Misc.ShoppingCartPage/Views/Product/_AddToCart.cshtml", variant.AddToCart, dataDictAddToCart)
+                                            }
+                                            <!--availability-->
+                                            @await Html.PartialAsync("~/Views/Product/_Availability.cshtml", variant)
+
+                                            <!--wishlist-->
+                                            @*  @{
+                                    var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                    dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{variant.Id}";
+                                    @await Html.PartialAsync("_AddToWishlist", variant.AddToCart, dataDictAddToWishlist)
+                                    } *@
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            @if (Model.AssociatedProducts.Count == 0)
+                            {
+                                <div class="product-variant-line">
+                                    <div class="product-variant-line-title">
+                                        @T("products.vendor")
+                                    </div>
+
+                                    <div class="additional-details d-flex justify-content-between align-items-center">
+                                        <div class="product-vendor">
+                                            <span class="label">@T("Products.Vendor"):</span>
+                                            <span class="value">
+                                                <h4>@T("vendors.ZarIran")</h4>
+                                            </span>
+                                        </div>
+                                        <div class="no-associated-products">
+                                            @T("Products.NoAssociatedProducts")
+                                        </div>
+                                    </div>
+
+
+                                    <div class="additional-details-badges">
+                                        <span>
+                                            @T("Shippment-2hours-tehran")
+                                        </span>
+                                        <span>
+                                            @T("Shippment-fast-everywhere")
+                                        </span>
+                                        <span>
+                                            @T("product-warranty")
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @await Html.PartialAsync("~/Themes/Traction/Views/Product/_FullProductDescription.cshtml", Model)
+
+    @*we do not display "also purchased" for grouped products
+    @await Component.InvokeAsync(typeof(ProductsAlsoPurchasedViewComponent), new { productId = Model.Id })*@
+    @await Component.InvokeAsync(typeof(RelatedProductsViewComponent), new { productId = Model.Id })
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
+
+</div>
+
+<script asp-location="Head" type="application/ld+json">
+       {
+      "@@context": "https://schema.org/",
+      "@@type": "Product",
+      "name": "@Html.Raw(HttpUtility.HtmlDecode(Model.Name))",
+      "image": [
+    @Html.Raw(HttpUtility.HtmlDecode(pictureUrlsForSchema))
+      ],
+      "description": "@Html.Raw(HttpUtility.HtmlDecode(HttpUtility.JavaScriptStringEncode(fullDescriptionForSchema)))",
+      "brand": [
+    @Html.Raw(HttpUtility.HtmlDecode(manufacturersForSchema))
+      ],
+      "offers": [
+
+    @foreach (var variant in customVariants)
+    {
+                            int i = 0;
+                            <Text>
+                                                                              {
+                                                                                "@@type": "Offer",
+                                                                                "url": "@currentUrl",
+                                                                                "priceCurrency": "IRR",
+                                                                                "price": "@((variant.ProductPrice.PriceValue * 10).ToString("0.##", System.Globalization.CultureInfo.InvariantCulture))",
+                                                                                "availability":"@(variant.InStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock")",
+                                                                                "itemCondition": "https://schema.org/NewCondition",
+                                                                                "seller": {
+                                                                                  "@@type": "Organization",
+                                                                                  "name": "@Html.Raw(HttpUtility.HtmlDecode(variant.VendorModel.Name))"
+                                                                                }
+                                                                               }
+                            </Text>
+
+                            if (i != customVariants.Count() - 1)
+                            {
+                                                    <Text>,</Text>
+                            }
+    }
+      ]
+    }
+</script>
+

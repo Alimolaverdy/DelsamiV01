@@ -1,0 +1,30 @@
+﻿@model CustomerCarModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    //page class
+    NopHtml.AppendPageCssClassParts("html-address-edit-page");
+}
+@section left
+    {
+    @await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = 150 })
+}
+<form asp-route="CustomerCarAdd" method="post">
+    <div class="page account-page address-edit-page">
+        <div class="page-title">
+            <h1>@T("Account.MyAccount") - @T("NobParts.Plugin.Misc.CarInfo.Account.Car.AddNew")</h1>
+        </div>
+        <div class="page-body">
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+            @{
+                @await Html.PartialAsync("~/Plugins/NobParts.Misc.CarInfo/Views/CustomerCar/_CreateOrUpdateCustomerCar.cshtml", Model)
+            }
+            <div class="buttons">
+                <button type="submit" class="button-1 save-address-button">@T("Common.Save")</button>
+            </div>
+        </div>
+    </div>
+</form>

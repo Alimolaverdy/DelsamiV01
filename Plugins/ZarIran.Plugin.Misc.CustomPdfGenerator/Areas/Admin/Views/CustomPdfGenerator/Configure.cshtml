@@ -1,0 +1,80 @@
+﻿@model ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Models.ConfigurationModel
+@using ZXing;
+@using Nop.Services;
+@using ZarIran.Plugin.Misc.CustomPdfGenerator.Enums
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName").Text);
+}
+
+<form asp-controller="CustomPdfGenerator" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ZarIranVendorId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="ZarIranVendorId" asp-items="Model.AvailableVendors" />
+                                <span asp-validation-for="ZarIranVendorId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BarcodeFormat" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="BarcodeFormat" asp-items="Model.AvailableBarcodeFormats" />
+                                <span asp-validation-for="BarcodeFormat"></span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PhoneNumber" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PhoneNumber" />
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="LogoPictureId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="LogoPictureId" />
+                                <span asp-validation-for="LogoPictureId"></span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="RotateDegree" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="RotateDegree" asp-items="@await (((RotateDegree)Model.RotateDegree).ToSelectListAsync())" />
+                                <span asp-validation-for="RotateDegree"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

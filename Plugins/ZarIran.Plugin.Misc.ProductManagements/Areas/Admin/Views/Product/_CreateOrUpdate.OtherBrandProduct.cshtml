@@ -1,0 +1,85 @@
+﻿@model ZarIranProductModel
+
+<div class="card-body">
+    <p>
+        @T("Admin.Catalog.Products.OtherBrandProducts.Hint")
+    </p>
+    @if (Model.Id > 0)
+    {
+        <div class="card card-default">
+            <div class="card-body">
+
+                @await Html.PartialAsync("Table", new DataTablesModel
+       {
+           Name = "otherbrandproducts-grid",
+           UrlRead = new DataUrl("OtherBrandProductList", "CustomProduct", new RouteValueDictionary{["ProductId"] = Model.Id}),
+           UrlDelete = new DataUrl("OtherBrandProductDelete", "CustomProduct", null),
+           UrlUpdate = new DataUrl("OtherBrandProductUpdate", "CustomProduct", null),
+           Length = Model.RelatedProductSearchModel.PageSize,
+           LengthMenu = Model.RelatedProductSearchModel.AvailablePageSizes,
+           ColumnCollection = new List<ColumnProperty>
+            {
+            new ColumnProperty(nameof(OtherBrandProductModel.Product2Name))
+            {
+            Title = T("Admin.Catalog.Products.OtherBrandProduct.Fields.Product").Text
+            },
+            new ColumnProperty(nameof(OtherBrandProductModel.DisplayOrder))
+            {
+            Title = T("Admin.Catalog.Products.OtherBrandProduct.Fields.DisplayOrder").Text,
+            Width = "150",
+            ClassName = NopColumnClassDefaults.CenterAll,
+            Editable = true,
+            EditType = EditType.Number
+            },
+            new ColumnProperty(nameof(OtherBrandProductModel.ProductId2))
+            {
+            Title = T("Admin.Common.View").Text,
+            Width = "150",
+            ClassName = NopColumnClassDefaults.Button,
+            Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/", nameof(OtherBrandProductModel.Product2Name)))
+            },
+            new ColumnProperty(nameof(OtherBrandProductModel.Id))
+            {
+            Title = T("Admin.Common.Edit").Text,
+            Width = "200",
+            ClassName =  NopColumnClassDefaults.Button,
+            Render = new RenderButtonsInlineEdit()
+            },
+            new ColumnProperty(nameof(OtherBrandProductModel.Id))
+            {
+            Title = T("Admin.Common.Delete").Text,
+            Width = "100",
+            Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+            ClassName = NopColumnClassDefaults.Button
+            }
+            }
+       })
+            </div>
+            <div class="card-footer">
+                <button type="submit" id="btnAddNewRelatedProduct" class="btn btn-primary" onclick="javascript:OpenWindow('@(Url.Action("OtherBrandProductAddPopup", "CustomProduct", new {productId = Model.Id, btnId = "btnRefreshOtherBrandProducts", formId = "product-form"}))', 800, 800, true); return false;">
+                    @T("Admin.Catalog.Products.OtherBrandProducts.AddNew")
+                </button>
+                <button type="submit" id="btnRefreshOtherBrandProducts" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshOtherBrandProducts').click(function () {
+                            //refresh grid
+                            updateTable('#otherbrandproducts-grid');
+
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card card-default">
+            <div class="card-body">
+                @T("Admin.Catalog.Products.OtherBrandProducts.SaveBeforeEdit")
+            </div>
+        </div>
+    }
+</div>

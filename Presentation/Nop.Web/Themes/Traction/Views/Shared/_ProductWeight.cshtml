@@ -1,0 +1,27 @@
+@model decimal
+@inject Nop.Services.Directory.IMeasureService measureService
+@inject Nop.Core.Domain.Directory.MeasureSettings measureSettings
+
+@if (Model > 0)
+{
+    var rtl = await Html.ShouldUseRtlThemeAsync();
+    var unit = await measureService.GetMeasureWeightByIdAsync(measureSettings.BaseWeightId);
+    var unitName = rtl && unit?.SystemKeyword == "grams" ? "گرم" : unit?.Name;
+    var weightText = Model.ToString("0.############################");
+    if (ViewData["MaximumProductWeight"] is decimal maximumWeight && maximumWeight > Model)
+        weightText += " – " + maximumWeight.ToString("0.############################");
+
+    if (ViewData["DisplayWeightAsProductFact"] is true)
+    {
+        <div>
+            <dt>@(rtl ? "وزن" : "Weight")</dt>
+            <dd><bdi>@weightText</bdi> @unitName</dd>
+        </div>
+    }
+    else
+    {
+        <div class="zar-product-weight">
+            @(rtl ? "وزن:" : "Weight:") <bdi>@weightText</bdi> @unitName
+        </div>
+    }
+}

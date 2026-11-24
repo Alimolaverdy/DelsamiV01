@@ -1,0 +1,177 @@
+﻿@model ZarIranProductModel
+
+@using Nop.Core.Domain.Catalog;
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        var simpleProductId = "@((int)ProductType.SimpleProduct)";
+        var groupedProductId = "@((int)ProductType.GroupedProduct)";
+
+
+        var selectedProductTypeId = $("#@Html.IdFor(model => model.ProductTypeId)").val();
+
+        if ((!selectedProductTypeId || selectedProductTypeId == simpleProductId) && !$('#@Html.IdFor(model => model.IsVirtualProduct)').is(':checked')) {
+            $('[data-card-name=product-virtual-products]').showElement();
+        }
+        else {
+            $('[data-card-name=product-virtual-products]').hideElement();
+        }
+    });
+</script>
+<div class="card-body">
+    <p>
+        @T("Admin.Catalog.Products.VirtualProducts.Hint")
+    </p>
+    @if (Model.Id > 0)
+    {
+         <div class="form-group row">
+                     <nop-label asp-for="VirtualProductsTextArea" />
+                     <nop-textarea asp-for="VirtualProductsTextArea"/>
+                           <div class="contain mt-1">
+                                <button type="button" class="btn btn-info" id="btnPreviewProducts">
+                                <i class="far fa-eye"></i>
+                                @T("Admin.Common.Preview")
+                                </button>
+                           </div>
+           </div>
+
+        <div class="card card-default">
+
+            <div class="card-body">
+
+                
+
+
+                @await Html.PartialAsync("Table", new DataTablesModel
+       {
+           Name = "virtualproducts-grid",
+           UrlRead = new DataUrl("VirtualProductList", "CustomProduct", new RouteValueDictionary { [nameof(Model.VirtualProductSearchModel.ProductId)] = Model.VirtualProductSearchModel.ProductId }),
+           Length = Model.VirtualProductSearchModel.PageSize,
+           LengthMenu = Model.VirtualProductSearchModel.AvailablePageSizes,
+           ColumnCollection = new List<ColumnProperty>
+            {
+            new ColumnProperty(nameof(VirtualProductModel.ProductName))
+            {
+            Title = T("Admin.Catalog.Products.CrossSells.Fields.Product").Text,
+            Render = new RenderCustom("renderVirtualProductName")
+            }
+            }
+       })
+                <script asp - location="Footer">
+                    function renderVirtualProductName(data, type, row, meta) {
+                        var textRenderer = $.fn.dataTable.render.text().display;
+                        return '<a href="@Url.Content("~/Admin/Product/Edit/")' + row.ProductId + '">' + textRenderer(row.ProductName) + '</a>';
+                    }
+                </script>
+            </div>
+            <div class="card-footer">
+                <button type="submit" id="btnAddNewVirtualProduct" onclick="javascript:OpenWindow('@(Url.Action("VirtualProductAddPopup", "CustomProduct", new {productId = Model.Id, btnId = "btnRefreshVirtualProducts", formId = "product-form"}))', 800, 800, true); return false;" class="btn btn-primary">
+                    @T("Admin.Catalog.Products.VirtualProducts.AddNew")
+                </button>
+                <button type="submit" id="btnRefreshVirtualProducts" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshVirtualProducts').click(function () {
+                            //refresh grid
+                            updateTable('#virtualproducts-grid');
+
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card card-default">
+            <div class="card-body">
+                @T("Admin.Catalog.Products.VirtualProducts.SaveBeforeEdit")
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5>@T("Admin.Catalog.Products.VirtualProducts.PreviewTitle")</h5>
+
+            </div>
+
+            <div class="modal-body" id="previewContainer">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+$(function () {
+    $(document).on("click", "#preview-Submit", function () {
+    var form = $("#previewVirtualProductForm :input").serialize();
+
+    form += "&__RequestVerificationToken=" +
+    $('input[name="__RequestVerificationToken"]').val();
+
+    $.ajax({
+        url: "@Url.Action("CreateVirtualProductsByLineBreak", "CustomProduct")",
+        type: "POST",
+        data: form,
+        success: function (response) {
+
+           $("#previewModal").modal("hide");
+           updateTable('#virtualproducts-grid');
+
+        },
+        error: function () {
+            alert("خطا در ارسال اطلاعات");
+        }
+    });
+});
+
+    $("#btnPreviewProducts").on("click", function () {
+        var productsName=$("#VirtualProductsTextArea").val();
+
+        if (!productsName || productsName.trim() === "") {
+            alert("لطفا عناوین محصول را وارد نمایید");
+            return;
+        }
+
+         if (@Model.AssociatedToProductId===0) {
+            alert("محصول اصلی فاقد والد میباشد");
+            return;
+        }
+
+        var data = {
+            virtualProducts: productsName,
+            mainProductId: @Model.Id
+        };
+
+        addAntiForgeryToken(data);
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@Url.Action("PreviewVirtualProducts", "CustomProduct")",
+            data: data,
+            success: function (html) {
+
+                $("#previewContainer").html(html);
+                $("#previewModal").modal("show");
+            }
+        });
+
+    });
+
+});
+</script>

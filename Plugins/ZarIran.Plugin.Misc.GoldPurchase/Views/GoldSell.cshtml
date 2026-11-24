@@ -1,0 +1,116 @@
+﻿@model ZarIran.Plugin.Misc.GoldPurchase.Models.GoldSellModel
+@using System.Globalization
+
+@{
+    Layout = "_ColumnsTwo";
+    NopHtml.AddTitleParts("فروش طلا");
+
+    var culture = CultureInfo.InvariantCulture;
+}
+
+@section left {
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = 0 })
+}
+
+<div class="page account-page">
+    <div class="page-title">
+        <h1>فروش طلا</h1>
+    </div>
+
+    <div class="page-body">
+
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="message-success" style="margin-bottom:16px;">@Model.SuccessMessage</div>
+        }
+
+        <p>
+            موجودی طلای شما:
+            <strong>@Model.WalletBalanceGrams.ToString("0.########", culture) گرم</strong>
+            &nbsp;|&nbsp;
+            <a href="@Url.RouteUrl(ZarIran.Plugin.Misc.GoldPurchase.GoldPurchaseDefaults.ChargeRoute)">خرید طلا</a>
+        </p>
+
+        <form asp-route="ZarIran.Plugin.Misc.GoldPurchase.Sell" method="post" id="gold-sell-form">
+
+            <div asp-validation-summary="All" class="message-error"></div>
+
+            <div class="fieldset">
+                <div class="form-fields">
+
+                    <div class="inputs">
+                        <label>قیمت بازار هر گرم طلا</label>
+                        <strong>@Model.MarketPricePerGram.ToString("N0") تومان</strong>
+                    </div>
+
+                    <div class="inputs">
+                        <label>قیمت فروش هر گرم به شما</label>
+                        <strong>@Model.SellPricePerGram.ToString("N0") تومان</strong>
+                        @if (Model.CommissionPercent > 0)
+                        {
+                            <span> (پس از کسر @Model.CommissionPercent.ToString("0.##", culture)٪ کارمزد)</span>
+                        }
+                    </div>
+
+                    <div class="inputs">
+                        <label for="GoldWeightGrams">مقدار طلا برای فروش (گرم)</label>
+                        <input id="GoldWeightGrams"
+                               name="goldWeightGrams"
+                               type="number"
+                               min="0"
+                               max="@Model.WalletBalanceGrams.ToString("0.########", culture)"
+                               step="any"
+                               value="@(Model.GoldWeightGrams > 0 ? Model.GoldWeightGrams.ToString("0.########", culture) : "")"
+                               required />
+                        <button type="button" id="sell-all" class="button-2">همه موجودی</button>
+                    </div>
+
+                    <div class="inputs">
+                        <label>مبلغ دریافتی شما</label>
+                        <strong id="amount-display">—</strong>
+                    </div>
+
+                    <div class="inputs">
+                        <button type="submit" class="button-1">فروش طلا</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const weight = document.getElementById('GoldWeightGrams');
+        const display = document.getElementById('amount-display');
+        const price = Number('@Model.SellPricePerGram.ToString(culture)');
+        const balance = Number('@Model.WalletBalanceGrams.ToString(culture)');
+        const money = new Intl.NumberFormat('fa-IR', { maximumFractionDigits: 0 });
+
+        function update() {
+            const w = Number(weight.value);
+            display.textContent = weight.value !== '' && Number.isFinite(w) && w > 0
+                ? money.format(Math.floor(w * price)) + ' تومان'
+                : '—';
+        }
+
+        weight.addEventListener('input', update);
+
+        document.getElementById('sell-all').addEventListener('click', function () {
+            weight.value = '@Model.WalletBalanceGrams.ToString("0.########", culture)';
+            update();
+        });
+
+        // Browser-side check only; the server re-checks balance and price at the moment of the sale.
+        document.getElementById('gold-sell-form').addEventListener('submit', function (event) {
+            const w = Number(weight.value);
+            if (!Number.isFinite(w) || w <= 0 || w > balance || price <= 0 || Math.floor(w * price) <= 0) {
+                event.preventDefault();
+                alert('مقدار طلا معتبر نیست یا از موجودی شما بیشتر است.');
+            }
+        });
+
+        update();
+    })();
+</script>

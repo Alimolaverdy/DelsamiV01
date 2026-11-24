@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Payment Methods",
+  "FriendlyName": "پرداخت اعتباری باروک",
+  "SystemName": "ZarIran.Payments.Barook",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 3,
+  "FileName": "ZarIran.Plugin.Payments.Barook.dll",
+  "Description": "پرداخت اعتباری باروک",
+  "DependsOnSystemNames": [
+    "ZarIran.Misc.Core",
+    "ZarIran.Payment.Core"
+  ]
+}

@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "_ColumnsOne";
+}
+@using Nop.Web.Framework;
+<form method="post" id="frmpay" action="https://bpm.shaparak.ir/pgwchannel/startpay.mellat" referrerpolicy="origin">
+    <input type="hidden" name="RefId" value="@ViewBag.result" />
+    <input type="hidden" id="MobileNo" name="MobileNo" value="@ViewBag.MobileNo" />
+    @* <input type="submit" name="btnSend" value="انتقال به درگاه پرداخت" id="btnsend" /> *@
+</form>
+
+<h1 style="width:100%;height:100%;text-align:center;">
+    لطفا تا ارسال به پرداخت الکترونیکی شکیبا باشید.
+</h1>
+
+<script type="text/javascript" asp-location="Footer">
+    window.onload = function () {
+        document.getElementById("frmpay").submit();
+    }
+</script>

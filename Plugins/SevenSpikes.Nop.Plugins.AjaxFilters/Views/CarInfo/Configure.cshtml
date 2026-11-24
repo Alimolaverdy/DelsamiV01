@@ -1,0 +1,65 @@
+﻿@model NobParts.Plugin.Misc.CarInfo.Models.ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+    NopHtml.SetActiveMenuItemSystemName("CarInfoConfiguration");
+}
+
+<form asp-controller="CarInfo" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SelectedSpecificationAttributeIdForCarBrand" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="SelectedSpecificationAttributeIdForCarBrand" asp-items="Model.AvailableSpecificationAttributes" />
+                                <span asp-validation-for="SelectedSpecificationAttributeIdForCarBrand"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SelectedSpecificationAttributeIdForModel" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="SelectedSpecificationAttributeIdForModel" asp-items="Model.AvailableSpecificationAttributes" />
+                                <span asp-validation-for="SelectedSpecificationAttributeIdForModel"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SelectedSpecificationAttributeIdForYear" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="SelectedSpecificationAttributeIdForYear" asp-items="Model.AvailableSpecificationAttributes" />
+                                <span asp-validation-for="SelectedSpecificationAttributeIdForYear"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="AllProductsCategoryId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="AllProductsCategoryId" asp-items="Model.AvailableCategories" />
+                                <span asp-validation-for="AllProductsCategoryId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

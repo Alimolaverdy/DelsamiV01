@@ -1,0 +1,79 @@
+﻿@model PaymentMethodAmountRestrictionList
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodAmountRestriction").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodAmountRestriction.SystemName").Text);
+}
+
+
+<form asp-controller="PaymentMethodRestriction" asp-action="AmountRestrictionSave" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodAmountRestriction")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body" style="overflow-x: auto;">
+                            @if (Model.PaymentMethods.Count == 0)
+                            {
+                                <text>No payment methods available</text>
+                            }
+                            else
+                            {
+                                <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">روش پرداخت</th>
+                                            <th scope="col">حداقل مقدار (ریال)</th>
+                                            <th scope="col">حداکثر مقدار (ریال)</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.PaymentMethods.Count; i++)
+                                        {
+                                            <input hidden asp-for="PaymentMethods[i].Id" />
+                                            <input hidden asp-for="PaymentMethods[i].SystemName" />
+
+                                            <tr>
+                                                <td>
+                                                    <span>@Model.PaymentMethods[i].FriendlyName</span>
+                                                    <input type="hidden" asp-for="PaymentMethods[i].FriendlyName" />
+
+                                                </td>
+                                                <td>
+                                                    <input name="PaymentMethods[@i].MinAmount" value="@Model.PaymentMethods[i].MinAmount?.ToString("0")" />
+                                                </td>
+                                                <td>
+                                                    <input name="PaymentMethods[@i].MaxAmount" value="@Model.PaymentMethods[i].MaxAmount?.ToString("0")" />
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

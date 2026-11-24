@@ -1,0 +1,74 @@
+﻿@model ZarIranShoppingCartModel
+
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.ShoppingCart").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-shopping-cart-page");
+    var hasPendingOrder = Model.PendingOrders.Any();
+    // NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/ZarIran.Shop.DigiKala/Content/js/widget-sdk.min.js", "");
+
+}
+@if (!Model.OnePageCheckoutEnabled)
+{
+    @await Component.InvokeAsync(typeof(CheckoutProgressViewComponent), new { step = CheckoutProgressStep.Cart })
+}
+<script src="https://digifycdn.com/front-statics/digify-bwdk-ui-kit/widget-sdk.min.js" Data-digify-widget async></script>
+
+<div class="page shopping-cart-page">
+    <div class="page-title">
+        <h1>@T("ShoppingCart")</h1>
+    </div>
+    <div class="page-body">
+
+        @if (!hasPendingOrder || (hasPendingOrder && Model.Items.Count() > 0))
+        {
+            @await Component.InvokeAsync(typeof(OrderSummaryViewComponent), new { overriddenModel = Model })
+        }
+        else
+        {
+            @foreach (var order in Model.PendingOrders)
+            {
+                <div class="section order-item mt-4 mt-md-0" data-orderstatus="pending">
+                    <div class="title">
+                        <div>
+                            <strong>@T("Account.CustomerOrders.OrderNumber"): @order.CustomOrderNumber</strong>
+                            <span class="order-status @order.OrderStatusEnum">@order.OrderStatus</span>
+                        </div>
+                        <div>
+                            <button type="button" class="button-cirlce-blue order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div>@T("Account.CustomerOrders.OrderDate"): <span class="order-date">@order.CreatedOn.ToString("dd MMMM yyyy")</span></div>
+                        <div class="order-timer">
+                            <div class="timer-wrap" data-orderid="@order.Id" data-initialtime="@order.CreatedOn.ToString()">
+                                <!-- SVG circular progress -->
+                                <svg class="clock" width="48" height="48" viewBox="0 0 60 60" aria-label="تایمر">
+                                    <!-- background circle -->
+                                    <circle cx="30" cy="30" r="25" fill="none" stroke="#e6e9ef" stroke-width="5" />
+                                    <!-- progress circle (stroke-dasharray will be updated by JS) -->
+                                    <circle id="progress" cx="30" cy="30" r="25" fill="none"
+                                            stroke="#ff8a14" stroke-width="5" stroke-linecap="round"
+                                            transform="rotate(-90 30 30)" stroke-dasharray="0 1000" />
+                                    <!-- center numeric seconds -->
+                                    <text id="secondsText" x="30" y="34" color="#ff8a14" text-anchor="middle" class="seconds">0</text>
+                                </svg>
+                            </div>
+                            <div>@T("account.customerorders.orderwillbecancelledifyoudontpay")</div>
+                        </div>
+                    </div>
+                    <div class="order-price-payment">
+                        <button type="button" class="button-1 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')">
+                            @T("Account.CustomerOrders.OrderDetailsAndPayment")
+                        </button>
+                        <div class="price"><span class="order-total">@order.OrderTotal</span></div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

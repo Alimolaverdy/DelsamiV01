@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Category Enhancer",
+  "SystemName": "ZarIran.Misc.CategoryEnhancer",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 2,
+  "FileName": "ZarIran.Plugin.Misc.CategoryEnhancer.dll",
+  "Description": "Enhancing Category For Saving Icons",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+}

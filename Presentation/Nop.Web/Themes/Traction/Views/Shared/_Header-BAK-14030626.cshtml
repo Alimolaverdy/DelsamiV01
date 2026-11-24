@@ -1,0 +1,20 @@
+<div class="header">
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-links-wrapper">
+        <div class="header-logo-mobile" style="float:right;width:40%; padding-right:20px;">
+            <a href="/" class="logo">
+                @*  @await Component.InvokeAsync(typeof(LogoViewComponent)) *@
+                <img alt="ไวศ วัสำ" title="ไวศ วัสำ" src="https://www.nobparts.com/images/thumbs/0001198_0000024_NobParts-Logo-Circle-80-new.webp">
+            </a>
+        </div>
+        @await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
+        <div class="header-selectors-wrapper">
+            @await Component.InvokeAsync(typeof(TaxTypeSelectorViewComponent))
+            @await Component.InvokeAsync(typeof(CurrencySelectorViewComponent))
+            @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
+            <div class="search-box-reference"></div>
+        </div>
+    </div>
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>

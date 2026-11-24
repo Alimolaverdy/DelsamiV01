@@ -1,0 +1,29 @@
+@model CustomerAttributeValidationModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.AddNew").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List.SystemName").Text);
+}
+
+<form asp-controller="CustomerAttributeValidation" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/_CreateOrUpdate.cshtml", Model)
+</form>

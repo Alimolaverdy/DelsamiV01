@@ -1,0 +1,27 @@
+@model ProductDetailsModel
+
+@inject Nop.Services.Catalog.IProductService productService
+@inject Nop.Services.Localization.ILocalizationService localizationService
+
+@{
+    var description = Model.FullDescription;
+    if (string.IsNullOrWhiteSpace(description))
+    {
+        var product = await productService.GetProductByIdAsync(Model.Id);
+        if (product != null)
+            description = await localizationService.GetLocalizedAsync(product, x => x.FullDescription,
+                ensureTwoPublishedLanguages: false);
+    }
+
+    if (string.IsNullOrWhiteSpace(description))
+        description = Model.AssociatedProducts.Select(product => product.FullDescription)
+            .FirstOrDefault(value => !string.IsNullOrWhiteSpace(value));
+}
+
+@if (!string.IsNullOrWhiteSpace(description))
+{
+    <section class="zar-product-description" aria-labelledby="zar-product-description-title">
+        <h2 id="zar-product-description-title">@T("ZarIran.Products.FullDescription")</h2>
+        @Html.Raw(description)
+    </section>
+}

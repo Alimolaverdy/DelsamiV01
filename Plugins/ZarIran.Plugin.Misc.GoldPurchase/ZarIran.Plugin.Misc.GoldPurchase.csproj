@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Authors>ZarIran</Authors>
+    <OutputPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.GoldPurchase</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <!-- ExtendedCustomer resolves Core from its built plugin output. -->
+    <BuildInParallel>false</BuildInParallel>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup><Compile Remove="Tests\**\*.cs" /><None Remove="Tests\**" /><Content Remove="Tests\**" /><EmbeddedResource Remove="Tests\**" /></ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\**\*.cshtml;Style\**\*;Scripts\**\*;plugin.json" />
+    <Content Include="Views\**\*.cshtml;Style\**\*;Scripts\**\*;plugin.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj"><Private>False</Private></ProjectReference>
+    <ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ZarIran.Plugin.Misc.Core">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ZarIran.Plugin.Misc.ExtendedCustomer">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.ExtendedCustomer\ZarIran.Plugin.Misc.ExtendedCustomer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <Target Name="NopTarget" AfterTargets="Build">
+    <MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+  </Target>
+</Project>

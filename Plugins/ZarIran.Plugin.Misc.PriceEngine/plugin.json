@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Price Engine",
+  "SystemName": "ZarIran.Misc.PriceEngine",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 6,
+  "FileName": "ZarIran.Plugin.Misc.PriceEngine.dll",
+  "Description": "Price Engine",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+}

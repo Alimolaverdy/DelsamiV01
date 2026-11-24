@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment",
+  "FriendlyName": "بانک ملت",
+  "SystemName": "Payments.Mellat",
+  "Version": "4.60",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Nob Parts",
+  "DisplayOrder": 15,
+  "FileName": "NopFarsiIR.Payments.Mellat.dll",
+  "Description": "This plugin allows paying with Mellat bank."
+}

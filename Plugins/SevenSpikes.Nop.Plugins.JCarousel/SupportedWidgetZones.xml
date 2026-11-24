@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SupportedWidgetZones>
+  <WidgetZone>content_before</WidgetZone>
+  <WidgetZone>home_page_before_best_sellers</WidgetZone>
+  <WidgetZone>home_page_before_categories</WidgetZone>
+  <WidgetZone>home_page_before_news</WidgetZone>
+  <WidgetZone>home_page_before_poll</WidgetZone>
+  <WidgetZone>home_page_before_products</WidgetZone>
+  <WidgetZone>home_page_top</WidgetZone>
+  <WidgetZone>home_page_bottom</WidgetZone>
+  <WidgetZone>categorydetails_top</WidgetZone>
+  <WidgetZone>categorydetails_bottom</WidgetZone>
+  <WidgetZone>productdetails_top</WidgetZone>
+  <WidgetZone>productdetails_bottom</WidgetZone>
+  <WidgetZone>manufacturerdetails_top</WidgetZone>
+  <WidgetZone>manufacturerdetails_bottom</WidgetZone>
+  <WidgetZone>left_side_column_before</WidgetZone>
+  <WidgetZone>left_side_column_after</WidgetZone>
+  <WidgetZone>right_side_column_before</WidgetZone>
+  <WidgetZone>right_side_column_after</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-specialoffers</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-categories-container</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-best-sales</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-front-rear-brake-pads</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-clutch-kit</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-suspension-system</WidgetZone>
+  <WidgetZone>homepage-htmlwidget-lights</WidgetZone>
+  <WidgetZone>home_page_categories</WidgetZone>
+  <WidgetZone>home_page_manufacturers_raw</WidgetZone>
+</SupportedWidgetZones>

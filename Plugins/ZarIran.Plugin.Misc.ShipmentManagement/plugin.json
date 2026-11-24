@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Shipment Management",
+  "SystemName": "ZarIran.Misc.ShipmentManagement",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 6,
+  "FileName": "ZarIran.Plugin.Misc.ShipmentManagement.dll",
+  "Description": "This plugin allows Manage shipments",
+  "DependsOnSystemNames": [
+    "ZarIran.Misc.SMS",
+    "ZarIran.OrderFulfillment.DeliveryScheduling"
+  ]
+}

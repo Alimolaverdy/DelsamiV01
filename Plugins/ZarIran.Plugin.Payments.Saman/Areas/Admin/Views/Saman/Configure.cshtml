@@ -1,0 +1,71 @@
+﻿@model ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="Saman" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TerminalNumber" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TerminalNumber" />
+                        <span asp-validation-for="TerminalNumber"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TerminalPassword" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TerminalPassword" />
+                        <span asp-validation-for="TerminalPassword"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="BaseUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="BaseUrl" />
+                        <span asp-validation-for="BaseUrl"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TimeOutSeconds" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TimeOutSeconds" />
+                        <span asp-validation-for="TimeOutSeconds"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TokenCacheMinutes" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TokenCacheMinutes" />
+                        <span asp-validation-for="TokenCacheMinutes"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

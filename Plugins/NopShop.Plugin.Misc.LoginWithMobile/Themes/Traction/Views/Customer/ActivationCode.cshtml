@@ -1,0 +1,199 @@
+﻿@model ActivationCodeModel
+@using NopShop.Plugin.Misc.LoginWithMobile.Models
+
+@inject INopHtmlHelper NopHtml
+@inject LoginWithMobileSetting loginWithMobileSetting
+@{
+    bool isCalledAsHeaderPanel = !string.IsNullOrEmpty(this.Context.Request.Query["isHeaderPanel"]);
+    Layout = isCalledAsHeaderPanel ? "" : "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Login").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-login-page");
+
+    NopHtml.AppendCssFileParts("~/Plugins/NopShop.Misc.LoginWithMobile/Themes/Traction/Content/Style.css");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Plugins/NopShop.Misc.LoginWithMobile/Themes/Pavilion/Content/Script.js");
+}
+
+<div class="page login-page">
+    <div class="page-body">
+        <div class="customer-blocks">
+            <div class="returning-wrapper fieldset">
+                <div class="activation-holder">
+                    <form id="zar-activation-form" class="zar-mobile-login zar-activation-form" data-marketer-username="@Model.MarketerUsername" asp-route="ActivationCode" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post">
+                        @Html.HiddenFor(model => model.Username)
+                        @Html.HiddenFor(model => model.ReturnUrl)
+                        @Html.HiddenFor(model => model.ReferralCode)
+                        <div class="zar-mobile-login-brand">
+                            @await Html.PartialAsync("~/Themes/Traction/Views/Shared/_ZarBrand.cshtml")
+                        </div>
+                        <div class="title">
+                            @T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.Title")
+                        </div>
+                        <div class="activation-code-description">
+                            @if (loginWithMobileSetting.EnableLoginWithOneToFive)
+                            {
+                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.LoginUsing1To5")</span>
+                            }
+                            else if (!string.IsNullOrWhiteSpace(Model.MarketerUsername))
+                            {
+                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.SendSMSToMarketerTemplate", @Model.MarketerUsername)</span>
+                            }
+                            else
+                            {
+                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.SendSMSTemplate", @Model.Username)</span>
+                            }
+                        </div>
+                        <div class="form-fields">
+                            <div class="inputs zar-mobile-login-number">
+                                <input asp-for="ActivationCode" type="tel" inputmode="numeric" autocomplete="one-time-code" dir="ltr" maxlength="6" class="username" autofocus="autofocus" required />
+                                <span asp-validation-for="ActivationCode"></span>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="message-error"></div>
+
+                        @if (Model.DisplayCaptcha)
+                        {
+                            <div class="captcha-box">
+                                <nop-captcha />
+                            </div>
+                        }
+
+                        <div class="change-phonenumber">
+                            <a href="/login">@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ChangeMobilePhoneNumber")</a>
+                        </div>
+
+                        <div id="timer-decription" class="lwm-display-no">
+                            <span id="timer">
+                                @* 00:00 *@
+                            </span>
+                            @T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ResendText")
+                        </div>
+                        <button type="button" id="send-activation-code-again" class="login-with-email-a lwm-display-no">@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ResendButtonText")</button>
+                        <div class="buttons btn-login-holder">
+                            <input class="button-1 login-button" type="submit" value="@T("Account.Login.LoginButton")" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="Minutes" value="@ViewBag.Minutes" />
+<input type="hidden" id="Seconds" value="@ViewBag.Secconds" />
+
+<script asp-location="Footer">
+
+    var timerInterval = null;
+
+    function startTimer(minutes, seconds) {
+        clearInterval(timerInterval);
+
+        const timer = $("#timer");
+        const timerDescription = $("#timer-decription");
+        const resendButton = $("#send-activation-code-again");
+        const duration = Number(minutes) * 60 + Number(seconds);
+        const deadline = Date.now() + (Number.isFinite(duration) ? Math.max(0, duration) : 0) * 1000;
+
+        function updateTimer() {
+            const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+            if (remaining === 0) {
+                clearInterval(timerInterval);
+                timerDescription.addClass("lwm-display-no");
+                resendButton.removeClass("lwm-display-no");
+                return false;
+            }
+
+            const minutes = Math.floor(remaining / 60);
+            const seconds = String(remaining % 60).padStart(2, "0");
+            timer.text(minutes + ":" + seconds);
+            timerDescription.removeClass("lwm-display-no");
+            resendButton.addClass("lwm-display-no");
+            return true;
+        }
+
+        if (updateTimer())
+            timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    $(document).ready(function () {
+
+        startTimer($("#Minutes").val(), $("#Seconds").val());
+
+        $("#send-activation-code-again").click(function (e) {
+
+            e.preventDefault();
+
+            const form = $("#zar-activation-form");
+            const resendButton = $(this);
+            resendButton.prop("disabled", true);
+
+            var postData = {
+                phonenumber: form.find('[name="Username"]').val(),
+                marketerUsername: form.attr("data-marketer-username"),
+                returnUrl: form.find('[name="ReturnUrl"]').val(),
+                referralCode: form.find('[name="ReferralCode"]').val(),
+                isResend: true
+            };
+
+            addAntiForgeryToken(postData);
+
+            $.ajax({
+                cache: false,
+                url: "/GetActivationCode",
+                type: "POST",
+                data: postData,
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (data.message == "success") {
+
+
+                        if (form.data("validator")) {
+                            form.validate().resetForm();
+                        }
+
+                        $(".field-validation-error")
+                            .removeClass("field-validation-error")
+                            .addClass("field-validation-valid")
+                            .html("");
+
+                        $(".validation-summary-errors")
+                            .removeClass("validation-summary-errors")
+                            .addClass("validation-summary-valid")
+                            .html("");
+
+                        $("#ActivationCode").removeClass("input-validation-error");
+
+                        $("#Minutes").val(data.minutes);
+                        $("#Seconds").val(data.seconds);
+
+                        startTimer(data.minutes, data.seconds);
+                    }
+                    else {
+                        alert(data.message);
+                    }
+                },
+
+                error: function () {
+                    alert("خطا در ارتباط با سرور");
+                },
+                complete: function () {
+                    resendButton.prop("disabled", false);
+                }
+            });
+
+        });
+
+    });
+
+</script>
+<style>
+    .activation-holder {
+        text-align: center;
+        width: 100%;
+    }
+</style>

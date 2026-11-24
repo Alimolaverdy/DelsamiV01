@@ -1,0 +1,11 @@
+﻿{
+  "Group": "1_NopFarsi",
+  "FriendlyName": "ایران کیش",
+  "SystemName": "NopFarsi.Payments.IranKish",
+  "Version": "4.6",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "NopFarsi.ir  (MJ Vakili)",
+  "DisplayOrder": 10,
+  "FileName": "NopFarsi.Payments.IranKish.dll",
+  "Description": "این پلاگین امکان پرداخت از طریق سامانه ایران کیش پرداخت را فراهم می کند."
+}

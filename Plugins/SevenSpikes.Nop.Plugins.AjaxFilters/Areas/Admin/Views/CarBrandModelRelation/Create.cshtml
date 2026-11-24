@@ -1,0 +1,29 @@
+@model CarBrandModelRelationModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelationModel.AddNew").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelationModel.List.SystemName").Text);
+}
+
+<form asp-controller="CarBrandModelRelation" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelationModel.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("NobParts.Plugin.Misc.CarInfo.CarBrandModelRelationModel.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/NobParts.Misc.CarInfo/Areas/Admin/Views/CarBrandModelRelation/_CreateOrUpdate.cshtml", Model)
+</form>

@@ -1,0 +1,18 @@
+﻿{
+  "Group": "Shipping",
+  "FriendlyName": "Tipax",
+  "SystemName": "ZarIran.Shipping.Tipax",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 5,
+  "FileName": "ZarIran.Plugin.Shipping.Tipax.dll",
+  "Description": "This plugin calculate shipping price by tipax",
+  "DependsOnSystemNames": [
+    "ZarIran.Misc.Core",
+    "ZarIran.Shipping.Core",
+    "ZarIran.Misc.ProductManagement",
+    "ZarIran.Widgets.AddressLocation"
+  ]
+
+}

@@ -1,0 +1,205 @@
+
+/* Changes By H.Sh */
+
+body {
+    background-color: #FBFBFB;
+}
+
+.search-box.store-search-box form {
+    border-radius: 25px;
+    background: #EEEEEE url(../img/search-button.png) calc(100% - 10px) no-repeat;
+    padding-right: 2rem;
+}
+
+    .search-box.store-search-box form #search {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-box.store-search-box form input#small-searchterms {
+        flex-grow: 1;
+    }
+
+    .search-box.store-search-box form button.search-box-button {
+        display: none;
+    }
+
+    .search-box.store-search-box form #search button.btn-close {
+        top: 1px;
+        left: 10px;
+        position: relative;
+        display: none;
+    }
+
+.search-box.store-search-box input.search-box-text::placeholder {
+}
+
+
+.header-links-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .header-links-wrapper::after {
+        display: none;
+    }
+
+.header-selectors-wrapper {
+}
+
+    .header-selectors-wrapper .header-logo-search-container {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+.header-logo-search-container .search-box.store-search-box {
+    margin: 0;
+}
+
+.home-slider .subheader-wrapper {
+    border: 1px solid #E5E5E5;
+    border-right: 0;
+    border-left: 0;
+}
+
+.header-menu ul.mega-menu li {
+    position: relative;
+}
+
+    .header-menu ul.mega-menu li .dropdown {
+        right: 0;
+        left: auto;
+        border-radius: 1.5rem;
+    }
+
+    .header-menu ul.mega-menu li div.dropdown.categories .box div.picture-title-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .header-menu ul.mega-menu li div.dropdown.categories .box div.picture-title-wrap .title {
+            order: 2;
+        }
+
+.slider-wrapper .anywhere-slider {
+    margin: 1.5rem auto 2.5rem auto;
+    padding: 0;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.home-slider .subheader-wrapper {
+    background-color: #FFFFFF;
+}
+
+.headerMenuParent {
+    display: inline-flex;
+    padding: 3px 0;
+}
+
+    .headerMenuParent .contact-us-phone {
+        font-size: 1rem;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        color: #2e3192;
+        font-weight: bold;
+    }
+
+        .headerMenuParent .contact-us-phone .phone-icon {
+            padding-left: 2rem;
+        }
+
+.home-page-filters-wrapper {
+    background: transparent;
+}
+
+    .home-page-filters-wrapper .home-page-filter-selector,
+    .home-page-filters-wrapper .home-page-filter-selector .k-input,
+    .home-page-filters-wrapper .home-page-filter-selector .k-select {
+        background-color: #EEEEEE;
+    }
+
+
+@media (min-width: 1281px) {
+    .headerMenuParent {
+        width: 1320px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .header-menu ul {
+        gap: 2.5rem;
+        display: flex;
+    }
+
+        .header-menu ul li {
+            padding: 5px 0;
+        }
+}
+
+
+
+
+/** NobParts Standard Breakpoints */
+
+
+.np-container,
+.np-container-fluid,
+.np-container-xxl,
+.np-container-xl,
+.np-container-lg,
+.np-container-md,
+.np-container-sm {
+    --np-gutter-x: 1.5rem;
+    --np-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--np-gutter-x) * 0.5);
+    padding-left: calc(var(--np-gutter-x) * 0.5);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .np-container-sm, .np-container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .np-container-md, .np-container-sm, .np-container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .np-container-lg, .np-container-md, .np-container-sm, .np-container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .np-container-xl, .np-container-lg, .np-container-md, .np-container-sm, .np-container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .np-container-xxl, .np-container-xl, .np-container-lg, .np-container-md, .np-container-sm, .np-container {
+        max-width: 1320px;
+    }
+}
+
+:root {
+    --np-breakpoint-xs: 0;
+    --np-breakpoint-sm: 576px;
+    --np-breakpoint-md: 768px;
+    --np-breakpoint-lg: 992px;
+    --np-breakpoint-xl: 1200px;
+    --np-breakpoint-xxl: 1400px;
+}
+
+
+// XX-Large devices (larger desktops)
+// No media query since the xxl breakpoint has no upper bound on its width

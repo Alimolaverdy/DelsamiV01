@@ -1,0 +1,17 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "درگاه پرداخت بانک پاسارگاد",
+  "SystemName": "Payments.BankPasargad",
+  "Version": "6.0",
+  "SupportedVersions": [
+    "4.60"
+  ],
+  "Author": "http://nopFarsi.IR team",
+  "DisplayOrder": 17,
+  "FileName": "NopFarsi.Payments.Pasargad.dll",
+  "Description": "This plugin allows paying with Bank Pasargad",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [ "ZarIran.Payment.Core" ]
+
+}

@@ -1,0 +1,570 @@
+﻿@removeTagHelper Nop.Web.Framework.TagHelpers.Shared.NopLinkTagHelper, Nop.Web.Framework
+@using Nop.Core
+@using Nop.Core.Configuration
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@using Nop.Core.Events
+@using Nop.Services.Security
+@using System.Web;
+
+@inject AppSettings appSettings
+@inject CatalogSettings catalogSettings
+@inject CommonSettings commonSettings
+@inject IEventPublisher eventPublisher
+@inject IPermissionService permissionService
+@inject IWorkContext workContext
+@inject SeoSettings seoSettings
+@inject Nop.Services.Customers.ICustomerService customerService
+
+@{
+    bool isHomePage = ViewContext.RouteData.Values["Controller"]?.ToString() == "Home"
+                 && ViewContext.RouteData.Values["Action"]?.ToString() == "Index";
+
+    if (catalogSettings.DisplayAllPicturesOnCatalogPages)
+    {
+        NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/swiper/swiper-bundle.min.js");
+    }
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/js/public.countryselect.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/js/public.ajaxcart.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/js/public.common.js");
+    //when jQuery migrate script logging is active you will see the log in the browser console
+    if (commonSettings.JqueryMigrateScriptLoggingActive)
+    {
+        NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-migrate/jquery-migrate.js");
+    }
+    else
+    {
+        NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-migrate/jquery-migrate.min.js");
+    }
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-ui-dist/jquery-ui.min.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation/jquery.validate.min.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery/jquery.min.js");
+
+    //custom tag(s);
+    if (!string.IsNullOrEmpty(seoSettings.CustomHeadTags))
+    {
+        NopHtml.AppendHeadCustomParts(seoSettings.CustomHeadTags);
+    }
+
+    var displayMiniProfiler = appSettings.Get<CommonConfig>().MiniProfilerEnabled && await permissionService.AuthorizeAsync(StandardPermissionProvider.AccessProfiling);
+
+    //event
+    await eventPublisher.PublishAsync(new PageRenderingEvent(NopHtml));
+
+    var title = await NopHtml.GenerateTitleAsync();
+    var titleStr = title.ToString();
+    if (isHomePage)
+    {
+        var splittedTitle = titleStr.Split("|");
+
+        if (splittedTitle.Count() == 2)
+            titleStr = $"{splittedTitle[1]} | {splittedTitle[0]}";
+    }
+    var decodedTitle = HttpUtility.HtmlDecode(titleStr);
+    var description = await @NopHtml.GenerateMetaDescriptionAsync();
+    var decodedDescription = HttpUtility.HtmlDecode(description.ToString());
+    var keywords = await NopHtml.GenerateMetaKeywordsAsync();
+    var decodedKeywords = HttpUtility.HtmlDecode(keywords.ToString());
+
+    var customer = await workContext.GetCurrentCustomerAsync();
+}
+
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="@Html.GetUIDirection(!await Html.ShouldUseRtlThemeAsync())" class="@NopHtml.GeneratePageCssClasses()">
+<head>
+    <title>@Html.Raw(decodedTitle)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="@Html.Raw(decodedDescription)" />
+    <meta name="keywords" content="@Html.Raw(decodedKeywords)" />
+    <meta name="generator" content="nopCommerce" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+    <link rel="preload"
+          href="/Themes/Traction/Content/fonts/woff2/IRANSansX-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+
+    <!-- IRANSansX DemiBold - 600 -->
+    <link rel="preload"
+          href="/Themes/Traction/Content/fonts/woff2/IRANSansX-DemiBold.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+
+    <meta name="referrer" content="origin" />
+    @NopHtml.GenerateCanonicalUrls()
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="preload"
+          href="/Themes/Traction/Content/fonts/woff2/IRANSansX-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+
+    <!-- IRANSansX DemiBold - 600 -->
+    <link rel="preload"
+          href="/Themes/Traction/Content/fonts/woff2/IRANSansX-DemiBold.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+
+    
+    @* <script asp-location="Head">
+        //            var customerInfo = '@customer?.FirstName @customer?.LastName @customer?.Username';
+
+        //     var _paq = window._paq = window._paq || [];
+        //      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        //      _paq.push(['setUserId', customerInfo]);
+        //      _paq.push(['trackPageView']);
+        //      _paq.push(['enableLinkTracking']);
+        //      (function() {
+        //        var u="https://matomo.zariran.com/";
+        //        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        //        _paq.push(['setSiteId', '1']);
+        //        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        //        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        //      })();
+        </script> *@
+    @NopHtml.GenerateHeadCustom()
+    @*This is used so that themes can inject content into the header*@
+    @await Html.PartialAsync("Head")
+    @await Component.InvokeAsync("Widget", new { widgetZone = "head_html_tag_after_css_files_traction" })
+    @NopHtml.GenerateCssFiles()
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeadHtmlTag })
+    @await Component.InvokeAsync(typeof(NewsRssHeaderLinkViewComponent))
+    @await Component.InvokeAsync(typeof(BlogRssHeaderLinkViewComponent))
+    @*Insert favicon and app icons head code*@
+    @await Component.InvokeAsync(typeof(FaviconViewComponent))
+    @if (displayMiniProfiler)
+    {
+        <mini-profiler />
+    }
+    @NopHtml.GenerateScripts(ResourceLocation.Head)
+    @NopHtml.GenerateInlineScripts(ResourceLocation.Head)
+    <!--Powered by nopCommerce - https://www.nopCommerce.com-->
+    @Html.Raw(commonSettings.HeaderCustomHtml)
+
+
+    <!-- End Matomo Code -->
+<link rel="stylesheet" href="~/Themes/Traction/Content/zariran/storefront.css" asp-append-version="true" />
+</head>
+<body class="zar-retail">
+    <nop-antiforgery-token />
+    @RenderBody()
+    @NopHtml.GenerateScripts(ResourceLocation.Footer)
+    @NopHtml.GenerateInlineScripts(ResourceLocation.Footer)
+    <script src="~/Themes/Traction/Content/zariran/storefront.js" asp-location="None"></script>
+    @Html.Raw(commonSettings.FooterCustomHtml)
+    <!--
+    <div>
+         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+    </div>
+    -->
+
+
+    <!-- Popup -->
+
+    <div id="npPopup"
+         class="npPopup np-discountoffer-content d-none">
+
+        <div class="np-popup-overlay"
+             onclick="npClosePopup()">
+        </div>
+
+
+        <div class="np-popup-card"
+             role="dialog"
+             aria-modal="true">
+
+            <button type="button"
+                    class="np-popup-close"
+                    aria-label="بستن پنجره"
+                    onclick="npClosePopup()">
+
+                <svg viewBox="0 0 24 24"
+                     aria-hidden="true">
+
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+
+                </svg>
+
+            </button>
+
+
+            <div class="np-popup-content">
+
+                <h2 class="np-popup-title"></h2>
+
+                <p class="np-popup-description"></p>
+
+                <div class="np-popup-actions"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script asp-location="None">
+
+        function npRenderDiscountCodes() {
+
+            const container = document.querySelector(".np-popup-actions");
+
+            if (!container) {
+                return;
+            }
+
+            container.innerHTML = npDiscountCodes.map(function (item) {
+                if (!item.enabled) return;
+
+                return `
+                        <div class="np-discount-item ${item.className}">
+
+                            <div class="np-discount-item-header">
+                                <img src="${item.logo}"
+                                     alt="${item.providerTitle}" />
+
+                                <span>${item.providerTitle}</span>
+                            </div>
+
+                            <div class="np-discount-code-container">
+
+                                <div class="np-discount-code-description">
+
+                                    <div class="np-discount-code-description-title">
+                                        ${item.discountTitle}
+                                    </div>
+
+                                    <div class="np-discount-code-description-text">
+                                        ${item.discountDescription}
+                                    </div>
+
+                                </div>
+
+                                <div class="np-discount-code">
+
+                                    <button type="button"
+                                            class="np-copy-button"
+                                            onclick="npCopyDiscountCode(this)">
+
+                                        <span class="discountCode">
+                                            ${item.code}
+                                        </span>
+
+                                        <span class="np-copy-icon">
+
+                                            <svg width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+
+                                                <path
+                                                    d="M15 11.3235V16.6765C15 19.7647 13.8 21 10.8 21H7.2C4.2 21 3 19.7647 3 16.6765V11.3235C3 8.23529 4.2 7 7.2 7H10.8C13.8 7 15 8.23529 15 11.3235Z"
+                                                    stroke="#2E3192"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+
+                                                <path
+                                                    d="M21 7V12.9647C21 15.8471 19.8 17 16.8 17H15C15 17 15 13.8588 15 10.9765C15 8.09412 13.6571 6.94118 10.6571 6.94118H9C9 4.05882 10.2 3 13.2 3H16.8C19.8 3 21 4.11765 21 7Z"
+                                                    stroke="#2E3192"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+
+                                            </svg>
+
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    `;
+
+            }).join("");
+        }
+
+        function npRenderPopupContent() {
+
+            const titleElement = document.querySelector(".np-popup-title");
+            const descriptionElement = document.querySelector(".np-popup-description");
+
+            if (titleElement) {
+                titleElement.textContent = npPopupSettings.title;
+            }
+
+            if (descriptionElement) {
+                descriptionElement.textContent = npPopupSettings.description;
+            }
+        }
+
+        function npClosePopup() {
+
+            const popup = document.querySelector(".npPopup");
+
+            if (popup) {
+                popup.classList.add("d-none");
+            }
+        }
+
+
+        function npShowPopup() {
+            jQuery("#npPopup").removeClass("d-none");
+        }
+
+
+        async function npCopyDiscountCode(button) {
+
+            const codeElement = button.querySelector("span.discountCode");
+
+            if (!codeElement) {
+                return;
+            }
+
+            const code = codeElement.textContent.trim();
+
+            try {
+
+                await navigator.clipboard.writeText(code);
+
+            } catch (error) {
+
+                const input = document.createElement("textarea");
+
+                input.value = code;
+                input.style.position = "fixed";
+                input.style.opacity = "0";
+
+                document.body.appendChild(input);
+
+                input.select();
+                document.execCommand("copy");
+
+                input.remove();
+            }
+
+            button.classList.add("np-copied");
+
+            setTimeout(function () {
+
+                button.classList.remove("np-copied");
+
+            }, 1800);
+        }
+
+
+        function npCopyDiscountCodeCheckout(button) {
+
+            const codeElement = button.querySelector(".np-discount-code");
+
+            if (!codeElement) {
+                return;
+            }
+
+            const code = codeElement.textContent.trim();
+
+            const input = document.createElement("textarea");
+
+            input.value = code;
+            input.style.position = "fixed";
+            input.style.opacity = "0";
+
+            document.body.appendChild(input);
+
+            input.select();
+            document.execCommand("copy");
+
+            input.remove();
+
+            button.classList.add("np-copied");
+
+            setTimeout(function () {
+
+                button.classList.remove("np-copied");
+
+            }, 1800);
+        }
+
+
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape") {
+                npClosePopup();
+            }
+
+        });
+
+
+        function npSetCookie(name, value, maxAge) {
+
+            const cookie =
+                `${encodeURIComponent(name)}=${encodeURIComponent(value)}; ` +
+                `Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+
+            document.cookie = cookie;
+        }
+
+
+        function npGetCookie(name) {
+
+            const encodedName = encodeURIComponent(name) + "=";
+            const cookies = document.cookie.split(";");
+
+            for (const cookieItem of cookies) {
+
+                const cookie = cookieItem.trim();
+
+                if (cookie.startsWith(encodedName)) {
+
+                    return decodeURIComponent(
+                        cookie.substring(encodedName.length)
+                    );
+
+                }
+            }
+
+            return null;
+        }
+
+
+        function activateListenerInterval() {
+
+            const copyListenerInterval = setInterval(function () {
+
+                const buttons = document.querySelectorAll(
+                    ".np-checkout-discount-card .np-copy-button"
+                );
+
+                if (!buttons.length) {
+                    return;
+                }
+
+                buttons.forEach(function (button) {
+
+                    /*
+                     * جلوگیری از اضافه شدن چند Listener
+                     */
+                    if (button.dataset.npCopyListener === "true") {
+                        return;
+                    }
+
+                    button.dataset.npCopyListener = "true";
+
+                    button.addEventListener("click", function () {
+                        npCopyDiscountCodeCheckout(this);
+                    });
+
+                });
+
+                clearInterval(copyListenerInterval);
+
+            }, 500);
+        }
+
+
+        function observeElement(selector) {
+
+            const element = document.querySelector(selector);
+
+            if (!element) {
+
+                console.warn("Element not found:", selector);
+                return;
+
+            }
+
+            const contentObserver = new MutationObserver((mutations) => {
+
+                element.dispatchEvent(
+                    new CustomEvent("elementChanged", {
+                        detail: mutations
+                    })
+                );
+
+            });
+
+            contentObserver.observe(element, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                characterData: true
+            });
+
+
+            const removalObserver = new MutationObserver(() => {
+
+                if (!element.isConnected) {
+
+                    document.dispatchEvent(
+                        new CustomEvent("elementRemoved", {
+                            detail: {
+                                element,
+                                selector
+                            }
+                        })
+                    );
+
+                    contentObserver.disconnect();
+                    removalObserver.disconnect();
+                }
+
+            });
+
+            removalObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+
+            return {
+
+                stop() {
+
+                    contentObserver.disconnect();
+                    removalObserver.disconnect();
+
+                }
+
+            };
+        }
+
+
+        jQuery(document).ready(function () {
+
+            npRenderPopupContent();
+            npRenderDiscountCodes();
+
+
+            let popupStatus = npGetCookie("popupStatus");
+            let allwaysOnPopup = false;
+
+            if (popupStatus !== "false" || allwaysOnPopup) {
+
+                npShowPopup();
+
+                npSetCookie(
+                    "popupStatus",
+                    "false",
+                    10 * 60
+                );
+
+            }
+
+            if (window.location.pathname === "/onepagecheckout") {
+                activateListenerInterval();
+            }
+
+        });
+
+    </script>
+</body>
+</html>

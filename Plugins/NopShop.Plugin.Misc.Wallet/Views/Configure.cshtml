@@ -1,0 +1,81 @@
+﻿@using Nop.Web.Areas.Admin.Components;
+@using NopShop.Plugin.Misc.Wallet.Models;
+@using NopShop.Plugin.Misc.Wallet;
+@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+<form asp-controller="Wallet" asp-action="Configure" method="post">
+    <nop-cards id="wallet-cards">
+        <nop-card asp-name="wallet-general" asp-icon="fas fa-info" asp-title="@T("Plugins.Misc.Sendinblue.General")" asp-hide-block-attribute-name="@WalletDefaults.HideGeneralBlock" asp-hide="@Model.HideGeneralBlock" asp-advanced="false">
+            <div class="card-body">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="WalletProductId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="WalletProductId" />
+                                <span asp-validation-for="WalletProductId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Amount" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Amount" />
+                                <span asp-validation-for="Amount"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MinWallet" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MinWallet" />
+                                <span asp-validation-for="MinWallet"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MaxAmount" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MaxAmount" />
+                                <span asp-validation-for="MaxAmount"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PaymentSystemName" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PaymentSystemName" />
+                                <span asp-validation-for="PaymentSystemName"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nop-card>
+
+    </nop-cards>
+</form>

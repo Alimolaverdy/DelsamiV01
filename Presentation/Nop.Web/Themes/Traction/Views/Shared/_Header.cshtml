@@ -1,0 +1,35 @@
+﻿@inject Nop.Services.Configuration.ISettingService zarSettings
+@inject Nop.Core.IStoreContext zarStoreContext
+@inject Nop.Core.IWorkContext zarWorkContext
+@inject Nop.Services.Directory.ICurrencyService zarCurrencyService
+@inject Nop.Services.Catalog.IPriceFormatter zarPriceFormatter
+@{
+    var zarStore = await zarStoreContext.GetCurrentStoreAsync();
+    var zarRate = await zarSettings.GetSettingByKeyAsync<decimal>("coresettings.manualgoldprice", 0m, zarStore.Id, true);
+    if (await zarSettings.GetSettingByKeyAsync<bool>("coresettings.allowpriceadjustment", false, zarStore.Id, true))
+    {
+        zarRate -= await zarSettings.GetSettingByKeyAsync<decimal>("coresettings.goldpriceadjustment", 0m, zarStore.Id, true);
+    }
+}
+@if (zarRate > 0)
+{
+    var zarCurrency = await zarWorkContext.GetWorkingCurrencyAsync();
+    var zarDisplayRate = await zarCurrencyService.ConvertFromPrimaryStoreCurrencyAsync(zarRate, zarCurrency);
+    var zarFormattedRate = string.Equals(zarCurrency.CurrencyCode, "IRR", StringComparison.OrdinalIgnoreCase)
+        ? zarDisplayRate.ToString("N0") + " ریال"
+        : await zarPriceFormatter.FormatPriceAsync(zarDisplayRate);
+    <div class="zar-rate-bar"><span class="zar-rate-dot" aria-hidden="true"></span><span>نرخ هر گرم طلای ۱۸ عیار</span><strong>@zarFormattedRate</strong></div>
+}
+<div class="header zar-header">
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-links-wrapper zar-header-row np-container">
+        <div class="zar-header-tools">
+            <button type="button" class="zar-icon-button zar-menu-toggle" aria-label="باز کردن دسته‌بندی‌ها" aria-controls="zar-navigation" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#menu")"></use></svg></button>
+            <button type="button" class="zar-icon-button zar-search-toggle" aria-label="جست‌وجوی محصولات" aria-controls="zar-search-panel" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#search")"></use></svg></button>
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
+        </div>
+        @await Html.PartialAsync("_ZarBrand")
+        @await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
+    </div>
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>

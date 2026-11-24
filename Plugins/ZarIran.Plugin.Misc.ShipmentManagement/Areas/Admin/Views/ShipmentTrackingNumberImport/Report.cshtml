@@ -1,0 +1,134 @@
+﻿@using Nop.Core
+@model ReportSearchModel
+@inject IGenericAttributeService genericAttributeService
+@inject IWorkContext workContext
+@{
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport").Text);
+    Layout = "_AdminLayout";
+    const string hideSearchBlockAttributeName = "ShipmentsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+}
+
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="p-3">
+                @T("Admin.Orders.Shipments.ImportShipmentTrackNumber.ReportImportedItems")
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="card card-default card-search">
+                <div class="card-body">
+                    <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                        <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="search-body @(hideSearchBlock ? "closed" : "")">
+                        <div class="form-group">
+                            <div class="col-md-6 d-flex align-items-end gap-2">
+                                <nop-label asp-for="Status" />
+
+                                <nop-select asp-for="Status"
+                                            asp-items="Model.AvailableStatuses"
+                                            class="form-control mx-3" />
+
+                                <button type="button"
+                                        id="search-report"
+                                        class="btn btn-small btn-primary btn-search">
+                                    <i class="fas fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="card card-default">
+                <div class="card-body">
+                    @await Html.PartialAsync("Table", new DataTablesModel
+                    {
+                        Name = "Reports-List",
+                                        UrlRead = new DataUrl("Report", "ShipmentTrackingNumberImport", new RouteValueDictionary() { { nameof(Model.ShipmentImportId), Model.ShipmentImportId } }),
+                                        SearchButtonId = "search-report",
+                                        Length = Model.PageSize,
+                                        LengthMenu = Model.AvailablePageSizes,
+                                        Filters = new List<FilterParameter>
+                                        {
+                                        new FilterParameter(nameof(ReportSearchModel.Status))
+                                        },
+                                        ColumnCollection = new List<ColumnProperty>
+                                        {
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.ShipmentId))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ShipmentId").Text,
+                                        ClassName =  NopColumnClassDefaults.CenterAll,
+                                        Width = "80"
+                                        },
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.OrderId))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.OrderId").Text,
+                                        ClassName =  NopColumnClassDefaults.CenterAll,
+                                        Width = "80"
+                                        },
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.TrackingNumber))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.TrackingNumber").Text,
+                                        Width = "80",
+                                        ClassName = NopColumnClassDefaults.CenterAll,
+                                        },
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.Status))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.Status").Text,
+                                        Width = "100",
+                                        ClassName = NopColumnClassDefaults.CenterAll,
+                                        Render = new RenderCustom("renderColumnStatus")
+
+                                        },
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.ErrorDescription))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ErrorDescription").Text,
+                                        Width = "120",
+                                        ClassName = NopColumnClassDefaults.CenterAll,
+                                        } ,
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.CustomerName))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CustomerName").Text,
+                                        Width = "80",
+                                        ClassName =  NopColumnClassDefaults.CenterAll,
+                                        } ,
+                                        new ColumnProperty(nameof(ImportedTrackNumberReportModel.CreatedOnUtc))
+                                        {
+                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CreatedOn").Text,
+                                        Width = "70",
+                                        ClassName =  NopColumnClassDefaults.CenterAll,
+                                        Render = new RenderDate()
+                                        }
+                                        }
+                                        })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function renderColumnStatus(data, type, row, meta) {
+        debugger;
+        var color;
+        switch (row.StatusId) {
+            case 1:
+                color = 'green';
+                break;
+            default:
+                color = 'red';
+                break;
+        }
+        return '<span class="grid-report-item ' + color + '">' + data + '</span>';
+    }
+</script>

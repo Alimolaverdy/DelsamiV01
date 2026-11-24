@@ -1,0 +1,209 @@
+﻿@model ZarIranCategoryModel
+
+<link rel="stylesheet" href="~/plugins/ZarIran.misc.core/lib/select2/select2.min.css" />
+<script asp-location="None" src="~/plugins/ZarIran.misc.core/lib/select2/select2.min.js"></script>
+<style>
+    .suggestion-container {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .suggestion-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s;
+    }
+
+        .suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+    .suggestion-slug {
+        font-weight: bold;
+        color: #333;
+        font-size: 12px;
+    }
+
+    .suggestion-name {
+        color: #666;
+        font-size: 11px;
+        margin-top: 2px;
+    }
+</style>
+<div class="card-body">
+    @(await Html.LocalizedEditorAsync<ZarIranCategoryModel, CategoryLocalizedModel>("category-info-localized",
+        @<div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="@Model.Locales[item].SeName" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="@Model.Locales[item].SeName" />
+                <span asp-validation-for="@Model.Locales[item].SeName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="@Model.Locales[item].MetaTitle" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="@Model.Locales[item].MetaTitle" />
+                <span asp-validation-for="@Model.Locales[item].MetaTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="@Model.Locales[item].MetaKeywords" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="@Model.Locales[item].MetaKeywords" />
+                <span asp-validation-for="@Model.Locales[item].MetaKeywords"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="@Model.Locales[item].MetaDescription" />
+            </div>
+            <div class="col-md-9">
+                <nop-textarea asp-for="@Model.Locales[item].MetaDescription"></nop-textarea>
+                <span asp-validation-for="@Model.Locales[item].MetaDescription"></span>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#@Html.IdFor(model => model.Locales[item].SeName)').on('input change', function () {
+                    var parameters = {
+                        entityId: '@Model.Id',
+                        entityName: 'Category',
+                        seName: $(this).val()
+                    };
+                    warningValidation('@Url.Action("UrlReservedWarning", "Common")', '@Html.NameFor(model => model.Locales[item].SeName)', parameters);
+                });
+            });
+        </script>
+        <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+    </div>
+        ,
+        @<div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="SeName" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="SeName" />
+                <span asp-validation-for="SeName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="MetaTitle" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="MetaTitle" />
+                <span asp-validation-for="MetaTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="MetaKeywords" />
+            </div>
+            <div class="col-md-9">
+                <nop-editor asp-for="MetaKeywords" />
+                <span asp-validation-for="MetaKeywords"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="MetaDescription" />
+            </div>
+            <div class="col-md-9">
+                <nop-textarea asp-for="MetaDescription"></nop-textarea>
+                <span asp-validation-for="MetaDescription"></span>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#@Html.IdFor(model => model.SeName)').on('input change', function () {
+                    var parameters = {
+                        entityId: '@Model.Id',
+                        entityName: 'Category',
+                        seName: $(this).val()
+                    };
+                    warningValidation('@Url.Action("UrlReservedWarning", "Common")', '@Html.NameFor(model => model.SeName)', parameters);
+                });
+            });
+        </script>
+    </div>))
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="CanonicalCategoryId" />
+        </div>
+        <div class="col-md-9">
+            <nop-select asp-for="CanonicalCategoryId" asp-items="Model.AvailableCategories" />
+            <span asp-validation-for="CanonicalCategoryId"></span>
+
+            <!-- انتقال suggestion-container به داخل col-md-9 -->
+            <div class="suggestion-container">
+                @if (Model.SuggestionCategories != null && Model.SuggestionCategories.Any())
+                {
+                    foreach (var suggestionCategory in Model.SuggestionCategories)
+                    {
+                        <div class="suggestion-item" data-category-id="@suggestionCategory.Id">
+                            <div class="suggestion-slug">@suggestionCategory.SeName</div>
+                            <div class="suggestion-name">@suggestionCategory.Name</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="suggestion-item" style="color: #999; font-style: italic;">
+                        هیچ پیشنهادی یافت نشد
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        // تنظیم select2
+        $("#CanonicalCategoryId").select2({
+            width: "100%",
+            placeholder: "انتخاب دسته‌بندی"
+        });
+
+        // کلیک روی suggestion
+        $('.suggestion-item').on('click', function () {
+            var categoryId = $(this).data('category-id');
+
+            // پیدا کردن آیتم در dropdown
+            if (categoryId) {
+                // تنظیم مقدار در select اصلی
+                $("#CanonicalCategoryId").val(categoryId).trigger('change');
+
+                // پیدا کردن گزینه در select2 و انتخابش
+                var $select2 = $("#CanonicalCategoryId").data('select2');
+                if ($select2) {
+                    var $option = $("#CanonicalCategoryId").find('option[value="' + categoryId + '"]');
+                    if ($option.length > 0) {
+                        $("#CanonicalCategoryId").val(categoryId).trigger('change');
+                    }
+                }
+            }
+        });
+    });
+</script>

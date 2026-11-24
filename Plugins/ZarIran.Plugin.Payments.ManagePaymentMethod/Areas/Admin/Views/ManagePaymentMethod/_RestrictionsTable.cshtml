@@ -1,0 +1,39 @@
+@model ZarIranPaymentMethodRestrictionModel
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">
+                <strong>@T("ZarIran.Plugin.Payments.ManagePaymentMethod.City")</strong>
+            </th>
+            @foreach (var sm in Model.AvailablePaymentMethods)
+            {
+                <th scope="col">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="selectall-@(sm.SystemName)" />
+                            <strong>@sm.FriendlyName</strong>
+                        </label>
+                    </div>
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.AvailableCities)
+        {
+            <tr>
+                <td>
+                    <span>@c.Name</span>
+                </td>
+                @foreach (var sm in Model.AvailablePaymentMethods)
+                {
+                    var restricted = Model.Restricted.ContainsKey(c.Id) && Model.Restricted[c.Id][sm.SystemName];
+                    <td>
+                        <input class="restrict_@(sm.SystemName)" type="checkbox" value="@(c.Id)" name="restrict_@(sm.SystemName)" @(restricted ? " checked=checked" : null) />
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

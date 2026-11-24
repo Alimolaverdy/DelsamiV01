@@ -1,0 +1,271 @@
+
+
+/* Added By Taikandy */
+
+
+/*
+.page-title h1 {
+	font: normal 18px/26px 'IRANSansX';
+	color: #c03;
+}
+*/
+
+.item-box .product-title a, .item-box .title a{
+	font-size: 13px;
+	font-weight: light;
+}
+
+.header-menu>ul li>.with-subcategories{
+	font-size: 12px;
+	font-weight: light;
+}
+
+.subheader-wrapper{
+font: normal 10px;
+}
+
+.header-menu{
+font: normal 10px !important;
+}
+
+.header-menu > ul > li > a,
+.header-menu > ul > li > span {
+	font: normal 16px 'IRANSansX';
+
+}
+
+
+
+/********* Search In Store ****************/
+.header-selectors-wrapper{
+	background-color: #ffff;
+	border-radius: .8em;
+}
+
+.search-box.store-search-box input.search-box-text{
+	background-color: lightgray;
+	color: black;
+	font: italic bold 14px 'IRANSansX';
+}
+
+
+.search-box.store-search-box .search-box-button{
+	background-color: lightgray;
+/*	border-radius: .8em; */
+}
+
+/************************************************/
+
+
+
+/********* Header Logo/Menu ****************/
+
+/*
+.home-slider .subheader-wrapper {
+	background-color: #3c4b6d;
+	background-image: linear-gradient(to right, darkblue, darkred); 	
+}
+*/
+/*
+.subheader-wrapper {
+	background-image: linear-gradient(to right, darkblue, darkred);
+}
+*/
+.header-links .ico-Mycar {
+	background: url('../NobParts-img/NobParts-HeaderIcon-MyCar.png') left center no-repeat;
+	padding-left: 30px;
+}
+
+/************************************************/
+
+
+/********* Search By Brand/Model ****************/
+/*
+.home-page-filters-wrapper {
+	background-color: #3c4b6d;
+}
+*/
+
+/*.home-page-filter-selector {
+	font: normal 14px 'IRANSansX';
+}
+*/
+
+.home-page-filter-button .search-button {
+	font: normal 15px 'IRANSansX';
+	background-color: #3c4b6d;
+	/* border-radius: .8em;        گرد کردن لبه های دگمه       */
+}
+
+.home-page-filter-button .search-button:after {
+	font: normal 15px 'IRANSansX';
+	background-color: #3c4b6d;
+	/* border-radius: .8em;        گرد کردن لبه های دگمه       */
+}
+
+/************************************************/
+
+
+/********* Product Title ****************/
+
+.item-box .product-title {
+	font-size: 13px;
+	font-weight: Bold;
+}
+
+/********* New Products Title ****************/
+
+/*
+.nop-jcarousel .carousel-title{
+background-color: #3c4b6d;  
+}
+*/
+
+/************************************************/
+
+
+/********* Footer ****************/
+
+.footer-block .title {
+	background-color: #3c4b6d; /* #06005b; */
+}
+
+.footer-upper:before {
+	background-color: #3c4b6d; /* #06005b; */
+/*	background-image: linear-gradient(to bottom right, darkblue, black); */
+}
+
+.footer-middle {
+		background-image: linear-gradient(to bottom right, darkblue, black);
+}
+
+.footer-lower {
+	overflow: hidden;
+	background-color: #06005b;
+		background-image: linear-gradient(to bottom right, #007e8c, #00e6ff);	
+/*		background-image: linear-gradient(to bottom right, #9abdeb, #80f9b7);	*/
+/*		background-image: linear-gradient(to bottom right, #64a1ff, #8bfcfe);	*/
+	padding: 10px;
+	text-align: center;
+	font-size: 14px;
+/*	color: #ccc; */
+	color: #333;
+}
+
+/************************************************/
+
+
+/********* Mega Menu ****************/
+
+.mega-menu .title {
+	font-size: 11px;
+	font-weight: Bold;
+}
+
+/************************************************/
+
+#category-description p img{
+    vertical-align: middle; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display: block;
+}
+
+
+/***********************************************/
+
+/******** Ajax Cart ****************************/
+.nopAjaxCartProductListAddToCartButton {
+
+	font-size: 12px !important;
+}
+
+
+/***********************************************/
+
+.ZarIran-Invisible {
+	display: none;
+	visibility: hidden;
+}
+
+
+/***********************************************/
+
+.nop-jcarousel .carousel-title strong {
+	font: normal 14px 'IRANSansX';
+	background-color: #3c4b6d;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	/*border-radius: .8em;*/
+	/*background: radial-gradient(circle at top left,transparent 1vw, #3c4b6d 1.1vw); */
+}
+
+
+div.title.carousel-title.has-navigation {
+	border-bottom: 2px solid #3c4b6d;
+	padding-bottom:0px;
+}
+
+
+/*{
+	display: inline-block;
+	max-width: 62%;
+	margin: 0 0 -1px;
+	box-shadow: 0 0 0 3px #fff;
+	background-color: #333;
+    padding: 15px 18px;
+    font: normal 14px 'eurostile';
+	color: #fff;
+    text-transform: uppercase;
+}*/
+
+
+/*    Round top corners Of Tabs  */
+.ui-tabs-anchor {
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+
+/* Change the colore of active tab */
+.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active a{
+	font: normal 16px 'IRANSansX';
+	background-color: #3c4b6d;
+}
+
+/* Change the colore of deactive tabs */
+.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a{
+	font: normal 16px 'IRANSansX';
+	background-color:  #d6eaf8 ;
+}
+
+/* Change the color of Tabs' Bottom Line*/
+.ui-tabs-nav.ui-corner-all.ui-helper-reset.ui-helper-clearfix.ui-widget-header{
+	border-bottom: 2px solid #3c4b6d;
+	padding-bottom:0px;
+}
+
+/*
+.productTabs-header{
+	border-bottom: 2px solid #3c4b6d;
+	padding-bottom:0px;
+}
+*/
+
+/*
+.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active {
+	font: normal 16px 'IRANSansX';
+	background-color: #3c4b6d;
+	border-top-left-radius:10px;
+
+	border-top-right-radius:10px;
+ 	border-bottom: 1px solid #ff0000;
+ 	padding-bottom:20px;
+}
+*/
+/***********************************************/
+
+
+
+
+/***********************************************/
+

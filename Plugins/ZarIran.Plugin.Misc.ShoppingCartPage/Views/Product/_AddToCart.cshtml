@@ -1,0 +1,282 @@
+﻿@model ProductDetailsModel.AddToCartModel
+@using Nop.Core.Domain.Orders
+@if (Model.UpdatedShoppingCartItemId > 0)
+{
+    <input asp-for="UpdatedShoppingCartItemId" type="hidden" />
+}
+@if (!Model.DisableBuyButton || Model.CustomerEntersPrice)
+{
+    <div class="add-to-cart">
+
+        @if (Model.CustomerEntersPrice)
+        {
+            <div class="customer-entered-price">
+                <div class="price-input">
+                    <label asp-for="CustomerEnteredPrice" asp-postfix=":" class="enter-price-label"></label>
+                    @*round price*@
+                    <input asp-for="CustomerEnteredPrice" value="@Convert.ToInt32(Math.Ceiling(Model.CustomerEnteredPrice))" class="enter-price-input" />
+                </div>
+                <div class="price-range">
+                    @Model.CustomerEnteredPriceRange
+                </div>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.MinimumQuantityNotification))
+        {
+            <div class="min-qty-notification">@Model.MinimumQuantityNotification</div>
+        }
+        @if (!Model.DisableBuyButton)
+        {
+            <div class="add-to-cart-panel">
+                <label asp-for="EnteredQuantity" asp-postfix=":" class="qty-label"></label>
+                @if (Model.AllowedQuantities.Count > 0)
+                {
+                    <script asp-location="Footer">
+                        var quantitySteps = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(@Model.AllowedQuantities));
+                        quantitySteps = quantitySteps.map(x => Number(x.Value));
+                        quantitySteps.unshift(0);
+                    </script>
+                }
+
+                <link rel="stylesheet" href="~/plugins/ZarIran.Misc.ShoppingCartPage/Content/Style.css" />
+                <button type="button" class="change-quantity-button decrease-quantity@(Model.ProductId)">-</button>
+                <input asp-for="EnteredQuantity" id="product_enteredQuantity_@Model.ProductId" class="qty-input qty-input-@(Model.ProductId)" type="text" aria-label=@T("Products.Qty.AriaLabel") />
+                <div id="dots-spinner@(Model.ProductId)" class="dots-spinner d-none"></div>
+                <button type="button" class="change-quantity-button increase-quantity@(Model.ProductId)">+</button>
+
+
+
+                <script asp-location="Footer">
+                    var customerCartItems;
+                    var addToCartButtonFinderInterval;
+
+                    //when a customer clicks 'Enter' button we submit the "add to cart" button (if visible)
+                    jQuery(document).ready(function () {
+
+                        let tmpProductPriceNode = $($('.product-price')[0]).clone();
+                        jQuery(tmpProductPriceNode).find('i').remove();
+                        jQuery(tmpProductPriceNode).find('.old-price').remove();
+                        jQuery('.mobile-price').html(tmpProductPriceNode)
+
+
+                        addToCartButtonFinderInterval = setInterval(function () {
+                            if (jQuery("#add-to-cart-button-@(Model.ProductId)").length > 0) {
+                                clearInterval(addToCartButtonFinderInterval);
+
+                                checkCustomerCartItems();
+                            }
+                        }, 100);
+
+
+                        function updateCartItemQuantity(id, newQuantity) {
+                            let productVariantLine = jQuery(".product-variant-line[data-productid='" + id + "']");
+
+                            jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').addClass('disabled').attr('disabled', 'disabled');
+                            jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').addClass('disabled').attr('disabled', 'disabled');
+                            jQuery(productVariantLine).find('.add-to-cart-panel input.qty-input').addClass('disabled d-none').attr('disabled', 'disabled');
+                            jQuery(productVariantLine).find('.add-to-cart-panel button.add-to-cart-button[data-productid="' + id + '"]').addClass('disabled').attr('disabled', 'disabled');
+                            jQuery(productVariantLine).find('.dots-spinner').removeClass('d-none');
+
+
+                            let postData = {
+                                productId: id,
+                                quantity: newQuantity,
+                                __RequestVerificationToken: jQuery('input[name="__RequestVerificationToken"]').val()
+                            }
+
+                            var ajaxCart = jQuery.ajax({
+                                type: "POST",
+                                url: "shoppingCart/updatequantity",
+                                data: postData
+                            }, function (response) {
+
+                            }).done(function (response) {
+
+                            }).fail(function (response) {
+
+                            }).always(function (response) {
+                                if (!response.IsSucceed) {
+                                    if (response.ForceRefresh) {
+                                        alert()
+                                        window.location.reload();
+                                        return;
+                                    }
+                                    for (let i = 0; i < response.Warnings.length; i++) {
+                                        alert(response.Warnings[i]);
+                                    }
+                                }
+
+                                checkCustomerCartItems();
+
+                                jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeAttr('disabled').removeClass('disabled');
+                                jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeAttr('disabled').removeClass('disabled');
+                                jQuery(productVariantLine).find('.add-to-cart-panel input.qty-input').removeAttr('disabled').removeClass('disabled d-none');
+                                jQuery(productVariantLine).find('.add-to-cart-panel button.add-to-cart-button[data-productid="' + id + '"]').removeAttr('disabled').removeClass('disabled');
+                                jQuery(productVariantLine).find('.dots-spinner').addClass('d-none');
+                            });
+                        }
+
+                        function updateCartItemQuantityTotal(cartItemQuantityTotal) {
+                            jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').html(cartItemQuantityTotal);
+
+                            if (cartItemQuantityTotal <= 0) {
+                                jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').remove();
+                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Empty.svg');
+                            }else{
+                                jQuery('.header-cart-mobile a.ico-cart img').after('<span class="cart-qty-in">' + cartItemQuantityTotal + '</span>');
+                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Filled.svg');
+                            }
+
+                            jQuery('#topcartlink .cart-qty').html(cartItemQuantityTotal);
+                        }
+
+                        function checkCustomerCartItems() {
+                            var ajaxCart = jQuery.ajax("/api/cart")
+                                .done(function (data) {
+                                    customerCartItems = data;
+                                    let totalCartQuantity = 0;
+
+                                    jQuery(customerCartItems.items).each(function (i, e) {
+                                        totalCartQuantity += e.quantity;
+                                    });
+                                    updateCartItemQuantityTotal(totalCartQuantity);
+
+
+                                    //if not undefiend, the product is in the basket
+                                    let currentItem = customerCartItems.items.filter((item) => item.productId == @Model.ProductId)[0];
+                                    let productVariantLine = jQuery(".product-variant-line[data-productid='" + @Model.ProductId + "']");
+
+                                    if (currentItem !== undefined) { //is this item in the cart
+                                        //update quantity
+                                        jQuery(productVariantLine).find("#product_enteredQuantity_@Model.ProductId").val(currentItem.quantity);
+
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel input.qty-input').removeClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.add-to-cart-button[data-productid="' + @Model.ProductId + '"]').addClass('d-none');
+                                    } else {
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').addClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').addClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel input.qty-input').addClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.add-to-cart-button').removeClass('d-none');
+                                    }
+
+                                        //binding click to add-to-cart button
+                                    jQuery(productVariantLine).find('.add-to-cart-panel button.add-to-cart-button[data-productid="' + @Model.ProductId + '"]').click(function () {
+                                        jQuery(this).addClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel button.change-quantity-button').removeClass('d-none');
+                                        jQuery(productVariantLine).find('.add-to-cart-panel input.qty-input').removeClass('d-none');
+
+                                        setTimeout(checkCustomerCartItems, 300);
+                                    });
+                                })
+                                .fail(function () {
+                                    console.error("error");
+                                });
+                        }
+
+
+
+                        $(".decrease-quantity@(Model.ProductId)").on("click", function () {
+                            var currentVal = parseInt($(".qty-input-@(Model.ProductId)").val());
+                            currentVal--;
+                            if (currentVal > 0) {
+                            if (typeof quantitySteps !== 'undefined') {
+                                    currentVal = quantitySteps.filter(x => x <= currentVal).pop();
+                                }
+                            } else {
+                                currentVal = 0;
+                            }
+
+                            $(".qty-input-@(Model.ProductId)").val(currentVal);
+                            updateCartItemQuantity(@Model.ProductId, currentVal);
+
+                            if (currentVal <= 0) {
+                                if (typeof quantitySteps !== 'undefined') {
+                                    $(".qty-input-@(Model.ProductId)").val(quantitySteps[1]);
+                                } else {
+                                    $(".qty-input-@(Model.ProductId)").val(1);
+                                }
+                            }
+                        });
+
+                        $(".increase-quantity@(Model.ProductId)").on("click", function () {
+                            var currentVal = parseInt($(".qty-input-@(Model.ProductId)").val());
+                            currentVal++;
+
+                        if (typeof quantitySteps !== 'undefined') {
+                                if (currentVal <= Math.max.apply(null, quantitySteps))
+                                    currentVal = quantitySteps.find(x => x >= currentVal);
+                                else
+                                    currentVal = Math.max.apply(null,quantitySteps);
+                            }
+
+                            $(".qty-input-@(Model.ProductId)").val(currentVal);
+                            console.log('inc');
+
+                            updateCartItemQuantity(@Model.ProductId, currentVal);
+
+                    @* checkCustomerCartItems(); *@
+                                                                        });
+
+                        $("#@Html.IdFor(model => model.EnteredQuantity)").on("keydown", function (event) {
+                            if (event.keyCode == 13) {
+                                $("#add-to-cart-button-@Model.ProductId").trigger("click");
+                                return false;
+                            }
+                        });
+
+                        $("#product_enteredQuantity_@Model.ProductId").on("input propertychange paste", function () {
+                            var data = {
+                                productId: @Model.ProductId,
+                                quantity: $('#product_enteredQuantity_@Model.ProductId').val()
+                            };
+                            $(document).trigger({ type: "product_quantity_changed", changedData: data });
+                        });
+
+                    });
+
+                </script>
+
+                @{
+                    var addToCartText = "";
+                    if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.ShoppingCart)
+                    {
+                        addToCartText = T("ShoppingCart.AddToCart.Update").Text;
+                    }
+                    else
+                    {
+                        addToCartText = T("ShoppingCart.AddToCart").Text;
+                        if (Model.IsRental)
+                        {
+                            addToCartText = T("ShoppingCart.Rent").Text;
+                        }
+                        if (Model.AvailableForPreOrder)
+                        {
+                            addToCartText = T("ShoppingCart.PreOrder").Text;
+                        }
+                    }
+                    <button type="button"
+                            id="add-to-cart-button-@Model.ProductId"
+                            class="button-1 add-to-cart-button customer-add-to-cart-button"
+                            data-productid="@Model.ProductId"
+                            onclick="
+                                                                                            AjaxCart.addproducttocart_details_mob('@Url.RouteUrl("AddProductToCart-Details", new { productId = Model.ProductId, shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart })', '#product-details-form');
+                                                                                            return false;">
+                        @addToCartText
+                    </button>
+                }
+            </div>
+            if (!string.IsNullOrEmpty(Model.PreOrderAvailabilityStartDateTimeUserTime))
+            {
+                <div class="pre-order-availability-date">
+                    <label>@T("ShoppingCart.PreOrderAvailability"):</label>
+                    @Html.Raw(Model.PreOrderAvailabilityStartDateTimeUserTime)
+                </div>
+            }
+            <div class="d-md-none d-inline-block mobile-price"></div>
+        }
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsAddInfo, additionalData = Model })
+    </div>
+}

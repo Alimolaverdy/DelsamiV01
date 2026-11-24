@@ -1,0 +1,91 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Customers.Customers").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName").Text);
+}
+<form asp-controller="ManageShippingMethod" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DisabledShippingMethods" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="DisabledShippingMethods" asp-items="Model.AvailableShippingMethods" asp-multiple="true" />
+                                <script>
+                                    $(document).ready(function() {
+                                        var ShippingMethods = $('#@Html.IdFor(model => model.DisabledShippingMethods)').data("kendoMultiSelect");
+                                        ShippingMethods.setOptions({
+                                            autoClose: false,
+                                            filter: "contains",
+                                            placeholder: '@T("ZarIran.Plugin.Misc.ManageShippingMethod.SelectShippingMethods")'
+                                        });
+
+                                        @if (Model.AvailableShippingMethods.Count == 0)
+                                        {
+                                                    <text>
+                                                        ShippingMethods.setOptions({
+                                                            enable: false,
+                                                            placeholder: '@T("ZarIran.Plugin.Misc.ManageShippingMethod.NoShippingMethods")'
+                                                        });
+                                                        ShippingMethods._placeholder();
+                                                        ShippingMethods._enable();
+                                                    </text>
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="CountryId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="CountryId" asp-items="Model.AvailableCountries" />
+                                <span asp-validation-for="CountryId"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="FulfillmentDecisionEnabled" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="FulfillmentDecisionEnabled" />
+                                <span asp-validation-for="FulfillmentDecisionEnabled"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="FulfillmentDecisionBaseDomain" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="FulfillmentDecisionBaseDomain" />
+                                <span asp-validation-for="FulfillmentDecisionBaseDomain"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

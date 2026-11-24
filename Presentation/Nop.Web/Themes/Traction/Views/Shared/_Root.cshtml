@@ -1,0 +1,118 @@
+﻿@inject Nop.Core.IWebHelper webHelper
+@inject Nop.Services.Customers.ICustomerService customerService
+@inject Nop.Core.IWorkContext workContext
+
+@{
+    Layout = "_Root.Head";
+}
+@{
+    var homePage = String.Empty;
+    var additionalClass = String.Empty;
+    var homePageMainSliderHtml = String.Empty;
+
+    var controllerName = Url.ActionContext.RouteData.Values["controller"].ToString();
+
+    var isHomePage = controllerName.Equals("home", StringComparison.InvariantCultureIgnoreCase);
+    if (isHomePage)
+    {
+        homePage = "home";
+        var homePageMainSliderResult = await Component.InvokeAsync("Widget", new { widgetZone = "home_page_main_slider" });
+        homePageMainSliderHtml = await homePageMainSliderResult.RenderHtmlContentAsync();
+
+        if (!String.IsNullOrEmpty(homePageMainSliderHtml))
+        {
+            additionalClass = "home-slider";
+        }
+    }
+}
+
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@{
+    await Html.RenderPartialAsync("_Notifications");
+}
+@{
+    await Html.RenderPartialAsync("_JavaScriptDisabledWarning");
+}
+@{
+    await Html.RenderPartialAsync("_OldInternetExplorerWarning");
+}
+
+<!-- End Matomo -->
+<!-- End Matomo Code -->
+<div class="master-wrapper-page zar-storefront @homePage @additionalClass">
+    @*     <div class="nowruz-banner">
+    <img class="desktop" src="~/images/2-desktop-(before-nowruz).gif" />
+    <img class="mobile" src="~/images/2-Desktop-Before-Nowruz-mobile.gif" />
+    </div> *@
+    @await Component.InvokeAsync(typeof(AdminHeaderLinksViewComponent))
+
+    @{
+        await Html.RenderPartialAsync("_Header");
+    }
+
+
+    <div id="zar-search-panel" class="zar-search-panel" hidden>
+        <div class="search-box store-search-box np-container mx-auto">
+            @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+        </div>
+    </div>
+    <div class="subheader-wrapper zar-navigation" id="zar-navigation">
+        <div class="headerMenuParent np-container">
+            <div class="header-menu">
+                @{
+                    var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
+                }
+                @if (String.IsNullOrEmpty(await menu.RenderHtmlContentAsync()))
+                {
+                    @await Component.InvokeAsync(typeof(TopMenuViewComponent))
+                }
+                else
+                {
+                    @menu
+                }
+            </div>
+        </div>
+    </div>
+    @if (isHomePage)
+    {
+        <section class="zar-hero" aria-labelledby="zar-hero-title">
+            <div class="zar-hero-media">
+                @if (!String.IsNullOrWhiteSpace(homePageMainSliderHtml))
+                {
+                    @Html.Raw(homePageMainSliderHtml)
+                }
+                else
+                {
+                    <img src="@Url.Content("~/Themes/Traction/Content/zariran/zar-iran-hero.png")" alt="زیورآلات ظریف زر ایران در فضای کرم و آبی" fetchpriority="high" width="1672" height="940" />
+                }
+            </div>
+            <div class="zar-hero-copy">
+                <span class="zar-kicker">کالکشن زر ایران</span>
+                <h1 id="zar-hero-title">ظرافتی که<br /><em>از تو می‌گوید</em></h1>
+                <p>طلاهای ظریف با طراحی آرام و امروزی؛ برای همراهی هر روز و ماندگاری در خاطره‌ها.</p>
+                <div class="zar-hero-actions"><a href="@Url.RouteUrl("ProductSearch")" class="zar-button">مشاهده محصولات <span aria-hidden="true">←</span></a><a href="#zar-collections" class="zar-text-link">کشف کالکشن‌ها</a></div>
+            </div>
+        </section>
+    }
+    <div class="master-wrapper-content">
+        <script asp-location="Footer">
+            var localized_data = {
+                AjaxCartFailure: "@T("AjaxCart.Failure")"
+            };
+            AjaxCart.init(false, '.header-links .cart-qty,.header-cart-mobile .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
+        </script>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore })
+        @*ajax loading window*@
+        <div class="ajax-loading-block-window" style="display: none">
+            <div class="loading-image">
+            </div>
+        </div>
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter })
+    </div>
+</div>
+@await Component.InvokeAsync(typeof(FooterViewComponent))
+@await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

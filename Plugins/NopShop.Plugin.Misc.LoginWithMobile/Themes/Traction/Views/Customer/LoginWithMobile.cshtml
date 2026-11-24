@@ -1,0 +1,95 @@
+﻿@model LoginMobileModel
+@using Nop.Core
+@using Nop.Core.Domain.Customers
+@using NopShop.Plugin.Misc.LoginWithMobile.Models
+
+@inject INopHtmlHelper NopHtml
+@{
+    bool isCalledAsHeaderPanel = !string.IsNullOrEmpty(this.Context.Request.Query["isHeaderPanel"]);
+    Layout = isCalledAsHeaderPanel ? "" : "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Login").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-login-page");
+
+    NopHtml.AppendCssFileParts("~/Plugins/NopShop.Misc.LoginWithMobile/Themes/Traction/Content/Style.css");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Plugins/NopShop.Misc.LoginWithMobile/Themes/Traction/Content/Script.js");
+}
+<div class="page login-page">
+    <div class="page-body">
+        <div class="customer-blocks">
+            @if (Model.RegistrationType == UserRegistrationType.Disabled)
+            {
+                <div class="new-wrapper">
+                    <div class="title">
+                        @T("Account.Register")
+                    </div>
+                    <div class="text">
+                        @T("Account.Register.Result.Disabled")
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="returning-wrapper fieldset">
+                    <div class="phonenumber-holder">
+                        <form class="zar-mobile-login" asp-route="Login"
+                              asp-route-returnurl="@Context.Request.Query["ReturnUrl"]"
+                              asp-route-referralCode="@Context.Request.Query["referralCode"]"
+                              method="post">
+
+                            <div class="zar-mobile-login-brand">
+                                @await Html.PartialAsync("~/Themes/Traction/Views/Shared/_ZarBrand.cshtml")
+                            </div>
+                            <div class="title">
+                                <h1>
+                                    ورود | ثبت نام
+                                </h1>
+                            </div>
+                            <label class="login-hint" asp-for="Username">
+                                لطفا شماره موبایل خود را وارد کنید.
+                            </label>
+
+                            <div class="form-fields">
+                                <div class="inputs zar-mobile-login-number">
+                                    <input asp-for="Username" type="tel" class="username" autofocus="autofocus" dir="ltr" placeholder="09xxxxxxxxx" maxlength="11" autocomplete="tel-national" />
+                                    <span class="inputs-icons">&#x61;</span>
+                                    <span asp-validation-for="Username"></span>
+                                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                                </div>
+                                @if (Model.DisplayCaptcha)
+                                {
+                                    <div class="captcha-box">
+                                        <nop-captcha />
+                                    </div>
+                                }
+                            </div>
+                            <div class="policy" style="text-align:center;">
+                                <a href="/privacy-notice">@T("Plugin.Misc.LoginWithMobile.PrivacyText")</a>
+                            </div>
+                            <div class="buttons btn-active-code-holder">
+                                <input class="button-1 login-button" type="submit" value="ادامه" />
+                            </div>
+
+                            @if (Model.EnableLoginWithEmail)
+                            {
+                                <div class="login-with-email-a-holder">
+                                    <a href="@Url.RouteUrl("Plugin.Misc.LoginWithMobile.LoginWithEmail", new { returnUrl = this.Context.Request.Query["returnUrl"] })" class="login-with-email-a">ورود با پست الکترونیکی</a>
+                                </div>
+                            }
+                            <div class="login-description-holder">
+                                @Html.Raw(Model.LoginDescription)
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<style>
+    .phonenumber-holder {
+        width: 100% !important;
+    }
+</style>

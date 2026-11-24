@@ -1,0 +1,13 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Customer attribute validator",
+  "SystemName": "ZarIran.Misc.CustomerAttributeValidator",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 2,
+  "FileName": "ZarIran.Plugin.Misc.CustomerAttributeValidator.dll",
+  "Description": "This plugin validate custom customer attribute ",
+  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+
+}

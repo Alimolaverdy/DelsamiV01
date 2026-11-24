@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Routing
+@using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund
+@using Nop.Web.Framework.Models.DataTables
+@model DigiPayRefundSearchModel
+@{
+	Layout = "_AdminLayout";
+	NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.payments.Digipay.Refund.SystemName").Text);
+	const string hideSearchBlockAttributeName = "DigiPay.HideSearchBlock";
+	var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+}
+<div class="content">
+
+	@await Html.PartialAsync("~/Plugins/ZarIran.Payments.Digipay/Areas/Admin/Views/DigiPay/_Create.cshtml", Model.RefundRecord)
+
+
+	<div class="container-fluid">
+		<div class="form-horizontal">
+			<div class="cards-group">
+				<div class="card card-default card-search">
+					<div class="card-body" style="min-height:60px">
+
+						<div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+							<div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+						</div>
+
+						<div class="search-body @(hideSearchBlock ? "closed" : "")">
+
+							<div class="form-group row ">
+								<div class="col-md-3">
+									<nop-label asp-for="TrackingCodeKeyWord" />
+								</div>
+
+								<div class="col-md-6">
+									<div class="input-group">
+										<input asp-for="TrackingCodeKeyWord" class="form-control" />
+										<div class="input-group-append">
+											<button type="button" id="search-Refund-Record" class="btn btn-primary">
+												<i class="fas fa-search"></i>
+												جستجو
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr></hr>
+							@await Html.PartialAsync("Table", new DataTablesModel
+  {
+	  Name = "digiPay-Refund-grid",
+	  UrlRead = new DataUrl("RefundList", "DigiPayRefund", new RouteValueDictionary { { "Area", "Admin" } }),
+	  SearchButtonId = "search-Refund-Record",
+	  Length = Model.PageSize,
+	  LengthMenu = Model.AvailablePageSizes,
+	  Filters = new List<FilterParameter>
+							{
+							new FilterParameter(nameof(Model.TrackingCodeKeyWord)),
+							},
+	  ColumnCollection = new List<ColumnProperty>
+							{
+							new ColumnProperty(nameof(DigiPayRefundModel.PaymentTrackingCode))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.PaymentTrackingCode").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "100"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.RefundTrackingCode))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.RefundTrackingCode").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "100"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.Amount))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Amount").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "100"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.PaymentTypeStr))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.PaymentType").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "100"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.Status))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Status").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "50",
+							Render = new RenderCustom("renderColumnStatus")
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.Customer))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Customer").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "80"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.Message))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Message").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "80"
+							},
+							new ColumnProperty(nameof(DigiPayRefundModel.RefundDateTimeOnUtcStr))
+							{
+							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.RefundDateTimeOnUtc").Text,
+							ClassName =  NopColumnClassDefaults.CenterAll,
+							Width = "80"
+							}
+							}
+  })
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	function renderColumnStatus(data, type, row, meta) {
+		return row.Status ? '✅' : '❌';
+	}
+</script>

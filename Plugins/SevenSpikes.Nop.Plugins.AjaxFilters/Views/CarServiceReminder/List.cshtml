@@ -1,0 +1,87 @@
+﻿@model CarServiceReminderListModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    NopHtml.AppendPageCssClassParts("html-address-list-page");
+}
+@section left
+    {
+    @await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = /*CustomerNavigationEnum.Addresses*/160 })
+}
+<div class="page account-page address-list-page">
+    <div class="page-title">
+        <h1>@T("Account.MyAccount") - @T("NobParts.Plugin.Misc.CarInfo.Account.CarServiceReminders")</h1>
+    </div>
+    <div class="page-body">
+        @if (Model.CarServiceReminders.Count > 0)
+        {
+            <div class="address-list">
+                @for (var i = 0; i < Model.CarServiceReminders.Count; i++)
+                {
+                    var carServiceReminder = Model.CarServiceReminders[i];
+                    <div class="section address-item">
+                        <ul class="info">
+
+                            <li>
+                                <label>@T("NobParts.Plugin.Misc.CarInfo.CarServiceReminder.CustomerCarId"):</label>
+                                @carServiceReminder.CustomerCarName
+                            </li>
+
+                            <li>
+                                <label>@T("NobParts.Plugin.Misc.CarInfo.CarServiceReminder.CarServiceReminderType"):</label>
+                                @carServiceReminder.CarServiceReminderTypeStr
+                            </li>
+
+                            <li>
+                                <label>@T("NobParts.Plugin.Misc.CarInfo.CarServiceReminder.DueDate"):</label>
+                                @carServiceReminder.DueDateStr
+                            </li>
+                        </ul>
+                        <div class="buttons">
+                            <button type="button" class="button-2 edit-address-button" onclick="location.href = '@(Url.RouteUrl("CarServiceReminderEdit", new {id = carServiceReminder.Id}))'">@T("Common.Edit")</button>
+
+                            <button type="button" class="button-2 delete-address-button" onclick="deletecustomercar(@(carServiceReminder.Id))">@T("Common.Delete")</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <script asp-location="Footer">
+                function deletecustomercar(id) {
+                    if (confirm('@T("Common.AreYouSure")')) {
+                        var postData = {
+                            id: id
+                        };
+                        addAntiForgeryToken(postData);
+
+                        $.ajax({
+                            cache: false,
+                            type: "POST",
+                            url: "@Url.Action("Delete", "CarServiceReminder")",
+                            data: postData,
+                            dataType: "json",
+                            success: function (data, textStatus, jqXHR) {
+                                location.href = data.redirect;
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('Failed to delete');
+                            }
+                        });
+                    }
+                }
+            </script>
+        }
+        else
+        {
+            <div class="no-data">
+                @T("NobParts.Plugin.Misc.CarInfo.Account.NoCarServiceReminders")
+            </div>
+        }
+        <div class="add-button">
+            <button type="button" class="button-1 add-address-button" onclick="location.href='@Url.RouteUrl("CarServiceReminderAdd")'">@T("Common.AddNew")</button>
+        </div>
+    </div>
+</div>

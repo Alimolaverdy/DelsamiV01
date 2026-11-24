@@ -1,0 +1,224 @@
+﻿@model ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models.ConfigurationModel
+
+@{
+	Layout = "_ConfigurePlugin";
+	NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.IRPost.Configuration.SystemName").Text);
+}
+
+<form asp-controller="IRPost" asp-action="Configure" method="post">
+	<section class="content">
+		<div class="container-fluid">
+			<div class="cards-group">
+				<div class="card card-default">
+					<div class="card-body">
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="User" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="User" asp-required="true" />
+								<span asp-validation-for="User"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="Password" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="Password" asp-required="true" />
+								<span asp-validation-for="Password"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="BaseUrl" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="BaseUrl" asp-required="true" />
+								<span asp-validation-for="BaseUrl"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="ContractCode" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="ContractCode" asp-required="true" />
+								<span asp-validation-for="ContractCode"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="PostNodeCode" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="PostNodeCode" asp-required="true" />
+								<span asp-validation-for="PostNodeCode"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="ShippingMethodId" />
+							</div>
+							<div class="col-md-9">
+								<nop-select asp-for="ShippingMethodId" asp-items="Model.AvailableShippingMethods" />
+								<span asp-validation-for="ShippingMethodId"></span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="EnableManualCalc" asp-required="true" />
+							</div>
+							<div class="col-md-9">
+								<nop-editor asp-for="EnableManualCalc" />
+								<span asp-validation-for="EnableManualCalc"></span>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<div class="col-md-3">
+								<nop-label asp-for="NeighbouringProvinces" />
+							</div>
+							<div class="col-md-9">
+								<div class="input-group-append input-group-required">
+									<div class="input-group">
+										<nop-select asp-for="NeighbouringProvinces" asp-items="Model.AvailableNeighbouringProvinces" asp-multiple="true" />
+									</div>
+									<div class="input-group-btn">
+										<nop-required />
+									</div>
+								</div>
+								<span asp-validation-for="NeighbouringProvinces"></span>
+							</div>
+						</div>
+
+						@*  <div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringZeroToOneKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringZeroToOneKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringZeroToOneKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NonNeighbouringZeroToOneKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NonNeighbouringZeroToOneKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NonNeighbouringZeroToOneKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringOneToTwoKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringOneToTwoKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringOneToTwoKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NonNeighbouringOneToTwoKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NonNeighbouringOneToTwoKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NonNeighbouringOneToTwoKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringTwoToThreeKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringTwoToThreeKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringTwoToThreeKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NonNeighbouringTwoToThreeKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NonNeighbouringTwoToThreeKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NonNeighbouringTwoToThreeKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringThreeToFiveKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringThreeToFiveKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringThreeToFiveKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NonNeighbouringThreeToFiveKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NonNeighbouringThreeToFiveKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NonNeighbouringThreeToFiveKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringFiveToNineKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringFiveToNineKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringFiveToNineKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NonNeighbouringFiveToNineKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NonNeighbouringFiveToNineKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NonNeighbouringFiveToNineKgPostPrice"></span>
+						</div>
+						</div>
+
+						<div class="form-group row">
+						<div class="col-md-3">
+						<nop-label asp-for="NeighbouringMoreThanNineKgPostPrice" />
+						</div>
+						<div class="col-md-9">
+						<nop-editor asp-for="NeighbouringMoreThanNineKgPostPrice" asp-required="true" />
+						<span asp-validation-for="NeighbouringMoreThanNineKgPostPrice"></span>
+						</div>
+						</div> *@
+
+						<div class="form-group row">
+							<div class="col-md-9 offset-md-3">
+								<button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>

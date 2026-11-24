@@ -1,0 +1,76 @@
+﻿@model OrderSubStatusSearchModel
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.List").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatusName.SystemName").Text);
+
+    const string hideSearchBlockAttributeName = "SubStatusPage.HideSearchBlock";
+
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.List")
+    </h1>
+
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                   {
+                       Name = "sub-status-grid",
+                       UrlRead = new DataUrl("List", "SubStatus", new RouteValueDictionary { { "Area", "Admin" } }),
+                       SearchButtonId = "search-customer-attribute-validations",
+                       Length = Model.PageSize,
+                       LengthMenu = Model.AvailablePageSizes,
+                       Filters = new List<FilterParameter>
+                       {
+
+                       },
+                       ColumnCollection = new List<ColumnProperty>
+                        {
+                        new ColumnProperty(nameof(OrderSubStatusModel.Name))
+                        {
+                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.FullName").Text,
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        Width = "100"
+                        },
+                        new ColumnProperty(nameof(OrderSubStatusModel.SystemName))
+                        {
+                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.SystemName").Text,
+                        ClassName =  NopColumnClassDefaults.CenterAll,
+                        Width = "80"
+                        },
+                        new ColumnProperty(nameof(OrderSubStatusModel.Id))
+                        {
+                        Title = T("Admin.Common.Edit").Text,
+                        Width = "80",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderButtonEdit(new DataUrl("Edit"))
+                        }
+                        }
+                   })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

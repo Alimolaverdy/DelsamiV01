@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "AdvRedirect",
+  "SystemName": "Misc.AdvRedirect",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.60"],
+  "Author": "Gerardo Tous",
+  "DisplayOrder": 2,
+  "FileName": "Nop.Plugin.Misc.AdvRedirect.dll",
+  "Description": "Advanced url redirections"
+}  

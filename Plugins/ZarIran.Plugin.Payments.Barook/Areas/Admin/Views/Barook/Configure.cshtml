@@ -1,0 +1,70 @@
+﻿@model ConfigurationModel
+@{
+	Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="Barook" asp-action="Configure" method="post">
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-body">
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-label asp-for="TerminalCode" />
+					</div>
+					<div class="col-md-9">
+						<nop-editor asp-for="TerminalCode" />
+						<span asp-validation-for="TerminalCode"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-label asp-for="TerminalPassword" />
+					</div>
+					<div class="col-md-9">
+						<nop-editor asp-for="TerminalPassword" />
+						<span asp-validation-for="TerminalPassword"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-label asp-for="BaseUrl" />
+					</div>
+					<div class="col-md-9">
+						<nop-editor asp-for="BaseUrl" />
+						<span asp-validation-for="BaseUrl"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-label asp-for="businessServiceSlug" />
+					</div>
+					<div class="col-md-9">
+						<nop-editor asp-for="businessServiceSlug" />
+						<span asp-validation-for="businessServiceSlug"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-label asp-for="paymentDailyCount" />
+					</div>
+					<div class="col-md-9">
+						<nop-select asp-for="paymentDailyCount" asp-items="Model.AvaiablepaymentDailyCount" />
+						<span asp-validation-for="paymentDailyCount"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-9 col-md-offset-3">
+						<input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
