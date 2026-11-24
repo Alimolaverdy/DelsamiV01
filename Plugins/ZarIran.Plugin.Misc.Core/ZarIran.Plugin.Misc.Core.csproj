@@ -1,8 +1,10 @@
+
+
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Copyright>ZarIran</Copyright>
-		<Company>ZarIran</Company>
+		<Copyright>Delsami</Copyright>
+		<Company>Delsami</Company>
 		<Authors>AliMolaverdi</Authors>
 		<PackageLicenseUrl>PACKAGE_LICENSE_URL</PackageLicenseUrl>
 		<PackageProjectUrl>PACKAGE_PROJECT_URL</PackageProjectUrl>
@@ -15,8 +17,26 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="Components\Wallet\**" />
+	  <Compile Remove="Controllers\**" />
+	  <Compile Remove="Middlewares\**" />
+	  <Compile Remove="Scripts\**" />
+	  <Compile Remove="Settings\**" />
+	  <Compile Remove="Styles\**" />
+	  <Compile Remove="Validators\**" />
 	  <EmbeddedResource Remove="Components\Wallet\**" />
+	  <EmbeddedResource Remove="Controllers\**" />
+	  <EmbeddedResource Remove="Middlewares\**" />
+	  <EmbeddedResource Remove="Scripts\**" />
+	  <EmbeddedResource Remove="Settings\**" />
+	  <EmbeddedResource Remove="Styles\**" />
+	  <EmbeddedResource Remove="Validators\**" />
 	  <None Remove="Components\Wallet\**" />
+	  <None Remove="Controllers\**" />
+	  <None Remove="Middlewares\**" />
+	  <None Remove="Scripts\**" />
+	  <None Remove="Settings\**" />
+	  <None Remove="Styles\**" />
+	  <None Remove="Validators\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
@@ -49,14 +69,6 @@
 	  <None Update="Views\_ViewImports.cshtml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Middlewares\" />
-	  <Folder Include="Controllers\" />
-	  <Folder Include="Validators\" />
-	  <Folder Include="Styles\" />
-	  <Folder Include="Settings\" />
-	  <Folder Include="Scripts\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="DeepCloner" Version="0.10.4" />
