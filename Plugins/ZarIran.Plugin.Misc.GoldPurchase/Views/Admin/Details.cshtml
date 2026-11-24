@@ -1,9 +1,0 @@
-﻿@model ZarIran.Plugin.Misc.GoldPurchase.Models.CustomerGoldWalletModel
-@{ Layout = "_AdminLayout"; ViewBag.PageTitle = "کیف پول طلای مشتری"; }
-<div class="content-header clearfix"><h1 class="float-left">کیف پول طلای @Model.CustomerName <small>#@Model.CustomerId</small></h1>
-<div class="float-right"><a class="btn btn-default" href="@Url.Action("List", "GoldWalletAdmin", new { area = "Admin" })">بازگشت به کاربران</a>
-<a class="btn btn-default" href="@Url.Action("Edit", "Customer", new { area = "Admin", id = Model.CustomerId })">پرونده مشتری</a></div></div>
-<section class="content"><div class="container-fluid">
-@Html.AntiForgeryToken()
-@await Component.InvokeAsync("GoldWallet", new { widgetZone = "", additionalData = new Nop.Web.Areas.Admin.Models.Customers.CustomerModel { Id = Model.CustomerId }, historyPage = Model.HistoryPage })
-</div></section>
