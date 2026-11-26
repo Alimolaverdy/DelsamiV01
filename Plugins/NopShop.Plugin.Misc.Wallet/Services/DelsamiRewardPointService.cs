@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace NopShop.Plugin.Misc.Wallet.Services;
 
-public class ZarIranRewardPointService : RewardPointService, IRewardPointService
+public class DelsamiRewardPointService : RewardPointService, IRewardPointService
 {
 
-	public ZarIranRewardPointService(IDateTimeHelper dateTimeHelper, ILocalizationService localizationService, IRepository<RewardPointsHistory> rewardPointsHistoryRepository,
+	public DelsamiRewardPointService(IDateTimeHelper dateTimeHelper, ILocalizationService localizationService, IRepository<RewardPointsHistory> rewardPointsHistoryRepository,
 										RewardPointsSettings rewardPointsSettings) : base(dateTimeHelper, localizationService, rewardPointsHistoryRepository, rewardPointsSettings)
 	{
 	}

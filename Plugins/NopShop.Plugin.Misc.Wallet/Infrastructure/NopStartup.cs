@@ -25,7 +25,7 @@ namespace NopShop.Plugin.Misc.Wallet.Infrastructure
 
             services.AddScoped<CustomViewLocationExpander>();
             services.AddScoped<IOrderModelFactory, CustomOrderModelFactory>();
-            services.AddScoped<IRewardPointService, ZarIranRewardPointService>();
+            services.AddScoped<IRewardPointService, DelsamiRewardPointService>();
  
             services.Configure<RazorViewEngineOptions>(options =>
             {

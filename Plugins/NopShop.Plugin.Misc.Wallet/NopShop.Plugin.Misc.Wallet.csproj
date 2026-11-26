@@ -18,6 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Shared\**" />
+    <EmbeddedResource Remove="Views\Shared\**" />
+    <None Remove="Views\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="logo.png" />
     <None Remove="plugin.json" />
     <None Remove="Views\Configure.cshtml" />
@@ -52,12 +58,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Shared\Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ZarIran.Plugin.Misc.Core">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+    <Reference Include="Delsami.Plugin.Misc.Core">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

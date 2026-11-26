@@ -56,7 +56,7 @@ namespace NopShop.Plugin.Misc.Wallet.Infrastructure.Cache
                     await _rewardPointService.AddRewardPointsHistoryEntryAsync(customer, Convert.ToInt32(item.PriceInclTax), (await _storeContext.GetCurrentStoreAsync()).Id, "افزایش موجودی کیف پول", eventMessage.Order);
             }
         }
-        // Commented Bec Of ZarIran.Payments.TorobPay
+        // Commented Bec Of Delsami.Payments.TorobPay
         //public async Task HandleEventAsync(OrderRefundedEvent eventMessage)
         //{
         //    var customer = await _customerService.GetCustomerByIdAsync(eventMessage.Order.CustomerId);
