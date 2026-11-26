@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Enums;
+﻿using Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Enums;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Responses
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Responses
 {
     public class FulfillmentDecisionDto
     {

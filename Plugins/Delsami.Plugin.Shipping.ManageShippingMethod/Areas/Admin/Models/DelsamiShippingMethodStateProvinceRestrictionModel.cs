@@ -2,17 +2,17 @@
 using Nop.Web.Framework.Models;
 using Nop.Web.Areas.Admin.Models.Shipping;
 using System.Collections.Generic;
-using ZarIran.Plugin.Misc.Core.Domain;
+using Delsami.Plugin.Misc.Core.Domain;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
 {
-    public record ZarIranShippingMethodStateProvinceRestrictionModel : BaseNopModel
+    public record DelsamiShippingMethodStateProvinceRestrictionModel : BaseNopModel
     {
         #region Ctor
 
-        public ZarIranShippingMethodStateProvinceRestrictionModel()
+        public DelsamiShippingMethodStateProvinceRestrictionModel()
         {
             AvailableShippingMethods = new List<ShippingMethodModel>();
             AvailableStateProvinces = new List<SelectListItem>();
@@ -29,7 +29,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
         public IList<SelectListItem> AvailableStateProvinces { get; set; }
         public IList<City> AvailableCities { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ManageShippingMethod.ProvinceId")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ManageShippingMethod.ProvinceId")]
         public int SelectedStateProviceId { get; set; }
 
         //[country id] / [shipping method id] / [restricted]

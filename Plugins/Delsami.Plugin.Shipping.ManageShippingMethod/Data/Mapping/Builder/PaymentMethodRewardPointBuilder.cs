@@ -1,5 +1,5 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Domain;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Domain;
 using Nop.Data.Mapping.Builders;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Data.Mapping.Builder
 {
     internal class PaymentMethodRewardPointBuilder : NopEntityBuilder<PaymentMethodRewardPoint>
     {

@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
+﻿using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
 using Nop.Web.Areas.Admin.Models.Directory;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Services.Shipping;
@@ -11,34 +11,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Nop.Services.Configuration;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
 {
-    public class ZarIranShippingModelFactory : IZarIranShippingModelFactory
+    public class DelsamiShippingModelFactory : IDelsamiShippingModelFactory
     {
         #region Fields
-        private readonly IZarIranStateProvinceService _ZarIranStateProvinceService;
+        private readonly IDelsamiStateProvinceService _DelsamiStateProvinceService;
         private readonly IShippingService _shippingService;
-        private readonly IZarIranShippingService _ZarIranShippingService;
+        private readonly IDelsamiShippingService _DelsamiShippingService;
         private readonly IBaseAdminModelFactory _baseAdminModelFactory;
         private readonly ISettingService _settingService;
         private readonly ICityService _cityService;
         #endregion
 
         #region Ctor
-        public ZarIranShippingModelFactory(IZarIranStateProvinceService ZarIranStateProvinceService,
+        public DelsamiShippingModelFactory(IDelsamiStateProvinceService DelsamiStateProvinceService,
                                             IShippingService shippingService,
-                                            IZarIranShippingService ZarIranShippingService,
+                                            IDelsamiShippingService DelsamiShippingService,
                                             IBaseAdminModelFactory baseAdminModelFactory,
                                             ICityService cityService,
                                             ISettingService settingService
 )
         {
-            _ZarIranStateProvinceService = ZarIranStateProvinceService;
+            _DelsamiStateProvinceService = DelsamiStateProvinceService;
             _shippingService = shippingService;
-            _ZarIranShippingService = ZarIranShippingService;
+            _DelsamiShippingService = DelsamiShippingService;
             _baseAdminModelFactory = baseAdminModelFactory;
             _settingService = settingService;
             _cityService = cityService;
@@ -55,7 +55,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
             return configurationModel;
 
         }
-        public async Task<ZarIranShippingMethodStateProvinceRestrictionModel> PrepareZarIranShippingMethodRestrictionModelAsync(ZarIranShippingMethodStateProvinceRestrictionModel model)
+        public async Task<DelsamiShippingMethodStateProvinceRestrictionModel> PrepareDelsamiShippingMethodRestrictionModelAsync(DelsamiShippingMethodStateProvinceRestrictionModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
@@ -63,7 +63,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
             var setting = await _settingService.LoadSettingAsync<ManageShippingMethodSetting>();
             var selectedCountryId = setting.CountryId;
 
-            var stateProvinces = await _ZarIranStateProvinceService.GetAllStateProvincesByCountryIdAsync(selectedCountryId);
+            var stateProvinces = await _DelsamiStateProvinceService.GetAllStateProvincesByCountryIdAsync(selectedCountryId);
 
             model.SelectedStateProviceId= stateProvinces.FirstOrDefault(a=>a.Name=="تهران").Id;
             model.AvailableStateProvinces = stateProvinces.Select(p => new SelectListItem()
@@ -75,10 +75,10 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
             return model;
         }
 
-        public async Task<ZarIranShippingMethodStateProvinceRestrictionModel> PrepareZarIranShippingMethodRestrictionModelAsync(int stateProvinceId)
+        public async Task<DelsamiShippingMethodStateProvinceRestrictionModel> PrepareDelsamiShippingMethodRestrictionModelAsync(int stateProvinceId)
         {
             var cities = await _cityService.GetCitiesByStateProvinceIdAsync(stateProvinceId);
-            var model = new ZarIranShippingMethodStateProvinceRestrictionModel();
+            var model = new DelsamiShippingMethodStateProvinceRestrictionModel();
 
             model.AvailableCities = cities;
 
@@ -91,7 +91,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories
                     if (!model.Restricted.ContainsKey(city.Id))
                         model.Restricted[city.Id] = new Dictionary<int, bool>();
 
-                    model.Restricted[city.Id][shippingMethod.Id] = await _ZarIranShippingService.CityRestrictionExistsAsync(shippingMethod, city.Id);
+                    model.Restricted[city.Id][shippingMethod.Id] = await _DelsamiShippingService.CityRestrictionExistsAsync(shippingMethod, city.Id);
                 }
             }
 

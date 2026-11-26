@@ -1,7 +1,7 @@
 ﻿using Nop.Core.Configuration;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod
+namespace Delsami.Plugin.Shipping.ManageShippingMethod
 {
     public class ManageShippingMethodSetting : ISettings
     {

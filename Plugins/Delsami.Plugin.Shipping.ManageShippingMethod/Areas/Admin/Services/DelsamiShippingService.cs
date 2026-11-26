@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Shipping.ManageShippingMethod.Domain;
+﻿using Delsami.Plugin.Shipping.ManageShippingMethod.Domain;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
 using System;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
 
-public class ZarIranShippingService : IZarIranShippingService
+public class DelsamiShippingService : IDelsamiShippingService
 {
     #region Fields
     private readonly IRepository<ShippingMethodCityRestriction> _shippingMethodCityRestrictionRepository;
@@ -17,7 +17,7 @@ public class ZarIranShippingService : IZarIranShippingService
     #endregion
 
     #region Ctor
-    public ZarIranShippingService(IRepository<ShippingMethodCityRestriction> shippingMethodStateProvinceRestriction, IRepository<ShippingMethod> shippingMethodepository)
+    public DelsamiShippingService(IRepository<ShippingMethodCityRestriction> shippingMethodStateProvinceRestriction, IRepository<ShippingMethod> shippingMethodepository)
     {
         _shippingMethodCityRestrictionRepository = shippingMethodStateProvinceRestriction;
         _shippingMethodepository = shippingMethodepository;

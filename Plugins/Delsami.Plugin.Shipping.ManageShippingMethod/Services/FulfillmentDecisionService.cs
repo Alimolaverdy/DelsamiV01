@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Responses;
+using Delsami.Plugin.Misc.Core.Services.ApiCaller;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Responses;
 using Nop.Services.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Services
 {
     public class FulfillmentDecisionService : IFulfillmentDecisionService
     {

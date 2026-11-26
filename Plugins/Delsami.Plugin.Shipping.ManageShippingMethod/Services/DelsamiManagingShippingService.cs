@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Shipping.Core.Services;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Factories;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+﻿using Delsami.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Factories;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -24,9 +24,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Services
 {
-    public class ZarIranManagingShippingService : ShippingService
+    public class DelsamiManagingShippingService : ShippingService
     {
 
         #region Fields
@@ -37,13 +37,13 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
         private readonly IPriceCalculationService _priceCalculationService;
         private readonly ShippingSettings _shippingSettings;
         private readonly ILocalizationService _localizationService;
-        private readonly IZarIranShippingService _ZarIranShippingService;
+        private readonly IDelsamiShippingService _DelsamiShippingService;
         private readonly ManageShippingMethodSetting _manageShippingMethodSetting;
         private readonly IAddressCityService _addressCityService;
         #endregion
 
         #region Ctor
-        public ZarIranManagingShippingService(IAddressService addressService,
+        public DelsamiManagingShippingService(IAddressService addressService,
                                        ICheckoutAttributeParser checkoutAttributeParser,
                                        ICountryService countryService,
                                        IAddressCityService addressCityService,
@@ -62,7 +62,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
                                        IStateProvinceService stateProvinceService,
                                        IStoreContext storeContext,
                                        ShippingSettings shippingSettings,
-                                       IZarIranShippingService ZarIranShippingService,
+                                       IDelsamiShippingService DelsamiShippingService,
                                        ShoppingCartSettings shoppingCartSettings,
                                        ManageShippingMethodSetting manageShippingMethodSetting) : base(addressService,
                                                                                          checkoutAttributeParser,
@@ -91,7 +91,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
             _priceCalculationService = priceCalculationService;
             _shippingSettings = shippingSettings;
             _localizationService = localizationService;
-            _ZarIranShippingService = ZarIranShippingService;
+            _DelsamiShippingService = DelsamiShippingService;
             _manageShippingMethodSetting = manageShippingMethodSetting;
         }
         #endregion
@@ -199,8 +199,8 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Services
             foreach (var shippingOption in result.ShippingOptions.ToList())
             {
 
-                var shippingMethod = await _ZarIranShippingService.GetShippingMethodByNameAsync(shippingOption.Name);
-                bool isRestricted = await _ZarIranShippingService.CityRestrictionExistsAsync(shippingMethod, customerCityId);
+                var shippingMethod = await _DelsamiShippingService.GetShippingMethodByNameAsync(shippingOption.Name);
+                bool isRestricted = await _DelsamiShippingService.CityRestrictionExistsAsync(shippingMethod, customerCityId);
 
                 if (!isRestricted)
                     isRestricted = disabledShippingMethods.Any(a => a == shippingMethod.Id);

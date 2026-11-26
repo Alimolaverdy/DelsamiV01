@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Enums
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Enums
 {
     public enum FulfillmentType
     {

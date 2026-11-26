@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions;
+﻿using Delsami.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions;
 using Nop.Services.Common;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod
+namespace Delsami.Plugin.Shipping.ManageShippingMethod
 {
     public class ManageShippingMethodPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
     {
@@ -35,18 +35,18 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.SystemName"] = "ManageShippingMethod",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.Name"] = "ZarIran ManageShippingMethod",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.List"] = "ManageShippingMethod List",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.List.SystemName"] = "ManageShippingMethodList",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName"] = "ManageShippingMethodConfiguration",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.StateProvince"] = "State Province",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.StateProvince.Restrictions.Description"] = "Restrictions of State Province Shipping",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.ShippingMethodStateProvinceRestrictionModel.StateProvinceId"] = "State Province Id ",
-                ["ZarIran.Plugin.Shipping.ManageShippingMethod.ShippingMethodStateProvinceRestrictionModel.ShippingMethodId"] = "Shipping Method Id "
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.SystemName"] = "ManageShippingMethod",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.Name"] = "Delsami ManageShippingMethod",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.List"] = "ManageShippingMethod List",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.List.SystemName"] = "ManageShippingMethodList",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName"] = "ManageShippingMethodConfiguration",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.StateProvince"] = "State Province",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.StateProvince.Restrictions.Description"] = "Restrictions of State Province Shipping",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.ShippingMethodStateProvinceRestrictionModel.StateProvinceId"] = "State Province Id ",
+                ["Delsami.Plugin.Shipping.ManageShippingMethod.ShippingMethodStateProvinceRestrictionModel.ShippingMethodId"] = "Shipping Method Id "
 
 
             });
@@ -62,19 +62,19 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var manageShippingMethodSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.SystemName");
-            var manageShippingMethodName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.Name");
-            var manageShippingMethodListName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.List");
-            var manageShippingMethodListSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.List.SystemName");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var manageShippingMethodSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.SystemName");
+            var manageShippingMethodName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.Name");
+            var manageShippingMethodListName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.List");
+            var manageShippingMethodListSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.List.SystemName");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -106,7 +106,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod
                 },
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = manageShippingMethodName,
                 SystemName = manageShippingMethodSystemName,
@@ -117,7 +117,7 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }

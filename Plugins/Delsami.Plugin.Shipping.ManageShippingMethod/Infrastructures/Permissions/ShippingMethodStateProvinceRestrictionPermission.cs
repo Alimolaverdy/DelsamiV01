@@ -2,7 +2,7 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions
 {
     public class ShippingMethodStateProvinceRestrictionPermission : IPermissionProvider
     {

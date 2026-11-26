@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Factories;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Services;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Factories;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -13,7 +13,7 @@ using Nop.Services.Security;
 using Nop.Services.Shipping;
 using Nop.Web.Areas.Admin.Factories;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Infrastructures
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Infrastructures
 {
     public class NopStartup : INopStartup
     {
@@ -27,14 +27,14 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Infrastructures
         {
             services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddScoped<IPermissionService, PermissionService>();
-            services.AddScoped<IZarIranShippingModelFactory, ZarIranShippingModelFactory>();
+            services.AddScoped<IDelsamiShippingModelFactory, DelsamiShippingModelFactory>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<ILocalizationService, LocalizationService>();
-            services.AddScoped<IZarIranStateProvinceService, ZarIranStateProvinceService>();
-            services.AddScoped<IZarIranShippingService, ZarIranShippingService>();
+            services.AddScoped<IDelsamiStateProvinceService, DelsamiStateProvinceService>();
+            services.AddScoped<IDelsamiShippingService, DelsamiShippingService>();
             services.AddScoped<ISettingService, SettingService>();
             services.AddScoped<IBaseAdminModelFactory, BaseAdminModelFactory>();
-            services.AddScoped<IShippingService, ZarIranManagingShippingService>();
+            services.AddScoped<IShippingService, DelsamiManagingShippingService>();
             services.AddScoped<IFulfillmentDecisionService, FulfillmentDecisionService>();
             services.AddScoped<IFulfillmentDecisionFactory, FulfillmentDecisionFactory>();
         }

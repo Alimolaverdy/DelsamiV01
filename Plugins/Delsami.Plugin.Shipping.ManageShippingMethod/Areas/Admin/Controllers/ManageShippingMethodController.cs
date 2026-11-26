@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Domain;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Services;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Domain;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Infrastructures.Permissions;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -18,20 +18,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Controllers;
 
 public class ManageShippingMethodController : BaseAdminController
 {
     #region Fields
     private readonly IPermissionService _permissionService;
-    private readonly IZarIranShippingModelFactory _ZarIranShippingModelFactory;
+    private readonly IDelsamiShippingModelFactory _DelsamiShippingModelFactory;
     private readonly IShippingService _shippingService;
     private readonly INotificationService _notificationService;
     private readonly ILocalizationService _localizationService;
-    private readonly IZarIranStateProvinceService _ZarIranStateProvinceService;
-    private readonly IZarIranShippingService _ZarIranShippingService;
+    private readonly IDelsamiStateProvinceService _DelsamiStateProvinceService;
+    private readonly IDelsamiShippingService _DelsamiShippingService;
     private readonly ISettingService _settingService;
     private readonly ICityService _cityService;
     #endregion
@@ -39,22 +39,22 @@ public class ManageShippingMethodController : BaseAdminController
     #region Ctor
 
     public ManageShippingMethodController(IPermissionService permissionService,
-                                          IZarIranShippingModelFactory ZarIranShippingModelFactory,
+                                          IDelsamiShippingModelFactory DelsamiShippingModelFactory,
                                           IShippingService shippingService,
                                           INotificationService notificationService,
                                           ILocalizationService localizationService,
-                                          IZarIranStateProvinceService ZarIranStateProvinceService,
-                                          IZarIranShippingService ZarIranShippingService,
+                                          IDelsamiStateProvinceService DelsamiStateProvinceService,
+                                          IDelsamiShippingService DelsamiShippingService,
                                           ICityService cityService,
                                           ISettingService settingService)
     {
         _permissionService = permissionService;
-        _ZarIranShippingModelFactory = ZarIranShippingModelFactory;
+        _DelsamiShippingModelFactory = DelsamiShippingModelFactory;
         _shippingService = shippingService;
         _notificationService = notificationService;
         _localizationService = localizationService;
-        _ZarIranStateProvinceService = ZarIranStateProvinceService;
-        _ZarIranShippingService = ZarIranShippingService;
+        _DelsamiStateProvinceService = DelsamiStateProvinceService;
+        _DelsamiShippingService = DelsamiShippingService;
         _settingService = settingService;
         _cityService = cityService;
     }
@@ -70,13 +70,13 @@ public class ManageShippingMethodController : BaseAdminController
         var selectedCountryId = setting.CountryId;
 
 
-        var model = await _ZarIranShippingModelFactory.PrepareConfigureModelAsync(new ConfigurationModel { CountryId = selectedCountryId });
+        var model = await _DelsamiShippingModelFactory.PrepareConfigureModelAsync(new ConfigurationModel { CountryId = selectedCountryId });
         model.DisabledShippingMethods = !string.IsNullOrWhiteSpace(setting.DisabledShippingMethods) ? setting.DisabledShippingMethods.Split(',').Select(int.Parse)?.ToList() : new List<int>();
         model.AvailableShippingMethods = await prepareShippingMethods();
         model.FulfillmentDecisionEnabled = setting.FulfillmentDecisionEnabled;
         model.FulfillmentDecisionBaseDomain = setting.FulfillmentDecisionBaseDomain;
 
-        return View("~/Plugins/ZarIran.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/Configure.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/Configure.cshtml", model);
     }
 
     [HttpPost]
@@ -106,16 +106,16 @@ public class ManageShippingMethodController : BaseAdminController
             return AccessDeniedView();
 
         //prepare model
-        var model = await _ZarIranShippingModelFactory.PrepareZarIranShippingMethodRestrictionModelAsync(new ZarIranShippingMethodStateProvinceRestrictionModel());
+        var model = await _DelsamiShippingModelFactory.PrepareDelsamiShippingMethodRestrictionModelAsync(new DelsamiShippingMethodStateProvinceRestrictionModel());
 
-        return View("~/Plugins/ZarIran.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/Restrictions.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/Restrictions.cshtml", model);
     }
 
     public async Task<IActionResult> GetShippingRestrictions(int stateProvinceId)
     {
-        var model = await _ZarIranShippingModelFactory.PrepareZarIranShippingMethodRestrictionModelAsync(stateProvinceId);
+        var model = await _DelsamiShippingModelFactory.PrepareDelsamiShippingMethodRestrictionModelAsync(stateProvinceId);
 
-        return PartialView("~/Plugins/ZarIran.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/_RestrictionsTable.cshtml", model);
+        return PartialView("~/Plugins/Delsami.Shipping.ManageShippingMethod/Areas/Admin/Views/ManageShippingMethod/_RestrictionsTable.cshtml", model);
 
     }
 
@@ -125,7 +125,7 @@ public class ManageShippingMethodController : BaseAdminController
     //we use 2048 value because in some cases default value (1024) is too small for this action
     [RequestFormLimits(ValueCountLimit = 2048)]
     [HttpPost, ActionName("Restrictions")]
-    public virtual async Task<IActionResult> RestrictionSave(ZarIranShippingMethodStateProvinceRestrictionModel model, IFormCollection form)
+    public virtual async Task<IActionResult> RestrictionSave(DelsamiShippingMethodStateProvinceRestrictionModel model, IFormCollection form)
     {
         if (!await _permissionService.AuthorizeAsync(ShippingMethodStateProvinceRestrictionPermission.ManageShippingMethod))
             return AccessDeniedView();
@@ -146,14 +146,14 @@ public class ManageShippingMethodController : BaseAdminController
             foreach (var city in cities)
             {
                 var restrict = CityIdsToRestrict.Contains(city.Id);
-                var shippingMethodCityMappings = await _ZarIranShippingService.GetShippingMethodCityMappingAsync(shippingMethod.Id, city.Id);
+                var shippingMethodCityMappings = await _DelsamiShippingService.GetShippingMethodCityMappingAsync(shippingMethod.Id, city.Id);
 
                 if (restrict)
                 {
                     if (shippingMethodCityMappings.Any())
                         continue;
 
-                    await _ZarIranShippingService.InsertShippingMethodCityMappingAsync(new ShippingMethodCityRestriction { CityId = city.Id, ShippingMethodId = shippingMethod.Id });
+                    await _DelsamiShippingService.InsertShippingMethodCityMappingAsync(new ShippingMethodCityRestriction { CityId = city.Id, ShippingMethodId = shippingMethod.Id });
                     await _shippingService.UpdateShippingMethodAsync(shippingMethod);
                 }
                 else
@@ -161,7 +161,7 @@ public class ManageShippingMethodController : BaseAdminController
                     if (!shippingMethodCityMappings.Any())
                         continue;
 
-                    await _ZarIranShippingService.DeleteShippingMethodCityMappingAsync(shippingMethodCityMappings.FirstOrDefault());
+                    await _DelsamiShippingService.DeleteShippingMethodCityMappingAsync(shippingMethodCityMappings.FirstOrDefault());
                     await _shippingService.UpdateShippingMethodAsync(shippingMethod);
                 }
             }

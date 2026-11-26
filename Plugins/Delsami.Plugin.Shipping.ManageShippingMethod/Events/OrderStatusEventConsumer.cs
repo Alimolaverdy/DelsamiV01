@@ -2,7 +2,7 @@
 using Nop.Services.Events;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Events
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Events
 {
     public class OrderStatusEventConsumer : IConsumer<OrderStatusChangedEvent>
     {

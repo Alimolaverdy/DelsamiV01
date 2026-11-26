@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests;
+﻿using Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Factories
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Factories
 {
     public class FulfillmentDecisionFactory : IFulfillmentDecisionFactory
     {

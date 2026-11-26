@@ -1,14 +1,14 @@
 ﻿{
   "Group": "Shipping",
   "FriendlyName": "Manage Shipping Method",
-  "SystemName": "ZarIran.Shipping.ManageShippingMethod",
+  "SystemName": "Delsami.Shipping.ManageShippingMethod",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 6,
-  "FileName": "ZarIran.Plugin.Shipping.ManageShippingMethod.dll",
+  "FileName": "Delsami.Plugin.Shipping.ManageShippingMethod.dll",
   "Description": "Managing Shipping Method",
   "DependsOnSystemNames": [
-    "ZarIran.Shipping.Core"
+    "Delsami.Shipping.Core"
   ]
 }

@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests
+﻿namespace Delsami.Plugin.Shipping.ManageShippingMethod.Models.FulfillmentDecisions.Requests
 {
     public record FulfillmentDecisionItemDto
     {

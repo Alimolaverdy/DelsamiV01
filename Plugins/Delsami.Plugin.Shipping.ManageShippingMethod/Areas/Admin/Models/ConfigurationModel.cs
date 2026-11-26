@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
 {
     public class ConfigurationModel
     {
@@ -18,13 +18,13 @@ namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Areas.Admin.Models
 
         public IList<SelectListItem> AvailableCountries { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ManageShippingMethod.DisabledShippingMethods")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ManageShippingMethod.DisabledShippingMethods")]
         public IList<int>DisabledShippingMethods{ get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ManageShippingMethod.FulfillmentDecisionEnabled")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ManageShippingMethod.FulfillmentDecisionEnabled")]
         public bool FulfillmentDecisionEnabled { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ManageShippingMethod.FulfillmentDecisionBaseDomain")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ManageShippingMethod.FulfillmentDecisionBaseDomain")]
         public string FulfillmentDecisionBaseDomain { get; set; }
 
         public IList<SelectListItem> AvailableShippingMethods{ get; set; }

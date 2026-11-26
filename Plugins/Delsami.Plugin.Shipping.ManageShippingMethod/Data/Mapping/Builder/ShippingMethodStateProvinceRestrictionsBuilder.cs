@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.ManageShippingMethod.Domain;
+using Delsami.Plugin.Shipping.ManageShippingMethod.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.ManageShippingMethod.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.ManageShippingMethod.Data.Mapping.Builder
 {
     internal class ShippingMethodStateProvinceRestrictionsBuilder : NopEntityBuilder<ShippingMethodCityRestriction>
     {

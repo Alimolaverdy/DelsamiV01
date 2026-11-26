@@ -6,7 +6,7 @@
     //page title
     ViewBag.PageTitle = T("Admin.Customers.Customers").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Shipping.ManageShippingMethod.Configuration.SystemName").Text);
 }
 <form asp-controller="ManageShippingMethod" asp-action="Configure" method="post">
     <section class="content">
@@ -27,7 +27,7 @@
                                         ShippingMethods.setOptions({
                                             autoClose: false,
                                             filter: "contains",
-                                            placeholder: '@T("ZarIran.Plugin.Misc.ManageShippingMethod.SelectShippingMethods")'
+                                            placeholder: '@T("Delsami.Plugin.Misc.ManageShippingMethod.SelectShippingMethods")'
                                         });
 
                                         @if (Model.AvailableShippingMethods.Count == 0)
@@ -35,7 +35,7 @@
                                                     <text>
                                                         ShippingMethods.setOptions({
                                                             enable: false,
-                                                            placeholder: '@T("ZarIran.Plugin.Misc.ManageShippingMethod.NoShippingMethods")'
+                                                            placeholder: '@T("Delsami.Plugin.Misc.ManageShippingMethod.NoShippingMethods")'
                                                         });
                                                         ShippingMethods._placeholder();
                                                         ShippingMethods._enable();

@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Copyright>ZarIran</Copyright>
-		<Company>ZarIran</Company>
+		<Copyright>Delsami</Copyright>
+		<Company>Delsami</Company>
 		<Authors>AliMolaverdi</Authors>
 		<PackageLicenseUrl>PACKAGE_LICENSE_URL</PackageLicenseUrl>
 		<PackageProjectUrl>PACKAGE_PROJECT_URL</PackageProjectUrl>
 		<RepositoryUrl>REPOSITORY_URL</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
-		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Shipping.ManageShippingMethod</OutputPath>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Shipping.ManageShippingMethod</OutputPath>
 		<OutDir>$(OutputPath)</OutDir>
 		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your    project. You need to set this parameter to true if your plugin has a nuget package to ensure that   the dlls copied from the NuGet cache to the output of your project-->
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -22,16 +22,16 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="ZarIran.Plugin.Misc.Core">
-	    <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+	  <Reference Include="Delsami.Plugin.Misc.Core">
+	    <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
-	  <Reference Include="ZarIran.Plugin.Shipping.Core">
-	    <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Shipping.Core\ZarIran.Plugin.Shipping.Core.dll</HintPath>
+	  <Reference Include="Delsami.Plugin.Shipping.Core">
+	    <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Shipping.Core\Delsami.Plugin.Shipping.Core.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
-	  <Reference Include="ZarIran.Plugin.Widgets.AddressLocation">
-	    <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Widgets.AddressLocation\ZarIran.Plugin.Widgets.AddressLocation.dll</HintPath>
+	  <Reference Include="Delsami.Plugin.Widgets.AddressLocation">
+	    <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Widgets.AddressLocation\Delsami.Plugin.Widgets.AddressLocation.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	</ItemGroup>
