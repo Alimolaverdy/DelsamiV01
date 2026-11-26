@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Domain;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Domain;
 
 public class ShipmentTrackingNumberImport: BaseEntity
 {

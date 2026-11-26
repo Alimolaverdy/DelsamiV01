@@ -7,9 +7,9 @@ using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Models;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 {
 
     [AuthorizeAdmin]
@@ -61,7 +61,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
                 TipaxTrackingLink=settings.TipaxTrackingLink,
             };
 
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentManagement/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentManagement/Configure.cshtml", model);
         }
 
         [HttpPost]
@@ -84,7 +84,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 
             _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Configuration.Updated"));
 
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentManagement/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentManagement/Configure.cshtml", model);
         }
 
         #endregion

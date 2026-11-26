@@ -3,7 +3,7 @@
 @inject IGenericAttributeService genericAttributeService
 @inject IWorkContext workContext
 @{
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport").Text);
     Layout = "_AdminLayout";
     NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/NopShop.Misc.Calendare/Content/js/jquery.md.bootstrap.datetimepicker.js", "");
     const string hideSearchBlockAttributeName = "ShipmentsPage.HideSearchBlock";
@@ -74,12 +74,12 @@
                         {
                         new ColumnProperty(nameof(ShipmentImportModel.Id))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportList.Fields.Id").Text,
+                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportList.Fields.Id").Text,
                         ClassName = NopColumnClassDefaults.CenterAll,
                         },
                         new ColumnProperty(nameof(ShipmentImportModel.CreatedOnUtc))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportList.Fields.CreatedOn").Text,
+                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportList.Fields.CreatedOn").Text,
                         ClassName = NopColumnClassDefaults.CenterAll,
                         Render = new RenderDate()
                         },

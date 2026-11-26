@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.ShipmentManagement.Helpers
+﻿namespace Delsami.Plugin.Misc.ShipmentManagement.Helpers
 {
     public class NormalizeHelper
     {

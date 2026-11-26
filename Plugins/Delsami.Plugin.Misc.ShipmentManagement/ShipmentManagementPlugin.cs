@@ -1,9 +1,6 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure;
-using ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
-using ZarIran.Plugin.Payment.Core.Infrastructure.Permissions;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
 using Nop.Core;
 using Nop.Core.Domain.Messages;
-using Nop.Core.Infrastructure;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -16,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement
+namespace Delsami.Plugin.Misc.ShipmentManagement
 {
     public class ShipmentManagementPlugin : BasePlugin, IAdminMenuPlugin
     {
@@ -71,25 +68,25 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error in saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.Name"] = "Shipment Management",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.SystemName"] = "ShipmentManagement",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.Configuration.SystemName"] = "ShipmentManagementConfiguration",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.ShipmentAdditionalData.DeliveryCodeSMSMessageTemplate"] = "Your delivery code is: {0}",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.OrderStatus"] = "Deliverd To :{0}",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.TrackingNumberAnnounceSoon"] = "Tracking Number Announce Soon",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"] = "ShipmentDate",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.Processing"] = "Processing",
-                ["ZarIran.Plugin.Misc.ShipmentManagement.Delivered"] = "Delivered",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error in saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.ShipmentManagement.Name"] = "Shipment Management",
+                ["Delsami.Plugin.Misc.ShipmentManagement.SystemName"] = "ShipmentManagement",
+                ["Delsami.Plugin.Misc.ShipmentManagement.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.ShipmentManagement.Configuration.SystemName"] = "ShipmentManagementConfiguration",
+                ["Delsami.Plugin.Misc.ShipmentManagement.ShipmentAdditionalData.DeliveryCodeSMSMessageTemplate"] = "Your delivery code is: {0}",
+                ["Delsami.Plugin.Misc.ShipmentManagement.OrderStatus"] = "Deliverd To :{0}",
+                ["Delsami.Plugin.Misc.ShipmentManagement.TrackingNumberAnnounceSoon"] = "Tracking Number Announce Soon",
+                ["Delsami.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"] = "ShipmentDate",
+                ["Delsami.Plugin.Misc.ShipmentManagement.Processing"] = "Processing",
+                ["Delsami.Plugin.Misc.ShipmentManagement.Delivered"] = "Delivered",
             });
 
 
-            await _permissionService.InstallPermissionsAsync(new ZarIranCustomPermissionForImportFile());
+            await _permissionService.InstallPermissionsAsync(new DelsamiCustomPermissionForImportFile());
 
 
             await base.InstallAsync();
@@ -97,21 +94,21 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
 
         public async Task ManageSiteMapAsync(SiteMapNode rootNode)
         {
-            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins) && !await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins) && !await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var shipmentManagementSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.SystemName");
-            var shipmentManagementName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var shipmentManagementSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.SystemName");
+            var shipmentManagementName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -136,13 +133,13 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
 
             }
 
-            if (await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins) || await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins) || await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
             {
 
                 shipmentManagementChildNodes.Add(new SiteMapNode
                 {
-                    SystemName = "ZarIran.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport",
-                    Title = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.ReportTitle"),
+                    SystemName = "Delsami.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport",
+                    Title = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.ReportTitle"),
                     ControllerName = "ShipmentTrackingNumberImport",
                     ActionName = "ImportList",
                     Visible = true,
@@ -152,8 +149,8 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
 
                 shipmentManagementChildNodes.Add(new SiteMapNode
                 {
-                    SystemName = "ZarIran.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.Import",
-                    Title = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.ImportTitle"),
+                    SystemName = "Delsami.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.Import",
+                    Title = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.ImportTitle"),
                     ControllerName = "ShipmentTrackingNumberImport",
                     ActionName = "Import",
                     Visible = true,
@@ -163,7 +160,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
             }
 
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = shipmentManagementName,
                 SystemName = shipmentManagementSystemName,
@@ -174,7 +171,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -189,7 +186,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement
             //await _settingService.DeleteSettingAsync<ShipmentManagementSettings>();
 
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Misc.ShipmentManagement");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Misc.ShipmentManagement");
 
             await base.UninstallAsync();
         }

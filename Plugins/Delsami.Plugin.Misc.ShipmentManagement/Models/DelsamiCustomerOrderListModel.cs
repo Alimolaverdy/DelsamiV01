@@ -3,11 +3,11 @@ using Nop.Web.Framework.Models;
 using System;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models
 {
-    public record ZarIranCustomerOrderListModel : BaseNopModel
+    public record DelsamiCustomerOrderListModel : BaseNopModel
     {
-        public ZarIranCustomerOrderListModel()
+        public DelsamiCustomerOrderListModel()
         {
             Orders = new List<OrderDetailsModel>();
             RecurringOrders = new List<RecurringOrderModel>();

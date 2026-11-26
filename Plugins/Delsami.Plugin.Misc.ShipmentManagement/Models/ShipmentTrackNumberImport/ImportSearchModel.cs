@@ -3,7 +3,7 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 
 public record ImportSearchModel: BaseSearchModel
 {

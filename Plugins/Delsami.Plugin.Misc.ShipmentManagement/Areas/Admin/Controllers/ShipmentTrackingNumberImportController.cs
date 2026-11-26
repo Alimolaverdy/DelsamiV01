@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.FileProviders;
-using ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
@@ -26,7 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -74,22 +74,22 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 
         public virtual async Task<IActionResult> Import()
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return AccessDeniedView();
 
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
         }
 
         [HttpPost]
         public virtual async Task<IActionResult> Import(IFormFile uploadFile)
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return AccessDeniedView();
 
             if (uploadFile == null || uploadFile.Length == 0)
             {
                 _notificationService.ErrorNotification("فایل انتخاب نشده");
-                return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
+                return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
             }
 
             byte[] fileBytes;
@@ -109,26 +109,26 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 _notificationService.ErrorNotification(ex.Message);
-                return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
+                return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Import.cshtml");
             }
         }
 
         public virtual async Task<IActionResult> ImportList()
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return AccessDeniedView();
 
             var model = new ImportSearchModel();
 
             model.SetGridPageSize();
 
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/ImportList.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/ImportList.cshtml", model);
         }
 
         [HttpPost]
         public virtual async Task<IActionResult> ImportList(ImportSearchModel searchModel)
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return await AccessDeniedDataTablesJson();
 
             var imports = await _importService.GetImportsAsync(searchModel);
@@ -154,20 +154,20 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 
         public virtual async Task<IActionResult> Report(int id)
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return AccessDeniedView();
 
             var model = new ReportSearchModel { ShipmentImportId = id };
             model.SetGridPageSize();
 
             model.AvailableStatuses = await PrepareReportItemStatusesAsync();
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Report.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/ShipmentTrackingNumberImport/Report.cshtml", model);
         }
 
         [HttpPost]
         public virtual async Task<IActionResult> Report(ReportSearchModel searchModel)
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
+            if (!await _permissionService.AuthorizeAsync(DelsamiCustomPermissionForImportFile.ImportShippmentTrackNumberFromFile))
                 return await AccessDeniedDataTablesJson();
 
             var reports = await _importService.GetReportsByImportIdWithFilterAsync(searchModel);
@@ -202,7 +202,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 
         public IActionResult DownloadSample()
         {
-            var filePath = _fileProvider.MapPath("~/Plugins/ZarIran.Misc.ShipmentManagement/Content/sample.xlsx");
+            var filePath = _fileProvider.MapPath("~/Plugins/Delsami.Misc.ShipmentManagement/Content/sample.xlsx");
 
             if (!System.IO.File.Exists(filePath))
                 return NotFound();

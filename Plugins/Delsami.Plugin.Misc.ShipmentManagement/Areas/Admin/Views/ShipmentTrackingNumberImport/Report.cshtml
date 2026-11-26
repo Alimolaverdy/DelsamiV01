@@ -3,7 +3,7 @@
 @inject IGenericAttributeService genericAttributeService
 @inject IWorkContext workContext
 @{
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.ShipmentManagement.ShipmentTrackingNumberImport.ImportReport").Text);
     Layout = "_AdminLayout";
     const string hideSearchBlockAttributeName = "ShipmentsPage.HideSearchBlock";
     var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
@@ -65,25 +65,25 @@
                                         {
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.ShipmentId))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ShipmentId").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ShipmentId").Text,
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Width = "80"
                                         },
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.OrderId))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.OrderId").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.OrderId").Text,
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Width = "80"
                                         },
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.TrackingNumber))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.TrackingNumber").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.TrackingNumber").Text,
                                         Width = "80",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         },
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.Status))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.Status").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.Status").Text,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         Render = new RenderCustom("renderColumnStatus")
@@ -91,19 +91,19 @@
                                         },
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.ErrorDescription))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ErrorDescription").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.ErrorDescription").Text,
                                         Width = "120",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         } ,
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.CustomerName))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CustomerName").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CustomerName").Text,
                                         Width = "80",
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         } ,
                                         new ColumnProperty(nameof(ImportedTrackNumberReportModel.CreatedOnUtc))
                                         {
-                                        Title = T("ZarIran.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CreatedOn").Text,
+                                        Title = T("Delsami.Plugin.Misc.ShipmentManagement.ImportReports.Fields.CreatedOn").Text,
                                         Width = "70",
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Render = new RenderDate()

@@ -1,6 +1,6 @@
-﻿namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
+﻿namespace Delsami.Plugin.Misc.ShipmentManagement.Models
 {
-    public record ZarIranCustomerInfoModel
+    public record DelsamiCustomerInfoModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

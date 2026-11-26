@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
+namespace Delsami.Plugin.Misc.ShipmentManagement.Infrastructure
 {
     public class ShipmentManagementViewLocationExpander : IViewLocationExpander
     {
@@ -13,7 +13,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
         {
             if (context.AreaName == "Admin" && context.ViewName.Equals("_OrderDetails.BillingShipping", StringComparison.InvariantCultureIgnoreCase))
             {
-                viewLocations = new string[] { $"~/Plugins/ZarIran.Misc.ShipmentManagement/Areas/Admin/Views/Order/_OrderDetails.BillingShipping.cshtml" }.Concat(viewLocations);
+                viewLocations = new string[] { $"~/Plugins/Delsami.Misc.ShipmentManagement/Areas/Admin/Views/Order/_OrderDetails.BillingShipping.cshtml" }.Concat(viewLocations);
             }
 
             return viewLocations;

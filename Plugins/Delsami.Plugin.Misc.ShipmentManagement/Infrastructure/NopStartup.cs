@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.ShipmentManagement.Factories;
-using ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.ShipmentManagement.Factories;
+using Delsami.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.Security;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
+namespace Delsami.Plugin.Misc.ShipmentManagement.Infrastructure
 {
     public class NopStartup : INopStartup
     {
@@ -23,10 +23,10 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IShipmentDeliveryService, ShipmentDeliveryService>();
-            services.AddScoped<IZarIranShipmentModelFactory, ZarIranShipmentModelFactory>();
-            services.AddScoped<IZarIranOrderModelFactory, ZarIranOrderModelFactory>();
+            services.AddScoped<IDelsamiShipmentModelFactory, DelsamiShipmentModelFactory>();
+            services.AddScoped<IDelsamiOrderModelFactory, DelsamiOrderModelFactory>();
             services.AddScoped<IShipmentTrackingImportService, ShipmentTrackingImportService>();
-            services.AddScoped<IPermissionProvider, ZarIranCustomPermissionForImportFile>();
+            services.AddScoped<IPermissionProvider, DelsamiCustomPermissionForImportFile>();
 
 
             services.Configure<RazorViewEngineOptions>(options =>

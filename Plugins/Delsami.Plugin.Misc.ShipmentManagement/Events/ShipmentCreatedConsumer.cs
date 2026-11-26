@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Misc.ShipmentManagement.Helpers;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
-using ZarIran.Plugin.Misc.SMS;
+﻿using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.ShipmentManagement.Helpers;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.Misc.SMS;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Events;
 using Nop.Services.Customers;
@@ -11,9 +11,9 @@ using Nop.Services.Orders;
 using Nop.Services.Shipping;
 using System;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Servicecs;
+using Delsami.Plugin.Misc.SMS.Servicecs;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Events
+namespace Delsami.Plugin.Misc.ShipmentManagement.Events
 {
     public class ShipmentCreatedConsumer : IConsumer<ShipmentCreatedEvent>
     {

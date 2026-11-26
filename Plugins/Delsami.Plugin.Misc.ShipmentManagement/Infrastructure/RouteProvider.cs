@@ -5,7 +5,7 @@ using Nop.Core.Infrastructure;
 using Nop.Data;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
+namespace Delsami.Plugin.Misc.ShipmentManagement.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -27,20 +27,20 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure
                 }
             }
 
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranOrderDetails",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiOrderDetails",
                 pattern: $"{lang}/orderdetails/{{orderId:min(0)}}",
-                defaults: new { controller = "ZarIranShipmentManagement", action = "Details" });
+                defaults: new { controller = "DelsamiShipmentManagement", action = "Details" });
 
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranShipmentManagement",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiShipmentManagement",
                 pattern: $"Admin/Order/ShipmentDetails/{{id?}}",
                 defaults: new { controller = "ShipmentManagementOrder", action = "ShipmentDetails", area = "Admin" });
 
 
             endpointRouteBuilder.MapControllerRoute(name: "CustomerOrders",
                 pattern: $"{lang}/order/history",
-                defaults: new { controller = "ZarIranShipmentManagement", action = "CustomerOrders" });
+                defaults: new { controller = "DelsamiShipmentManagement", action = "CustomerOrders" });
 
-            //endpointRouteBuilder.MapControllerRoute(name: "ZarIranShipmentManagement",
+            //endpointRouteBuilder.MapControllerRoute(name: "DelsamiShipmentManagement",
             //    pattern: $"Area/Admin/Order/ShipmentDetails",
             //    defaults: new { controller = "ShipmentManagementOrder", action = "ShipmentDetails", area = "Admin" });
         }

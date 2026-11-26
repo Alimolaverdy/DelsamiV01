@@ -5,17 +5,17 @@ using Nop.Web.Models.Media;
 using System;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models
 {
-    public record ZarIranOrderDetailsModel : BaseNopEntityModel
+    public record DelsamiOrderDetailsModel : BaseNopEntityModel
     {
-        public ZarIranOrderDetailsModel()
+        public DelsamiOrderDetailsModel()
         {
             TaxRates = new List<TaxRate>();
             GiftCards = new List<GiftCard>();
             Items = new List<OrderItemModel>();
             OrderNotes = new List<OrderNote>();
-            Shipments = new List<ZarIranShipmentBriefModel>();
+            Shipments = new List<DelsamiShipmentBriefModel>();
 
             BillingAddress = new AddressModel();
             ShippingAddress = new AddressModel();
@@ -46,7 +46,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
         public string ShippingMethod { get; set; }
         public int ShippingMethodId { get; set; }
         public string ShippingDateTime { get; set; }
-        public IList<ZarIranShipmentBriefModel> Shipments { get; set; }
+        public IList<DelsamiShipmentBriefModel> Shipments { get; set; }
 
         public AddressModel BillingAddress { get; set; }
 
@@ -142,7 +142,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
             public DateTime CreatedOn { get; set; }
         }
 
-        public partial record ZarIranShipmentBriefModel : BaseNopEntityModel
+        public partial record DelsamiShipmentBriefModel : BaseNopEntityModel
         {
             public string TrackingNumber { get; set; }
             public string TrackingLink { get; set; }

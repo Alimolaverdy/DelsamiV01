@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments
+namespace Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments
 {
-    public record ZarIranShipmentModel : BaseNopEntityModel
+    public record DelsamiShipmentModel : BaseNopEntityModel
     {
         #region Ctor
 
-        public ZarIranShipmentModel()
+        public DelsamiShipmentModel()
         {
             ShipmentStatusEvents = new List<ShipmentStatusEventModel>();
             Items = new List<ShipmentItemModel>();

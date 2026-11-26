@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Misc.ShipmentManagement.Domain;
-using ZarIran.Plugin.Misc.ShipmentManagement.Helpers;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.Apis;
-using ZarIran.Plugin.Payment.Core.Domain;
-using ZarIran.Plugin.Payment.Core.Services;
+﻿using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Misc.ShipmentManagement.Domain;
+using Delsami.Plugin.Misc.ShipmentManagement.Helpers;
+using Delsami.Plugin.Misc.ShipmentManagement.Models;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.Apis;
+using Delsami.Plugin.Payment.Core.Domain;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
@@ -23,7 +23,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
+namespace Delsami.Plugin.Misc.ShipmentManagement.Services
 {
     public class ShipmentDeliveryService : IShipmentDeliveryService
     {
@@ -381,7 +381,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
         }
 
 
-        public async Task<(ZarIranOrderDetailModel Result, string ErrorMessage)> GetOrderDetailsByShipmentIdAsync(string shipmentCode)
+        public async Task<(DelsamiOrderDetailModel Result, string ErrorMessage)> GetOrderDetailsByShipmentIdAsync(string shipmentCode)
         {
             var shipmentId = ShipmentManagementHelper.GetShipmentIdFromShipmentCode(shipmentCode);
             var shipment = await _shipmentService.GetShipmentByIdAsync(shipmentId);
@@ -417,7 +417,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
                 .Select(item => MapToOrderItemModel(item, productNamesDict))
                 .ToList();
 
-            var resultModel = new ZarIranOrderDetailModel
+            var resultModel = new DelsamiOrderDetailModel
             {
                 OrderSubtotalExclTax = order.OrderSubtotalExclTax,
                 OrderTotal = order.OrderTotal,
@@ -541,12 +541,12 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
         #region Utilities
 
 
-        private ZarIranCustomerInfoModel MapToCustomerInfo(Address address)
+        private DelsamiCustomerInfoModel MapToCustomerInfo(Address address)
         {
             if (address == null)
                 return null;
 
-            return new ZarIranCustomerInfoModel
+            return new DelsamiCustomerInfoModel
             {
                 FirstName = address.FirstName,
                 LastName = address.LastName,
@@ -554,11 +554,11 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
             };
         }
 
-        private ZarIranOrderItemModel MapToOrderItemModel(OrderItem item, Dictionary<int, string> productNamesDict)
+        private DelsamiOrderItemModel MapToOrderItemModel(OrderItem item, Dictionary<int, string> productNamesDict)
         {
             productNamesDict.TryGetValue(item.ProductId, out var productName);
 
-            return new ZarIranOrderItemModel
+            return new DelsamiOrderItemModel
             {
                 ProductName = productName,
                 Quantity = item.Quantity,

@@ -1,4 +1,4 @@
-﻿@model ZarIranCustomerOrderListModel
+﻿@model DelsamiCustomerOrderListModel
 @{
     Layout = "_ColumnsTwo";
 
@@ -163,7 +163,7 @@
 
                             @if (order.ShipmentDate.HasValue)
                             {
-                                <div>@T("ZarIran.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"): <span class="order-date">@order.ShipmentDate.Value.ToString("dd MMMM yyyy - HH:mm")</span></div>
+                                <div>@T("Delsami.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"): <span class="order-date">@order.ShipmentDate.Value.ToString("dd MMMM yyyy - HH:mm")</span></div>
                             }
 
                             @if (@order.OrderStatusEnum.ToString().ToLowerInvariant() == "pending")

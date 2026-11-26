@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.EMMA;
-using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Misc.ShipmentManagement.Domain;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.ShipmentManagement.Domain;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
@@ -21,7 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Services;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Services;
 
 public class ShipmentTrackingImportService : IShipmentTrackingImportService
 {

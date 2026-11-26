@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Domain;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Domain;
 
 public class ShipmentTrackingNumberImporterReport : BaseEntity
 {

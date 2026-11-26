@@ -1,7 +1,7 @@
-﻿@using ZarIran.Plugin.Shipping.ZarIranLogistic
+﻿@using Delsami.Plugin.Shipping.DelsamiLogistic
 @using Nop.Core.Domain.Catalog
-@model ZarIranOrderDetailsModel
-@inject ZarIranLogisticSettings logisticSetting
+@model DelsamiOrderDetailsModel
+@inject DelsamiLogisticSettings logisticSetting
 
 @{
     if (!Model.PrintMode)
@@ -581,7 +581,7 @@
                                                 @if (item.ShippedDate.HasValue)
                                                 {
                                                     <div class="delivery-date">
-                                                        <label>@T("ZarIran.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"):</label>
+                                                        <label>@T("Delsami.Plugin.Misc.ShipmentManagement.CustomerOrders.ShipmentDate"):</label>
                                                         <span>
                                                             @item.ShippedDate.Value.ToString("dd MMMM yyyy - HH:mm")
                                                         </span>
@@ -600,7 +600,7 @@
                                                     }
                                                     else if (item.CanHaveTrackingNumber && item.ShippedDate.HasValue)
                                                     {
-                                                        <span>@T("ZarIran.Plugin.Misc.ShipmentManagement.TrackingNumberAnnounceSoon")</span>
+                                                        <span>@T("Delsami.Plugin.Misc.ShipmentManagement.TrackingNumberAnnounceSoon")</span>
                                                     }
                                                     else
                                                     {

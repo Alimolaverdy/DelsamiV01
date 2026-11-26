@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Misc.ShipmentManagement.Domain;
+using Delsami.Plugin.Misc.ShipmentManagement.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Data.Mapping.Builder
+namespace Delsami.Plugin.Misc.ShipmentManagement.Data.Mapping.Builder
 {
     public class ShipmentTrackingNumberImporterReportBuilder : NopEntityBuilder<ShipmentTrackingNumberImporterReport>
     {

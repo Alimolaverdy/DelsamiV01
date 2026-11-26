@@ -1,16 +1,16 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Domain;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.Apis;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Domain;
+using Delsami.Plugin.Misc.ShipmentManagement.Models;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.Apis;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Services
+namespace Delsami.Plugin.Misc.ShipmentManagement.Services
 {
     public interface IShipmentDeliveryService
     {
         Task<ShipmentDelivery> GetShipmentDeliveryByShipmentIdAsync(int shipmentId);
 
-        Task<(ZarIranOrderDetailModel Result, string ErrorMessage)> GetOrderDetailsByShipmentIdAsync(string shipmentCode);
+        Task<(DelsamiOrderDetailModel Result, string ErrorMessage)> GetOrderDetailsByShipmentIdAsync(string shipmentCode);
 
         Task InsertAsync(ShipmentDelivery shipmentAdditionalData);
 

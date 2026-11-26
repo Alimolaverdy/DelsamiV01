@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments;
+using Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Mapper
+namespace Delsami.Plugin.Misc.ShipmentManagement.Infrastructure.Mapper
 {
     public class MapperConfiguration : Profile, IOrderedMapperProfile
     {
@@ -17,7 +17,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Mapper
 
         private void CreateCustomerCarMap()
         {
-            CreateMap<Shipment, ZarIranShipmentModel>();
+            CreateMap<Shipment, DelsamiShipmentModel>();
         }
     }
 }

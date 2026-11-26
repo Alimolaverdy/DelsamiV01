@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
+﻿namespace Delsami.Plugin.Misc.ShipmentManagement.Models
 {
     public class ApiResult
     {

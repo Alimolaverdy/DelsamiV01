@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Models.Shipments;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
 using Nop.Core;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Orders;
@@ -16,9 +16,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
 {
-    public class ZarIranShipmentModelFactory : IZarIranShipmentModelFactory
+    public class DelsamiShipmentModelFactory : IDelsamiShipmentModelFactory
     {
         #region Fields
 
@@ -35,7 +35,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
 
         #region Ctor
 
-        public ZarIranShipmentModelFactory(IShipmentService shipmentService,
+        public DelsamiShipmentModelFactory(IShipmentService shipmentService,
                                        IWorkContext workContext,
                                        IOrderService orderService,
                                        IDateTimeHelper dateTimeHelper,
@@ -58,7 +58,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
 
         #region Methods
 
-        public virtual async Task<ZarIranOrderShipmentListModel> PrepareOrderShipmentListModelAsync(OrderShipmentSearchModel searchModel, Order order)
+        public virtual async Task<DelsamiOrderShipmentListModel> PrepareOrderShipmentListModelAsync(OrderShipmentSearchModel searchModel, Order order)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -78,7 +78,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
             var pagedShipments = shipments.ToPagedList(searchModel);
 
             //prepare list model
-            var model = await new ZarIranOrderShipmentListModel().PrepareToGridAsync(searchModel, pagedShipments, () =>
+            var model = await new DelsamiOrderShipmentListModel().PrepareToGridAsync(searchModel, pagedShipments, () =>
             {
                 //fill in model values from the entity
                 return pagedShipments.SelectAwait(async shipment => await PrepareShipmentModelAsync(shipment));
@@ -91,14 +91,14 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories
 
         #region Utilities
 
-        protected virtual async Task<ZarIranShipmentModel> PrepareShipmentModelAsync(Shipment shipment, ZarIranShipmentModel model = null)
+        protected virtual async Task<DelsamiShipmentModel> PrepareShipmentModelAsync(Shipment shipment, DelsamiShipmentModel model = null)
         {
             //fill in model values from the entity
             var shipmentModel = model;
 
             if (shipmentModel == null)
             {
-                shipmentModel = shipment.ToModel<ZarIranShipmentModel>();
+                shipmentModel = shipment.ToModel<DelsamiShipmentModel>();
             }
 
             var shipmentDelivery = await _shipmentDeliveryService.GetShipmentDeliveryByShipmentIdAsync(shipment.Id);

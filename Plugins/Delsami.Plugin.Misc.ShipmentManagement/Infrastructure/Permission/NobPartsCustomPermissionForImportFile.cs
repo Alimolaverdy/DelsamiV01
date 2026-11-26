@@ -2,9 +2,9 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Infrastructure.Permission;
 
-public class ZarIranCustomPermissionForImportFile : IPermissionProvider
+public class DelsamiCustomPermissionForImportFile : IPermissionProvider
 {
 
     public static readonly PermissionRecord ImportShippmentTrackNumberFromFile = new PermissionRecord

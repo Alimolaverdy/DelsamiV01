@@ -1,7 +1,7 @@
 ﻿using Nop.Web.Framework.Models;
 using System;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 
 public record ImportedTrackNumberReportModel:BaseNopModel
 {

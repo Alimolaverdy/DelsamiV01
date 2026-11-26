@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Models;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Models;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
@@ -32,9 +32,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Factories;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Factories;
 
-public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
+public class DelsamiOrderModelFactory : IDelsamiOrderModelFactory
 {
     #region Fields
 
@@ -74,14 +74,14 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
     private readonly IPictureService _pictureService;
     private readonly IShipmentDeliveryService _shipmentDeliveryService;
     private readonly ShipmentManagementSettings _shipmentSettings;
-    private string _tipaxSystemName = "ZarIran.Shipping.Tipax";
-    private string _postSystemName = "ZarIran.Shipping.IRPost";
+    private string _tipaxSystemName = "Delsami.Shipping.Tipax";
+    private string _postSystemName = "Delsami.Shipping.IRPost";
 
     #endregion
 
     #region Ctor
 
-    public ZarIranOrderModelFactory(IDateTimeHelper dateTimeHelper,
+    public DelsamiOrderModelFactory(IDateTimeHelper dateTimeHelper,
                                      ILocalizationService localizationService,
                                      OrderSettings orderSettings,
                                      IOrderShippingMethodCapacityMappingService OrderShippingMethodService,
@@ -158,11 +158,11 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
 
     #region Methods
 
-    public virtual async Task<ZarIranOrderDetailsModel> PrepareOrderDetailsModelAsync(Order order)
+    public virtual async Task<DelsamiOrderDetailsModel> PrepareOrderDetailsModelAsync(Order order)
     {
         if (order == null)
             throw new ArgumentNullException(nameof(order));
-        var model = new ZarIranOrderDetailsModel
+        var model = new DelsamiOrderDetailsModel
         {
             Id = order.Id,
             CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(order.CreatedOnUtc, DateTimeKind.Utc),
@@ -231,12 +231,12 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
                 if (order.ShippingRateComputationMethodSystemName.Equals(_tipaxSystemName, StringComparison.InvariantCultureIgnoreCase) && !string.IsNullOrWhiteSpace(shipment.TrackingNumber))
                     trackingLink = string.Format(_shipmentSettings.TipaxTrackingLink, shipment.TrackingNumber);
 
-                var shipmentModel = new ZarIranOrderDetailsModel.ZarIranShipmentBriefModel
+                var shipmentModel = new DelsamiOrderDetailsModel.DelsamiShipmentBriefModel
                 {
                     Id = shipment.Id,
                     TrackingLink = trackingLink,
                     TrackingNumber = shipment.TrackingNumber,
-                    DeliveryCode = order.ShippingRateComputationMethodSystemName.Equals("ZarIran.Shipping.ZarIranLogistic", StringComparison.InvariantCultureIgnoreCase) ? shipmentDelivery.DeliveryCode : 0,
+                    DeliveryCode = order.ShippingRateComputationMethodSystemName.Equals("Delsami.Shipping.DelsamiLogistic", StringComparison.InvariantCultureIgnoreCase) ? shipmentDelivery.DeliveryCode : 0,
                     Delivered = shipmentDelivery.Delivered,
                     ShippedDate = shipmentDelivery.ShippedOnUtc,
                     DeliveryDate = shipmentDelivery.DeliveredOnUtc,
@@ -249,19 +249,19 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
                     if (order.ShippingStatus == ShippingStatus.Shipped)
                     {
                         model.OrderStatus = string.Format(
-                            await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.OrderStatus"),
+                            await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.OrderStatus"),
                             order.ShippingMethod);
                     }
                     else if (order.ShippingStatus == ShippingStatus.NotYetShipped)
                     {
                         model.OrderStatus = await _localizationService.GetResourceAsync(
-                            "ZarIran.Plugin.Misc.ShipmentManagement.Processing");
+                            "Delsami.Plugin.Misc.ShipmentManagement.Processing");
                     }
                 }
                 else if (order.OrderStatus == OrderStatus.Complete && order.ShippingStatus == ShippingStatus.Delivered)
                 {
                     model.OrderStatus = await _localizationService.GetResourceAsync(
-                        "ZarIran.Plugin.Misc.ShipmentManagement.Delivered");
+                        "Delsami.Plugin.Misc.ShipmentManagement.Delivered");
                 }
                 else
                 {
@@ -395,7 +395,7 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
 
                 foreach (var tr in taxRates)
                 {
-                    model.TaxRates.Add(new ZarIranOrderDetailsModel.TaxRate
+                    model.TaxRates.Add(new DelsamiOrderDetailsModel.TaxRate
                     {
                         Rate = _priceFormatter.FormatTaxRate(tr.Key),
                         Value = await _priceFormatter.FormatPriceAsync(_currencyService.ConvertCurrency(tr.Value, order.CurrencyRate), true, order.CustomerCurrencyCode, false, languageId),
@@ -419,7 +419,7 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
         //gift cards
         foreach (var gcuh in await _giftCardService.GetGiftCardUsageHistoryAsync(order))
         {
-            model.GiftCards.Add(new ZarIranOrderDetailsModel.GiftCard
+            model.GiftCards.Add(new DelsamiOrderDetailsModel.GiftCard
             {
                 CouponCode = (await _giftCardService.GetGiftCardByIdAsync(gcuh.GiftCardId)).GiftCardCouponCode,
                 Amount = await _priceFormatter.FormatPriceAsync(-(_currencyService.ConvertCurrency(gcuh.UsedValue, order.CurrencyRate)), true, order.CustomerCurrencyCode, false, languageId),
@@ -446,7 +446,7 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
             .OrderByDescending(on => on.CreatedOnUtc)
             .ToList())
         {
-            model.OrderNotes.Add(new ZarIranOrderDetailsModel.OrderNote
+            model.OrderNotes.Add(new DelsamiOrderDetailsModel.OrderNote
             {
                 Id = orderNote.Id,
                 HasDownload = orderNote.DownloadId > 0,
@@ -466,7 +466,7 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
         {
             var product = await _productService.GetProductByIdAsync(orderItem.ProductId);
 
-            var orderItemModel = new ZarIranOrderDetailsModel.OrderItemModel
+            var orderItemModel = new DelsamiOrderDetailsModel.OrderItemModel
             {
                 Id = orderItem.Id,
                 OrderItemGuid = orderItem.OrderItemGuid,
@@ -536,16 +536,16 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
         return await _urlRecordService.GetSeNameAsync(parent);
     }
 
-    public virtual async Task<ZarIranCustomerOrderListModel> PrepareCustomerOrderListModelAsync()
+    public virtual async Task<DelsamiCustomerOrderListModel> PrepareCustomerOrderListModelAsync()
     {
-        var model = new ZarIranCustomerOrderListModel();
+        var model = new DelsamiCustomerOrderListModel();
         var customer = await _workContext.GetCurrentCustomerAsync();
         var store = await _storeContext.GetCurrentStoreAsync();
         var orders = await _orderService.SearchOrdersAsync(storeId: store.Id,
             customerId: customer.Id);
         foreach (var order in orders)
         {
-            var orderModel = new ZarIranCustomerOrderListModel.OrderDetailsModel
+            var orderModel = new DelsamiCustomerOrderListModel.OrderDetailsModel
             {
                 Id = order.Id,
                 CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(order.CreatedOnUtc, DateTimeKind.Utc),
@@ -571,20 +571,20 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
                     if (order.ShippingStatus == ShippingStatus.Shipped)
                     {
                         orderModel.OrderStatus = string.Format(
-                            await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShipmentManagement.OrderStatus"),
+                            await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShipmentManagement.OrderStatus"),
                             order.ShippingMethod);
 
                     }
                     else if (order.ShippingStatus == ShippingStatus.NotYetShipped)
                     {
                         orderModel.OrderStatus = await _localizationService.GetResourceAsync(
-                            "ZarIran.Plugin.Misc.ShipmentManagement.Processing");
+                            "Delsami.Plugin.Misc.ShipmentManagement.Processing");
                     }
                 }
                 else if (order.OrderStatus == OrderStatus.Complete && order.ShippingStatus == ShippingStatus.Delivered)
                 {
                     orderModel.OrderStatus = await _localizationService.GetResourceAsync(
-                        "ZarIran.Plugin.Misc.ShipmentManagement.Delivered");
+                        "Delsami.Plugin.Misc.ShipmentManagement.Delivered");
                 }
 
             }
@@ -598,7 +598,7 @@ public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
         {
             var order = await _orderService.GetOrderByIdAsync(recurringPayment.InitialOrderId);
 
-            var recurringPaymentModel = new ZarIranCustomerOrderListModel.RecurringOrderModel
+            var recurringPaymentModel = new DelsamiCustomerOrderListModel.RecurringOrderModel
             {
                 Id = recurringPayment.Id,
                 StartDate = (await _dateTimeHelper.ConvertToUserTimeAsync(recurringPayment.StartDateUtc, DateTimeKind.Utc)).ToString(),

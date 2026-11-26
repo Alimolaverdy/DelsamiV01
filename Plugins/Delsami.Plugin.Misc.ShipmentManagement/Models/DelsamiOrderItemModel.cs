@@ -1,6 +1,6 @@
-﻿namespace ZarIran.Plugin.Misc.ShipmentManagement.Models
+﻿namespace Delsami.Plugin.Misc.ShipmentManagement.Models
 {
-    public record ZarIranOrderItemModel
+    public record DelsamiOrderItemModel
     {
         public string ProductName { get; set; }
         public int Quantity { get; set; }

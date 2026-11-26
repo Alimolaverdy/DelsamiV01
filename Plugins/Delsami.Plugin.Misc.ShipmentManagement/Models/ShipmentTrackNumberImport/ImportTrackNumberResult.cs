@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+﻿namespace Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 
 public enum ImportTrackNumberResult
 {

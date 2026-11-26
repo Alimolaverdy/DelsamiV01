@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Misc.ShipmentManagement.Domain;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
+﻿using Delsami.Plugin.Misc.ShipmentManagement.Domain;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.ShipmentTrackNumberImport;
 using Nop.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Services;
+namespace Delsami.Plugin.Misc.ShipmentManagement.Services;
 
 public interface IShipmentTrackingImportService
 {

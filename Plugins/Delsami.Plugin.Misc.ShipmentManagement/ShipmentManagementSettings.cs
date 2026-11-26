@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement
+namespace Delsami.Plugin.Misc.ShipmentManagement
 {
     public class ShipmentManagementSettings : ISettings
     {

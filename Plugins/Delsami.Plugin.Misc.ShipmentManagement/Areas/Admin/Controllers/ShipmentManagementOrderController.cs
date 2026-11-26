@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
@@ -24,7 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -37,7 +37,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
         private readonly IShipmentTrackingImportService _importService;
         private readonly IOrderService _orderService;
         private readonly IWorkContext _workContext;
-        private readonly IZarIranShipmentModelFactory _ZarIranShipmentModelFactory;
+        private readonly IDelsamiShipmentModelFactory _DelsamiShipmentModelFactory;
         private readonly IShipmentService _shipmentService;
         private readonly IOrderModelFactory _orderModelFactory;
         private readonly INotificationService _notificationService;
@@ -55,7 +55,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
                                                  IOrderService orderService,
                                                  IShipmentTrackingImportService importService,
                                                  IWorkContext workContext,
-                                                 IZarIranShipmentModelFactory ZarIranShipmentModelFactory,
+                                                 IDelsamiShipmentModelFactory DelsamiShipmentModelFactory,
                                                  IShipmentService shipmentService,
                                                  IOrderModelFactory orderModelFactory,
                                                  INotificationService notificationService,
@@ -69,7 +69,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
             _orderService = orderService;
             _workContext = workContext;
             _importService = importService;
-            _ZarIranShipmentModelFactory = ZarIranShipmentModelFactory;
+            _DelsamiShipmentModelFactory = DelsamiShipmentModelFactory;
             _shipmentService = shipmentService;
             _orderModelFactory = orderModelFactory;
             _notificationService = notificationService;
@@ -99,7 +99,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
                 return Content(string.Empty);
 
             //prepare model
-            var model = await _ZarIranShipmentModelFactory.PrepareOrderShipmentListModelAsync(searchModel, order);
+            var model = await _DelsamiShipmentModelFactory.PrepareOrderShipmentListModelAsync(searchModel, order);
 
             return Json(model);
         }
@@ -121,7 +121,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Areas.Admin.Controllers
             //prepare model
             var model = await _orderModelFactory.PrepareShipmentModelAsync(null, shipment, null);
 
-            return View("~/Plugins/ZarIran.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomOrder/ShipmentDetails.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomOrder/ShipmentDetails.cshtml", model);
         }
 
         [HttpPost, ActionName("ShipmentDetails")]

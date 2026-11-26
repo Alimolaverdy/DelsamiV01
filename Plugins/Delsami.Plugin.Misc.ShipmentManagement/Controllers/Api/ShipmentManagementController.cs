@@ -2,11 +2,11 @@
 using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models;
-using ZarIran.Plugin.Misc.ShipmentManagement.Models.Apis;
-using ZarIran.Plugin.Misc.ShipmentManagement.Services;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Events;
+using Delsami.Plugin.Misc.ShipmentManagement.Models;
+using Delsami.Plugin.Misc.ShipmentManagement.Models.Apis;
+using Delsami.Plugin.Misc.ShipmentManagement.Services;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Events;
 using Nop.Core.Events;
 using Nop.Services.Logging;
 using Nop.Web.Areas.Admin.Models.Orders;
@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers.Api
+namespace Delsami.Plugin.Misc.ShipmentManagement.Controllers.Api
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/shipment")]
@@ -101,7 +101,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers.Api
             var (result, errorMessage) = await _shipmentDeliveryService.GetOrderDetailsByShipmentIdAsync(shipmentCode);
 
             var isSucceed = result != null;
-            return Ok(new ApiResult<ZarIranOrderDetailModel>(isSucceed, errorMessage, result));
+            return Ok(new ApiResult<DelsamiOrderDetailModel>(isSucceed, errorMessage, result));
         }
 
         [HttpGet("OrderDetails/{shipmentCode}")]
@@ -114,7 +114,7 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers.Api
             var (result, errorMessage) = await _shipmentDeliveryService.GetOrderDetailsByShipmentIdAsync(shipmentCode);
 
             var isSucceed = result != null;
-            return Ok(new ApiResult<ZarIranOrderDetailModel>(isSucceed, errorMessage, result));
+            return Ok(new ApiResult<DelsamiOrderDetailModel>(isSucceed, errorMessage, result));
         }
 
         [HttpPost("CODPayment")]

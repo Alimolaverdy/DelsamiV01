@@ -1,34 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.ShipmentManagement.Factories;
+using Delsami.Plugin.Misc.ShipmentManagement.Factories;
 using Nop.Core;
 using Nop.Services.Customers;
 using Nop.Services.Orders;
 using Nop.Web.Framework.Controllers;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers
+namespace Delsami.Plugin.Misc.ShipmentManagement.Controllers
 {
-    public class ZarIranShipmentManagementController : BasePluginController
+    public class DelsamiShipmentManagementController : BasePluginController
     {
         #region Fields
 
         private readonly IOrderService _orderService;
         private readonly IWorkContext _workContext;
-        private readonly IZarIranOrderModelFactory _ZarIranOrderModelFactory;
+        private readonly IDelsamiOrderModelFactory _DelsamiOrderModelFactory;
         private readonly ICustomerService _customerService;
 
         #endregion
 
         #region Ctor
 
-        public ZarIranShipmentManagementController(IOrderService orderService,
+        public DelsamiShipmentManagementController(IOrderService orderService,
                                                     IWorkContext workContext,
                                                     ICustomerService customerService,
-                                                    IZarIranOrderModelFactory ZarIranOrderModelFactory)
+                                                    IDelsamiOrderModelFactory DelsamiOrderModelFactory)
         {
             _orderService = orderService;
             _workContext = workContext;
-            _ZarIranOrderModelFactory = ZarIranOrderModelFactory;
+            _DelsamiOrderModelFactory = DelsamiOrderModelFactory;
             _customerService = customerService;
         }
 
@@ -44,9 +44,9 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers
             if (order == null || order.Deleted || customer.Id != order.CustomerId)
                 return Challenge();
 
-            var model = await _ZarIranOrderModelFactory.PrepareOrderDetailsModelAsync(order);
+            var model = await _DelsamiOrderModelFactory.PrepareOrderDetailsModelAsync(order);
 
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Themes/Traction/Views/ZarIranShipmentManagement/OrderDetails.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Themes/Traction/Views/DelsamiShipmentManagement/OrderDetails.cshtml", model);
         }
 
         public virtual async Task<IActionResult> CustomerOrders()
@@ -54,8 +54,8 @@ namespace ZarIran.Plugin.Misc.ShipmentManagement.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            var model = await _ZarIranOrderModelFactory.PrepareCustomerOrderListModelAsync();
-            return View("~/Plugins/ZarIran.Misc.ShipmentManagement/Themes/Traction/Views/ZarIranShipmentManagement/CustomerOrders.cshtml", model);
+            var model = await _DelsamiOrderModelFactory.PrepareCustomerOrderListModelAsync();
+            return View("~/Plugins/Delsami.Misc.ShipmentManagement/Themes/Traction/Views/DelsamiShipmentManagement/CustomerOrders.cshtml", model);
         }
 
         #endregion

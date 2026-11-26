@@ -1,7 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models.Apis
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models.Apis
 {
     public class InsertCODPaymentsRequestModel
     {

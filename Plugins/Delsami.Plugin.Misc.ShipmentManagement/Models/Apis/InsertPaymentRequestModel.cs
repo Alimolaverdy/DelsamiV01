@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Core.Enums;
+﻿using Delsami.Plugin.Payment.Core.Enums;
 
-namespace ZarIran.Plugin.Misc.ShipmentManagement.Models.Apis
+namespace Delsami.Plugin.Misc.ShipmentManagement.Models.Apis
 {
     public class InsertPaymentRequestModel
     {
