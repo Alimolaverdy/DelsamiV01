@@ -4,18 +4,18 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscountModel.Edit").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscountModel.Edit").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscountModel.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscountModel.List.SystemName").Text);
 }
 
 <form asp-controller="PaymentMethodDiscount" asp-action="Edit" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.Edit")
+            @T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.Edit")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.BackToList")</a>
+                <a asp-action="List">@T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
@@ -26,10 +26,10 @@
            
             <span id="payment-method-discount-end" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.End")
+                @T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.End")
             </span>
         </div>
     </div>
-    @await Html.PartialAsync("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/_CreateOrUpdate.cshtml", Model)
+    @await Html.PartialAsync("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/_CreateOrUpdate.cshtml", Model)
 </form>
 <nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="payment-method-discount-end" /> *@

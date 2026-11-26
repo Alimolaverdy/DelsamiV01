@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Enums
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Enums
 {
     public enum RewardPointStatus
     {

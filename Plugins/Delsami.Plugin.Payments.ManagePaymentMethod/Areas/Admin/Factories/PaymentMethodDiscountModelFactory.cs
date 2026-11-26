@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 using Nop.Services.Catalog;
 using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
@@ -10,7 +10,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
 {
     public class PaymentMethodDiscountModelFactory : IPaymentMethodDiscountModelFactory
     {
@@ -48,7 +48,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
             //searchModel.AvailableCarBrandSpecificationAttributeOptions.Add(new SelectListItem
             //{
             //    Value = "0",
-            //    Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.PaymentMethodDiscount.List.SearchCarBrandSpecificationAttributeOption.All")
+            //    Text = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.PaymentMethodDiscount.List.SearchCarBrandSpecificationAttributeOption.All")
             //});
 
             //foreach (var specificationAttributeOption in carBrandSpecificationAttributeOptions)
@@ -62,7 +62,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
             //searchModel.AvailableModelSpecificationAttributeOptions.Add(new SelectListItem
             //{
             //    Value = "0",
-            //    Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.PaymentMethodDiscount.List.SearchModelSpecificationAttributeOption.All")
+            //    Text = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.PaymentMethodDiscount.List.SearchModelSpecificationAttributeOption.All")
             //});
 
             //foreach (var specificationAttributeOption in modelSpecificationAttributeOptions)

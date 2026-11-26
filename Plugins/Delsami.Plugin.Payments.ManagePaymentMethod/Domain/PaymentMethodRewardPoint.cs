@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Payments.ManagePaymentMethod.Enums;
+﻿using Delsami.Plugin.Payments.ManagePaymentMethod.Enums;
 using Nop.Core;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Domain
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Domain
 {
     public class PaymentMethodRewardPoint : BaseEntity
     {

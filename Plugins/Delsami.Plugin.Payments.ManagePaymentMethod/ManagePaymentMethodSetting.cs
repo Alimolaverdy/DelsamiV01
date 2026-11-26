@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod
+namespace Delsami.Plugin.Payments.ManagePaymentMethod
 {
     public class ManagePaymentMethodSetting : ISettings
     {

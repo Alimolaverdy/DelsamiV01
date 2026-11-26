@@ -4,14 +4,14 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List.SystemName").Text);
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List")
+        @T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.List")
     </h1>
 
     <div class="float-right">
@@ -44,25 +44,25 @@
                             {
                                 new ColumnProperty(nameof(PaymentMethodDiscountModel.PaymentMethodSystemName))
                                 {
-                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.PaymentMethodSystemName").Text,
+                                    Title = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.PaymentMethodSystemName").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "100"
                                 },
                                 new ColumnProperty(nameof(PaymentMethodDiscountModel.DiscountPercent))
                                 {
-                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.DiscountPercent").Text,
+                                    Title = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.DiscountPercent").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },
                                 new ColumnProperty(nameof(PaymentMethodDiscountModel.StartDateStr))
                                 {
-                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.StartDateStr").Text,
+                                    Title = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.StartDateStr").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },
                                 new ColumnProperty(nameof(PaymentMethodDiscountModel.EndDateStr))
                                 {
-                                    Title = T("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.EndDateStr").Text,
+                                    Title = T("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.EndDateStr").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 }

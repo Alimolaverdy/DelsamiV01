@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.Core.Domain;
+using Delsami.Plugin.Misc.Core.Domain;
 using Nop.Web.Areas.Admin.Models.Directory;
 using Nop.Web.Areas.Admin.Models.Payments;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
 
-public record ZarIranPaymentMethodRestrictionModel : BaseNopModel
+public record DelsamiPaymentMethodRestrictionModel : BaseNopModel
 {
     #region Ctor
 
-    public ZarIranPaymentMethodRestrictionModel()
+    public DelsamiPaymentMethodRestrictionModel()
     {
         AvailablePaymentMethods = new List<PaymentMethodModel>();
         AvailableStateProvinces = new List<SelectListItem>();
@@ -29,7 +29,7 @@ public record ZarIranPaymentMethodRestrictionModel : BaseNopModel
     public IList<SelectListItem> AvailableStateProvinces { get; set; }
     public IList<City> AvailableCities { get; set; }
 
-    [NopResourceDisplayName("ZarIran.Plugin.Payment.ManagePaymentMethod.SelectedStateProviceId")]
+    [NopResourceDisplayName("Delsami.Plugin.Payment.ManagePaymentMethod.SelectedStateProviceId")]
     public int SelectedStateProviceId { get; set; }
 
     //[country id] / [shipping method id] / [restricted]

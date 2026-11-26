@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using Nop.Data;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Services
 {
     public class PaymentMethodRewardPointService : IPaymentMethodRewardPointService
     {

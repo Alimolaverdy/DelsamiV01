@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Infrastructure.Mapper
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Infrastructure.Mapper
 {
     public class MapperConfiguration : Profile, IOrderedMapperProfile
     {

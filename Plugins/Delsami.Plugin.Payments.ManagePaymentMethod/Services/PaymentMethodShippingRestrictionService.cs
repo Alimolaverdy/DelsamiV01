@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+﻿using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 
 public class PaymentMethodShippingRestrictionService : IPaymentMethodShippingRestrictionService
 {

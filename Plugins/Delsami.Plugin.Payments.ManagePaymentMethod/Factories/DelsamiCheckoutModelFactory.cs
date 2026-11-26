@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+﻿using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -27,11 +27,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using ZarIran.Plugin.Misc.Core.Services.ShippingMethodService;
+using Delsami.Plugin.Misc.Core.Services.ShippingMethodService;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Factories
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Factories
 {
-    public class ZarIranCheckoutModelFactory : CheckoutModelFactory, ICheckoutModelFactory
+    public class DelsamiCheckoutModelFactory : CheckoutModelFactory, ICheckoutModelFactory
 	{
 		#region Fields
 
@@ -65,7 +65,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Factories
 
 		#region Ctor
 
-		public ZarIranCheckoutModelFactory(AddressSettings addressSettings,
+		public DelsamiCheckoutModelFactory(AddressSettings addressSettings,
 											CaptchaSettings captchaSettings,
 											CommonSettings commonSettings,
 											IAddressCityService addressCityService,

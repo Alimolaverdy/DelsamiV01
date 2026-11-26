@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Services
 {
-    public class ZarIranPaymentService : PaymentService, IZarIranPaymentService
+    public class DelsamiPaymentService : PaymentService, IDelsamiPaymentService
     {
         #region Fields
 
@@ -25,7 +25,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services
 
         #region Ctor
 
-        public ZarIranPaymentService(ICustomerService customerService,
+        public DelsamiPaymentService(ICustomerService customerService,
                                       IHttpContextAccessor httpContextAccessor,
                                       IPaymentPluginManager paymentPluginManager,
                                       IPriceCalculationService priceCalculationService,

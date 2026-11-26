@@ -3,13 +3,13 @@ using Nop.Web.Areas.Admin.Models.Payments;
 using Nop.Web.Framework.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models
 {
-    public record ZarIranPaymentMethodCustomerRoleRestrictionModel : BaseNopModel
+    public record DelsamiPaymentMethodCustomerRoleRestrictionModel : BaseNopModel
     {
         #region Ctor
 
-        public ZarIranPaymentMethodCustomerRoleRestrictionModel()
+        public DelsamiPaymentMethodCustomerRoleRestrictionModel()
         {
             AvailablePaymentMethods = new List<PaymentMethodModel>();
             AvailableRoles = new List<CustomerRoleModel>();

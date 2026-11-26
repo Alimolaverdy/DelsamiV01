@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml.EMMA;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Configuration;
 using Nop.Services.Payments;
@@ -18,16 +18,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
 {
-    public class ZarIranPaymentMethodModelFactory : IZarIranPaymentMethodModelFactory
+    public class DelsamiPaymentMethodModelFactory : IDelsamiPaymentMethodModelFactory
     {
         #region Fields
 
-        private readonly IZarIranStateProvinceService _ZarIranStateProvinceService;
-        private readonly IPaymentMethodRestrictionService _ZarIranPaymentMethodService;
+        private readonly IDelsamiStateProvinceService _DelsamiStateProvinceService;
+        private readonly IPaymentMethodRestrictionService _DelsamiPaymentMethodService;
         private readonly IBaseAdminModelFactory _baseAdminModelFactory;
         private readonly ICustomerRoleModelFactory _customerRoleModelFactory;
         private readonly IPaymentMethodCustomerRoleRestrictionService _roleRestrictionService;
@@ -41,8 +41,8 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
         #endregion
 
         #region Ctor
-        public ZarIranPaymentMethodModelFactory(IZarIranStateProvinceService ZarIranStateProvinceService,
-                                            IPaymentMethodRestrictionService ZarIranPaymentMethodService,
+        public DelsamiPaymentMethodModelFactory(IDelsamiStateProvinceService DelsamiStateProvinceService,
+                                            IPaymentMethodRestrictionService DelsamiPaymentMethodService,
                                             IBaseAdminModelFactory baseAdminModelFactory,
                                             ICityService cityService,
                                             IPaymentMethodShippingRestrictionService paymentMethodShippingRestrictionService,
@@ -52,8 +52,8 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
                                             IPaymentMethodCustomerRoleRestrictionService roleRestrictionService,
                                             IPaymentPluginManager paymentPluginManager)
         {
-            _ZarIranStateProvinceService = ZarIranStateProvinceService;
-            _ZarIranPaymentMethodService = ZarIranPaymentMethodService;
+            _DelsamiStateProvinceService = DelsamiStateProvinceService;
+            _DelsamiPaymentMethodService = DelsamiPaymentMethodService;
             _baseAdminModelFactory = baseAdminModelFactory;
             _settingService = settingService;
             _roleRestrictionService = roleRestrictionService;
@@ -75,7 +75,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
             return configurationModel;
 
         }
-        public async Task<ZarIranPaymentMethodRestrictionModel> PrepareZarIranPaymentMethodRestrictionModelAsync(ZarIranPaymentMethodRestrictionModel model)
+        public async Task<DelsamiPaymentMethodRestrictionModel> PrepareDelsamiPaymentMethodRestrictionModelAsync(DelsamiPaymentMethodRestrictionModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
@@ -83,7 +83,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
             var setting = await _settingService.LoadSettingAsync<ManagePaymentMethodSetting>();
             var selectedCountryId = setting.CountryId;
 
-            var stateProvinces = await _ZarIranStateProvinceService.GetAllStateProvincesByCountryIdAsync(selectedCountryId);
+            var stateProvinces = await _DelsamiStateProvinceService.GetAllStateProvincesByCountryIdAsync(selectedCountryId);
 
             model.SelectedStateProviceId = stateProvinces.FirstOrDefault(a => a.Name == "تهران").Id;
             model.AvailableStateProvinces = stateProvinces.Select(p => new SelectListItem()
@@ -125,10 +125,10 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
 
         }
 
-        public async Task<ZarIranPaymentMethodRestrictionModel> PrepareZarIranPaymentMethodRestrictionModelAsync(int stateProvinceId)
+        public async Task<DelsamiPaymentMethodRestrictionModel> PrepareDelsamiPaymentMethodRestrictionModelAsync(int stateProvinceId)
         {
             var cities = await _cityService.GetCitiesByStateProvinceIdAsync(stateProvinceId);
-            var model = new ZarIranPaymentMethodRestrictionModel();
+            var model = new DelsamiPaymentMethodRestrictionModel();
 
             model.AvailableCities = cities;
 
@@ -145,16 +145,16 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
                     if (!model.Restricted.ContainsKey(city.Id))
                         model.Restricted[city.Id] = new Dictionary<string, bool>();
 
-                    model.Restricted[city.Id][paymentMethodModel.SystemName] = await _ZarIranPaymentMethodService.CityRestrictionExistsAsync(paymentMethodModel.SystemName, city.Id);
+                    model.Restricted[city.Id][paymentMethodModel.SystemName] = await _DelsamiPaymentMethodService.CityRestrictionExistsAsync(paymentMethodModel.SystemName, city.Id);
                 }
             }
 
             return model;
         }
 
-        public async Task<ZarIranPaymentMethodCustomerRoleRestrictionModel> PrepareRoleRestrictionModelAsync()
+        public async Task<DelsamiPaymentMethodCustomerRoleRestrictionModel> PrepareRoleRestrictionModelAsync()
         {
-            var model = new ZarIranPaymentMethodCustomerRoleRestrictionModel();
+            var model = new DelsamiPaymentMethodCustomerRoleRestrictionModel();
             var allRoleRestrictions = (await _roleRestrictionService.GetAllCustomerRoleRestrictionsAsync())?.ToDictionary(a => (a.PaymentMethodSystemName, a.CustomerRoleId), b => b);
             model.AvailableRoles = (await _customerRoleModelFactory.PrepareCustomerRoleListModelAsync(new CustomerRoleSearchModel() { Length = 1000 })).Data.ToList();
 

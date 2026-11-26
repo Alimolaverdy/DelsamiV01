@@ -1,8 +1,8 @@
-﻿namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Validator;
+﻿namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Validator;
 
 using FluentValidation;
 using System.Linq;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
 
 
 public class AmountRestrictionValidator : AbstractValidator<PaymentMethodAmountRestrictionList>

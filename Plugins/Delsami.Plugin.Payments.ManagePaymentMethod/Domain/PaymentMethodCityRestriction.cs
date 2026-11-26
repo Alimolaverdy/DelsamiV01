@@ -1,6 +1,6 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Domain
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Domain
 {
     public class PaymentMethodCityRestriction : BaseEntity
     {

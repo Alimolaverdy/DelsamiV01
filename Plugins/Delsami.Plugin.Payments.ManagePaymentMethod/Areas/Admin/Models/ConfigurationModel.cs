@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models
 {
     public class ConfigurationModel
     {

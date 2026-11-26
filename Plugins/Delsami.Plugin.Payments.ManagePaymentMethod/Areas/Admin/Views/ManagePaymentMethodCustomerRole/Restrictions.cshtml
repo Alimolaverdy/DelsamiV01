@@ -1,4 +1,4 @@
-﻿@model ZarIranPaymentMethodCustomerRoleRestrictionModel
+﻿@model DelsamiPaymentMethodCustomerRoleRestrictionModel
 
 @{
     Layout = "_AdminLayout";
@@ -6,7 +6,7 @@
     //page title
     ViewBag.PageTitle = T("Admin.Configuration.Shipping.Restrictions").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodRoleRestriction.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodRoleRestriction.List.SystemName").Text);
 }
 
 
@@ -60,7 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">
-                                                <strong>@T("ZarIran.Plugin.Payment.ManagePaymentMethod.CustomerRoles")</strong>
+                                                <strong>@T("Delsami.Plugin.Payment.ManagePaymentMethod.CustomerRoles")</strong>
                                             </th>
                                             @foreach (var sm in Model.AvailablePaymentMethods)
                                             {

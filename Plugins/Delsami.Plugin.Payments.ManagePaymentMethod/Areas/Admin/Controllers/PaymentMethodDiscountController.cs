@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Services.Customers;
@@ -20,7 +20,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -86,7 +86,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
             //prepare model
             var model = await _paymentMethodDiscountModelFactory.PreparePaymentMethodDiscountSearchModelAsync(new PaymentMethodDiscountSearchModel());
 
-            return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/List.cshtml", model);
+            return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/List.cshtml", model);
         }
 
         [HttpPost]
@@ -109,7 +109,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
             //prepare model
             var model = await _paymentMethodDiscountModelFactory.PreparePaymentMethodDiscountModelAsync(new PaymentMethodDiscountModel(), null);
 
-            return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/Create.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -154,16 +154,16 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
             }
 
             if (!isExistSystemName)
-                ModelState.AddModelError("PaymentMethodSystemName", await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.PaymentMethodSystemName.IsNotExist"));
+                ModelState.AddModelError("PaymentMethodSystemName", await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.PaymentMethodSystemName.IsNotExist"));
 
             if (invalidDiscountPercent)
-                ModelState.AddModelError("DiscountPercent", await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.DiscountPercent.Invalid"));
+                ModelState.AddModelError("DiscountPercent", await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.ManagePaymentMethod.PaymentMethodDiscount.DiscountPercent.Invalid"));
 
             //prepare model
             model = await _paymentMethodDiscountModelFactory.PreparePaymentMethodDiscountModelAsync(model, null);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/PaymentMethodDiscount/Create.cshtml", model);
         }
 
         //public virtual async Task<IActionResult> Edit(int id)
@@ -179,7 +179,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
         //    //prepare model
         //    var model = await _paymentMethodDiscountModelFactory.PreparePaymentMethodDiscountModelAsync(null, paymentMethodDiscount);
 
-        //    return View("~/Plugins/ZarIran.Misc.CarInfo/Areas/Admin/Views/CarBrandModelRelation/Edit.cshtml", model);
+        //    return View("~/Plugins/Delsami.Misc.CarInfo/Areas/Admin/Views/CarBrandModelRelation/Edit.cshtml", model);
         //}
 
         //[HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -197,7 +197,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
         //    //var isExist = await _carBrandModelRelationService.IsExistAsync(model.CarBrandSpecificationAttributeOptionId, model.ModelSpecificationAttributeOptionId, model.Id);
 
         //    //if (isExist)
-        //    //    ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.CarBrandModelRelation.CarBrandModelRelationIsExist"));
+        //    //    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.CarBrandModelRelation.CarBrandModelRelationIsExist"));
 
 
         //    if (ModelState.IsValid)
@@ -219,7 +219,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers
         //    model = await _paymentMethodDiscountModelFactory.PreparePaymentMethodDiscountModelAsync(model, paymentMethodDiscount);
 
         //    //if we got this far, something failed, redisplay form
-        //    return View("~/Plugins/ZarIran.Misc.CarInfo/Areas/Admin/Views/CarBrandModelRelation/Edit.cshtml", model);
+        //    return View("~/Plugins/Delsami.Misc.CarInfo/Areas/Admin/Views/CarBrandModelRelation/Edit.cshtml", model);
         //}
 
         //[HttpPost]

@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts
 {
     public record PaymentMethodDiscountModel : BaseNopEntityModel
     {

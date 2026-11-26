@@ -6,7 +6,7 @@
     //page title
     ViewBag.PageTitle = T("Admin.Configuration.Payments.Restrictions").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodShippingRestriction.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Paymanets.ManagePaymentMethod.PaymentMethodShippingRestriction.SystemName").Text);
 }
 
 
@@ -48,7 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">
-                                                <strong>@T("ZarIran.Plugin.Payments.ManagePaymentMethod.shipping")</strong>
+                                                <strong>@T("Delsami.Plugin.Payments.ManagePaymentMethod.shipping")</strong>
                                             </th>
                                             @foreach (var sm in Model.AvailablePaymentMethods)
                                             {

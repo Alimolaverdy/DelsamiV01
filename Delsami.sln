@@ -105,6 +105,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.TorobAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payment.Tejarat", "Plugins\Delsami.Plugin.Payment.Tejarat\Delsami.Plugin.Payment.Tejarat.csproj", "{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payments.ManagePaymentMethod", "Plugins\Delsami.Plugin.Payments.ManagePaymentMethod\Delsami.Plugin.Payments.ManagePaymentMethod.csproj", "{421C07BA-35E0-49D9-8081-DA44FBC020FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -657,6 +659,18 @@ Global
 		{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6}.Release|x86.Build.0 = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -709,6 +723,7 @@ Global
 		{21648067-2E37-4967-A24B-5D48E2DFAF1A} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{E54F3327-B6EA-4AA9-AF51-90B2BB939A3D} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
+		{421C07BA-35E0-49D9-8081-DA44FBC020FC} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE72A8B2-332A-4175-9319-6726D36E9D25}

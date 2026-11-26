@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Services
 {
-    public class ZarIranStateProvinceService : IZarIranStateProvinceService
+    public class DelsamiStateProvinceService : IDelsamiStateProvinceService
     {
         #region Fields
         private readonly IRepository<StateProvince> _stateProvinceRepository;
@@ -16,7 +16,7 @@ namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services
         #endregion
 
         #region Ctor
-        public ZarIranStateProvinceService(IRepository<StateProvince> stateProvinceRepository, IStaticCacheManager staticCacheManager)
+        public DelsamiStateProvinceService(IRepository<StateProvince> stateProvinceRepository, IStaticCacheManager staticCacheManager)
         {
             _stateProvinceRepository = stateProvinceRepository;
             _staticCacheManager = staticCacheManager;

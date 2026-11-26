@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+﻿using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 
 public interface IPaymentMethodShippingRestrictionService
 {

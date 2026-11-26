@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
 
 public class PaymentMethodAmountRestrictionModel
 {

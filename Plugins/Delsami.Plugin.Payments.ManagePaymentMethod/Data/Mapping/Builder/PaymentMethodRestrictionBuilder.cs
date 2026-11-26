@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Data.Mapping.Builder
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Data.Mapping.Builder
 {
     public class PaymentMethodRestrictionBuilder : NopEntityBuilder<PaymentMethodCityRestriction>
     {

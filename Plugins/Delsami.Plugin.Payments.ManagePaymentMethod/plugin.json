@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Payment",
   "FriendlyName": "Manage Payment Method",
-  "SystemName": "ZarIran.Payments.ManagePaymentMethod",
+  "SystemName": "Delsami.Payments.ManagePaymentMethod",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 7,
-  "FileName": "ZarIran.Plugin.Payments.ManagePaymentMethod.dll",
+  "FileName": "Delsami.Plugin.Payments.ManagePaymentMethod.dll",
   "Description": "Manage Payment Method",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

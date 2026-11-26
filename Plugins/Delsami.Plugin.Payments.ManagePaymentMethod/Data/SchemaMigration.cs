@@ -1,11 +1,11 @@
 ﻿using FluentMigrator;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Data
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Data
 {
-    [NopMigration("2026/06/16 09:38:00", "ZarIran.Plugin.Payment.ManagePaymentMethod base schema, add PaymentMethodShippingRestriction")]
+    [NopMigration("2026/11/26 09:38:00", "Delsami.Plugin.Payment.ManagePaymentMethod base schema, add PaymentMethodShippingRestriction")]
     public class SchemaMigration : AutoReversingMigration
     {
         public override void Up()

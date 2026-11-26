@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Infrastructure.Permissions;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Payments;
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -29,7 +29,7 @@ public class PaymentMethodCustomerRoleRestrictionController : BasePluginControll
 {
     #region Fields
     private readonly IPermissionService _permissionService;
-    private readonly IZarIranPaymentMethodModelFactory _ZarIranShippingModelFactory;
+    private readonly IDelsamiPaymentMethodModelFactory _DelsamiShippingModelFactory;
     private readonly INotificationService _notificationService;
     private readonly ILocalizationService _localizationService;
     private readonly IPaymentMethodCustomerRoleRestrictionService _paymentMethodCustomerRoleRestrictionService;
@@ -40,14 +40,14 @@ public class PaymentMethodCustomerRoleRestrictionController : BasePluginControll
     #region Ctor
 
     public PaymentMethodCustomerRoleRestrictionController(IPermissionService permissionService,
-                                          IZarIranPaymentMethodModelFactory ZarIranShippingModelFactory,
+                                          IDelsamiPaymentMethodModelFactory DelsamiShippingModelFactory,
                                           INotificationService notificationService,
                                           ILocalizationService localizationService,
                                           IPaymentMethodCustomerRoleRestrictionService paymentMethodCustomerRoleRestrictionService,
                                           IPaymentPluginManager paymentPluginManager)
     {
         _permissionService = permissionService;
-        _ZarIranShippingModelFactory = ZarIranShippingModelFactory;
+        _DelsamiShippingModelFactory = DelsamiShippingModelFactory;
         _notificationService = notificationService;
         _localizationService = localizationService;
         _paymentMethodCustomerRoleRestrictionService = paymentMethodCustomerRoleRestrictionService;
@@ -63,9 +63,9 @@ public class PaymentMethodCustomerRoleRestrictionController : BasePluginControll
             return AccessDeniedView();
 
         //prepare model
-        var model = await _ZarIranShippingModelFactory.PrepareRoleRestrictionModelAsync();
+        var model = await _DelsamiShippingModelFactory.PrepareRoleRestrictionModelAsync();
 
-        return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethodCustomerRole/Restrictions.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethodCustomerRole/Restrictions.cshtml", model);
     }
 
 
@@ -74,7 +74,7 @@ public class PaymentMethodCustomerRoleRestrictionController : BasePluginControll
     //we use 2048 value because in some cases default value (1024) is too small for this action
     [RequestFormLimits(ValueCountLimit = 2048)]
     [HttpPost, ActionName("Restrictions")]
-    public virtual async Task<IActionResult> RestrictionSave(ZarIranPaymentMethodCustomerRoleRestrictionModel model, IFormCollection form)
+    public virtual async Task<IActionResult> RestrictionSave(DelsamiPaymentMethodCustomerRoleRestrictionModel model, IFormCollection form)
     {
         if (!await _permissionService.AuthorizeAsync(PaymentMethodStateProvinceRestrictionPermission.ManagePaymentMethod))
             return AccessDeniedView();

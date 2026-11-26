@@ -3,7 +3,7 @@ using Nop.Web.Areas.Admin.Models.Shipping;
 using Nop.Web.Framework.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction
 {
     public record PaymentMethodShippingRestrictionModel : BaseNopModel
     {

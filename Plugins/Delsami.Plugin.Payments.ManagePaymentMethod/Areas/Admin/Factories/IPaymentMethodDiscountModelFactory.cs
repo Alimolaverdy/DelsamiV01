@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
+﻿using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.PaymentMethodDiscounts;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories
 {
     public interface IPaymentMethodDiscountModelFactory
     {

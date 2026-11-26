@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Domain
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Domain
 {
     public class PaymentMethodDiscount : BaseEntity
     {

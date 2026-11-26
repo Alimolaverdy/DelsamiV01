@@ -12,20 +12,20 @@ using Nop.Web.Framework.Mvc.Filters;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Factories;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Infrastructure.Permissions;
 using System.Linq;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Domain;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Domain;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models;
 using Nop.Services.Payments;
 using Nop.Web.Areas.Admin.Models.Payments;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Services;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
-using ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Services;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.AmountRestriction;
+using Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Models.ShippingMethodRestriction;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
-namespace ZarIran.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Payments.ManagePaymentMethod.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -34,12 +34,12 @@ public class PaymentMethodRestrictionController : BasePluginController
 {
     #region Fields
     private readonly IPermissionService _permissionService;
-    private readonly IZarIranPaymentMethodModelFactory _ZarIranShippingModelFactory;
+    private readonly IDelsamiPaymentMethodModelFactory _DelsamiShippingModelFactory;
     private readonly IShippingService _shippingService;
     private readonly INotificationService _notificationService;
     private readonly ILocalizationService _localizationService;
-    private readonly IZarIranStateProvinceService _ZarIranStateProvinceService;
-    private readonly IPaymentMethodRestrictionService _ZarIranPaymentMethodService;
+    private readonly IDelsamiStateProvinceService _DelsamiStateProvinceService;
+    private readonly IPaymentMethodRestrictionService _DelsamiPaymentMethodService;
     private readonly IPaymentMethodShippingRestrictionService  _paymentMethodShippingRestrictionService;
     private readonly ISettingService _settingService;
     private readonly ICityService _cityService;
@@ -51,14 +51,14 @@ public class PaymentMethodRestrictionController : BasePluginController
     #region Ctor
 
     public PaymentMethodRestrictionController(IPermissionService permissionService,
-                                          IZarIranPaymentMethodModelFactory ZarIranShippingModelFactory,
+                                          IDelsamiPaymentMethodModelFactory DelsamiShippingModelFactory,
                                           IShippingService shippingService,
                                           ICityService cityService,
                                           INotificationService notificationService,
                                           IPaymentMethodShippingRestrictionService paymentMethodShippingRestrictionService,
                                           ILocalizationService localizationService,
-                                          IZarIranStateProvinceService ZarIranStateProvinceService,
-                                          IPaymentMethodRestrictionService ZarIranPaymentMethodService,
+                                          IDelsamiStateProvinceService DelsamiStateProvinceService,
+                                          IPaymentMethodRestrictionService DelsamiPaymentMethodService,
                                           ISettingService settingService,
                                           IPaymentPluginManager paymentPluginManager,
                                           IPaymentMethodAmountRestrictionService paymentMethodAmountRestrictionService)
@@ -66,12 +66,12 @@ public class PaymentMethodRestrictionController : BasePluginController
         _permissionService = permissionService;
         _paymentMethodShippingRestrictionService = paymentMethodShippingRestrictionService;
         _cityService = cityService;
-        _ZarIranShippingModelFactory = ZarIranShippingModelFactory;
+        _DelsamiShippingModelFactory = DelsamiShippingModelFactory;
         _shippingService = shippingService;
         _notificationService = notificationService;
         _localizationService = localizationService;
-        _ZarIranStateProvinceService = ZarIranStateProvinceService;
-        _ZarIranPaymentMethodService = ZarIranPaymentMethodService;
+        _DelsamiStateProvinceService = DelsamiStateProvinceService;
+        _DelsamiPaymentMethodService = DelsamiPaymentMethodService;
         _settingService = settingService;
         _paymentPluginManager = paymentPluginManager;
         _paymentMethodAmountRestrictionService = paymentMethodAmountRestrictionService;
@@ -90,13 +90,13 @@ public class PaymentMethodRestrictionController : BasePluginController
         var setting = await _settingService.LoadSettingAsync<ManagePaymentMethodSetting>();
         var selectedCountryId = setting.CountryId;
 
-        var model = await _ZarIranShippingModelFactory.PrepareConfigureModelAsync(new ConfigurationModel
+        var model = await _DelsamiShippingModelFactory.PrepareConfigureModelAsync(new ConfigurationModel
         {
             CountryId = selectedCountryId,
         });
 
 
-        return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/Configure.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/Configure.cshtml", model);
     }
 
     [HttpPost]
@@ -127,9 +127,9 @@ public class PaymentMethodRestrictionController : BasePluginController
             return AccessDeniedView();
 
         //prepare model
-        var model = await _ZarIranShippingModelFactory.PrepareZarIranPaymentMethodRestrictionModelAsync(new ZarIranPaymentMethodRestrictionModel());
+        var model = await _DelsamiShippingModelFactory.PrepareDelsamiPaymentMethodRestrictionModelAsync(new DelsamiPaymentMethodRestrictionModel());
 
-        return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/Restrictions.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/Restrictions.cshtml", model);
     }
 
 
@@ -138,7 +138,7 @@ public class PaymentMethodRestrictionController : BasePluginController
     //we use 2048 value because in some cases default value (1024) is too small for this action
     [RequestFormLimits(ValueCountLimit = 2048)]
     [HttpPost, ActionName("Restrictions")]
-    public virtual async Task<IActionResult> RestrictionSave(ZarIranPaymentMethodRestrictionModel model, IFormCollection form)
+    public virtual async Task<IActionResult> RestrictionSave(DelsamiPaymentMethodRestrictionModel model, IFormCollection form)
     {
         if (!await _permissionService.AuthorizeAsync(PaymentMethodStateProvinceRestrictionPermission.ManagePaymentMethod))
             return AccessDeniedView();
@@ -164,21 +164,21 @@ public class PaymentMethodRestrictionController : BasePluginController
             foreach (var city in cities)
             {
                 var restrict = CityIdsToRestrict.Contains(city.Id);
-                var paymentMethodCityMappings = await _ZarIranPaymentMethodService.GetPaymentMethodCityMappingAsync(paymentMethodModel.SystemName, city.Id);
+                var paymentMethodCityMappings = await _DelsamiPaymentMethodService.GetPaymentMethodCityMappingAsync(paymentMethodModel.SystemName, city.Id);
 
                 if (restrict)
                 {
                     if (paymentMethodCityMappings.Any())
                         continue;
 
-                    await _ZarIranPaymentMethodService.InsertPaymentMethodRestrictionAsync(new PaymentMethodCityRestriction { CityId = city.Id, PaymentMethodSystemName = paymentMethodModel.SystemName });
+                    await _DelsamiPaymentMethodService.InsertPaymentMethodRestrictionAsync(new PaymentMethodCityRestriction { CityId = city.Id, PaymentMethodSystemName = paymentMethodModel.SystemName });
                 }
                 else
                 {
                     if (!paymentMethodCityMappings.Any())
                         continue;
 
-                    await _ZarIranPaymentMethodService.DeletePaymentMethodCityMappingAsync(paymentMethodCityMappings.FirstOrDefault());
+                    await _DelsamiPaymentMethodService.DeletePaymentMethodCityMappingAsync(paymentMethodCityMappings.FirstOrDefault());
                 }
             }
         }
@@ -191,8 +191,8 @@ public class PaymentMethodRestrictionController : BasePluginController
 
     public async Task<IActionResult> GetPaymentRestrictions(int stateProvinceId)
     {
-        var model = await _ZarIranShippingModelFactory.PrepareZarIranPaymentMethodRestrictionModelAsync(stateProvinceId);
-        return PartialView("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/_RestrictionsTable.cshtml", model);
+        var model = await _DelsamiShippingModelFactory.PrepareDelsamiPaymentMethodRestrictionModelAsync(stateProvinceId);
+        return PartialView("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/_RestrictionsTable.cshtml", model);
     }
 
     #endregion
@@ -263,9 +263,9 @@ public class PaymentMethodRestrictionController : BasePluginController
             return AccessDeniedView();
 
         //prepare model
-        var model = await _ZarIranShippingModelFactory.PreparePaymentMethodShippingRestrictionModelAsync();
+        var model = await _DelsamiShippingModelFactory.PreparePaymentMethodShippingRestrictionModelAsync();
 
-        return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/ShippingMethodRestriction.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/ShippingMethodRestriction.cshtml", model);
     }
 
     #endregion
@@ -291,7 +291,7 @@ public class PaymentMethodRestrictionController : BasePluginController
             MinAmount = paymentMethodsRestricted.FirstOrDefault(b => b.PaymentMethodSystemName == a.PluginDescriptor.SystemName)?.MinAmount ?? null,
         }).ToList();
 
-        return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/AmountRestrictions.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/AmountRestrictions.cshtml", model);
     }
 
     [HttpPost]
@@ -303,7 +303,7 @@ public class PaymentMethodRestrictionController : BasePluginController
 
         if (!ModelState.IsValid)
         {
-            return View("~/Plugins/ZarIran.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/AmountRestrictions.cshtml", model);
+            return View("~/Plugins/Delsami.Payments.ManagePaymentMethod/Areas/Admin/Views/ManagePaymentMethod/AmountRestrictions.cshtml", model);
         }
 
         var entities = model.PaymentMethods.Select(a => new PaymentMethodAmountRestriction()
