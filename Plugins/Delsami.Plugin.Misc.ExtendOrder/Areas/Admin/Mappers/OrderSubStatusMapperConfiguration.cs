@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Mappers
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Mappers
 {
     public class OrderSubStatusMapperConfiguration : Profile, IOrderedMapperProfile
     {

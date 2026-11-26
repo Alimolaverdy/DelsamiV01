@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure
+namespace Delsami.Plugin.Misc.ExtendedOrder.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -16,24 +16,24 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure
 
             endpointRouteBuilder.MapControllerRoute(name: "Order",
                 pattern: $"Admin/Order/List",
-                defaults: new { controller = "ZarIranOrder", action = "List", area = "Admin" });
+                defaults: new { controller = "DelsamiOrder", action = "List", area = "Admin" });
 
             endpointRouteBuilder.MapControllerRoute(
                 name: "OrderEdit",
                 pattern: "Admin/Order/Edit/{id?}",
-                defaults: new { controller = "ZarIranOrder", action = "Edit", area = "Admin" }
+                defaults: new { controller = "DelsamiOrder", action = "Edit", area = "Admin" }
             );
 
             endpointRouteBuilder.MapControllerRoute(
                 name: "AddOrderItem",
                 pattern: "Admin/Order/AddProductToOrderDetails",
-                defaults: new { controller = "ZarIranOrder", action = "AddProductToOrderDetails", area = "Admin" }
+                defaults: new { controller = "DelsamiOrder", action = "AddProductToOrderDetails", area = "Admin" }
             );
 
             endpointRouteBuilder.MapControllerRoute(
-                name: "ZarIranOrderNoteDelete",
+                name: "DelsamiOrderNoteDelete",
                 pattern: "Admin/Order/OrderNoteDelete",
-                defaults: new { controller = "ZarIranOrder", action = "OrderNoteDelete", area = "Admin" }
+                defaults: new { controller = "DelsamiOrder", action = "OrderNoteDelete", area = "Admin" }
             );
         }
     }

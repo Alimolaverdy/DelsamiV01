@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core.Events;
 using Nop.Services.ScheduleTasks;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.Core.Events;
 using System;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.ScheduleTasks
+namespace Delsami.Plugin.Misc.ExtendedOrder.ScheduleTasks
 {
     public class SendOrderTrackingSMSScheduleTask : IScheduleTask
     {
@@ -33,7 +33,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.ScheduleTasks
         {
             try
             {
-                var orders = await _extendedOrderService.GetExceptZarIranLogisticProcessingOrdersAfterThreeDaysAsync();
+                var orders = await _extendedOrderService.GetExceptDelsamiLogisticProcessingOrdersAfterThreeDaysAsync();
 
                 foreach (var order in orders)
                 {

@@ -1,8 +1,8 @@
 ﻿using Nop.Core.Domain.Orders;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models
 {
-    public class ZarIranOrderAverageReportLine: OrderAverageReportLine
+    public class DelsamiOrderAverageReportLine: OrderAverageReportLine
     {
         public decimal SumOrderSubtotalExcludeTaxs { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Events;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.ScheduleTasks
+namespace Delsami.Plugin.Misc.ExtendedOrder.ScheduleTasks
 {
     public class CompleteProcessingOrderScheduleTask : IScheduleTask
     {

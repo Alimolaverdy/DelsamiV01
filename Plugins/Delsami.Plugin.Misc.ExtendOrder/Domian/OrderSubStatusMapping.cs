@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Domian
+namespace Delsami.Plugin.Misc.ExtendedOrder.Domian
 {
     public class OrderSubStatusMapping : BaseEntity
     {

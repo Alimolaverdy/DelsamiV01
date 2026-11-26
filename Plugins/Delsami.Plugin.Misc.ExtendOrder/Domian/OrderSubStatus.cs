@@ -1,6 +1,6 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Domian
+namespace Delsami.Plugin.Misc.ExtendedOrder.Domian
 {
     public class OrderSubStatus : BaseEntity
     {

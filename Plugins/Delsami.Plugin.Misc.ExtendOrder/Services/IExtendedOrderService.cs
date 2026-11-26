@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public interface IExtendedOrderService
     {
         Task<Order> GetCurrentCustomerLastOrderAsync();
 
-        Task<List<Order>> GetExceptZarIranLogisticProcessingOrdersAfterThreeDaysAsync();
+        Task<List<Order>> GetExceptDelsamiLogisticProcessingOrdersAfterThreeDaysAsync();
 
         Task<IPagedList<Order>> SearchOrdersAsync(int storeId = 0,
          int vendorId = 0, int customerId = 0,

@@ -1,5 +1,5 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Data.Mapping.Builders;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Data.Mapping.Builders
+namespace Delsami.Plugin.Misc.ExtendedOrder.Data.Mapping.Builders
 {
     public class OrderSubStatusBuilder : NopEntityBuilder<OrderSubStatus>
     {

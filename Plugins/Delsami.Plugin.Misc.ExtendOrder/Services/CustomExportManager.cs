@@ -1,7 +1,7 @@
 ﻿using ClosedXML.Excel;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
@@ -40,9 +40,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DateTimeHelper = ZarIran.Plugin.Misc.Core.Helpers.DateTimeHelper;
+using DateTimeHelper = Delsami.Plugin.Misc.Core.Helpers.DateTimeHelper;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public class CustomExportManager : ExportManager
     {
@@ -201,7 +201,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
                 },
                 new PropertyByName<Order, Language>("ShippingDate", async (p, l) =>
                 {
-                    if(p.ShippingRateComputationMethodSystemName!="ZarIran.Shipping.ZarIranLogistic")
+                    if(p.ShippingRateComputationMethodSystemName!="Delsami.Shipping.DelsamiLogistic")
                         return string.Empty;
 
                    var shippingMethodCapacity=await _orderShippingMethodCapacityMappingService.GetOrderShippingMethodCapacityMappingByOrderIdAsync(p.Id);
@@ -213,7 +213,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
 
                 new PropertyByName<Order, Language>("ShippingTime", async (p, l) =>
                 {
-                    if(p.ShippingRateComputationMethodSystemName!="ZarIran.Shipping.ZarIranLogistic")
+                    if(p.ShippingRateComputationMethodSystemName!="Delsami.Shipping.DelsamiLogistic")
                         return string.Empty;
 
                    var shippingMethodCapacity=await _orderShippingMethodCapacityMappingService.GetOrderShippingMethodCapacityMappingByOrderIdAsync(p.Id);

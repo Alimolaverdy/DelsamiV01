@@ -6,14 +6,14 @@ using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -63,7 +63,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             //prepare model
             var model = _subStatusFactory.PrepareOrderSubStatusSearchModel(new OrderSubStatusSearchModel());
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/List.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/List.cshtml", model);
         }
 
         [HttpPost]
@@ -90,7 +90,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             //prepare model
             var model = _subStatusFactory.PrepareOrderSubStatusModel(new OrderSubStatusModel(), null);
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Create.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -106,7 +106,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
 
                 await _subStatusService.InsertAsync(orderSubStatusModel);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.Add"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ExtendedOrder.SubStatus.Add"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -118,7 +118,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             model = _subStatusFactory.PrepareOrderSubStatusModel(model, null);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Create.cshtml", model);
         }
 
         public virtual async Task<IActionResult> Edit(int id)
@@ -134,7 +134,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             //prepare model
             var model = _subStatusFactory.PrepareOrderSubStatusModel(null, subStatus);
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Edit.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -168,7 +168,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             model = _subStatusFactory.PrepareOrderSubStatusModel(model, subStatus);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/SubStatus/Edit.cshtml", model);
         }
 
         [HttpPost]

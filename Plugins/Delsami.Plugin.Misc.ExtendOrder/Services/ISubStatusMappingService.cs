@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public interface ISubStatusMappingService
     {

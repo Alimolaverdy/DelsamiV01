@@ -3,7 +3,7 @@ using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models
 {
     public record ConfigurationModel : BaseNopModel
     {
@@ -14,18 +14,18 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models
             SelectedShippingMethods = new List<int>();
         }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ExtendedOrder.Configuration.OrderExpirationAsMinutes")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ExtendedOrder.Configuration.OrderExpirationAsMinutes")]
         public int OrderExpirationAsMinutes { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ExtendedOrder.Configuration.OrderCompleteAsDays")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ExtendedOrder.Configuration.OrderCompleteAsDays")]
         public int OrderCompleteAsDays { get; set; }
 
         public int SystemSubStatusId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ExtendedOrder.Configuration.SelectedShippingMethods")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ExtendedOrder.Configuration.SelectedShippingMethods")]
         public IList<int> SelectedShippingMethods { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ExtendedOrder.Configuration.FulfillmentDecisionBaseUrl")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ExtendedOrder.Configuration.FulfillmentDecisionBaseUrl")]
         public string FulfillmentDecisionBaseUrl { get; set; }
 
         public IList<SelectListItem> AvailableShippingMethods { get; set; }

@@ -2,7 +2,7 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions
+namespace Delsami.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions
 {
     public class ExtendedOrderPermission : IPermissionProvider
     {

@@ -1,13 +1,13 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Framework.Models.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
 {
     public class SubStatusFactory : ISubStatusFactory
     {

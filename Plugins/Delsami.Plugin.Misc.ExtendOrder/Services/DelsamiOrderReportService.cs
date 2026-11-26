@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
-    public class ZarIranOrderReportService: IZarIranOrderReportService
+    public class DelsamiOrderReportService: IDelsamiOrderReportService
     {
         #region Fields
 
@@ -25,7 +25,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
 
         #region Ctor
 
-        public ZarIranOrderReportService(IRepository<Order> orderRepository,
+        public DelsamiOrderReportService(IRepository<Order> orderRepository,
                                           IRepository<OrderItem> orderItemRepository,
                                           IRepository<Product> productRepository,
                                           IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
@@ -44,7 +44,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
 
         #region Methods
 
-        public virtual async Task<ZarIranOrderAverageReportLine> GetOrderAverageReportLineAsync(int storeId = 0,
+        public virtual async Task<DelsamiOrderAverageReportLine> GetOrderAverageReportLineAsync(int storeId = 0,
                                                                                          int vendorId = 0,
                                                                                          int productId = 0,
                                                                                          int warehouseId = 0,
@@ -159,7 +159,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
                                   OrderTotalSum = result.Sum(o => o.OrderTotal),
                                   OrederRefundedAmountSum = result.Sum(o => o.RefundedAmount),
                                   OrderSubTotalExlcludeTax = result.Sum(o => o.OrderSubtotalExclTax),
-                              }).Select(r => new ZarIranOrderAverageReportLine
+                              }).Select(r => new DelsamiOrderAverageReportLine
                               {
                                   CountOrders = r.OrderCount,
                                   SumShippingExclTax = r.OrderShippingExclTaxSum,
@@ -171,7 +171,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
                               })
                 .FirstOrDefaultAsync();
 
-            item ??= new ZarIranOrderAverageReportLine
+            item ??= new DelsamiOrderAverageReportLine
             {
                 CountOrders = 0,
                 SumShippingExclTax = decimal.Zero,

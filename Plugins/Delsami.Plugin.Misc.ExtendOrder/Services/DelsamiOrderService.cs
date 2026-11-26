@@ -10,12 +10,12 @@ using Nop.Services.Orders;
 using Nop.Services.Shipping;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services;
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services;
 
-public class ZarIranOrderService : OrderService
+public class DelsamiOrderService : OrderService
 {
     private readonly IWorkContext _workContext;
-    public ZarIranOrderService(IWorkContext workContext,
+    public DelsamiOrderService(IWorkContext workContext,
      IHtmlFormatter htmlFormatter,
      IProductService productService,
      IRepository<Address> addressRepository,

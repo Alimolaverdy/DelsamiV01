@@ -1,11 +1,11 @@
 ﻿using LinqToDB.Tools;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
@@ -44,9 +44,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
 {
-    public class ZarIranOrderModelFactory : IZarIranOrderModelFactory
+    public class DelsamiOrderModelFactory : IDelsamiOrderModelFactory
     {
         #region Fields
 
@@ -90,12 +90,12 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
         private readonly IAddressModelFactory _addressModelFactory;
         private readonly ISubStatusMappingService _subStatusMappingService;
         private readonly ISubStatusService _subStatusService;
-        private readonly IZarIranOrderReportService _ZarIranOrderReportService;
+        private readonly IDelsamiOrderReportService _DelsamiOrderReportService;
 
         #endregion
 
         #region Ctor
-        public ZarIranOrderModelFactory(IWorkContext workContext,
+        public DelsamiOrderModelFactory(IWorkContext workContext,
                                          AddressSettings addressSettings,
                                          NopHttpClient nopHttpClient,
                                          IOrderShippingMethodCapacityMappingService orderShippingService,
@@ -136,7 +136,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
                                          ISubStatusMappingService subStatusMappingService,
                                          ISubStatusService subStatusService
 ,
-                                         IZarIranOrderReportService ZarIranOrderReportService)
+                                         IDelsamiOrderReportService DelsamiOrderReportService)
         {
             _workContext = workContext;
             _shippingMethodRepo = shippingMethodRepo;
@@ -178,13 +178,13 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
             _addressModelFactory = addressModelFactory;
             _subStatusMappingService = subStatusMappingService;
             _subStatusService = subStatusService;
-            _ZarIranOrderReportService = ZarIranOrderReportService;
+            _DelsamiOrderReportService = DelsamiOrderReportService;
         }
 
         #endregion
 
         #region Methods
-        public async Task<ZarIranOrderListModel> PrepareOrderListModelAsync(ZarIranOrderSearchModel searchModel)
+        public async Task<DelsamiOrderListModel> PrepareOrderListModelAsync(DelsamiOrderSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -225,7 +225,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
                             query => query.Where(e => orders.Select(z => z.Id).Contains(e.OrderId)))).ToDictionary(a => a.OrderId, a => a);
 
             //prepare list model
-            var model = await new ZarIranOrderListModel().PrepareToGridAsync(searchModel, orders, () =>
+            var model = await new DelsamiOrderListModel().PrepareToGridAsync(searchModel, orders, () =>
             {
                 //fill in model values from the entity
                 return orders.SelectAwait(async order =>
@@ -256,7 +256,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
                             deliveryTime = $"_{delivery.DeliveryDateOnUtc.ToLongDateString()}_{delivery.Time}";
 
                     }
-                    var orderModel = new ZarIranOrderModel
+                    var orderModel = new DelsamiOrderModel
                     {
                         Id = order.Id,
                         OrderStatusId = order.OrderStatusId,
@@ -290,7 +290,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
             return model;
         }
 
-        public async Task<OrderSearchModel> PrepareOrderSearchModelAsync(ZarIranOrderSearchModel searchModel)
+        public async Task<OrderSearchModel> PrepareOrderSearchModelAsync(DelsamiOrderSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -397,12 +397,12 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
             return searchModel;
         }
 
-        public async Task<ZarIranOrderModel> PrepareOrderModelAsync(ZarIranOrderModel model, Order order, bool excludeProperties = false)
+        public async Task<DelsamiOrderModel> PrepareOrderModelAsync(DelsamiOrderModel model, Order order, bool excludeProperties = false)
         {
             if (order != null)
             {
                 //fill in model values from the entity
-                model ??= new ZarIranOrderModel
+                model ??= new DelsamiOrderModel
                 {
                     Id = order.Id,
                     OrderStatusId = order.OrderStatusId,
@@ -465,7 +465,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
             return model;
         }
 
-        public virtual async Task<ZarIranOrderAggreratorModel> PrepareOrderAggregatorModelAsync(OrderSearchModel searchModel)
+        public virtual async Task<DelsamiOrderAggreratorModel> PrepareOrderAggregatorModelAsync(OrderSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -489,7 +489,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
                 ? searchModel.ProductId : 0;
 
             //prepare additional model data
-            var reportSummary = await _ZarIranOrderReportService.GetOrderAverageReportLineAsync(storeId: searchModel.StoreId,
+            var reportSummary = await _DelsamiOrderReportService.GetOrderAverageReportLineAsync(storeId: searchModel.StoreId,
                 vendorId: searchModel.VendorId,
                 productId: filterByProductId,
                 warehouseId: searchModel.WarehouseId,
@@ -529,7 +529,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
             var profitSum = await _priceFormatter.FormatPriceAsync(profit, true, false);
             var subTotalExcludeTaxSum = await _priceFormatter.FormatPriceAsync(reportSummary.SumOrderSubtotalExcludeTaxs, true, false);
 
-            var model = new ZarIranOrderAggreratorModel
+            var model = new DelsamiOrderAggreratorModel
             {
                 aggregatorprofit = profitSum,
                 aggregatorshipping = shippingSum,

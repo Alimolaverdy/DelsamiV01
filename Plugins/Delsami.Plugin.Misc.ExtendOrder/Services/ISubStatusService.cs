@@ -1,9 +1,9 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Core;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public interface ISubStatusService
     {

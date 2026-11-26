@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public class OrderInvoiceService : IOrderInvoiceService
     {

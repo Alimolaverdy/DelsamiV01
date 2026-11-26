@@ -1,4 +1,4 @@
-﻿@model ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models.ZarIranOrderModel
+﻿@model Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models.DelsamiOrderModel
 
 @{
 
@@ -25,7 +25,7 @@
     var hideNotesBlock = await genericAttributeService.GetAttributeAsync<bool>(customer, hideNotesBlockAttributeName);
 }
 
-<form asp-controller="ZarIranOrder" asp-action="Edit" method="post" id="order-form">
+<form asp-controller="DelsamiOrder" asp-action="Edit" method="post" id="order-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
             @T("Admin.Orders.EditOrderDetails") - @Model.CustomOrderNumber
@@ -66,7 +66,7 @@
             <div class="form-horizontal">
 
                 <nop-cards id="order-cards">
-                    <nop-card asp-name="order-info" asp-icon="fas fa-info" asp-title="@T("Admin.Orders.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("~/plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/_OrderDetails.Info.cshtml", Model)</nop-card>
+                    <nop-card asp-name="order-info" asp-icon="fas fa-info" asp-title="@T("Admin.Orders.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("~/plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/_OrderDetails.Info.cshtml", Model)</nop-card>
                     <nop-card asp-name="order-billing-shipping" asp-icon="fas fa-truck" asp-title="@T("Admin.Orders.BillingShippingInfo")" asp-hide-block-attribute-name="@hideBillingAndShippingBlockAttributeName" asp-hide="@hideBillingAndShippingBlock" asp-advanced="false">@await Html.PartialAsync("_OrderDetails.BillingShipping", Model)</nop-card>
                     <nop-card asp-name="order-products" asp-icon="fas fa-th-list" asp-title="@T("Admin.Orders.Products")" asp-hide-block-attribute-name="@hideProductsBlockAttributeName" asp-hide="@hideProductsBlock" asp-advanced="true">@await Html.PartialAsync("~/Areas/Admin/Views/Order/_OrderDetails.Products.cshtml", Model)</nop-card>
 

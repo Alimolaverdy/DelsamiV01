@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.ExtendedOrder.Enums
+﻿namespace Delsami.Plugin.Misc.ExtendedOrder.Enums
 {
     public enum WarehouseLocation
     {

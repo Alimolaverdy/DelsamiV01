@@ -1,11 +1,11 @@
 ﻿using FluentMigrator;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Data.Migrations;
 using Nop.Data.Extensions;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Data
+namespace Delsami.Plugin.Misc.ExtendedOrder.Data
 {
-    [NopMigration("2025/10/05 14:35:20", "ZarIran.Plugin.Misc.ExtendedOrder base schema")]
+    [NopMigration("2026/11/26 14:35:20", "Delsami.Plugin.Misc.ExtendedOrder base schema")]
     public class SchemaMigration : AutoReversingMigration
     {
         public override void Up()

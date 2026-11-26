@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+﻿using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Services.Orders;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.ScheduleTasks
+namespace Delsami.Plugin.Misc.ExtendedOrder.ScheduleTasks
 {
     public class CancelPendingOrderScheduleTask : IScheduleTask
     {

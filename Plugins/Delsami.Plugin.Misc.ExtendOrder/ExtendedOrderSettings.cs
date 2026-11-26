@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder;
+namespace Delsami.Plugin.Misc.ExtendedOrder;
 
 public class ExtendedOrderSettings : ISettings
 {

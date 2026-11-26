@@ -8,7 +8,7 @@ using Nop.Services.Shipping;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Events
+namespace Delsami.Plugin.Misc.ExtendedOrder.Events
 {
     public class OrderStatusCompletedHandler : IConsumer<OrderStatusChangedEvent>
     {

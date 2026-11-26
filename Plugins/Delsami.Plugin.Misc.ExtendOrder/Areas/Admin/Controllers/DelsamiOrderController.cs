@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core.Events.Audit.Entities;
-using ZarIran.Plugin.Misc.Core.Extensions;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.Core.Events.Audit.Entities;
+using Delsami.Plugin.Misc.Core.Extensions;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
@@ -35,18 +35,18 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
     [AutoValidateAntiforgeryToken]
-    public class ZarIranOrderController : BasePluginController
+    public class DelsamiOrderController : BasePluginController
     {
         #region Fields
         private readonly IPermissionService _permissionService;
         private readonly ICustomerService _customerService;
         private readonly IShoppingCartService _shoppingCartService;
-        private readonly IZarIranOrderModelFactory _ZarIranOrderModelFactory;
+        private readonly IDelsamiOrderModelFactory _DelsamiOrderModelFactory;
         private readonly IOrderService _orderService;
         private readonly IOrderModelFactory _orderModelFactory;
         private readonly IWorkContext _workContext;
@@ -74,8 +74,8 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
         #endregion
 
         #region Ctor
-        public ZarIranOrderController(IPermissionService permissionService,
-                                       IZarIranOrderModelFactory ZarIranOrderModelFactory,
+        public DelsamiOrderController(IPermissionService permissionService,
+                                       IDelsamiOrderModelFactory DelsamiOrderModelFactory,
                                        IOrderService orderService,
                                        IOrderModelFactory orderModelFactory,
                                        ICustomerService customerService,
@@ -106,7 +106,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             _permissionService = permissionService;
             _customerService = customerService;
             _shoppingCartService = shoppingCartService;
-            _ZarIranOrderModelFactory = ZarIranOrderModelFactory;
+            _DelsamiOrderModelFactory = DelsamiOrderModelFactory;
             _orderService = orderService;
             _shippingService = shippingService;
             _orderModelFactory = orderModelFactory;
@@ -144,24 +144,24 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             //prepare model
-            var model = await _ZarIranOrderModelFactory.PrepareOrderSearchModelAsync(new ZarIranOrderSearchModel
+            var model = await _DelsamiOrderModelFactory.PrepareOrderSearchModelAsync(new DelsamiOrderSearchModel
             {
                 OrderStatusIds = orderStatuses,
                 PaymentStatusIds = paymentStatuses,
                 ShippingStatusIds = shippingStatuses
             });
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/List.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/List.cshtml", model);
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> OrderList(ZarIranOrderSearchModel searchModel)
+        public virtual async Task<IActionResult> OrderList(DelsamiOrderSearchModel searchModel)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageOrders))
                 return await AccessDeniedDataTablesJson();
 
             //prepare model
-            var model = await _ZarIranOrderModelFactory.PrepareOrderListModelAsync(searchModel);
+            var model = await _DelsamiOrderModelFactory.PrepareOrderListModelAsync(searchModel);
 
             return Json(model);
         }
@@ -173,7 +173,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
                 return await AccessDeniedDataTablesJson();
 
             //prepare model
-            var model = await _ZarIranOrderModelFactory.PrepareOrderAggregatorModelAsync(searchModel);
+            var model = await _DelsamiOrderModelFactory.PrepareOrderAggregatorModelAsync(searchModel);
 
             return Json(model);
         }
@@ -209,9 +209,9 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             //prepare model
-            var model = await _ZarIranOrderModelFactory.PrepareOrderModelAsync(null, order);
+            var model = await _DelsamiOrderModelFactory.PrepareOrderModelAsync(null, order);
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Edit.cshtml", model);
         }
 
         [HttpPost]
@@ -1412,7 +1412,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             //prepare model
             var model = await _orderModelFactory.PrepareOrderAddressModelAsync(new OrderAddressModel(), order, address);
 
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/AddressEdit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/AddressEdit.cshtml", model);
 
 
         }
@@ -1472,7 +1472,7 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers
             model = await _orderModelFactory.PrepareOrderAddressModelAsync(model, order, address);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/AddressEdit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/AddressEdit.cshtml", model);
         }
         #endregion
 

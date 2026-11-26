@@ -4,9 +4,9 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Misc.ExtendedOrder.SubStatus.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatusName.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.ExtendedOrder.SubStatusName.SystemName").Text);
 
     const string hideSearchBlockAttributeName = "SubStatusPage.HideSearchBlock";
 
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.List")
+        @T("Delsami.Plugin.Misc.ExtendedOrder.SubStatus.List")
     </h1>
 
     <div class="float-right">
@@ -47,13 +47,13 @@
                         {
                         new ColumnProperty(nameof(OrderSubStatusModel.Name))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.FullName").Text,
+                        Title = T("Delsami.Plugin.Misc.ExtendedOrder.SubStatus.FullName").Text,
                         ClassName =  NopColumnClassDefaults.CenterAll,
                         Width = "100"
                         },
                         new ColumnProperty(nameof(OrderSubStatusModel.SystemName))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.SubStatus.SystemName").Text,
+                        Title = T("Delsami.Plugin.Misc.ExtendedOrder.SubStatus.SystemName").Text,
                         ClassName =  NopColumnClassDefaults.CenterAll,
                         Width = "80"
                         },

@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Enums;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Enums;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations
+namespace Delsami.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations
 {
     public record WarehouseLocationResponseModel
     {

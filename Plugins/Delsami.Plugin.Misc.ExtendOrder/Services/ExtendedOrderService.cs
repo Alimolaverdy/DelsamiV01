@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public class ExtendedOrderService : IExtendedOrderService
     {
@@ -175,9 +175,9 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
             return lastOrder;
         }
 
-        public async Task<List<Order>> GetExceptZarIranLogisticProcessingOrdersAfterThreeDaysAsync()
+        public async Task<List<Order>> GetExceptDelsamiLogisticProcessingOrdersAfterThreeDaysAsync()
         {
-            var orders = await _orderRepo.Table.Where(w => w.OrderStatusId == (int)OrderStatus.Processing && w.ShippingRateComputationMethodSystemName != "ZarIran.Shipping.ZarIranLogistic").ToListAsync();
+            var orders = await _orderRepo.Table.Where(w => w.OrderStatusId == (int)OrderStatus.Processing && w.ShippingRateComputationMethodSystemName != "Delsami.Shipping.DelsamiLogistic").ToListAsync();
             List<Order> selectedOrders = new();
 
             foreach (var order in orders)

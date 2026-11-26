@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public interface IWarehouseLocationService
     {

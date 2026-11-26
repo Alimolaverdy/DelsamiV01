@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations
+﻿namespace Delsami.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations
 {
     public class WarehouseLocationRequestModel
     {

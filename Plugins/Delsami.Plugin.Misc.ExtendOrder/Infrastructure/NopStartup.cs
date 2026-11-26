@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.ExportImport;
 using Nop.Services.Orders;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure
+namespace Delsami.Plugin.Misc.ExtendedOrder.Infrastructure
 {
     public class NopStartup : INopStartup
     {
@@ -20,12 +20,12 @@ namespace ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure
         {
             services.AddScoped<IExtendedOrderService, ExtendedOrderService>();
             services.AddScoped<IOrderInvoiceService, OrderInvoiceService>();
-            services.AddScoped<IZarIranOrderModelFactory, ZarIranOrderModelFactory>();
+            services.AddScoped<IDelsamiOrderModelFactory, DelsamiOrderModelFactory>();
             services.AddScoped<ISubStatusService, SubStatusService>();
             services.AddScoped<ISubStatusFactory, SubStatusFactory>();
             services.AddScoped<ISubStatusMappingService, SubStatusMappingService>();
-            services.AddScoped<IZarIranOrderReportService, ZarIranOrderReportService>();
-            services.AddScoped<IOrderService, ZarIranOrderService>();
+            services.AddScoped<IDelsamiOrderReportService, DelsamiOrderReportService>();
+            services.AddScoped<IOrderService, DelsamiOrderService>();
             services.AddScoped<IExportManager, CustomExportManager>();
             services.AddScoped<IWarehouseLocationService, WarehouseLocationService>();
             services.AddScoped<IOrderWarehouseLocationService, OrderWarehouseLocationService>();

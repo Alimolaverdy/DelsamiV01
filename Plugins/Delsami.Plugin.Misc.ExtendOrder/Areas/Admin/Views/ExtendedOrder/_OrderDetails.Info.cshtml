@@ -1,10 +1,10 @@
-﻿@model ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models.ZarIranOrderModel
+﻿@model Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models.DelsamiOrderModel
 
 @using Nop.Core.Domain.Tax;
 @using Nop.Core.Domain.Orders;
 @using Nop.Services
 
-@inject ZarIran.Plugin.Misc.ExtendedOrder.Services.ISubStatusService subStatusService
+@inject Delsami.Plugin.Misc.ExtendedOrder.Services.ISubStatusService subStatusService
 
 @{
     var subStatuses = subStatusService.GetSubStatusesAsync(excludeSystem: true).Result;
@@ -103,7 +103,7 @@
         $saveButton.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> @T("Admin.Common.Saving")');
 
         $.ajax({
-            url: '@Url.Action("ChangeSubStatus", "ZarIranOrder", new { area = "Admin" })',
+            url: '@Url.Action("ChangeSubStatus", "DelsamiOrder", new { area = "Admin" })',
             type: 'POST',
             data: {
                 orderId: orderId,

@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+﻿using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Events;
@@ -14,7 +14,7 @@ using Nop.Services.Shipping;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Events
+namespace Delsami.Plugin.Misc.ExtendedOrder.Events
 {
     public class OrderPlacedEventHandler : IConsumer<OrderPlacedEvent>
     {

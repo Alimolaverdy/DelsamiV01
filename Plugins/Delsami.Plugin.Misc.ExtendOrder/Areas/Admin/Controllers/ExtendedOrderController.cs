@@ -5,20 +5,20 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
 using Nop.Services.Messages;
 using Nop.Services.Localization;
-using ZarIran.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions;
+using Delsami.Plugin.Misc.ExtendedOrder.Infrastructure.Permissions;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Services.Shipping;
 using System.Linq;
 using System.Collections.Generic;
 using Nop.Services.Orders;
 using Nop.Core.Events;
-using ZarIran.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Misc.Core.Events;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -86,7 +86,7 @@ public class ExtendedOrderController : BasePluginController
         foreach (var shippingMethod in await _shippingService.GetAllShippingMethodsAsync())
             configurationModel.AvailableShippingMethods.Add(new SelectListItem { Text = shippingMethod.Name, Value = shippingMethod.Id.ToString() });
 
-        return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Configure.cshtml", configurationModel);
+        return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Configure.cshtml", configurationModel);
     }
 
     [HttpPost]
@@ -114,9 +114,9 @@ public class ExtendedOrderController : BasePluginController
             return RedirectToAction("Configure");
         }
 
-        _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Settings.Error"));
+        _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Settings.Error"));
 
-        return View("~/Plugins/ZarIran.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Configure.cshtml", model);
+        return View("~/Plugins/Delsami.Misc.ExtendedOrder/Areas/Admin/Views/ExtendedOrder/Configure.cshtml", model);
     }
 
     public async Task<IActionResult> ManuallySendOrderToOutbox(int orderId)

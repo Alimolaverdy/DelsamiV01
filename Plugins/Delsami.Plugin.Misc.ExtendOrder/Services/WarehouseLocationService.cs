@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Model.WarehouseLocations;
 using Nop.Services.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
+using Delsami.Plugin.Misc.Core.Services.ApiCaller;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
     public class WarehouseLocationService : IWarehouseLocationService
     {

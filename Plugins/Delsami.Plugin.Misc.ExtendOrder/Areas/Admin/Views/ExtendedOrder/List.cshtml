@@ -1,4 +1,4 @@
-﻿@model ZarIranOrderSearchModel
+﻿@model DelsamiOrderSearchModel
 
 @inject IStoreService storeService
 @using Nop.Services.Stores
@@ -305,7 +305,7 @@
                                     var gridModel = new DataTablesModel
                                     {
                                         Name = "orders-grid",
-                                        UrlRead = new DataUrl("OrderList", "ZarIranOrder", null),
+                                        UrlRead = new DataUrl("OrderList", "DelsamiOrder", null),
                                         SearchButtonId = "search-orders",
                                         Length = Model.PageSize,
                                         LengthMenu = Model.AvailablePageSizes,
@@ -361,7 +361,7 @@
                                         Title = T("Admin.Orders.Fields.PaymentStatus").Text,
                                         Width = "150"
                                     });
-                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(ZarIranOrderModel.ShippingMethod))
+                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(DelsamiOrderModel.ShippingMethod))
                                     {
                                         Title = T("admin.orders.list.shippingmethod").Text,
                                         Width = "190",
@@ -369,9 +369,9 @@
 
                                     });
 
-                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(ZarIranOrderModel.BriefAddress))
+                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(DelsamiOrderModel.BriefAddress))
                                     {
-                                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.BriefAddress").Text,
+                                        Title = T("Delsami.Plugin.Misc.ExtendedOrder.BriefAddress").Text,
                                         Width = "150"
                                     });
                                     //a vendor does not have access to this functionality
@@ -390,9 +390,9 @@
                                         Render = new RenderCustom("renderCustomerWithRoles")
                                     });
 
-                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(ZarIranOrderModel.ShippingPersonFullName))
+                                    gridModel.ColumnCollection.Add(new ColumnProperty(nameof(DelsamiOrderModel.ShippingPersonFullName))
                                     {
-                                        Title = T("ZarIran.Plugin.Misc.ExtendedOrder.ShippingPersonFullName").Text,
+                                        Title = T("Delsami.Plugin.Misc.ExtendedOrder.ShippingPersonFullName").Text,
                                         Width = "150"
                                     });
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.StoreName))
@@ -495,7 +495,7 @@
                                         $.ajax({
                                             cache: false,
                                             type: "POST",
-                                            url: "@(Url.Action("ReportAggregates", "ZarIranOrder"))",
+                                            url: "@(Url.Action("ReportAggregates", "DelsamiOrder"))",
                                             data: postData,
                                             success: function (data, textStatus, jqXHR) {
                                                 if (data) {

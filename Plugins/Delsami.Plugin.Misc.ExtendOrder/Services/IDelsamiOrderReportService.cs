@@ -1,14 +1,14 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
 using Nop.Core.Domain.Orders;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Services
+namespace Delsami.Plugin.Misc.ExtendedOrder.Services
 {
-    public interface IZarIranOrderReportService
+    public interface IDelsamiOrderReportService
     {
-        Task<ZarIranOrderAverageReportLine> GetOrderAverageReportLineAsync(int storeId = 0,
+        Task<DelsamiOrderAverageReportLine> GetOrderAverageReportLineAsync(int storeId = 0,
                                                                     int vendorId = 0,
                                                                     int productId = 0,
                                                                     int warehouseId = 0,

@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
+﻿using Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.ExtendedOrder.Areas.Admin.Factories
 {
     public interface ISubStatusFactory
     {

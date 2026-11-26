@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Orders;
@@ -8,7 +8,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedOrder.Controllers
+namespace Delsami.Plugin.Misc.ExtendedOrder.Controllers
 {
     [AutoValidateAntiforgeryToken]
     public class CustomExtendedOrderController : BasePluginController
