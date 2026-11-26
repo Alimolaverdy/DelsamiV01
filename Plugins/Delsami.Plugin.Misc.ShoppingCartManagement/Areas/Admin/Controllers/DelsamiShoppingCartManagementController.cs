@@ -7,9 +7,9 @@ using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Models.ShoppingCart;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Controllers
 {
-    public class ZarIranShoppingCartManagementController : ShoppingCartController
+    public class DelsamiShoppingCartManagementController : ShoppingCartController
     {
         #region Fields
 
@@ -20,7 +20,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Controllers
 
         #region Ctor
 
-        public ZarIranShoppingCartManagementController(ICustomerService customerService,
+        public DelsamiShoppingCartManagementController(ICustomerService customerService,
                                                 IPermissionService permissionService,
                                                 IShoppingCartService shoppingCartService,
                                                 IShoppingCartModelFactory shoppingCartModelFactory) : base(customerService, permissionService, shoppingCartService, shoppingCartModelFactory)
@@ -41,7 +41,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Controllers
             //prepare model
             var model = await _shoppingCartModelFactory.PrepareShoppingCartSearchModelAsync(new ShoppingCartSearchModel());
 
-            return View("~/Plugins/ZarIran.Misc.ShoppingCartManagement/Areas/Admin/Views/ZarIranCurrentCarts.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.ShoppingCartManagement/Areas/Admin/Views/DelsamiCurrentCarts.cshtml", model);
         }
 
         [HttpPost]

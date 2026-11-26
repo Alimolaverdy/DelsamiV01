@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Misc",
   "FriendlyName": "Shopping Cart Management",
-  "SystemName": "ZarIran.Misc.ShoppingCartManagement",
+  "SystemName": "Delsami.Misc.ShoppingCartManagement",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Nob Parts",
+  "Author": "AliMolaverdi",
   "DisplayOrder": 3,
-  "FileName": "ZarIran.Plugin.Misc.ShoppingCartManagement.dll",
+  "FileName": "Delsami.Plugin.Misc.ShoppingCartManagement.dll",
   "Description": "Managing shopping cart Items",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

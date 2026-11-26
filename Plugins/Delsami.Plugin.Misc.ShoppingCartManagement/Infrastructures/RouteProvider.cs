@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Infrastructures
+namespace Delsami.Plugin.Misc.ShoppingCartManagement.Infrastructures
 {
     public class RouteProvider : IRouteProvider
     {
@@ -17,7 +17,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Infrastructures
         {
             endpointRouteBuilder.MapControllerRoute(name: "ShoppingCartManagement",
              pattern: $"Admin/ShoppingCart/CurrentCarts",
-             defaults: new { controller = "ZarIranShoppingCartManagement", action = "CurrentCarts", area = "Admin" });
+             defaults: new { controller = "DelsamiShoppingCartManagement", action = "CurrentCarts", area = "Admin" });
         }
     }
 }

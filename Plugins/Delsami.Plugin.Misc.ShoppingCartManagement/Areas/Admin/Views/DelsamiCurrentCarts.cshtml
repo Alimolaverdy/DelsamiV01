@@ -1,6 +1,6 @@
 ﻿@model ShoppingCartSearchModel
 
-@using ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Models
+@using Delsami.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Models
 @using Nop.Services.Stores
 @inject IStoreService storeService
 
@@ -146,7 +146,7 @@
                        Name = "carts-grid",
                        UrlRead = new DataUrl("CurrentCarts", "ShoppingCart", null),
                        SearchButtonId = "search-shopping-carts",
-                       PrimaryKeyColumn = nameof(ZarIranShoppingCartModel.CustomerId),
+                       PrimaryKeyColumn = nameof(DelsamiShoppingCartModel.CustomerId),
                        Length = Model.PageSize,
                        LengthMenu = Model.AvailablePageSizes,
                        Filters = new List<FilterParameter>
@@ -167,39 +167,39 @@
                         Searchable = false,
                         ClassName =  NopColumnClassDefaults.ChildControl
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.CustomerUserName))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.CustomerUserName))
                         {
                         Title = T("Admin.CurrentCarts.Customer").Text,
-                        Render = new RenderLink(new DataUrl("~/Admin/CustomerManagement/Edit/", nameof(ZarIranShoppingCartModel.CustomerId)))
+                        Render = new RenderLink(new DataUrl("~/Admin/CustomerManagement/Edit/", nameof(DelsamiShoppingCartModel.CustomerId)))
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.CreatedOnUtc))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.CreatedOnUtc))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShoppingCartManagement.CreatedOnUtc").Text,
+                        Title = T("Delsami.Plugin.Misc.ShoppingCartManagement.CreatedOnUtc").Text,
                         Width = "150"
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.UpdatedOnUtc))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.UpdatedOnUtc))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShoppingCartManagement.UpdatedOnUtc").Text,
+                        Title = T("Delsami.Plugin.Misc.ShoppingCartManagement.UpdatedOnUtc").Text,
                         Width = "150"
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.ReferralCode))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.ReferralCode))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShoppingCartManagement.ReferralCode").Text,
+                        Title = T("Delsami.Plugin.Misc.ShoppingCartManagement.ReferralCode").Text,
                         Width = "150"
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.CustomerRoleNames))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.CustomerRoleNames))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShoppingCartManagement.CustomerRoleNames").Text,
+                        Title = T("Delsami.Plugin.Misc.ShoppingCartManagement.CustomerRoleNames").Text,
                         Width = "150"
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.TotalItems))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.TotalItems))
                         {
                         Title = T("Admin.CurrentCarts.TotalItems").Text,
                         Width = "150"
                         },
-                        new ColumnProperty(nameof(ZarIranShoppingCartModel.TotalShoppingCartPrice))
+                        new ColumnProperty(nameof(DelsamiShoppingCartModel.TotalShoppingCartPrice))
                         {
-                        Title = T("ZarIran.Plugin.Misc.ShoppingCartManagement.TotalShoppingCartPrice").Text,
+                        Title = T("Delsami.Plugin.Misc.ShoppingCartManagement.TotalShoppingCartPrice").Text,
                         Width = "150"
                         }
                         },

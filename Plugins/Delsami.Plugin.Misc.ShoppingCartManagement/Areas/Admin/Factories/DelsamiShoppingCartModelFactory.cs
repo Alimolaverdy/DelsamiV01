@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Models;
+using Delsami.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Models;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
@@ -18,11 +18,11 @@ using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using DateTimeHelper = ZarIran.Plugin.Misc.Core.Helpers.DateTimeHelper;
-namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Factories
+using DateTimeHelper = Delsami.Plugin.Misc.Core.Helpers.DateTimeHelper;
+namespace Delsami.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Factories
 {
 
-    public class ZarIranShoppingCartModelFactory : ShoppingCartModelFactory
+    public class DelsamiShoppingCartModelFactory : ShoppingCartModelFactory
     {
         #region Fields
         private readonly IBaseAdminModelFactory _baseAdminModelFactory;
@@ -39,7 +39,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Factories
         #endregion
 
         #region Ctor
-        public ZarIranShoppingCartModelFactory(CatalogSettings catalogSettings,
+        public DelsamiShoppingCartModelFactory(CatalogSettings catalogSettings,
                                                 IBaseAdminModelFactory baseAdminModelFactory,
                                                 ICountryService countryService,
                                                 ICustomerService customerService,
@@ -118,7 +118,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Areas.Admin.Factories
             {
                 return customers.SelectAwait(async customer =>
                 {
-                    var extendedModel = new ZarIranShoppingCartModel
+                    var extendedModel = new DelsamiShoppingCartModel
                     {
                         CustomerId = customer.Id,
                         CustomerUserName = (await _customerService.IsRegisteredAsync(customer))

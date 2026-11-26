@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Company>Nob Parts</Company>
-		<Authors>Nob Parts</Authors>
+		<Company>Delsami</Company>
+		<Authors>AliMolaverdi</Authors>
 		<RepositoryType>Git</RepositoryType>
 		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.CustomerAttributeValidator</OutputPath>
 		<OutDir>$(OutputPath)</OutDir>

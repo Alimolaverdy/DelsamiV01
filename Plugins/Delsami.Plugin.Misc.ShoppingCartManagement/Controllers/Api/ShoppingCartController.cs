@@ -6,7 +6,7 @@ using Nop.Services.Orders;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartManagement.Controllers.Api
+namespace Delsami.Plugin.Misc.ShoppingCartManagement.Controllers.Api
 {
     [Route("api/cart")]
     [ApiController]

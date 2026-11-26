@@ -5,7 +5,7 @@ using Nop.Web.Framework.Menu;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartManagement
+namespace Delsami.Plugin.Misc.ShoppingCartManagement
 {
     public class ShoppingCartManagementPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
     {
@@ -30,16 +30,16 @@ namespace ZarIran.Plugin.Misc.ShoppingCartManagement
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.SystemName"] = "ShoppingCartManagement",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.Name"] = "ZarIran ShoppingCartManagement",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.Username"] = "UserName",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.CreatedOnUtc"] = "CreatedOnUtc",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.UpdatedOnUtc"] = "UpdatedOnUtc",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.ReferralCode"] = "ReferralCode",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.TotalShoppingCartPrice"] = "TotalShoppingCartPrice",
-                ["ZarIran.Plugin.Misc.ShoppingCartManagement.CustomerRoleNames"] = "CustomerRoleNames",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.SystemName"] = "ShoppingCartManagement",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.Name"] = "Delsami ShoppingCartManagement",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.Username"] = "UserName",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.CreatedOnUtc"] = "CreatedOnUtc",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.UpdatedOnUtc"] = "UpdatedOnUtc",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.ReferralCode"] = "ReferralCode",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.TotalShoppingCartPrice"] = "TotalShoppingCartPrice",
+                ["Delsami.Plugin.Misc.ShoppingCartManagement.CustomerRoleNames"] = "CustomerRoleNames",
             });
 
             await base.InstallAsync();
