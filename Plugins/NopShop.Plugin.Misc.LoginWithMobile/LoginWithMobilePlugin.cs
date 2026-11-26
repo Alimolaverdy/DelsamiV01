@@ -98,7 +98,7 @@ namespace NopShop.Plugin.Misc.LoginWithMobile
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.Misc.MarketerManagement.SendSMSTemplate"] = "Sms Send To"
+                ["Delsami.Plugin.Misc.MarketerManagement.SendSMSTemplate"] = "Sms Send To"
             });
 
             await _settingService.DeleteSettingAsync<LoginWithMobileSetting>();

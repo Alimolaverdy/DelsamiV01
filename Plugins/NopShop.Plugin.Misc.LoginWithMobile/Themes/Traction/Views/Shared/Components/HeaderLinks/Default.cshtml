@@ -54,7 +54,7 @@
     var isShoppingCartPage = controllerName.Equals("ShoppingCart", StringComparison.InvariantCultureIgnoreCase) &&
                              actionName.Equals("CustomCart", StringComparison.InvariantCultureIgnoreCase);
 
-    var isCheckoutPage = controllerName.Equals("ZarIranCheckout", StringComparison.InvariantCultureIgnoreCase) &&
+    var isCheckoutPage = controllerName.Equals("DelsamiCheckout", StringComparison.InvariantCultureIgnoreCase) &&
                         actionName.Equals("OnePageCheckout", StringComparison.InvariantCultureIgnoreCase);
 }
 
@@ -237,13 +237,13 @@
             <!-- Home -->
             <div class="header-cart-mobile-item p-1 flex-fill-100">
                 <a href="/">
-                    <img src="/icons/ZarIran-icon-pack/home.svg" />
+                    <img src="/icons/Delsami-icon-pack/home.svg" />
                     <span class="label">خانه</span>
                 </a>
             </div>
 
             <div class="header-cart-mobile-item menu-title p-1 flex-fill-100">
-                <i><img src="/icons/ZarIran-icon-pack/Categories-Fill.svg" /></i>
+                <i><img src="/icons/Delsami-icon-pack/Categories-Fill.svg" /></i>
                 <span class="label">دسته بندی</span>
             </div>
 
@@ -254,7 +254,7 @@
                     if (Model.ShoppingCartItems > 0)
                     {
                         <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-                            <img src="/icons/ZarIran-icon-pack/Cart-Filled.svg" />
+                            <img src="/icons/Delsami-icon-pack/Cart-Filled.svg" />
                             <span class="cart-qty-in">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
                             <span class="label">@T("ShoppingCart")</span>
                         </a>
@@ -262,7 +262,7 @@
                     else
                     {
                         <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-                            <img src="/icons/ZarIran-icon-pack/Cart-Empty.svg" />
+                            <img src="/icons/Delsami-icon-pack/Cart-Empty.svg" />
                             <span class="label">@T("ShoppingCart")</span>
                         </a>
                     }
@@ -278,7 +278,7 @@
                 @if (Model.IsAuthenticated)
                 {
                     <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">
-                        <img src="/icons/ZarIran-icon-pack/Profile.svg" />
+                        <img src="/icons/Delsami-icon-pack/Profile.svg" />
                         <span class="label">   @T("Account.Profile")</span>
                     </a>
 
@@ -294,7 +294,7 @@
                         @* <a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a> *@
                     }
                     <a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">
-                        <img src="/icons/ZarIran-icon-pack/Profile.svg" />
+                        <img src="/icons/Delsami-icon-pack/Profile.svg" />
                         <span class="label">@T("Account.Login")</span>
                     </a>
                 }

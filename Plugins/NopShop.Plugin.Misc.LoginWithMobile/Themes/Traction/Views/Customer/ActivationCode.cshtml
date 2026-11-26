@@ -29,20 +29,20 @@
                             @await Html.PartialAsync("~/Themes/Traction/Views/Shared/_ZarBrand.cshtml")
                         </div>
                         <div class="title">
-                            @T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.Title")
+                            @T("Delsami.Plugin.Misc.LoginWithMobile.LoginPage.Title")
                         </div>
                         <div class="activation-code-description">
                             @if (loginWithMobileSetting.EnableLoginWithOneToFive)
                             {
-                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.LoginUsing1To5")</span>
+                                <span>@T("Delsami.Plugin.Misc.LoginWithMobile.LoginPage.LoginUsing1To5")</span>
                             }
                             else if (!string.IsNullOrWhiteSpace(Model.MarketerUsername))
                             {
-                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.SendSMSToMarketerTemplate", @Model.MarketerUsername)</span>
+                                <span>@T("Delsami.Plugin.Misc.LoginWithMobile.SendSMSToMarketerTemplate", @Model.MarketerUsername)</span>
                             }
                             else
                             {
-                                <span>@T("ZarIran.Plugin.Misc.LoginWithMobile.SendSMSTemplate", @Model.Username)</span>
+                                <span>@T("Delsami.Plugin.Misc.LoginWithMobile.SendSMSTemplate", @Model.Username)</span>
                             }
                         </div>
                         <div class="form-fields">
@@ -61,16 +61,16 @@
                         }
 
                         <div class="change-phonenumber">
-                            <a href="/login">@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ChangeMobilePhoneNumber")</a>
+                            <a href="/login">@T("Delsami.Plugin.Misc.LoginWithMobile.LoginPage.ChangeMobilePhoneNumber")</a>
                         </div>
 
                         <div id="timer-decription" class="lwm-display-no">
                             <span id="timer">
                                 @* 00:00 *@
                             </span>
-                            @T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ResendText")
+                            @T("Delsami.Plugin.Misc.LoginWithMobile.LoginPage.ResendText")
                         </div>
-                        <button type="button" id="send-activation-code-again" class="login-with-email-a lwm-display-no">@T("ZarIran.Plugin.Misc.LoginWithMobile.LoginPage.ResendButtonText")</button>
+                        <button type="button" id="send-activation-code-again" class="login-with-email-a lwm-display-no">@T("Delsami.Plugin.Misc.LoginWithMobile.LoginPage.ResendButtonText")</button>
                         <div class="buttons btn-login-holder">
                             <input class="button-1 login-button" type="submit" value="@T("Account.Login.LoginButton")" />
                         </div>

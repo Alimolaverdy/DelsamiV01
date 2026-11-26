@@ -11,19 +11,19 @@ namespace NopShop.Plugin.Misc.LoginWithMobile.Validators
         {
             //RuleFor(x => x.ThreeRighNumberLicencePlate)
             //    .NotEmpty()
-            //    .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
+            //    .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
 
             //RuleFor(x => x.AlphabetLicencePlateStr)
             //    .NotEmpty()
-            //    .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
+            //    .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
 
             //RuleFor(x => x.IranNumberLicencePlate)
             //    .NotEmpty()
-            //    .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
+            //    .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
 
             //RuleFor(x => x.TwoLeftNumberLicencePlate)
             //    .NotEmpty()
-            //    .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
+            //    .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Misc.CarInfo.CustomerCar.Fields.LicencePlate.Required"));
 
             RuleFor(x => x.Username)
                 .NotEmpty()

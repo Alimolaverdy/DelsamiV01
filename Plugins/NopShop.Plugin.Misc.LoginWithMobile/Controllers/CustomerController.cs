@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core;
 using Nop.Core;
 using Nop.Core.Domain;
 using Nop.Core.Domain.Common;
@@ -39,10 +39,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Servicecs;
-using ZarIran.Plugin.Misc.Core.Infrastructure;
-using ZarIran.Plugin.Misc.Core.Services;
-using ZarIran.Plugin.Misc.Core.Domain;
+using Delsami.Plugin.Misc.SMS.Servicecs;
+using Delsami.Plugin.Misc.Core.Infrastructure;
+using Delsami.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Misc.Core.Domain;
 
 namespace NopShop.Plugin.Misc.LoginWithMobile.Controllers
 {

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Misc.Core.Services;
 using Nop.Core.Infrastructure;
 using Nop.Web.Framework.Infrastructure.Extensions;
 using NopShop.Plugin.Misc.LoginWithMobile.Helpers;
