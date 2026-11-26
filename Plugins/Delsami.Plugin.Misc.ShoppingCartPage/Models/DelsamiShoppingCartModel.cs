@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using static Nop.Web.Models.Order.CustomerOrderListModel;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartPage.Models
+namespace Delsami.Plugin.Misc.ShoppingCartPage.Models
 {
-    public record ZarIranShoppingCartModel : ShoppingCartModel
+    public record DelsamiShoppingCartModel : ShoppingCartModel
     {
-        public ZarIranShoppingCartModel()
+        public DelsamiShoppingCartModel()
         {
             PendingOrders = new List<OrderDetailsModel>();
         }

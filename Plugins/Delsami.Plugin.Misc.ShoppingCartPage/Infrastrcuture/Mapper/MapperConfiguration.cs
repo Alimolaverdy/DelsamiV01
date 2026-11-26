@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture.Mapper
+namespace Delsami.Plugin.Misc.CarInfo.Infrastrcuture.Mapper
 {
     public class MapperConfiguration : Profile, IOrderedMapperProfile
     {

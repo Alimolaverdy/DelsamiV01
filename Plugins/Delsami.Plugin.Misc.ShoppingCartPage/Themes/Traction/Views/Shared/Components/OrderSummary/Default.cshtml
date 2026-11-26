@@ -13,7 +13,7 @@
 @inject ISettingService settingService
 @inject ICustomerService customerService
 @{
-    bool isOnePageCheckout = ViewContext.RouteData.Values["Controller"]?.ToString() == "ZarIranCheckout"
+    bool isOnePageCheckout = ViewContext.RouteData.Values["Controller"]?.ToString() == "DelsamiCheckout"
              && ViewContext.RouteData.Values["Action"]?.ToString() == "OpcSavePaymentMethod";
 
     var bwdkEnabled = settingService.GetSettingByKey<bool>
@@ -73,8 +73,7 @@
             </div>
             }
             @*we add enctype = "multipart/form-data" because "File upload" attribute control type requires it*@
-            @* POST directly to the native Cart action: /cart is also mapped to CustomCart by the plugin. *@
-            <form action="@Url.RouteUrl("Default", new { controller = "ShoppingCart", action = "Cart" })" method="post" asp-antiforgery="true" enctype="multipart/form-data" id="shopping-cart-form">
+            <form asp-route="ShoppingCart" method="post" enctype="multipart/form-data" id="shopping-cart-form">
                 <div class="cart-wrapper">
                     <div class="">
                         <div class="row">
@@ -282,7 +281,7 @@
                                                                 error: function (jqXHR, textStatus, errorThrown) {
                                                                     $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
 
-                                                                    alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                    alert('@T("Delsami.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
                                                                 },
                                                                 complete: function () {
 
@@ -303,13 +302,13 @@
                                                     }
                                                     else
                                                     {
-                                                    <button type="button" class="increase-quantity@(item.Id)" aria-label="افزایش تعداد">
-                                                        <span aria-hidden="true">+</span>
+                                                    <button type="button" class="increase-quantity@(item.Id)">
+                                                        <img src="/icons/Delsami-icon-pack/Plus-Black.svg" />
                                                     </button>
                                                     <input name="itemquantity@(item.Id)" id="itemquantity@(item.Id)" type="text" value="@(item.Quantity)" class="qty-input" aria-label="@T(" ShoppingCart.Quantity")" />
                                                     <div id="dots-spinner@(item.Id)" class="dots-spinner" style="display: none;"></div>
-                                                    <button type="button" class="decrease-quantity@(item.Id)" aria-label="کاهش تعداد">
-                                                        <span aria-hidden="true">−</span>
+                                                    <button type="button" class="decrease-quantity@(item.Id)">
+                                                        <img src="/icons/Delsami-icon-pack/Minus-Black.svg" />
                                                     </button>
 
                                                     <script asp-location="Footer">
@@ -388,7 +387,7 @@
                                                                     error: function (jqXHR, textStatus, errorThrown) {
                                                                         $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) + Number(1));
 
-                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                        alert('@T("Delsami.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
                                                                     },
                                                                     complete: function () {
 
@@ -457,7 +456,7 @@
                                                                     error: function (jqXHR, textStatus, errorThrown) {
                                                                         $("#itemquantity@(item.Id)").val(Number($("#itemquantity@(item.Id)").val()) - Number(1));
 
-                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                        alert('@T("Delsami.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
                                                                     },
                                                                     complete: function () {
 
@@ -544,7 +543,7 @@
                                                                     error: function (jqXHR, textStatus, errorThrown) {
                                                                         $("#itemquantity@(item.Id)").val($("#itemquantity@(item.Id)").attr("prevVal"));
 
-                                                                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                                                                        alert('@T("Delsami.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
                                                                     },
                                                                     complete: function () {
 
@@ -665,7 +664,7 @@
                                                     }
 
                                                     <a href="javascript:void(0);" class="remove" onclick="removeItem(@item.ProductId,@item.Id)">
-                                                        <svg class="zar-icon" aria-label="حذف محصول"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#close")"></use></svg>
+                                                        <img src="/icons/Delsami-icon-pack/Trash.svg" />
                                                     </a>
                                                 </div>
                                             </div>
@@ -811,6 +810,15 @@
                                             <div class="description">پرداخت در 4 قسط</div>
                                         </div>
                                     </div>
+                                    <div class="snapp-pay">
+                                        <div>
+                                            <img src="/images/icons/bnpls/snapp-pay.svg">
+                                        </div>
+                                        <div>
+                                            <div>امکان پرداخت قسطی با اسنپ پی</div>
+                                            <div class="description">پرداخت در 4 قسط</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -893,7 +901,7 @@
 
                 if (cartItemQuantityTotal <= 0) {
                     jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').remove();
-                    jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Empty.svg');
+                    jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/Delsami-icon-pack/Cart-Empty.svg');
                 }
 
             }
@@ -947,7 +955,7 @@
                     error: function (jqXHR, textStatus, errorThrown) {
                         $("#itemquantity" + itemId).val(Number($("#itemquantity" + itemId).val()) + Number(1));
 
-                        alert('@T("ZarIran.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
+                        alert('@T("Delsami.Plugin.Misc.ShoppingCartPage.ErrorOccuredInDecreasing")');
                     },
                     complete: function () {
 

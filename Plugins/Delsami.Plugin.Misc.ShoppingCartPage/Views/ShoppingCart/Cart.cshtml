@@ -1,4 +1,4 @@
-﻿@model ZarIranShoppingCartModel
+﻿@model DelsamiShoppingCartModel
 
 @{
     Layout = "_ColumnsOne";
@@ -8,7 +8,7 @@
     //page class
     NopHtml.AppendPageCssClassParts("html-shopping-cart-page");
     var hasPendingOrder = Model.PendingOrders.Any();
-    // NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/ZarIran.Shop.DigiKala/Content/js/widget-sdk.min.js", "");
+    // NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/Delsami.Shop.DigiKala/Content/js/widget-sdk.min.js", "");
 
 }
 @if (!Model.OnePageCheckoutEnabled)
@@ -47,7 +47,7 @@
                         <div class="order-timer">
                             <div class="timer-wrap" data-orderid="@order.Id" data-initialtime="@order.CreatedOn.ToString()">
                                 <!-- SVG circular progress -->
-                                <svg class="clock" width="48" height="48" viewBox="0 0 60 60" aria-label="تایمر">
+                                <svg class="clock" viewBox="0 0 60 60" aria-label="تایمر">
                                     <!-- background circle -->
                                     <circle cx="30" cy="30" r="25" fill="none" stroke="#e6e9ef" stroke-width="5" />
                                     <!-- progress circle (stroke-dasharray will be updated by JS) -->

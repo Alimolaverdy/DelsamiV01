@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.ShoppingCartPage.Factories;
-using ZarIran.Plugin.Misc.ShoppingCartPage.Models;
+using Delsami.Plugin.Misc.ShoppingCartPage.Factories;
+using Delsami.Plugin.Misc.ShoppingCartPage.Models;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
@@ -13,15 +14,17 @@ using Nop.Services.Directory;
 using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Tax;
+using Nop.Web.Factories;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
+using Nop.Web.Models.ShoppingCart;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartPage.Controllers
+namespace Delsami.Plugin.Misc.ShoppingCartPage.Controllers
 {
     [AutoValidateAntiforgeryToken]
     public class ShoppingCartController : BasePluginController
@@ -33,7 +36,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Controllers
         private readonly IStoreContext _storeContext;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IProductService _productService;
-        private readonly IZarIranShoppingCartModelFactory _ZarIranShoppingCartModelFactory;
+        private readonly IDelsamiShoppingCartModelFactory _DelsamiShoppingCartModelFactory;
         private readonly IPriceFormatter _priceFormatter;
         private readonly ITaxService _taxService;
         private readonly ICurrencyService _currencyService;
@@ -47,7 +50,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Controllers
                                       IStoreContext storeContext,
                                       IShoppingCartService shoppingCartService,
                                       IProductService productService,
-                                      IZarIranShoppingCartModelFactory ZarIranShoppingCartModelFactory,
+                                      IDelsamiShoppingCartModelFactory DelsamiShoppingCartModelFactory,
                                       IPriceFormatter priceFormatter,
                                       ITaxService taxService,
                                       ICurrencyService currencyService)
@@ -57,7 +60,7 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Controllers
             _storeContext = storeContext;
             _shoppingCartService = shoppingCartService;
             _productService = productService;
-            _ZarIranShoppingCartModelFactory = ZarIranShoppingCartModelFactory;
+            _DelsamiShoppingCartModelFactory = DelsamiShoppingCartModelFactory;
             _priceFormatter = priceFormatter;
             _taxService = taxService;
             _currencyService = currencyService;
@@ -75,9 +78,9 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Controllers
 
             var store = await _storeContext.GetCurrentStoreAsync();
             var cart = await _shoppingCartService.GetShoppingCartAsync(await _workContext.GetCurrentCustomerAsync(), ShoppingCartType.ShoppingCart, store.Id);
-            var model = new ZarIranShoppingCartModel();
-            model = await _ZarIranShoppingCartModelFactory.PrepareShoppingCartModelAsync(model, cart);
-            return View("~/Plugins/ZarIran.Misc.ShoppingCartPage/Views/ShoppingCart/Cart.cshtml", model);
+            var model = new DelsamiShoppingCartModel();
+            model = await _DelsamiShoppingCartModelFactory.PrepareShoppingCartModelAsync(model, cart);
+            return View("~/Plugins/Delsami.Misc.ShoppingCartPage/Views/ShoppingCart/Cart.cshtml", model);
         }
 
         [HttpPost]

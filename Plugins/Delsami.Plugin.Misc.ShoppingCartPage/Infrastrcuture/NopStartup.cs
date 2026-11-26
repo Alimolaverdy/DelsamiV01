@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.ShoppingCartPage.Factories;
-using ZarIran.Plugin.Misc.ShoppingCartPage.Infrastrcuture;
+using Delsami.Plugin.Misc.ShoppingCartPage.Factories;
+using Delsami.Plugin.Misc.ShoppingCartPage.Infrastrcuture;
 using Nop.Core.Infrastructure;
-using Nop.Web.Factories;
 
-namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
+namespace Delsami.Plugin.Misc.CarInfo.Infrastrcuture
 {
     public class NopStartup : INopStartup
     {
@@ -18,15 +17,7 @@ namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
         /// <param name="configuration">Configuration of the application</param>
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ZarIranShoppingCartModelFactory>();
-
-            services.AddScoped<IZarIranShoppingCartModelFactory>(sp =>
-                sp.GetRequiredService<ZarIranShoppingCartModelFactory>());
-
-            services.AddScoped<IShoppingCartModelFactory>(sp =>
-                sp.GetRequiredService<ZarIranShoppingCartModelFactory>());
-
-            services.AddScoped<IZarIranShoppingCartModelFactory, ZarIranShoppingCartModelFactory>();
+            services.AddScoped<IDelsamiShoppingCartModelFactory, DelsamiShoppingCartModelFactory>();
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new ShppingCartPageViewLocationExpander());
@@ -44,6 +35,6 @@ namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
         /// <summary>
         /// Gets order of this startup configuration implementation
         /// </summary>
-        public int Order => int.MaxValue;
+        public int Order => 1001;
     }
 }

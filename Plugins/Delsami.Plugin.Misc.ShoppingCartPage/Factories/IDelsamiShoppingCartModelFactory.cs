@@ -1,14 +1,14 @@
-﻿using ZarIran.Plugin.Misc.ShoppingCartPage.Models;
+﻿using Delsami.Plugin.Misc.ShoppingCartPage.Models;
 using Nop.Core.Domain.Orders;
 using Nop.Web.Models.ShoppingCart;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
+namespace Delsami.Plugin.Misc.ShoppingCartPage.Factories
 {
-    public interface IZarIranShoppingCartModelFactory
+    public interface IDelsamiShoppingCartModelFactory
     {
-        Task<ZarIranShoppingCartModel> PrepareShoppingCartModelAsync(ZarIranShoppingCartModel model,
+        Task<DelsamiShoppingCartModel> PrepareShoppingCartModelAsync(DelsamiShoppingCartModel model,
                                                                                            IList<ShoppingCartItem> cart, bool isEditable = true,
                                                                                            bool validateCheckoutAttributes = false,
                                                                                            bool prepareAndDisplayOrderReviewData = false);

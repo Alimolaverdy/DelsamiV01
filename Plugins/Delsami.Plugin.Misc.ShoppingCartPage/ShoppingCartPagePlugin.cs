@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CarInfo
+namespace Delsami.Plugin.Misc.CarInfo
 {
     public class ShoppingCartPagePlugin : BasePlugin
     {
@@ -74,15 +74,15 @@ namespace ZarIran.Plugin.Misc.CarInfo
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.ShoppingCartPage.Name"] = "Shopping cart page",
-                ["ZarIran.Plugin.Misc.ShoppingCartPage.SystemName"] = "ShoppingCartPage",
-                ["ZarIran.Plugin.Misc.ShoppingCartPage.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.ShoppingCartPage.Configuration.SystemName"] = "ShoppingCartPageConfiguration",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.ShoppingCartPage.Name"] = "Shopping cart page",
+                ["Delsami.Plugin.Misc.ShoppingCartPage.SystemName"] = "ShoppingCartPage",
+                ["Delsami.Plugin.Misc.ShoppingCartPage.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.ShoppingCartPage.Configuration.SystemName"] = "ShoppingCartPageConfiguration",
 
             });
 
@@ -99,7 +99,7 @@ namespace ZarIran.Plugin.Misc.CarInfo
             //await _settingService.DeleteSettingAsync<CarInfoSettings>();
 
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Misc.ShoppingCartPage");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Misc.ShoppingCartPage");
 
             await base.UninstallAsync();
         }

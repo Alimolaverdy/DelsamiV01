@@ -38,7 +38,7 @@
                     </script>
                 }
 
-                <link rel="stylesheet" href="~/plugins/ZarIran.Misc.ShoppingCartPage/Content/Style.css" />
+                <link rel="stylesheet" href="~/plugins/Delsami.Misc.ShoppingCartPage/Content/Style.css" />
                 <button type="button" class="change-quantity-button decrease-quantity@(Model.ProductId)">-</button>
                 <input asp-for="EnteredQuantity" id="product_enteredQuantity_@Model.ProductId" class="qty-input qty-input-@(Model.ProductId)" type="text" aria-label=@T("Products.Qty.AriaLabel") />
                 <div id="dots-spinner@(Model.ProductId)" class="dots-spinner d-none"></div>
@@ -121,10 +121,10 @@
 
                             if (cartItemQuantityTotal <= 0) {
                                 jQuery('.header-cart-mobile a.ico-cart span.cart-qty-in').remove();
-                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Empty.svg');
+                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/Delsami-icon-pack/Cart-Empty.svg');
                             }else{
                                 jQuery('.header-cart-mobile a.ico-cart img').after('<span class="cart-qty-in">' + cartItemQuantityTotal + '</span>');
-                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/ZarIran-icon-pack/Cart-Filled.svg');
+                                jQuery('.header-cart-mobile a.ico-cart img').attr('src', '/icons/Delsami-icon-pack/Cart-Filled.svg');
                             }
 
                             jQuery('#topcartlink .cart-qty').html(cartItemQuantityTotal);

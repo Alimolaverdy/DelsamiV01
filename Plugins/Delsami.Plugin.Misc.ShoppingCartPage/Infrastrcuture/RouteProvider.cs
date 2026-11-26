@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
+namespace Delsami.Plugin.Misc.CarInfo.Infrastrcuture
 {
     public class RouteProvider : IRouteProvider
     {
@@ -27,7 +27,7 @@ namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
                 defaults: new { controller = "ShoppingCart", action = "GetOrderTotals" });
 
 
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranCart",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiCart",
                 pattern: $"cart",
                 defaults: new { controller = "ShoppingCart", action = "CustomCart" });
 

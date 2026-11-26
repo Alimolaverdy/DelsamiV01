@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Company>ZarIran</Company>
-		<Authors>AliMolaverdi</Authors>
+		<Company>Delsami</Company>
+		<Authors>Delsami</Authors>
 		<RepositoryType>Git</RepositoryType>
-		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.ShoppingCartPage</OutputPath>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.ShoppingCartPage</OutputPath>
 		<OutDir>$(OutputPath)</OutDir>
 		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your    project. You need to set this parameter to true if your plugin has a nuget package to ensure that   the dlls copied from the NuGet cache to the output of your project-->
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -59,12 +59,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ZarIran.Plugin.Misc.Core">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ZarIran.Plugin.Misc.ProductManagements">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.ProductManagements\ZarIran.Plugin.Misc.ProductManagements.dll</HintPath>
+    <Reference Include="Delsami.Plugin.Misc.Core">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

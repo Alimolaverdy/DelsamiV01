@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Widgets",
-  "FriendlyName": "ZarIran shopping cart page",
-  "SystemName": "ZarIran.Misc.ShoppingCartPage",
+  "FriendlyName": "Delsami shopping cart page",
+  "SystemName": "Delsami.Misc.ShoppingCartPage",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Nob Parts",
-  "DisplayOrder": 6,
-  "FileName": "ZarIran.Plugin.Misc.ShoppingCartPage.dll",
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 2,
+  "FileName": "Delsami.Plugin.Misc.ShoppingCartPage.dll",
   "Description": "This plugin provides new features in shopping cart page",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

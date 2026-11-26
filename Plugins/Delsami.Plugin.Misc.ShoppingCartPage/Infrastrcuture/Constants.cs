@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.CarInfo.Infrastrcuture
+﻿namespace Delsami.Plugin.Misc.CarInfo.Infrastrcuture
 {
     public class Constants
     {

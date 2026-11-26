@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.ShoppingCartPage.Models;
+using Delsami.Plugin.Misc.ShoppingCartPage.Models;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
@@ -36,16 +36,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Nop.Core.Domain.Security;
-using Nop.Core.Domain.Tax;
-using Nop.Services.Shipping;
-using Nop.Services.Stores;
-using ZarIran.Plugin.Misc.ProductManagements.Services;
 
-namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
+namespace Delsami.Plugin.Misc.ShoppingCartPage.Factories
 {
-    public class ZarIranShoppingCartModelFactory
-        : ShoppingCartModelFactory, IZarIranShoppingCartModelFactory
+    public class DelsamiShoppingCartModelFactory : IDelsamiShoppingCartModelFactory
     {
         #region Fields
 
@@ -86,66 +80,49 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
         private readonly IWebHelper _webHelper;
         private readonly IOrderService _orderService;
         private readonly IDateTimeHelper _dateTimeHelper;
-        private readonly IOrderTotalCalculationService _orderTotalCalculationService;
-        private readonly IZarIranPriceCalculationService _zarIranPriceCalculationService;
-        private readonly IProductPricingService _productPricingService;
 
         #endregion
 
         #region Ctor
 
-
-        public ZarIranShoppingCartModelFactory(AddressSettings addressSettings,
-                                              CaptchaSettings captchaSettings,
-                                              CatalogSettings catalogSettings,
-                                              CommonSettings commonSettings,
-                                              CustomerSettings customerSettings,
-                                              IAddressModelFactory addressModelFactory,
-                                              ICheckoutAttributeFormatter checkoutAttributeFormatter,
-                                              ICheckoutAttributeParser checkoutAttributeParser,
-                                              ICheckoutAttributeService checkoutAttributeService,
-                                              ICountryService countryService,
-                                              ICurrencyService currencyService,
-                                              ICustomerService customerService,
-                                              IProductPricingService productPricingService,
-                                              IDateTimeHelper dateTimeHelper,
-                                              IDiscountService discountService,
-                                              IOrderService orderService,
-                                              IDownloadService downloadService,
-                                              IGenericAttributeService genericAttributeService,
-                                              IGiftCardService giftCardService,
-                                              IHttpContextAccessor httpContextAccessor,
-                                              ILocalizationService localizationService,
-                                              IOrderProcessingService orderProcessingService,
-                                              IOrderTotalCalculationService orderTotalCalculationService,
-                                              IPaymentPluginManager paymentPluginManager,
-                                              IPaymentService paymentService,
-                                              IZarIranPriceCalculationService zarIranPriceCalculationService,
-                                              IPermissionService permissionService,
-                                              IPictureService pictureService,
-                                              IPriceFormatter priceFormatter,
-                                              IProductAttributeFormatter productAttributeFormatter,
-                                              IProductService productService,
-                                              IShippingService shippingService,
-                                              IShoppingCartService shoppingCartService,
-                                              IStateProvinceService stateProvinceService,
-                                              IStaticCacheManager staticCacheManager,
-                                              IStoreContext storeContext,
-                                              IStoreMappingService storeMappingService,
-                                              ITaxService taxService,
-                                              IUrlRecordService urlRecordService,
-                                              IVendorService vendorService,
-                                              IWebHelper webHelper,
-                                              IWorkContext workContext,
-                                              MediaSettings mediaSettings,
-                                              OrderSettings orderSettings,
-                                              RewardPointsSettings rewardPointsSettings,
-                                              ShippingSettings shippingSettings,
-                                              ShoppingCartSettings shoppingCartSettings,
-                                              TaxSettings taxSettings,
-                                              VendorSettings vendorSettings) : base(addressSettings, captchaSettings, catalogSettings, commonSettings, customerSettings, addressModelFactory, checkoutAttributeFormatter, checkoutAttributeParser, checkoutAttributeService, countryService, currencyService, customerService, dateTimeHelper, discountService, downloadService, genericAttributeService, giftCardService, httpContextAccessor, localizationService, orderProcessingService, orderTotalCalculationService, paymentPluginManager, paymentService, permissionService, pictureService, priceFormatter, productAttributeFormatter, productService, shippingService, shoppingCartService, stateProvinceService, staticCacheManager, storeContext, storeMappingService, taxService, urlRecordService, vendorService, webHelper, workContext, mediaSettings, orderSettings, rewardPointsSettings, shippingSettings, shoppingCartSettings, taxSettings, vendorSettings)
+        public DelsamiShoppingCartModelFactory(OrderSettings orderSettings,
+                                                ShoppingCartSettings shoppingCartSettings,
+                                                CatalogSettings catalogSettings,
+                                                VendorSettings vendorSettings,
+                                                IWorkContext workContext,
+                                                IStoreContext storeContext,
+                                                IGenericAttributeService genericAttributeService,
+                                                IOrderProcessingService orderProcessingService,
+                                                ICurrencyService currencyService,
+                                                ILocalizationService localizationService,
+                                                CommonSettings commonSettings,
+                                                ICustomerService customerService,
+                                                IDiscountService discountService,
+                                                IShoppingCartService shoppingCartService,
+                                                IPriceFormatter priceFormatter,
+                                                IPaymentPluginManager paymentPluginManager,
+                                                ICheckoutAttributeService checkoutAttributeService,
+                                                IPermissionService permissionService,
+                                                ITaxService taxService,
+                                                ICheckoutAttributeParser checkoutAttributeParser,
+                                                IDownloadService downloadService,
+                                                IProductService productService,
+                                                IVendorService vendorService,
+                                                IUrlRecordService urlRecordService,
+                                                IProductAttributeFormatter productAttributeFormatter,
+                                                MediaSettings mediaSettings,
+                                                IHttpContextAccessor httpContextAccessor,
+                                                IAddressModelFactory addressModelFactory,
+                                                AddressSettings addressSettings,
+                                                ICountryService countryService,
+                                                IStateProvinceService stateProvinceService,
+                                                IStaticCacheManager staticCacheManager,
+                                                ShippingSettings shippingSettings,
+                                                IPictureService pictureService,
+                                                IWebHelper webHelper,
+                                                IOrderService orderService,
+                                                IDateTimeHelper dateTimeHelper)
         {
-            _orderTotalCalculationService = orderTotalCalculationService;
             _orderSettings = orderSettings;
             _shoppingCartSettings = shoppingCartSettings;
             _catalogSettings = catalogSettings;
@@ -158,7 +135,6 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
             _localizationService = localizationService;
             _commonSettings = commonSettings;
             _commonSettings = commonSettings;
-            _productPricingService = productPricingService;
             _customerService = customerService;
             _discountService = discountService;
             _shoppingCartService = shoppingCartService;
@@ -185,14 +161,13 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
             _webHelper = webHelper;
             _orderService = orderService;
             _dateTimeHelper = dateTimeHelper;
-            _zarIranPriceCalculationService = zarIranPriceCalculationService;
         }
 
         #endregion
 
         #region Methods
 
-        public virtual async Task<ZarIranShoppingCartModel> PrepareShoppingCartModelAsync(ZarIranShoppingCartModel model,
+        public virtual async Task<DelsamiShoppingCartModel> PrepareShoppingCartModelAsync(DelsamiShoppingCartModel model,
                                                                                            IList<ShoppingCartItem> cart, bool isEditable = true,
                                                                                            bool validateCheckoutAttributes = false,
                                                                                            bool prepareAndDisplayOrderReviewData = false)
@@ -323,114 +298,6 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
         }
 
 
-        public override async Task<OrderTotalsModel> PrepareOrderTotalsModelAsync(IList<ShoppingCartItem> cart,
-                                                                                  bool isEditable)
-        {
-            ArgumentNullException.ThrowIfNull(cart);
-
-            var model = await base.PrepareOrderTotalsModelAsync(cart, isEditable);
-
-            if (!cart.Any())
-                return model;
-
-            var customer = await _workContext.GetCurrentCustomerAsync();
-            var currency = await _workContext.GetWorkingCurrencyAsync();
-
-            decimal productsTotalInclTaxBase = 0m;
-            var containsGoldProduct = false;
-
-            foreach (var item in cart)
-            {
-                var pricingInfo = await _productPricingService
-                    .GetByProductIdAsync(item.ProductId);
-
-                if (pricingInfo != null)
-                {
-                    containsGoldProduct = true;
-
-                    // همان سرویس استفاده‌شده در قیمت ردیف‌های سبد.
-                    // قیمت خروجی، مالیات را هم در خودش دارد.
-                    var (_, price) = await _zarIranPriceCalculationService
-                        .GetCalculatedProductPriceAsync(item.ProductId);
-
-                    productsTotalInclTaxBase += price * item.Quantity;
-                }
-                else
-                {
-                    // محصول معمولی: مسیر استاندارد ناپ.
-                    var product = await _productService
-                        .GetProductByIdAsync(item.ProductId);
-
-                    var (subTotal, _, _, _) = await _shoppingCartService
-                        .GetSubTotalAsync(item, true);
-
-                    var (subTotalInclTax, _) = await _taxService
-                        .GetProductPriceAsync(
-                            product,
-                            subTotal,
-                            includingTax: true,
-                            customer: customer);
-
-                    productsTotalInclTaxBase += subTotalInclTax;
-                }
-            }
-
-            if (!containsGoldProduct)
-                return model;
-
-            var productsTotal = await _currencyService
-                .ConvertFromPrimaryStoreCurrencyAsync(
-                    productsTotalInclTaxBase,
-                    currency);
-
-            model.SubTotal = await _priceFormatter
-                .FormatPriceAsync(productsTotal);
-
-            model.DisplayTax = false;
-            model.DisplayTaxRates = false;
-            model.TaxRates.Clear();
-
-            decimal? shippingInclTaxBase = 0m;
-
-            if (model.RequiresShipping)
-            {
-                var shipping = await _orderTotalCalculationService
-                    .GetShoppingCartShippingTotalAsync(cart, true);
-
-                shippingInclTaxBase = shipping.shippingTotal;
-
-                if (shippingInclTaxBase.HasValue)
-                {
-                    var shippingAmount = await _currencyService
-                        .ConvertFromPrimaryStoreCurrencyAsync(
-                            shippingInclTaxBase.Value,
-                            currency);
-
-                    model.Shipping = await _priceFormatter
-                        .FormatShippingPriceAsync(shippingAmount, true);
-                }
-            }
-
-            if (shippingInclTaxBase.HasValue)
-            {
-                var total = await _currencyService
-                    .ConvertFromPrimaryStoreCurrencyAsync(
-                        productsTotalInclTaxBase + shippingInclTaxBase.Value,
-                        currency);
-
-                model.OrderTotal = await _priceFormatter
-                    .FormatPriceAsync(total);
-            }
-            else
-            {
-                model.OrderTotal = null;
-            }
-
-            return model;
-        }
-
-
-
         #endregion
 
         #region Utilties
@@ -505,134 +372,51 @@ namespace ZarIran.Plugin.Misc.ShoppingCartPage.Factories
             }
 
             //unit prices
-
             var currentCurrency = await _workContext.GetWorkingCurrencyAsync();
-
-            var isCallForPrice = product.CallForPrice &&
-                (!_orderSettings.AllowAdminsToBuyCallForPriceProducts ||
-                 _workContext.OriginalCustomerIfImpersonated == null);
-
-            // تشخیص محصول طلا
-            var goldPricingInfo = await _productPricingService
-                .GetByProductIdAsync(product.Id);
-
-            var isGoldProduct = goldPricingInfo != null && !isCallForPrice;
-
-            if (isCallForPrice)
+            if (product.CallForPrice &&
+                //also check whether the current user is impersonated
+                (!_orderSettings.AllowAdminsToBuyCallForPriceProducts || _workContext.OriginalCustomerIfImpersonated == null))
             {
-                var callForPriceText = await _localizationService
-                    .GetResourceAsync("Products.CallForPrice");
-
-                cartItemModel.UnitPrice = callForPriceText;
+                cartItemModel.UnitPrice = await _localizationService.GetResourceAsync("Products.CallForPrice");
                 cartItemModel.UnitPriceValue = 0;
-
-                cartItemModel.SubTotal = callForPriceText;
-                cartItemModel.SubTotalValue = 0;
-            }
-            else if (isGoldProduct)
-            {
-                // قیمت لحظه‌ای طلا به ارز پایه فروشگاه
-                var (_, calculatedPrice) =
-                    await _zarIranPriceCalculationService
-                        .GetCalculatedProductPriceAsync(product.Id);
-
-                // قیمت واحد
-                var unitPrice = await _currencyService
-                    .ConvertFromPrimaryStoreCurrencyAsync(
-                        calculatedPrice, currentCurrency);
-
-                cartItemModel.UnitPrice =
-                    await _priceFormatter.FormatPriceAsync(unitPrice);
-
-                cartItemModel.UnitPriceValue = unitPrice;
-
-                // جمع قیمت بر اساس تعداد
-                var subTotalBase = calculatedPrice * sci.Quantity;
-
-                var subTotal = await _currencyService
-                    .ConvertFromPrimaryStoreCurrencyAsync(
-                        subTotalBase, currentCurrency);
-
-                cartItemModel.SubTotal =
-                    await _priceFormatter.FormatPriceAsync(subTotal);
-
-                cartItemModel.SubTotalValue = subTotal;
-
-                // تخفیف‌های استاندارد ناپ در این شاخه اعمال نشده‌اند
-                cartItemModel.MaximumDiscountedQty = null;
-                cartItemModel.DiscountValue = 0;
             }
             else
             {
-                // رفتار اصلی nopCommerce 4.60
-                var (shoppingCartUnitPriceWithDiscountBase, _) =
-                    await _taxService.GetProductPriceAsync(
-                        product,
-                        (await _shoppingCartService
-                            .GetUnitPriceAsync(sci, true)).unitPrice);
+                var (shoppingCartUnitPriceWithDiscountBase, _) = await _taxService.GetProductPriceAsync(product, (await _shoppingCartService.GetUnitPriceAsync(sci, true)).unitPrice);
+                var shoppingCartUnitPriceWithDiscount = await _currencyService.ConvertFromPrimaryStoreCurrencyAsync(shoppingCartUnitPriceWithDiscountBase, currentCurrency);
+                cartItemModel.UnitPrice = await _priceFormatter.FormatPriceAsync(shoppingCartUnitPriceWithDiscount);
+                cartItemModel.UnitPriceValue = shoppingCartUnitPriceWithDiscount;
+            }
+            //subtotal, discount
+            if (product.CallForPrice &&
+                //also check whether the current user is impersonated
+                (!_orderSettings.AllowAdminsToBuyCallForPriceProducts || _workContext.OriginalCustomerIfImpersonated == null))
+            {
+                cartItemModel.SubTotal = await _localizationService.GetResourceAsync("Products.CallForPrice");
+                cartItemModel.SubTotalValue = 0;
+            }
+            else
+            {
+                //sub total
+                var (subTotal, shoppingCartItemDiscountBase, _, maximumDiscountQty) = await _shoppingCartService.GetSubTotalAsync(sci, true);
+                var (shoppingCartItemSubTotalWithDiscountBase, _) = await _taxService.GetProductPriceAsync(product, subTotal);
+                var shoppingCartItemSubTotalWithDiscount = await _currencyService.ConvertFromPrimaryStoreCurrencyAsync(shoppingCartItemSubTotalWithDiscountBase, currentCurrency);
+                cartItemModel.SubTotal = await _priceFormatter.FormatPriceAsync(shoppingCartItemSubTotalWithDiscount);
+                cartItemModel.SubTotalValue = shoppingCartItemSubTotalWithDiscount;
+                cartItemModel.MaximumDiscountedQty = maximumDiscountQty;
 
-                var shoppingCartUnitPriceWithDiscount =
-                    await _currencyService
-                        .ConvertFromPrimaryStoreCurrencyAsync(
-                            shoppingCartUnitPriceWithDiscountBase,
-                            currentCurrency);
-
-                cartItemModel.UnitPrice =
-                    await _priceFormatter.FormatPriceAsync(
-                        shoppingCartUnitPriceWithDiscount);
-
-                cartItemModel.UnitPriceValue =
-                    shoppingCartUnitPriceWithDiscount;
-
-                var (subTotal, shoppingCartItemDiscountBase,
-                     _, maximumDiscountQty) =
-                    await _shoppingCartService
-                        .GetSubTotalAsync(sci, true);
-
-                var (shoppingCartItemSubTotalWithDiscountBase, _) =
-                    await _taxService.GetProductPriceAsync(
-                        product, subTotal);
-
-                var shoppingCartItemSubTotalWithDiscount =
-                    await _currencyService
-                        .ConvertFromPrimaryStoreCurrencyAsync(
-                            shoppingCartItemSubTotalWithDiscountBase,
-                            currentCurrency);
-
-                cartItemModel.SubTotal =
-                    await _priceFormatter.FormatPriceAsync(
-                        shoppingCartItemSubTotalWithDiscount);
-
-                cartItemModel.SubTotalValue =
-                    shoppingCartItemSubTotalWithDiscount;
-
-                cartItemModel.MaximumDiscountedQty =
-                    maximumDiscountQty;
-
+                //display an applied discount amount
                 if (shoppingCartItemDiscountBase > decimal.Zero)
                 {
-                    (shoppingCartItemDiscountBase, _) =
-                        await _taxService.GetProductPriceAsync(
-                            product, shoppingCartItemDiscountBase);
-
+                    (shoppingCartItemDiscountBase, _) = await _taxService.GetProductPriceAsync(product, shoppingCartItemDiscountBase);
                     if (shoppingCartItemDiscountBase > decimal.Zero)
                     {
-                        var shoppingCartItemDiscount =
-                            await _currencyService
-                                .ConvertFromPrimaryStoreCurrencyAsync(
-                                    shoppingCartItemDiscountBase,
-                                    currentCurrency);
-
-                        cartItemModel.Discount =
-                            await _priceFormatter.FormatPriceAsync(
-                                shoppingCartItemDiscount);
-
-                        cartItemModel.DiscountValue =
-                            shoppingCartItemDiscount;
+                        var shoppingCartItemDiscount = await _currencyService.ConvertFromPrimaryStoreCurrencyAsync(shoppingCartItemDiscountBase, currentCurrency);
+                        cartItemModel.Discount = await _priceFormatter.FormatPriceAsync(shoppingCartItemDiscount);
+                        cartItemModel.DiscountValue = shoppingCartItemDiscount;
                     }
                 }
             }
-
 
             //picture
             if (_shoppingCartSettings.ShowProductImagesOnShoppingCart)
