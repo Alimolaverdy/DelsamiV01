@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
+using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
 using Nop.Data;
 using System.Collections.Generic;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using LinqToDB;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Services;
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Services;
 
 public class CategorySpecificationAttributeService : ICategorySpecificationAttributeService
 {

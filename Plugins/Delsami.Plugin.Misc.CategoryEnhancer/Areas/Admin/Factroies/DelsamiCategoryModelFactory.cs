@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Services;
+﻿using Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CategoryEnhancer.Services;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Services.Catalog;
@@ -12,9 +12,9 @@ using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Factories;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies
 {
-    public class ZarIranCategoryModelFactory : CategoryModelFactory
+    public class DelsamiCategoryModelFactory : CategoryModelFactory
     {
         #region Fields
 
@@ -24,7 +24,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies
 
         #region Ctor
 
-        public ZarIranCategoryModelFactory(CatalogSettings catalogSettings,
+        public DelsamiCategoryModelFactory(CatalogSettings catalogSettings,
                                             CurrencySettings currencySettings,
                                             ICurrencyService currencyService,
                                             IAclSupportedModelFactory aclSupportedModelFactory,
@@ -50,7 +50,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies
         {
             model = await base.PrepareCategoryModelAsync(model, category, excludeProperties);
 
-            if (model is ZarIranCategoryModel extended)
+            if (model is DelsamiCategoryModel extended)
             {
                 if (category == null)
                 {

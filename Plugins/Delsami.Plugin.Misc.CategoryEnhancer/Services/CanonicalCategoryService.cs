@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
+﻿using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
 using Nop.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Services
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Services
 {
     public class CanonicalCategoryService : ICanonicalCategoryService
     {

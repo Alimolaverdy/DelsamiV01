@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Services;
+using Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Factroies;
+using Delsami.Plugin.Misc.CategoryEnhancer.Services;
 using Nop.Core.Infrastructure;
 using Nop.Web.Areas.Admin.Factories;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Infrastructure
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Infrastructure
 {
     public class NopStartup : INopStartup
     {
@@ -19,9 +19,9 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Infrastructure
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICategoryIconService, CategoryIconService>();
-            services.AddScoped<ICategoryModelFactory, ZarIranCategoryModelFactory>();
+            services.AddScoped<ICategoryModelFactory, DelsamiCategoryModelFactory>();
             services.AddScoped<ICanonicalCategoryService, CanonicalCategoryService>();
-            services.AddScoped<IZarIranUrlRecordService, ZarIranUrlRecordService>();
+            services.AddScoped<IDelsamiUrlRecordService, DelsamiUrlRecordService>();
             services.AddScoped<ICategorySpecificationAttributeService, CategorySpecificationAttributeService>();
         }
 

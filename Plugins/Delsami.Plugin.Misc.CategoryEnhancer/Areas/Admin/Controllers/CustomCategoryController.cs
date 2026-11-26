@@ -1,11 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Services;
-using ZarIran.Plugin.Misc.Core.Events.Audit.Entities;
-using ZarIran.Plugin.Misc.Core.Extensions;
+using Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
+using Delsami.Plugin.Misc.CategoryEnhancer.Services;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Discounts;
@@ -31,8 +29,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Delsami.Plugin.Misc.Core.Events.Audit.Entities;
+using Delsami.Plugin.Misc.Core.Extensions;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -57,7 +57,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly ICanonicalCategoryService _canonicalCategoryService;
-        private readonly IZarIranUrlRecordService _ZarIranUrlRecordService;
+        private readonly IDelsamiUrlRecordService _DelsamiUrlRecordService;
         private readonly ISpecificationAttributeService _specificationAttributeService;
         private readonly ICategorySpecificationAttributeService _categorySpecificationAttributeService;
         private readonly IEventPublisher _eventPublisher;
@@ -84,7 +84,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             ISpecificationAttributeService specificationAttributeService,
             IUrlRecordService urlRecordService,
             ICanonicalCategoryService canonicalCategoryService,
-            IZarIranUrlRecordService ZarIranUrlRecordService,
+            IDelsamiUrlRecordService DelsamiUrlRecordService,
             IEventPublisher eventPublisher)
         {
             _aclService = aclService;
@@ -105,7 +105,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             _storeService = storeService;
             _urlRecordService = urlRecordService;
             _canonicalCategoryService = canonicalCategoryService;
-            _ZarIranUrlRecordService = ZarIranUrlRecordService;
+            _DelsamiUrlRecordService = DelsamiUrlRecordService;
             _eventPublisher = eventPublisher;
         }
 
@@ -217,24 +217,24 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             //prepare model
             var model = await _categoryModelFactory.PrepareCategoryModelAsync(new CategoryModel(), null);
 
-            var ZarIranModel = AutoMapperConfiguration.Mapper.Map<ZarIranCategoryModel>(model);
-            ZarIranModel.AvailableSpecAttributes = await PrepareAvailableSpecAttributes();
+            var DelsamiModel = AutoMapperConfiguration.Mapper.Map<DelsamiCategoryModel>(model);
+            DelsamiModel.AvailableSpecAttributes = await PrepareAvailableSpecAttributes();
 
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Create.cshtml", ZarIranModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Create.cshtml", DelsamiModel);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
-        public virtual async Task<IActionResult> Create(ZarIranCategoryModel ZarIranModel, bool continueEditing)
+        public virtual async Task<IActionResult> Create(DelsamiCategoryModel DelsamiModel, bool continueEditing)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
-            var isValidCanonical = await _canonicalCategoryService.IsValidCanonicalAsync(ZarIranModel.CanonicalCategoryId);
+            var isValidCanonical = await _canonicalCategoryService.IsValidCanonicalAsync(DelsamiModel.CanonicalCategoryId);
 
             if (!isValidCanonical)
-                ModelState.AddModelError("CanonicalCategoryId", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CategoryEnhancer.CategoryModel.InvalidCanonicalCategoryId"));
+                ModelState.AddModelError("CanonicalCategoryId", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CategoryEnhancer.CategoryModel.InvalidCanonicalCategoryId"));
 
-            var model = (CategoryModel)ZarIranModel;
+            var model = (CategoryModel)DelsamiModel;
 
             if (ModelState.IsValid)
             {
@@ -270,9 +270,9 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
                 await SaveStoreMappingsAsync(category, model);
 
                 //add spec attribute
-                if (ZarIranModel.SelectedSpecAttributesIds.Any())
+                if (DelsamiModel.SelectedSpecAttributesIds.Any())
                 {
-                    var selectedSpecs = ZarIranModel.SelectedSpecAttributesIds.Select(a => new CategorySpecificationAttribute()
+                    var selectedSpecs = DelsamiModel.SelectedSpecAttributesIds.Select(a => new CategorySpecificationAttribute()
                     {
                         CategoryId = category.Id,
                         SpecificationAttributeId = a
@@ -282,11 +282,11 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
                 }
 
 
-                if (ZarIranModel.CanonicalCategoryId != 0)
+                if (DelsamiModel.CanonicalCategoryId != 0)
                     await _canonicalCategoryService.InsertAsync(new Domain.CanonicalCategory
                     {
                         CategoryId = category.Id,
-                        CanonicalCategoryId = ZarIranModel.CanonicalCategoryId
+                        CanonicalCategoryId = DelsamiModel.CanonicalCategoryId
                     });
 
                 //activity log
@@ -305,7 +305,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             model = await _categoryModelFactory.PrepareCategoryModelAsync(model, null, true);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Create.cshtml", ZarIranModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Create.cshtml", DelsamiModel);
         }
 
         public virtual async Task<IActionResult> Edit(int id)
@@ -321,18 +321,18 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             //prepare model
             var model = await _categoryModelFactory.PrepareCategoryModelAsync(null, category);
 
-            var ZarIranModel = AutoMapperConfiguration.Mapper.Map<ZarIranCategoryModel>(model);
+            var DelsamiModel = AutoMapperConfiguration.Mapper.Map<DelsamiCategoryModel>(model);
 
 
             var canonicalCategory = await _canonicalCategoryService.GetByCategoryIdAsync(category.Id);
 
             if (canonicalCategory != null)
-                ZarIranModel.CanonicalCategoryId = canonicalCategory.CanonicalCategoryId;
+                DelsamiModel.CanonicalCategoryId = canonicalCategory.CanonicalCategoryId;
 
-            var urlRecords = await _ZarIranUrlRecordService.GetSuggestionForCanonicalCategoriesAsync(category.Name, model.SeName, model.Id);
+            var urlRecords = await _DelsamiUrlRecordService.GetSuggestionForCanonicalCategoriesAsync(category.Name, model.SeName, model.Id);
 
             var categories = await _categoryService.GetCategoriesByIdsAsync(urlRecords.Select(s => s.EntityId).ToArray());
-            ZarIranModel.SuggestionCategories = urlRecords
+            DelsamiModel.SuggestionCategories = urlRecords
                 .Select(s => new
                 {
                     Record = s,
@@ -349,10 +349,10 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
                 .ToList();
 
 
-            ZarIranModel.SelectedSpecAttributesIds = (await _categorySpecificationAttributeService.GetByCategoryId(category.Id)).Select(a => a.SpecificationAttributeId).ToList();
-            ZarIranModel.AvailableSpecAttributes = await PrepareAvailableSpecAttributes();
+            DelsamiModel.SelectedSpecAttributesIds = (await _categorySpecificationAttributeService.GetByCategoryId(category.Id)).Select(a => a.SpecificationAttributeId).ToList();
+            DelsamiModel.AvailableSpecAttributes = await PrepareAvailableSpecAttributes();
 
-            //ZarIranModel.SuggestionCategories = model.AvailableCategories
+            //DelsamiModel.SuggestionCategories = model.AvailableCategories
             //    .Where(w => urlRecords.Select(s => s.EntityId)
             //    .Contains(int.Parse(w.Value))).Select(s => new SuggestionCategoryModel
             //    {
@@ -361,28 +361,28 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             //        SeName =
             //    }).ToList();
 
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Edit.cshtml", ZarIranModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Edit.cshtml", DelsamiModel);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
-        public virtual async Task<IActionResult> Edit(ZarIranCategoryModel ZarIranModel, bool continueEditing)
+        public virtual async Task<IActionResult> Edit(DelsamiCategoryModel DelsamiModel, bool continueEditing)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             //try to get a category with the specified id
-            var category = await _categoryService.GetCategoryByIdAsync(ZarIranModel.Id);
+            var category = await _categoryService.GetCategoryByIdAsync(DelsamiModel.Id);
             if (category == null || category.Deleted)
                 return RedirectToAction("List", "Category");
 
             var oldcategory = category.MyDeepClone();
 
-            var isValidCanonical = await _canonicalCategoryService.IsValidCanonicalAsync(ZarIranModel.CanonicalCategoryId);
+            var isValidCanonical = await _canonicalCategoryService.IsValidCanonicalAsync(DelsamiModel.CanonicalCategoryId);
 
-            if (!isValidCanonical || ZarIranModel.CanonicalCategoryId == ZarIranModel.Id)
-                ModelState.AddModelError("CanonicalCategoryId", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CategoryEnhancer.CategoryModel.InvalidCanonicalCategoryId"));
+            if (!isValidCanonical || DelsamiModel.CanonicalCategoryId == DelsamiModel.Id)
+                ModelState.AddModelError("CanonicalCategoryId", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CategoryEnhancer.CategoryModel.InvalidCanonicalCategoryId"));
 
-            var model = (CategoryModel)ZarIranModel;
+            var model = (CategoryModel)DelsamiModel;
 
             if (ModelState.IsValid)
             {
@@ -444,12 +444,12 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
                 await SaveStoreMappingsAsync(category, model);
 
                 //update spec attribute
-                if (ZarIranModel.SelectedSpecAttributesIds.Any())
+                if (DelsamiModel.SelectedSpecAttributesIds.Any())
                 {
 
                     await _categorySpecificationAttributeService.DeleteAllByCategoryId(category.Id);
 
-                    var selectedSpecs = ZarIranModel.SelectedSpecAttributesIds.Select(a => new CategorySpecificationAttribute()
+                    var selectedSpecs = DelsamiModel.SelectedSpecAttributesIds.Select(a => new CategorySpecificationAttribute()
                     {
                         CategoryId = category.Id,
                         SpecificationAttributeId = a
@@ -459,11 +459,11 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 
                 await _canonicalCategoryService.DeleteByCategoryIdAsync(category.Id);
 
-                if (ZarIranModel.CanonicalCategoryId != 0)
+                if (DelsamiModel.CanonicalCategoryId != 0)
                     await _canonicalCategoryService.InsertAsync(new Domain.CanonicalCategory
                     {
                         CategoryId = category.Id,
-                        CanonicalCategoryId = ZarIranModel.CanonicalCategoryId
+                        CanonicalCategoryId = DelsamiModel.CanonicalCategoryId
                     });
 
 
@@ -482,13 +482,13 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             }
 
             //prepare model
-            model = await _categoryModelFactory.PrepareCategoryModelAsync(ZarIranModel, category, true);
+            model = await _categoryModelFactory.PrepareCategoryModelAsync(DelsamiModel, category, true);
 
-            var urlRecords = await _ZarIranUrlRecordService.GetSuggestionForCanonicalCategoriesAsync(category.Name, model.SeName, model.Id);
+            var urlRecords = await _DelsamiUrlRecordService.GetSuggestionForCanonicalCategoriesAsync(category.Name, model.SeName, model.Id);
 
             var categories = await _categoryService.GetCategoriesByIdsAsync(urlRecords.Select(s => s.EntityId).ToArray());
 
-            ZarIranModel.SuggestionCategories = urlRecords
+            DelsamiModel.SuggestionCategories = urlRecords
               .Select(s => new
               {
                   Record = s,
@@ -505,7 +505,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
               .ToList();
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Edit.cshtml", ZarIranModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CustomCategory/Edit.cshtml", DelsamiModel);
         }
 
         [HttpPost]

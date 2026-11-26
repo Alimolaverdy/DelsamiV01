@@ -1,4 +1,4 @@
-﻿@model ZarIranCategoryModel
+﻿@model DelsamiCategoryModel
 
 @{
     const string hideInfoBlockAttributeName = "CategoryPage.HideInfoBlock";
@@ -33,7 +33,7 @@
             </div>
 
             <nop-cards id="category-cards">
-                <nop-card asp-name="category-info" asp-icon="fas fa-info" asp-title="@T("Admin.Catalog.Categories.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/_CreateOrUpdate.Info.cshtml", Model)</nop-card>
+                <nop-card asp-name="category-info" asp-icon="fas fa-info" asp-title="@T("Admin.Catalog.Categories.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/_CreateOrUpdate.Info.cshtml", Model)</nop-card>
                 <nop-card asp-name="category-display" asp-icon="fas fa-tv" asp-title="@T("Admin.Catalog.Categories.Display")" asp-hide-block-attribute-name="@hideDisplayBlockAttributeName" asp-hide="@hideDisplayBlock" asp-advanced="false">@await Html.PartialAsync("~/Areas/Admin/Views/Category/_CreateOrUpdate.Display.cshtml", Model)</nop-card>
                 <nop-card asp-name="category-mappings" asp-icon="fas fa-bookmark" asp-title="@T("Admin.Catalog.Categories.Mappings")" asp-hide-block-attribute-name="@hideMappingsBlockAttributeName" asp-hide="@hideMappingsBlock" asp-advanced="true">@await Html.PartialAsync("~/Areas/Admin/Views/Category/_CreateOrUpdate.Mappings.cshtml", Model)</nop-card>
                 <nop-card asp-name="category-seo" asp-icon="fas fa-search-plus" asp-title="@T("Admin.Common.SEO")" asp-hide-block-attribute-name="@hideSeoBlockAttributeName" asp-hide="@hideSeoBlock" asp-advanced="true">@await Html.PartialAsync("~/Areas/Admin/Views/Category/_CreateOrUpdate.Seo.cshtml", Model)</nop-card>

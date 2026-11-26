@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
+using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Data.Mapping.Builder
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Data.Mapping.Builder
 {
     public class CategorySpecificationAttributeBuilder : NopEntityBuilder<CategorySpecificationAttribute>
     {

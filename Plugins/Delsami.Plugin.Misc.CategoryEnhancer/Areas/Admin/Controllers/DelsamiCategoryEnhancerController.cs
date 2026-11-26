@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Services;
+using Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
+using Delsami.Plugin.Misc.CategoryEnhancer.Services;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Discounts;
 using Nop.Services.Catalog;
@@ -23,14 +23,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Core.Caching;
-using ZarIran.Plugin.Misc.Core.Extensions;
 using System.Collections.Generic;
 using Nop.Core;
+using Delsami.Plugin.Misc.Core.Extensions;
 
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 {
-    public class ZarIranCategoryEnhancerController : BaseAdminController
+    public class DelsamiCategoryEnhancerController : BaseAdminController
     {
         #region Fields
 
@@ -56,7 +56,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 
         #region Ctor
 
-        public ZarIranCategoryEnhancerController(IPermissionService permissionService,
+        public DelsamiCategoryEnhancerController(IPermissionService permissionService,
                                                   ICategoryModelFactory categoryModelFactory,
                                                   ICategoryService categoryService,
                                                   IUrlRecordService urlRecordService,
@@ -99,14 +99,14 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 
         public virtual async Task<IActionResult> Create()
         {
-            var model = await _categoryModelFactory.PrepareCategoryModelAsync(new ZarIranCategoryModel(), null);
+            var model = await _categoryModelFactory.PrepareCategoryModelAsync(new DelsamiCategoryModel(), null);
 
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Create.cshtml", model);
         }
 
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
-        public virtual async Task<IActionResult> Create(ZarIranCategoryModel model, bool continueEditing)
+        public virtual async Task<IActionResult> Create(DelsamiCategoryModel model, bool continueEditing)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
@@ -172,13 +172,13 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 
             var baseModel = await _categoryModelFactory.PrepareCategoryModelAsync(model, null, true);
 
-            var extendedModel = new ZarIranCategoryModel();
+            var extendedModel = new DelsamiCategoryModel();
 
             baseModel.CopyPropertiesTo(extendedModel);
 
             extendedModel.IconId = model.IconId;
 
-            return View("~/Plugins/ZarIran.Plugin.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Create.cshtml", extendedModel);
+            return View("~/Plugins/Delsami.Plugin.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Create.cshtml", extendedModel);
         }
 
 
@@ -196,19 +196,19 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
             //prepare base model
             var baseModel = await _categoryModelFactory.PrepareCategoryModelAsync(null, category);
 
-            var extendedModel = new ZarIranCategoryModel();
+            var extendedModel = new DelsamiCategoryModel();
 
             baseModel.CopyPropertiesTo(extendedModel);
 
             var categoryIcon = await _categoryIconService.GetByCategoryIdAsync(category.Id);
             extendedModel.IconId = categoryIcon?.IconId ?? 0;
 
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Edit.cshtml", extendedModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Edit.cshtml", extendedModel);
         }
 
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
-        public virtual async Task<IActionResult> Edit(ZarIranCategoryModel model, bool continueEditing)
+        public virtual async Task<IActionResult> Edit(DelsamiCategoryModel model, bool continueEditing)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
@@ -297,13 +297,13 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Controllers
 
             var baseModel = await _categoryModelFactory.PrepareCategoryModelAsync(model, category, true);
 
-            var extendedModel = new ZarIranCategoryModel();
+            var extendedModel = new DelsamiCategoryModel();
 
             baseModel.CopyPropertiesTo(extendedModel);
 
             extendedModel.IconId = model.IconId;
 
-            return View("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Edit.cshtml", extendedModel);
+            return View("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/Edit.cshtml", extendedModel);
         }
 
 

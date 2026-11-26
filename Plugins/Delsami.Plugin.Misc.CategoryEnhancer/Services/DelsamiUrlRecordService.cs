@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Services
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Services
 {
-    public class ZarIranUrlRecordService : IZarIranUrlRecordService
+    public class DelsamiUrlRecordService : IDelsamiUrlRecordService
     {
         #region Fields
 
@@ -20,7 +20,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Services
 
         #region Ctor
 
-        public ZarIranUrlRecordService(IRepository<UrlRecord> urlRecordRepo,
+        public DelsamiUrlRecordService(IRepository<UrlRecord> urlRecordRepo,
                                         IRepository<Category> categoryRepo)
         {
             _urlRecordRepo = urlRecordRepo;

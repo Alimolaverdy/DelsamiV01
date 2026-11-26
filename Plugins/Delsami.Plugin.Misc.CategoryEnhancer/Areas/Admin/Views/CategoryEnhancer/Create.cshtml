@@ -1,4 +1,4 @@
-﻿@model ZarIranCategoryModel
+﻿@model DelsamiCategoryModel
 @{
 
     Layout = "_AdminPopupLayout";
@@ -30,5 +30,5 @@
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CategoryDetailsButtons, additionalData = Model })
         </div>
     </div>
-    @await Html.PartialAsync("~/Plugins/ZarIran.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/_CreateOrUpdate.cshtml", Model)
+    @await Html.PartialAsync("~/Plugins/Delsami.Misc.CategoryEnhancer/Areas/Admin/Views/CategoryEnhancer/_CreateOrUpdate.cshtml", Model)
 </form>

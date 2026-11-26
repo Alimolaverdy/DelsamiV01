@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Misc.CategoryEnhancer.Domain;
+﻿using Delsami.Plugin.Misc.CategoryEnhancer.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Services
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Services
 {
     public interface ICanonicalCategoryService
     {

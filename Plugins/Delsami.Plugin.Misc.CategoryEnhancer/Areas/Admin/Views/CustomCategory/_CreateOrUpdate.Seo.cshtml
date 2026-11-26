@@ -1,7 +1,7 @@
-﻿@model ZarIranCategoryModel
+﻿@model DelsamiCategoryModel
 
-<link rel="stylesheet" href="~/plugins/ZarIran.misc.core/lib/select2/select2.min.css" />
-<script asp-location="None" src="~/plugins/ZarIran.misc.core/lib/select2/select2.min.js"></script>
+<link rel="stylesheet" href="~/plugins/Delsami.misc.core/lib/select2/select2.min.css" />
+<script asp-location="None" src="~/plugins/Delsami.misc.core/lib/select2/select2.min.js"></script>
 <style>
     .suggestion-container {
         margin-top: 10px;
@@ -39,7 +39,7 @@
     }
 </style>
 <div class="card-body">
-    @(await Html.LocalizedEditorAsync<ZarIranCategoryModel, CategoryLocalizedModel>("category-info-localized",
+    @(await Html.LocalizedEditorAsync<DelsamiCategoryModel, CategoryLocalizedModel>("category-info-localized",
         @<div>
         <div class="form-group row">
             <div class="col-md-3">

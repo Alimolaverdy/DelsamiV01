@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Infrastructure
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {

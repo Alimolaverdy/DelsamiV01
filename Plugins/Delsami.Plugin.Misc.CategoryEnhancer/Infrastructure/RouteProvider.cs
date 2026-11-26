@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Infrastructure
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -12,11 +12,11 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Infrastructure
         {
             endpointRouteBuilder.MapControllerRoute(name: "CategoryEnhancer",
                     pattern: "Admin/Category/Create",
-                    defaults: new { controller = "ZarIranCategoryEnhancer", action = "Create", area = "Admin" });
+                    defaults: new { controller = "DelsamiCategoryEnhancer", action = "Create", area = "Admin" });
 
             endpointRouteBuilder.MapControllerRoute(name: "EditCategoryEnhancer",
                     pattern: "Admin/Category/Edit/{id?}",
-                    defaults: new { controller = "ZarIranCategoryEnhancer", action = "Edit", area = "Admin" });
+                    defaults: new { controller = "DelsamiCategoryEnhancer", action = "Edit", area = "Admin" });
         }
     }
 }

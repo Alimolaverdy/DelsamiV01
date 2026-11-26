@@ -3,7 +3,7 @@ using Nop.Services.Plugins;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer
+namespace Delsami.Plugin.Misc.CategoryEnhancer
 {
     public class CategoryEnhancerPlugin : BasePlugin
     {
@@ -19,7 +19,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
 
-                ["ZarIran.Plugin.Misc.CategoryEnhancer.Icon"] = "Icon"
+                ["Delsami.Plugin.Misc.CategoryEnhancer.Icon"] = "Icon"
             });
 
             await base.InstallAsync();

@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models
 {
     public record SuggestionCategoryModel : BaseNopModel
     {

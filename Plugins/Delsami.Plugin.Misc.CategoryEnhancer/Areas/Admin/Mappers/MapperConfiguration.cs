@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Models;
 using Nop.Core.Infrastructure.Mapper;
 using Nop.Web.Areas.Admin.Models.Catalog;
 
-namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Mappers
+namespace Delsami.Plugin.Misc.CategoryEnhancer.Areas.Admin.Mappers
 {
     internal class MapperConfiguration : Profile, IOrderedMapperProfile
     {
@@ -16,7 +16,7 @@ namespace ZarIran.Plugin.Misc.CategoryEnhancer.Areas.Admin.Mappers
 
         private void CreateCategoryMap()
         {
-            CreateMap<CategoryModel, ZarIranCategoryModel>();
+            CreateMap<CategoryModel, DelsamiCategoryModel>();
         }
     }
 }
