@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Services;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.Common;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Infrastructure
 {
     public class NopStartup : INopStartup
     {

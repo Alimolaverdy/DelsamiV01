@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Model
 {
     public class CustomShipmentSource
     {
@@ -48,8 +48,8 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
 
         public string PostalCode { get; set; }
 
-        [DisplayName("Pdf.ZarIranPhoneNumber")]
-        public string ZarIranPhoneNumber { get; set;
+        [DisplayName("Pdf.DelsamiPhoneNumber")]
+        public string DelsamiPhoneNumber { get; set;
         }
         public List<ProductItem> Products { get; set; }
 

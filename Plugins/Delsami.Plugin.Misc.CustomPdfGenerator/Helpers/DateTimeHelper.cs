@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Helpers
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Helpers
 {
     public class DateTimeHelper
     {

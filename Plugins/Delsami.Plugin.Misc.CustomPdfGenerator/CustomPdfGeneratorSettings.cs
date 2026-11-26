@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Misc.CustomPdfGenerator.Enums;
+﻿using Delsami.Plugin.Misc.CustomPdfGenerator.Enums;
 using Nop.Core.Configuration;
 using ZXing;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator
+namespace Delsami.Plugin.Misc.CustomPdfGenerator
 {
     public class CustomPdfGeneratorSettings : ISettings
     {
-        public int ZarIranVendorId { get; set; }
+        public int DelsamiVendorId { get; set; }
 
         public BarcodeFormat BarcodeFormat { get; set; }
 

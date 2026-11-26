@@ -1,6 +1,6 @@
 ﻿using Nop.Services.Common.Pdf;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Model
 {
     public class CustomProductItem : ProductItem
     {

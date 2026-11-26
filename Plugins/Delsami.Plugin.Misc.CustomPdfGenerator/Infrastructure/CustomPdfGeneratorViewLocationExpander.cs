@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Infrastructure
 {
     public class CustomPdfGeneratorViewLocationExpander : IViewLocationExpander
     {
@@ -12,7 +12,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Infrastructure
 
             if (context.AreaName == "Admin" && context.ViewName.Equals("ShipmentDetails", StringComparison.InvariantCultureIgnoreCase))
             {
-                viewLocations = new string[] { $"~/Plugins/ZarIran.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomOrder/ShipmentDetails.cshtml" }.Concat(viewLocations);
+                viewLocations = new string[] { $"~/Plugins/Delsami.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomOrder/ShipmentDetails.cshtml" }.Concat(viewLocations);
             }
 
             return viewLocations;

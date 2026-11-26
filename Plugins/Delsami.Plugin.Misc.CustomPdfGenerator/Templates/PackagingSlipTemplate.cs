@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Misc.CustomPdfGenerator.Model;
+﻿using Delsami.Plugin.Misc.CustomPdfGenerator.Model;
 using Nop.Core.Domain.Customers;
 using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Templates
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Templates
 {
     internal class PackagingSlipTemplate : IDocument
     {
@@ -67,7 +67,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Templates
                                          .ShowOnce()
                                          .AlignLeft()
                                          .AlignBottom())
-                                    .Text(t => t.GetSpans($"شماره تماس: {ShipmentSource.ZarIranPhoneNumber}"));
+                                    .Text(t => t.GetSpans($"شماره تماس: {ShipmentSource.DelsamiPhoneNumber}"));
                            }
                            else
                            {
@@ -92,7 +92,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Templates
                                       .ShowOnce()
                                       .AlignLeft()
                                       .AlignBottom())
-                                 .Text(t => t.GetSpans($"شماره تماس: {ShipmentSource.ZarIranPhoneNumber}"));
+                                 .Text(t => t.GetSpans($"شماره تماس: {ShipmentSource.DelsamiPhoneNumber}"));
                            }
 
                            #endregion

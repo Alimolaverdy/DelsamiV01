@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 using System;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {

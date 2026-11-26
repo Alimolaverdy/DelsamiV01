@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Templates
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Templates
 {
     public static class TextDescriptorExtension
     {

@@ -17,7 +17,7 @@ using Nop.Services.Shipping;
 using Nop.Web.Areas.Admin.Controllers;
 using Nop.Web.Areas.Admin.Factories;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Controllers
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Controllers
 {
     internal class CustomOrderController : OrderController
     {

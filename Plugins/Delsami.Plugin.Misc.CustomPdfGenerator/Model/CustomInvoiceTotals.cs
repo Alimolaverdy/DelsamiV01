@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Model
 {
     public class CustomInvoiceTotals
     {

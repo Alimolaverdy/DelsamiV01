@@ -5,7 +5,7 @@ using Nop.Services.Security;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Models;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Vendors;
@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ZXing;
 using System;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -60,7 +60,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
 
             var configurationModel = new ConfigurationModel
             {
-                ZarIranVendorId = customPdfGeneratorSettings.ZarIranVendorId,
+                DelsamiVendorId = customPdfGeneratorSettings.DelsamiVendorId,
                 BarcodeFormat = customPdfGeneratorSettings.BarcodeFormat,
                 PhoneNumber = customPdfGeneratorSettings.PhoneNumber,
                 LogoPictureId= customPdfGeneratorSettings.LogoPictureId,
@@ -69,7 +69,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
                 {
                     Text = s.Name,
                     Value = s.Id.ToString(),
-                    Selected = s.Id == customPdfGeneratorSettings.ZarIranVendorId
+                    Selected = s.Id == customPdfGeneratorSettings.DelsamiVendorId
 
                 }).ToList(),
                 AvailableBarcodeFormats = Enum.GetValues(typeof(BarcodeFormat)).Cast<BarcodeFormat>().Select(v => new SelectListItem
@@ -79,7 +79,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
                 }).ToList()
             };
 
-            return View("~/Plugins/ZarIran.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomPdfGenerator/Configure.cshtml", configurationModel);
+            return View("~/Plugins/Delsami.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomPdfGenerator/Configure.cshtml", configurationModel);
         }
 
         [HttpPost]
@@ -93,7 +93,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-                customPdfGeneratorSettings.ZarIranVendorId = model.ZarIranVendorId;
+                customPdfGeneratorSettings.DelsamiVendorId = model.DelsamiVendorId;
                 customPdfGeneratorSettings.BarcodeFormat = model.BarcodeFormat;
                 customPdfGeneratorSettings.PhoneNumber = model.PhoneNumber;
                 customPdfGeneratorSettings.LogoPictureId = model.LogoPictureId;
@@ -106,18 +106,18 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
                 return RedirectToAction("Configure");
             }
 
-            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Settings.Error"));
+            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Settings.Error"));
 
             var vendors = await _vendorService.GetAllVendorsAsync();
 
             var configurationModel = new ConfigurationModel
             {
-                ZarIranVendorId = customPdfGeneratorSettings.ZarIranVendorId,
+                DelsamiVendorId = customPdfGeneratorSettings.DelsamiVendorId,
                 AvailableVendors = vendors.Select(s => new SelectListItem
                 {
                     Text = s.Name,
                     Value = s.Id.ToString(),
-                    Selected = s.Id == customPdfGeneratorSettings.ZarIranVendorId
+                    Selected = s.Id == customPdfGeneratorSettings.DelsamiVendorId
 
                 }).ToList(),
                 AvailableBarcodeFormats = Enum.GetValues(typeof(BarcodeFormat)).Cast<BarcodeFormat>().Select(v => new SelectListItem
@@ -128,7 +128,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
             };
 
 
-            return View("~/Plugins/ZarIran.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomPdfGenerator/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomPdfGenerator/Areas/Admin/Views/CustomPdfGenerator/Configure.cshtml", model);
         }
 
         #endregion

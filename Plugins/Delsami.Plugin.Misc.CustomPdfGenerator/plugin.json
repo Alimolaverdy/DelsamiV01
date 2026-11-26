@@ -1,15 +1,15 @@
 ﻿{
   "Group": "Misc",
   "FriendlyName": "Custom pdf generator",
-  "SystemName": "ZarIran.Misc.CustomPdfGenerator",
+  "SystemName": "Delsami.Misc.CustomPdfGenerator",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 5,
-  "FileName": "ZarIran.Plugin.Misc.CustomPdfGenerator.dll",
-  "Description": "This plugin generate pdf for ZarIran",
+  "FileName": "Delsami.Plugin.Misc.CustomPdfGenerator.dll",
+  "Description": "This plugin generate pdf for Delsami",
   "DependsOnSystemNames": [
-    "ZarIran.Misc.Core",
-    "ZarIran.Plugin.Misc.ExtendedOrder"
+    "Delsami.Misc.Core",
+    "Delsami.Plugin.Misc.ExtendedOrder"
   ]
 }

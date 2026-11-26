@@ -1,6 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Helpers;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Model;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Helpers;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Model;
 using Nop.Core.Infrastructure;
 using Nop.Services.Common.Pdf;
 using Nop.Services.Localization;
@@ -12,19 +12,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Templates;
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Templates;
 
 public class OrderTemplate : IDocument
 {
 	public CustomOrderSource InvoiceSource { get; }
-	public int ZarIranVendorId { get; set; }
+	public int DelsamiVendorId { get; set; }
 	private string _shippingName { get; set; }
-	public OrderTemplate(CustomOrderSource invoiceSource, int zarIranVendorId)
+	public OrderTemplate(CustomOrderSource invoiceSource, int DelsamiVendorId)
 	{
 		InvoiceSource = invoiceSource;
-		ZarIranVendorId = zarIranVendorId;
+		DelsamiVendorId = DelsamiVendorId;
 		var localizationService = EngineContext.Current.Resolve<ILocalizationService>();
-		_shippingName = localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.ShippingName").GetAwaiter().GetResult();
+		_shippingName = localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.ShippingName").GetAwaiter().GetResult();
 
 	}
 
@@ -36,7 +36,7 @@ public class OrderTemplate : IDocument
 
 		#region فاکتور فروش
 
-		if (InvoiceSource.ZarIranProducts != null && InvoiceSource.ZarIranProducts.Any() && !InvoiceSource.IsProformaInvoice)
+		if (InvoiceSource.DelsamiProducts != null && InvoiceSource.DelsamiProducts.Any() && !InvoiceSource.IsProformaInvoice)
 		{
 			container
 				.Page(page =>
@@ -89,13 +89,13 @@ public class OrderTemplate : IDocument
 
 
 
-								uint rowNumber = GenerateProductRows(innerTable, InvoiceSource.ZarIranProducts, false, new List<uint> { 3 });
+								uint rowNumber = GenerateProductRows(innerTable, InvoiceSource.DelsamiProducts, false, new List<uint> { 3 });
 
 								#endregion
 
-								PrepareTotalRow(innerTable, rowNumber, 5, InvoiceSource.ZarIranTotals, InvoiceSource.ZarIranProductsQuantity, false);
+								PrepareTotalRow(innerTable, rowNumber, 5, InvoiceSource.DelsamiTotals, InvoiceSource.DelsamiProductsQuantity, false);
 
-								PrepareSigniture(innerTable, InvoiceSource.ZarIranTotals.OrderTotal, rowNumber);
+								PrepareSigniture(innerTable, InvoiceSource.DelsamiTotals.OrderTotal, rowNumber);
 
 							});
 					});
@@ -106,7 +106,7 @@ public class OrderTemplate : IDocument
 
 		#region پیش فاکتور
 
-		if (InvoiceSource.ZarIranProducts != null && InvoiceSource.ZarIranProducts.Any() && InvoiceSource.IsProformaInvoice)
+		if (InvoiceSource.DelsamiProducts != null && InvoiceSource.DelsamiProducts.Any() && InvoiceSource.IsProformaInvoice)
 		{
 			container
 				.Page(page =>
@@ -157,13 +157,13 @@ public class OrderTemplate : IDocument
 									columns.RelativeColumn();
 								});
 
-								uint rowNumber = GenerateProductRows(innerTable, InvoiceSource.ZarIranProducts, false, new List<uint> { 5 });
+								uint rowNumber = GenerateProductRows(innerTable, InvoiceSource.DelsamiProducts, false, new List<uint> { 5 });
 
 								#endregion
 
-								PrepareTotalRow(innerTable, rowNumber, 7, InvoiceSource.ZarIranTotals, InvoiceSource.ZarIranProductsQuantity, true);
+								PrepareTotalRow(innerTable, rowNumber, 7, InvoiceSource.DelsamiTotals, InvoiceSource.DelsamiProductsQuantity, true);
 
-								PrepareSigniture(innerTable, InvoiceSource.ZarIranTotals.OrderTotal, rowNumber);
+								PrepareSigniture(innerTable, InvoiceSource.DelsamiTotals.OrderTotal, rowNumber);
 
 							});
 					});

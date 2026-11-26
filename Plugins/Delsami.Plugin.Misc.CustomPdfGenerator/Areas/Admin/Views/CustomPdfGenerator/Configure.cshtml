@@ -1,10 +1,10 @@
-﻿@model ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Models.ConfigurationModel
+﻿@model Delsami.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Models.ConfigurationModel
 @using ZXing;
 @using Nop.Services;
-@using ZarIran.Plugin.Misc.CustomPdfGenerator.Enums
+@using Delsami.Plugin.Misc.CustomPdfGenerator.Enums
 @{
     Layout = "_ConfigurePlugin";
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName").Text);
 }
 
 <form asp-controller="CustomPdfGenerator" asp-action="Configure" method="post">
@@ -15,11 +15,11 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <nop-label asp-for="ZarIranVendorId" />
+                                <nop-label asp-for="DelsamiVendorId" />
                             </div>
                             <div class="col-md-9">
-                                <nop-select asp-for="ZarIranVendorId" asp-items="Model.AvailableVendors" />
-                                <span asp-validation-for="ZarIranVendorId"></span>
+                                <nop-select asp-for="DelsamiVendorId" asp-items="Model.AvailableVendors" />
+                                <span asp-validation-for="DelsamiVendorId"></span>
                             </div>
                         </div>
 

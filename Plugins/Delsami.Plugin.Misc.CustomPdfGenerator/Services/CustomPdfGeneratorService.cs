@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.Core.Services;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Model;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Templates;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+﻿using Delsami.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Model;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Templates;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
@@ -45,7 +45,7 @@ using System.Threading.Tasks;
 using ZXing;
 using ZXing.Common;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Services
 {
     public class CustomPdfGeneratorService : PdfService, IPdfService
     {
@@ -82,7 +82,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
         private readonly IOrderInvoiceService _orderInvoiceService;
         private readonly IStateProvinceService _stateProvinceService;
         private readonly AddressSettings _addressSettings;
-        private readonly IZarIranCustomerService _zarIranCustomerService;
+        private readonly IDelsamiCustomerService _DelsamiCustomerService;
         #endregion
 
         #region Ctor
@@ -125,7 +125,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                                          CustomPdfGeneratorSettings customPdfGeneratorSettings,
                                          IRepository<PictureBinary> pictureBinaryRepo,
                                          IOrderInvoiceService orderInvoiceService,
-                                         IZarIranCustomerService zarIranCustomerService) : base(addressSettings,
+                                         IDelsamiCustomerService DelsamiCustomerService) : base(addressSettings,
                                                                                catalogSettings,
                                                                                currencySettings,
                                                                                addressAttributeFormatter,
@@ -188,7 +188,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             _orderInvoiceService = orderInvoiceService;
             _stateProvinceService = stateProvinceService;
             _addressSettings = addressSettings;
-            _zarIranCustomerService = zarIranCustomerService;
+            _DelsamiCustomerService = DelsamiCustomerService;
         }
 
         #endregion
@@ -272,7 +272,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                 Products = await GetOrderVendorsProductItemsAsync(order, orderItems, language, shipmentItems),
                 BracodeStream = GenerateBarcodeStream(shipment.Id),
                 BracodeContent = GenerateBarcodeContent(shipment.Id),
-                ZarIranPhoneNumber = _customPdfGeneratorSettings.PhoneNumber,
+                DelsamiPhoneNumber = _customPdfGeneratorSettings.PhoneNumber,
                 OrderCustomerFullName = orderCustomerFullName,
                 ReciverCustomerFullName = reciverCustomerFullName,
                 LogoStream = logoMemoryStream,
@@ -347,7 +347,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             if (customer == null)
                 throw new Exception(nameof(customer));
 
-            var nationalCode = _zarIranCustomerService.GetNationalCode(customer.CustomCustomerAttributesXML);
+            var nationalCode = _DelsamiCustomerService.GetNationalCode(customer.CustomCustomerAttributesXML);
 
             Address shippingAddress = null;
 
@@ -376,13 +376,13 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                 BillingAddress = await GetBillingAddressAsync(vendor, language, order),
                 ShippingAddress = await GetShippingAddressAsync(language, order),
                 VendorsProducts = (await PrepareProductItemsAsync(order, dividedOrderItems.VendorsOrderItems, language, true)).ToList(),
-                ZarIranProducts = (await PrepareProductItemsAsync(order, dividedOrderItems.ZarIranOrderItems, language, false)).ToList(),
+                DelsamiProducts = (await PrepareProductItemsAsync(order, dividedOrderItems.DelsamiOrderItems, language, false)).ToList(),
                 ShowSkuInProductList = _catalogSettings.ShowSkuOnProductDetailsPage,
                 ShowVendorInProductList = _vendorSettings.ShowVendorOnOrderDetailsPage,
                 CheckoutAttributes = vendor is null ? order.CheckoutAttributeDescription : string.Empty, //vendors cannot see checkout attributes
                 Totals = vendor is null ? await GetTotalsAsync(language, order) : new(), //vendors cannot see totals,
                 VendorsTotals = await PrepareInvoiceTotalsAsync(language, order, dividedOrderItems.VendorsOrderItems),
-                ZarIranTotals = await PrepareInvoiceTotalsAsync(language, order, dividedOrderItems.ZarIranOrderItems, true),
+                DelsamiTotals = await PrepareInvoiceTotalsAsync(language, order, dividedOrderItems.DelsamiOrderItems, true),
                 OrderNotes = await GetOrderNotesAsync(pdfSettingsByStore, order, language),
                 FooterTextColumn1 = column1Lines,
                 FooterTextColumn2 = column2Lines,
@@ -390,7 +390,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                 CustomerNationalCode = nationalCode,
                 CustomerZipPostalCode = shippingAddress?.ZipPostalCode,
 
-                ZarIranProductsQuantity = dividedOrderItems.ZarIranOrderItems.Sum(s => s.Quantity),
+                DelsamiProductsQuantity = dividedOrderItems.DelsamiOrderItems.Sum(s => s.Quantity),
                 VendorsProductsQuantity = dividedOrderItems.VendorsOrderItems.Sum(s => s.Quantity),
                 ShippingPrice = shippingPrice == 0 ? null : await _priceFormatter.FormatPriceAsync(shippingPrice,
                                                                       true,
@@ -399,23 +399,23 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                                                                       false),
                 InvoiceId = orderInvoice?.InvoiceId.ToString(),
 
-                CompanyNameTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyNameTitle"),
-                CompanyAddressTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyAddressTitle"),
-                CompanyNationalCodeTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyNationalCodeTitle"),
-                CompanyPhoneNumberTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyPhoneNumberTitle"),
-                CompanyPostalCodeTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyPostalCodeTitle"),
-                CompanyRegisterNumberTitle = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyRegisterNumberTitle"),
+                CompanyNameTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyNameTitle"),
+                CompanyAddressTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyAddressTitle"),
+                CompanyNationalCodeTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyNationalCodeTitle"),
+                CompanyPhoneNumberTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyPhoneNumberTitle"),
+                CompanyPostalCodeTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyPostalCodeTitle"),
+                CompanyRegisterNumberTitle = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.OrderTemplate.CompanyRegisterNumberTitle"),
 
-                CompanyName = await _localizationService.GetResourceAsync("ZarIran.Company.Name"),
-                CompanyAddress = await _localizationService.GetResourceAsync("ZarIran.Company.Address"),
-                CompanyNationalCode = await _localizationService.GetResourceAsync("ZarIran.Company.NationalCode"),
+                CompanyName = await _localizationService.GetResourceAsync("Delsami.Company.Name"),
+                CompanyAddress = await _localizationService.GetResourceAsync("Delsami.Company.Address"),
+                CompanyNationalCode = await _localizationService.GetResourceAsync("Delsami.Company.NationalCode"),
                 CompanyPhoneNumber = await _localizationService.GetResourceAsync("Sevenspikes.Themes.Traction.Common.PhoneNumber"),
-                CompanyPostalCode = await _localizationService.GetResourceAsync("ZarIran.Company.PostalCode"),
-                CompanyRegisterNumber = await _localizationService.GetResourceAsync("ZarIran.Company.RegisterNumber"),
+                CompanyPostalCode = await _localizationService.GetResourceAsync("Delsami.Company.PostalCode"),
+                CompanyRegisterNumber = await _localizationService.GetResourceAsync("Delsami.Company.RegisterNumber"),
             };
 
 
-            var document = new OrderTemplate(source, _customPdfGeneratorSettings.ZarIranVendorId);
+            var document = new OrderTemplate(source, _customPdfGeneratorSettings.DelsamiVendorId);
 
             document.GeneratePdf(stream);
         }
@@ -541,7 +541,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             {
                 var product = await _productService.GetProductByIdAsync(oi.ProductId);
 
-                if (IsVendor && product.VendorId == _customPdfGeneratorSettings.ZarIranVendorId)
+                if (IsVendor && product.VendorId == _customPdfGeneratorSettings.DelsamiVendorId)
                     continue;
 
                 var productItem = new CustomProductItem
@@ -772,7 +772,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             return result;
         }
 
-        private async Task<CustomInvoiceTotals> PrepareInvoiceTotalsAsync(Language lang, Order order, IList<OrderItem> orderItems, bool ZarIranProducts = false)
+        private async Task<CustomInvoiceTotals> PrepareInvoiceTotalsAsync(Language lang, Order order, IList<OrderItem> orderItems, bool DelsamiProducts = false)
         {
             Task<string> FormatPrice(decimal amount) => PreparePriceAsync(amount, true, order.CustomerCurrencyCode, lang.Id, true, order.CurrencyRate);
 
@@ -784,9 +784,9 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             decimal tax = 0;
             decimal total = 0;
 
-            if (ZarIranProducts)
+            if (DelsamiProducts)
             {
-                var productIds = (await _productService.GetProductsByIdsAsync(orderItems.Select(item => item.ProductId).ToArray())).Where(a => a.VendorId != _customPdfGeneratorSettings.ZarIranVendorId).Select(a => a.Id).ToList();
+                var productIds = (await _productService.GetProductsByIdsAsync(orderItems.Select(item => item.ProductId).ToArray())).Where(a => a.VendorId != _customPdfGeneratorSettings.DelsamiVendorId).Select(a => a.Id).ToList();
                 orderItems = orderItems.Where(a => !productIds.Contains(a.ProductId)).ToList();
             }
             foreach (var oi in orderItems)
@@ -818,18 +818,18 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
             return $"S{shipmentId.ToString().PadLeft(8, '0')}";
         }
 
-        private async Task<(IList<OrderItem> VendorsOrderItems, IList<OrderItem> ZarIranOrderItems)> DivideOrderItemsAsync(IList<OrderItem> orderItems)
+        private async Task<(IList<OrderItem> VendorsOrderItems, IList<OrderItem> DelsamiOrderItems)> DivideOrderItemsAsync(IList<OrderItem> orderItems)
         {
             List<OrderItem> vendorsOrderItems = new();
-            List<OrderItem> ZarIranOrderItems = new();
+            List<OrderItem> DelsamiOrderItems = new();
 
             foreach (var oi in orderItems)
             {
                 var product = await _productService.GetProductByIdAsync(oi.ProductId);
 
-                if (product.VendorId == _customPdfGeneratorSettings.ZarIranVendorId)
+                if (product.VendorId == _customPdfGeneratorSettings.DelsamiVendorId)
                 {
-                    ZarIranOrderItems.Add(oi);
+                    DelsamiOrderItems.Add(oi);
                 }
                 else
                 {
@@ -837,7 +837,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Services
                 }
             }
 
-            return (vendorsOrderItems, ZarIranOrderItems);
+            return (vendorsOrderItems, DelsamiOrderItems);
         }
 
         private async Task<string> PreparePriceAsync(decimal price, bool showCurrency, string currencyCode, int languageId, bool priceIncludesTax, decimal currencyRate)

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.CustomPdfGenerator.Enums;
+using Delsami.Plugin.Misc.CustomPdfGenerator.Enums;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
@@ -17,7 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]

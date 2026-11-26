@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Enums
+﻿namespace Delsami.Plugin.Misc.CustomPdfGenerator.Enums
 {
     public enum RotateDegree
     {

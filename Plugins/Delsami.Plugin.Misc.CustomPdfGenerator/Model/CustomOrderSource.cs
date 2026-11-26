@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
+namespace Delsami.Plugin.Misc.CustomPdfGenerator.Model
 {
     public class CustomOrderSource
     {
@@ -12,9 +12,9 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
         public CustomOrderSource()
         {
             VendorsProducts = new();
-            ZarIranProducts = new();
+            DelsamiProducts = new();
             VendorsTotals = new();
-            ZarIranTotals = new();
+            DelsamiTotals = new();
             Totals = new();
             FooterTextColumn1 = new();
             FooterTextColumn2 = new();
@@ -54,7 +54,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
         /// </summary>
         public List<CustomProductItem> VendorsProducts { get; set; }
 
-        public List<CustomProductItem> ZarIranProducts { get; set; }
+        public List<CustomProductItem> DelsamiProducts { get; set; }
 
         /// <summary>
         /// Gets or sets the billing address
@@ -86,13 +86,13 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator.Model
         /// <summary>
         /// Gets or sets order totals
         /// </summary>
-        public CustomInvoiceTotals ZarIranTotals { get; set; }
+        public CustomInvoiceTotals DelsamiTotals { get; set; }
 
         public CustomInvoiceTotals VendorsTotals { get; set; }
 
         public int VendorsProductsQuantity { get; set; }
 
-        public int ZarIranProductsQuantity { get; set; }
+        public int DelsamiProductsQuantity { get; set; }
 
         public InvoiceTotals Totals { get; set; }
         /// <summary>

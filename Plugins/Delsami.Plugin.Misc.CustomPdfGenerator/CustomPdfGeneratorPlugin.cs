@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomPdfGenerator
+namespace Delsami.Plugin.Misc.CustomPdfGenerator
 {
     public class CustomPdfGeneratorPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
     {
@@ -42,17 +42,17 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var customPdfGeneratorSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.SystemName");
-            var customPdfGeneratorName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var customPdfGeneratorSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.SystemName");
+            var customPdfGeneratorName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName");
 
-            var zarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (zarIranSiteMapNode == null)
-                zarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -73,7 +73,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator
                 }
             };
 
-            zarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = customPdfGeneratorName,
                 SystemName = customPdfGeneratorSystemName,
@@ -84,7 +84,7 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(zarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -93,19 +93,19 @@ namespace ZarIran.Plugin.Misc.CustomPdfGenerator
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Name"] = "CustomPdfGenerator",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.SystemName"] = "CustomPdfGenerator",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName"] = "CustomPdfGeneratorConfiguration",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.ZarIranVendorId"] = "ZarIran vendor",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Configuration.BarcodeFormat"] = "Barcode Format",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Orders.Shipments.Print"] = "Print",
-                ["ZarIran.Plugin.Misc.CustomPdfGenerator.Orders.Shipments.Download"] = "Download",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Name"] = "CustomPdfGenerator",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.SystemName"] = "CustomPdfGenerator",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Configuration.SystemName"] = "CustomPdfGeneratorConfiguration",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Configuration.DelsamiVendorId"] = "Delsami vendor",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Configuration.BarcodeFormat"] = "Barcode Format",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Orders.Shipments.Print"] = "Print",
+                ["Delsami.Plugin.Misc.CustomPdfGenerator.Orders.Shipments.Download"] = "Download",
             });
 
             await base.InstallAsync();
