@@ -1,8 +1,8 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.Misc.OnePageCheckout.Models;
+namespace Delsami.Plugin.Misc.OnePageCheckout.Models;
 
-public record ZarIranCheckoutCompletedModel : BaseNopModel
+public record DelsamiCheckoutCompletedModel : BaseNopModel
 {
     public int OrderId { get; set; }
     public string CustomOrderNumber { get; set; }

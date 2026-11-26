@@ -26,16 +26,16 @@
     var isRestricted = customerRoleIds.Any(x => restrictedRoles.Contains(x));
 }
 
-@* <link href="~/Plugins/ZarIran.Misc.OnePageCheckout/Style/vpn-warning.css" rel="stylesheet" asp-append-version="true" /> *@
+@* <link href="~/Plugins/Delsami.Misc.OnePageCheckout/Style/vpn-warning.css" rel="stylesheet" asp-append-version="true" /> *@
 <script src="~/js/public.accordion.js" asp-location="Footer"></script>
-<script src="~/Plugins/ZarIran.Misc.OnePageCheckout/js/public.onepagecheckout.js" asp-location="Footer"></script>
+<script src="~/Plugins/Delsami.Misc.OnePageCheckout/js/public.onepagecheckout.js" asp-location="Footer"></script>
 
 <div class="page checkout-page">
     <div class="page-title">
         @*<div id="vpn-warning">
-        <h5 class="alert-heading">@T("ZarIran.Plugin.Misc.OnePageCheckout.VPNAlertTitle")⚠️ ‌‌VPN فعال است !⚠️</h5>
-        <h5 class="alert-heading">@T("ZarIran.Plugin.Misc.OnePageCheckout.VPNAlertTitle")</h5>
-        <p>@T("ZarIran.Plugin.Misc.OnePageCheckout.VPNAlertDescription")</p>
+        <h5 class="alert-heading">@T("Delsami.Plugin.Misc.OnePageCheckout.VPNAlertTitle")⚠️ ‌‌VPN فعال است !⚠️</h5>
+        <h5 class="alert-heading">@T("Delsami.Plugin.Misc.OnePageCheckout.VPNAlertTitle")</h5>
+        <p>@T("Delsami.Plugin.Misc.OnePageCheckout.VPNAlertDescription")</p>
         </div>
 
         <script asp-location="Footer">
@@ -82,13 +82,13 @@
                         <div id="checkout-step-billing" class="step a-item">
                             <form id="co-billing-form" action="" method="post">
                                 <div id="checkout-billing-load">
-                                    @await Html.PartialAsync("~/Plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcBillingAddress.cshtml", Model.BillingAddress)
+                                    @await Html.PartialAsync("~/Plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcBillingAddress.cshtml", Model.BillingAddress)
                                     @*billing address content will be loaded here*@
                                 </div>
                             </form>
                             <script asp-location="Footer">
                                 ``
-                                Billing.init('#co-billing-form', '@(storeLocation)ZarIranCheckout/OpcSaveBilling/',
+                                Billing.init('#co-billing-form', '@(storeLocation)DelsamiCheckout/OpcSaveBilling/',
                                 @(Model.DisableBillingAddressCheckoutStep.ToString().ToLowerInvariant()),
                                 @((await _customerService.IsGuestAsync(await workContext.GetCurrentCustomerAsync())).ToString().ToLowerInvariant()));
                                 if ($("#billing-address-select").length > 0) {
@@ -127,7 +127,7 @@
                                              const response= await fetch("/DigiKalaShopping/CreateOrder");
 
                                             if (!response.ok) {
-                                                alert("@T("ZarIran.Plugin.Shop.DigiKala.ErrorInDigikalaOrder")");
+                                                alert("@T("Delsami.Plugin.Shop.DigiKala.ErrorInDigikalaOrder")");
                                             }
 
                                             const dataJson = await response.json();
@@ -165,7 +165,7 @@
                                         </div>
                                     </form>
                                     <script asp-location="Footer">
-                                        Shipping.init('#co-shipping-form', '@(storeLocation)ZarIranCheckout/OpcSaveShipping/');
+                                        Shipping.init('#co-shipping-form', '@(storeLocation)DelsamiCheckout/OpcSaveShipping/');
                                         if ($(".select-shipping-address .address-list-container .address").length > 0) {
                                             Shipping.newAddress($('.select-shipping-address .address-list-container .address input[name="shipping_address_id"]').val(), @Model.BillingAddress.BillingNewAddress.Id);
                                         }
@@ -211,7 +211,7 @@
                                                 NotAvailableMethodsError: "@T("ShippingMethod.NotAvailableMethodsError")",
                                                 SpecifyMethodError: "@T("ShippingMethod.SpecifyMethodError")"
                                             };
-                                            ShippingMethod.init('#co-shipping-method-form', '@(storeLocation)ZarIranCheckout/OpcSaveShippingMethod/', localized_data);
+                                            ShippingMethod.init('#co-shipping-method-form', '@(storeLocation)DelsamiCheckout/OpcSaveShippingMethod/', localized_data);
                                         </script>
                                         <div class="buttons" id="shipping-method-buttons-container" style="display:none">
                                             <p class="back-link">
@@ -239,7 +239,7 @@
                                         NotAvailableMethodsError: "@T("PaymentMethod.NotAvailableMethodsError")",
                                         SpecifyMethodError: "@T("PaymentMethod.SpecifyMethodError")"
                                     };
-                                    PaymentMethod.init('#co-payment-method-form', '@(storeLocation)ZarIranCheckout/OpcSavePaymentMethod/', localized_data);
+                                    PaymentMethod.init('#co-payment-method-form', '@(storeLocation)DelsamiCheckout/OpcSavePaymentMethod/', localized_data);
                                 </script>
                                 <div class="buttons" id="payment-method-buttons-container" style="display:none">
                                     <p class="back-link">
@@ -261,7 +261,7 @@
                                     </div>
                                 </form>
                                 <script asp-location="Footer">
-                                    PaymentInfo.init('#co-payment-info-form', '@(storeLocation)ZarIranCheckout/OpcSavePaymentInfo/');
+                                    PaymentInfo.init('#co-payment-info-form', '@(storeLocation)DelsamiCheckout/OpcSavePaymentInfo/');
                                 </script>
                                 <div class="buttons" id="payment-info-buttons-container">
                                     <p class="back-link">
@@ -281,7 +281,7 @@
                                     @*confirm order content will be loaded here*@
                                 </div>
                                 <script asp-location="Footer">
-                                    ConfirmOrder.init('@(storeLocation)ZarIranCheckout/OpcConfirmOrder/', '@Url.RouteUrl("CheckoutCompleted")', @Model.DisplayCaptcha.ToString().ToLowerInvariant(), @Model.IsReCaptchaV3.ToString().ToLowerInvariant(), '@Model.ReCaptchaPublicKey');
+                                    ConfirmOrder.init('@(storeLocation)DelsamiCheckout/OpcConfirmOrder/', '@Url.RouteUrl("CheckoutCompleted")', @Model.DisplayCaptcha.ToString().ToLowerInvariant(), @Model.IsReCaptchaV3.ToString().ToLowerInvariant(), '@Model.ReCaptchaPublicKey');
                                 </script>
 
                             </div>
@@ -381,7 +381,7 @@
                     //             type: 'GET',
                     //             success: function (result) {
                     //                 if (result.isVpn) {
-                    //                     alert("@T("ZarIran.Plugin.Misc.OnePageCheckout.VPNAlertDescription")");
+                    //                     alert("@T("Delsami.Plugin.Misc.OnePageCheckout.VPNAlertDescription")");
                     //                     var price = $(".order-total .cart-total-right").text();
                     //                     $(".order-total-value-mobile").text(price)
                     //                     $(".fake-checkout-button").show();

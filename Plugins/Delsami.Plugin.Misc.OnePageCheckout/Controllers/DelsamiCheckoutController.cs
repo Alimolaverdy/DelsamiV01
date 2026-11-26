@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Misc.ExtendedOrder.Domian;
-using ZarIran.Plugin.Misc.OnePageCheckout.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.Shipping.ZarIranLogistic;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Misc.ExtendedOrder.Domian;
+using Delsami.Plugin.Misc.OnePageCheckout.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.Shipping.DelsamiLogistic;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -41,12 +41,12 @@ using System.Linq.Dynamic.Core;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Misc.Core.Services;
 
-namespace ZarIran.Plugin.Misc.OnePageCheckout.Controllers;
+namespace Delsami.Plugin.Misc.OnePageCheckout.Controllers;
 
 [AutoValidateAntiforgeryToken]
-public class ZarIranCheckoutController : BasePluginController
+public class DelsamiCheckoutController : BasePluginController
 {
     #region Fields
 
@@ -55,7 +55,7 @@ public class ZarIranCheckoutController : BasePluginController
     private readonly IRepository<OrderShippingMethod> _shippingMethodRepo;
     private readonly CaptchaSettings _captchaSettings;
     private readonly CustomerSettings _customerSettings;
-    private readonly ZarIranLogisticSettings _ZarIranLogisticSettings;
+    private readonly DelsamiLogisticSettings _DelsamiLogisticSettings;
     private readonly IAddressAttributeParser _addressAttributeParser;
     private readonly IAddressModelFactory _addressModelFactory;
     private readonly IAddressService _addressService;
@@ -82,16 +82,16 @@ public class ZarIranCheckoutController : BasePluginController
     private readonly ShippingSettings _shippingSettings;
     private readonly TaxSettings _taxSettings;
     private readonly INotificationService _notificationService;
-    private readonly IZarIranCustomerService _zarIranCustomerService;
+    private readonly IDelsamiCustomerService _DelsamiCustomerService;
 
     #endregion
 
     #region Ctor
 
-    public ZarIranCheckoutController(AddressSettings addressSettings,
+    public DelsamiCheckoutController(AddressSettings addressSettings,
         CaptchaSettings captchaSettings,
         CustomerSettings customerSettings,
-        ZarIranLogisticSettings ZarIranLogisticSettings,
+        DelsamiLogisticSettings DelsamiLogisticSettings,
         IAddressAttributeParser addressAttributeParser,
         IAddressModelFactory addressModelFactory,
         IAddressService addressService,
@@ -120,11 +120,11 @@ public class ZarIranCheckoutController : BasePluginController
         IRepository<OrderShippingMethod> shippingMethodRepo,
         INotificationService notificationService,
         IOrderShippingMethodCapacityMappingService OrderShippingMethodService,
-        IZarIranCustomerService zarIranCustomerService)
+        IDelsamiCustomerService DelsamiCustomerService)
     {
         _addressSettings = addressSettings;
         _shippingMethodRepo = shippingMethodRepo;
-        _ZarIranLogisticSettings = ZarIranLogisticSettings;
+        _DelsamiLogisticSettings = DelsamiLogisticSettings;
         _OrderShippingMethodService = OrderShippingMethodService;
         _captchaSettings = captchaSettings;
         _customerSettings = customerSettings;
@@ -154,7 +154,7 @@ public class ZarIranCheckoutController : BasePluginController
         _shippingSettings = shippingSettings;
         _taxSettings = taxSettings;
         _notificationService = notificationService;
-        _zarIranCustomerService = zarIranCustomerService;
+        _DelsamiCustomerService = DelsamiCustomerService;
     }
 
     #endregion
@@ -450,7 +450,7 @@ public class ZarIranCheckoutController : BasePluginController
         }
 
         //model
-        var model = new ZarIranCheckoutCompletedModel
+        var model = new DelsamiCheckoutCompletedModel
         {
             OrderId = order.Id,
             OnePageCheckoutEnabled = _orderSettings.OnePageCheckoutEnabled,
@@ -458,7 +458,7 @@ public class ZarIranCheckoutController : BasePluginController
             ShippingDescription = await PrepareShippingDescription(order)
 
         };
-        return View("~/Plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/Completed.cshtml", model);
+        return View("~/Plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/Completed.cshtml", model);
     }
 
     /// <summary>
@@ -516,7 +516,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "billing",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcBillingAddress.cshtml",
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcBillingAddress.cshtml",
                         billingAddressModel)
                 }
             });
@@ -541,7 +541,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "billing",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcBillingAddress.cshtml", billingAddressModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcBillingAddress.cshtml", billingAddressModel)
                 }
             });
         });
@@ -566,7 +566,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "shipping",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
                 }
             });
         });
@@ -598,7 +598,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "shipping",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
                 }
             });
         });
@@ -1405,7 +1405,7 @@ public class ZarIranCheckoutController : BasePluginController
             update_section = new UpdateSectionJsonModel
             {
                 name = "shipping-method",
-                html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcShippingMethods.cshtml", shippingMethodModel)
+                html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcShippingMethods.cshtml", shippingMethodModel)
             },
             goto_section = "shipping_method"
         });
@@ -1455,7 +1455,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "payment-method",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcPaymentMethods.cshtml", paymentMethodModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcPaymentMethods.cshtml", paymentMethodModel)
                 },
                 goto_section = "payment_method"
             });
@@ -1471,7 +1471,7 @@ public class ZarIranCheckoutController : BasePluginController
             update_section = new UpdateSectionJsonModel
             {
                 name = "confirm-order",
-                html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
+                html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
             },
             goto_section = "confirm_order"
         });
@@ -1494,7 +1494,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "confirm-order",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
                 },
                 goto_section = "confirm_order"
             });
@@ -1507,7 +1507,7 @@ public class ZarIranCheckoutController : BasePluginController
             update_section = new UpdateSectionJsonModel
             {
                 name = "payment-info",
-                html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcPaymentInfo.cshtml", paymenInfoModel)
+                html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcPaymentInfo.cshtml", paymenInfoModel)
             },
             goto_section = "payment_info"
         });
@@ -1521,10 +1521,10 @@ public class ZarIranCheckoutController : BasePluginController
 
         var customer = await _workContext.GetCurrentCustomerAsync();
 
-        if (!await _zarIranCustomerService.IsCheckoutCompletedAsync(customer))
+        if (!await _DelsamiCustomerService.IsCheckoutCompletedAsync(customer))
         {
             _notificationService.ErrorNotification(await _localizationService.GetResourceAsync(
-                "ZarIran.Plugin.Misc.CustomerAttributeValidator.CompleteYourProfile"));
+                "Delsami.Plugin.Misc.CustomerAttributeValidator.CompleteYourProfile"));
 
             return RedirectToAction("Info", "Customer", new { returnToCheckout = true, t = GeneralHelper.GenerateUrlSafeString() });
         }
@@ -1547,7 +1547,7 @@ public class ZarIranCheckoutController : BasePluginController
             return Challenge();
 
         var model = await _checkoutModelFactory.PrepareOnePageCheckoutModelAsync(cart);
-        return View("~/plugins/ZarIran.misc.onepagecheckout/views/ZarIrancheckout/onepagecheckout.cshtml", model);
+        return View("~/plugins/Delsami.misc.onepagecheckout/views/Delsamicheckout/onepagecheckout.cshtml", model);
     }
 
     [HttpPost]
@@ -1616,7 +1616,7 @@ public class ZarIranCheckoutController : BasePluginController
                         update_section = new UpdateSectionJsonModel
                         {
                             name = "billing",
-                            html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcBillingAddress.cshtml", billingAddressModel)
+                            html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcBillingAddress.cshtml", billingAddressModel)
                         },
                         wrong_billing_address = true,
                     });
@@ -1681,7 +1681,7 @@ public class ZarIranCheckoutController : BasePluginController
                     update_section = new UpdateSectionJsonModel
                     {
                         name = "shipping",
-                        html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
+                        html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
                     },
                     goto_section = "shipping"
                 });
@@ -1778,7 +1778,7 @@ public class ZarIranCheckoutController : BasePluginController
                         update_section = new UpdateSectionJsonModel
                         {
                             name = "shipping",
-                            html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
+                            html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcShippingAddress.cshtml", shippingAddressModel)
                         }
                     });
                 }
@@ -1949,7 +1949,7 @@ public class ZarIranCheckoutController : BasePluginController
                     update_section = new UpdateSectionJsonModel
                     {
                         name = "confirm-order",
-                        html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
+                        html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
                     },
                     goto_section = "confirm_order"
                 });
@@ -2021,7 +2021,7 @@ public class ZarIranCheckoutController : BasePluginController
                     update_section = new UpdateSectionJsonModel
                     {
                         name = "confirm-order",
-                        html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
+                        html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
                     },
                     goto_section = "confirm_order"
                 });
@@ -2034,7 +2034,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "payment-info",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcPaymentInfo.cshtml", paymenInfoModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcPaymentInfo.cshtml", paymenInfoModel)
                 }
             });
         }
@@ -2149,7 +2149,7 @@ public class ZarIranCheckoutController : BasePluginController
                 update_section = new UpdateSectionJsonModel
                 {
                     name = "confirm-order",
-                    html = await RenderPartialViewToStringAsync("~/plugins/ZarIran.Misc.OnePageCheckout/Views/ZarIranCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
+                    html = await RenderPartialViewToStringAsync("~/plugins/Delsami.Misc.OnePageCheckout/Views/DelsamiCheckout/OpcConfirmOrder.cshtml", confirmOrderModel)
                 },
                 goto_section = "confirm_order"
             });
@@ -2322,14 +2322,14 @@ public class ZarIranCheckoutController : BasePluginController
     {
         switch (order.ShippingRateComputationMethodSystemName)
         {
-            case "ZarIran.Shipping.ZarIranLogistic":
-                return await PrepareZarIranShippingDescription(order.Id);
+            case "Delsami.Shipping.DelsamiLogistic":
+                return await PrepareDelsamiShippingDescription(order.Id);
 
-            case "ZarIran.Shipping.IRPost":
-                return await _localizationService.GetResourceAsync("ZarIran.OnePageCheckout.CheckOutCompleted.ShippingDesc.IRPost");
+            case "Delsami.Shipping.IRPost":
+                return await _localizationService.GetResourceAsync("Delsami.OnePageCheckout.CheckOutCompleted.ShippingDesc.IRPost");
 
-            case "ZarIran.Shipping.Tipax":
-                return await _localizationService.GetResourceAsync("ZarIran.OnePageCheckout.CheckOutCompleted.ShippingDesc.Tipax");
+            case "Delsami.Shipping.Tipax":
+                return await _localizationService.GetResourceAsync("Delsami.OnePageCheckout.CheckOutCompleted.ShippingDesc.Tipax");
 
         }
 
@@ -2337,16 +2337,16 @@ public class ZarIranCheckoutController : BasePluginController
 
     }
 
-    private async Task<string> PrepareZarIranShippingDescription(int orderId)
+    private async Task<string> PrepareDelsamiShippingDescription(int orderId)
     {
 
         var shippingCapacity = await _OrderShippingMethodService.GetOrderShippingMethodCapacityMappingByOrderIdAsync(orderId);
         if (shippingCapacity != null)
         {
-            if (shippingCapacity.ShippingMethodId == _ZarIranLogisticSettings.ScheduledShippingMethodWithTruckId ||
-                shippingCapacity.ShippingMethodId == _ZarIranLogisticSettings.ScheduledShippingMethodId)
+            if (shippingCapacity.ShippingMethodId == _DelsamiLogisticSettings.ScheduledShippingMethodWithTruckId ||
+                shippingCapacity.ShippingMethodId == _DelsamiLogisticSettings.ScheduledShippingMethodId)
             {
-                var desc = await _localizationService.GetResourceAsync("ZarIran.OnePageCheckout.CheckOutCompleted.ShippingDesc.ScheduledShippingMethod");
+                var desc = await _localizationService.GetResourceAsync("Delsami.OnePageCheckout.CheckOutCompleted.ShippingDesc.ScheduledShippingMethod");
                 return string.Format(desc, shippingCapacity.DeliveryDateOnUtc.ToShortDateString(), shippingCapacity.StartHour.Hours, shippingCapacity.EndHour.Hours);
             }
         }
@@ -2354,11 +2354,11 @@ public class ZarIranCheckoutController : BasePluginController
         {
             var shippingOrder = await _shippingMethodRepo.Table.FirstOrDefaultAsync(query => query.OrderId == orderId);
 
-            if (shippingOrder.ShippingMethodId == _ZarIranLogisticSettings.PickupTruckShippingMethodId)
-                return await _localizationService.GetResourceAsync("ZarIran.OnePageCheckout.CheckOutCompleted.ShippingDesc.Truck");
+            if (shippingOrder.ShippingMethodId == _DelsamiLogisticSettings.PickupTruckShippingMethodId)
+                return await _localizationService.GetResourceAsync("Delsami.OnePageCheckout.CheckOutCompleted.ShippingDesc.Truck");
 
-            if (shippingOrder.ShippingMethodId == _ZarIranLogisticSettings.ShippingMethodId)
-                return await _localizationService.GetResourceAsync("ZarIran.OnePageCheckout.CheckOutCompleted.ShippingDesc.Bike");
+            if (shippingOrder.ShippingMethodId == _DelsamiLogisticSettings.ShippingMethodId)
+                return await _localizationService.GetResourceAsync("Delsami.OnePageCheckout.CheckOutCompleted.ShippingDesc.Bike");
 
         }
         return null;

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Misc.OnePageCheckout.Infrastructure
+namespace Delsami.Plugin.Misc.OnePageCheckout.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -10,24 +10,24 @@ namespace ZarIran.Plugin.Misc.OnePageCheckout.Infrastructure
 
         public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
         {
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranOnePageCheckout",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiOnePageCheckout",
                 pattern: $"onepagecheckout",
-                defaults: new { controller = "ZarIranCheckout", action = "OnePageCheckout" });
+                defaults: new { controller = "DelsamiCheckout", action = "OnePageCheckout" });
 
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranOnePageCheckoutAddAddress",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiOnePageCheckoutAddAddress",
                 pattern: $"/customer/addressadd",
                 defaults: new { controller = "OnePageCheckout", action = "AddressAdd" });
 
             endpointRouteBuilder.MapControllerRoute(
-                name: " ZarIranOnePageCheckoutCheckUserVpn",
+                name: " DelsamiOnePageCheckoutCheckUserVpn",
                 pattern: "Plugins/OnePageCheckout/CheckUserVpn",
-                defaults: new { controller = "ZarIranCheckout", action = "CheckUserVpn" }
+                defaults: new { controller = "DelsamiCheckout", action = "CheckUserVpn" }
             );
 
             endpointRouteBuilder.MapControllerRoute(
                 name: " checkOutComplete",
                 pattern: "checkout/completed",
-                defaults: new { controller = "ZarIranCheckout", action = "Completed" }
+                defaults: new { controller = "DelsamiCheckout", action = "Completed" }
             );
         }
     }

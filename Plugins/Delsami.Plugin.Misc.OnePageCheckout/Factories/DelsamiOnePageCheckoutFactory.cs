@@ -1,4 +1,4 @@
-﻿//using ZarIran.Plugin.Misc.OnePageCheckout.Models;
+﻿//using Delsami.Plugin.Misc.OnePageCheckout.Models;
 //using Nop.Core;
 //using Nop.Core.Domain.Common;
 //using Nop.Core.Domain.Customers;
@@ -27,9 +27,9 @@
 //using System.Linq;
 //using System.Threading.Tasks;
 
-//namespace ZarIran.Plugin.Misc.OnePageCheckout.Factories
+//namespace Delsami.Plugin.Misc.OnePageCheckout.Factories
 //{
-//    public class ZarIranOnePageCheckoutFactory : IZarIranOnePageCheckoutFactory
+//    public class DelsamiOnePageCheckoutFactory : IDelsamiOnePageCheckoutFactory
 //    {
 //        #region Fields
 
@@ -68,7 +68,7 @@
 
 //        #region Ctor
 
-//        public ZarIranOnePageCheckoutFactory(IWorkContext workContext,
+//        public DelsamiOnePageCheckoutFactory(IWorkContext workContext,
 //                                              IShoppingCartService shoppingCartService,
 //                                              OrderSettings orderSettings,
 //                                              ICustomerService customerService,
@@ -135,7 +135,7 @@
 
 //        #region Methods
 
-//        public virtual async Task<ZarIranOnePageCheckoutModel> PrepareOnePageCheckoutModelAsync(IList<ShoppingCartItem> cart)
+//        public virtual async Task<DelsamiOnePageCheckoutModel> PrepareOnePageCheckoutModelAsync(IList<ShoppingCartItem> cart)
 //        {
 //            if (cart == null)
 //                throw new ArgumentNullException(nameof(cart));
@@ -148,7 +148,7 @@
 //                filterByCountryId = (await _customerService.GetCustomerBillingAddressAsync(customer))?.CountryId ?? 0;
 //            }
 
-//            var model = new ZarIranOnePageCheckoutModel
+//            var model = new DelsamiOnePageCheckoutModel
 //            {
 //                ShippingRequired = await _shoppingCartService.ShoppingCartRequiresShippingAsync(cart),
 //                DisableBillingAddressCheckoutStep = _orderSettings.DisableBillingAddressCheckoutStep && (await _customerService.GetAddressesByCustomerIdAsync(customer.Id)).Any(),

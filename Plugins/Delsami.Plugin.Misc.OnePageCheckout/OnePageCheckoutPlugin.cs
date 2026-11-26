@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.ExtendedVendor
+namespace Delsami.Plugin.Misc.ExtendedVendor
 {
     public class OnePageCheckoutPlugin : BasePlugin, IAdminMenuPlugin
     {
@@ -47,17 +47,17 @@ namespace ZarIran.Plugin.Misc.ExtendedVendor
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.Name"] = "One page checkout",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.SystemName"] = "OnePageCheckout",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.Configuration.SystemName"] = "OnePageCheckoutConfiguration",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.AddNewAddress"] = "Add new address",
-                ["ZarIran.Plugin.Misc.OnePageCheckout.CityRequired"] = "City is required",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.OnePageCheckout.Name"] = "One page checkout",
+                ["Delsami.Plugin.Misc.OnePageCheckout.SystemName"] = "OnePageCheckout",
+                ["Delsami.Plugin.Misc.OnePageCheckout.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.OnePageCheckout.Configuration.SystemName"] = "OnePageCheckoutConfiguration",
+                ["Delsami.Plugin.Misc.OnePageCheckout.AddNewAddress"] = "Add new address",
+                ["Delsami.Plugin.Misc.OnePageCheckout.CityRequired"] = "City is required",
 
             });
 
@@ -70,17 +70,17 @@ namespace ZarIran.Plugin.Misc.ExtendedVendor
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var onePageCheckoutSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.OnePageCheckout.SystemName");
-            var onePageCheckoutName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.OnePageCheckout.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.OnePageCheckout.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.OnePageCheckout.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var onePageCheckoutSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.OnePageCheckout.SystemName");
+            var onePageCheckoutName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.OnePageCheckout.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.OnePageCheckout.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.OnePageCheckout.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -101,7 +101,7 @@ namespace ZarIran.Plugin.Misc.ExtendedVendor
                 },
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = onePageCheckoutName,
                 SystemName = onePageCheckoutSystemName,
@@ -112,7 +112,7 @@ namespace ZarIran.Plugin.Misc.ExtendedVendor
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -124,7 +124,7 @@ namespace ZarIran.Plugin.Misc.ExtendedVendor
         public override async Task UninstallAsync()
         {
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Misc.OnePageCheckout");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Misc.OnePageCheckout");
 
             await base.UninstallAsync();
 

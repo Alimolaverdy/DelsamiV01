@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Misc.OnePageCheckout.Infrastructure
+namespace Delsami.Plugin.Misc.OnePageCheckout.Infrastructure
 {
     public class NobStartup : INopStartup
     {
@@ -16,7 +16,7 @@ namespace ZarIran.Plugin.Misc.OnePageCheckout.Infrastructure
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddScoped<IZarIranOnePageCheckoutFactory, ZarIranOnePageCheckoutFactory>();
+            //services.AddScoped<IDelsamiOnePageCheckoutFactory, DelsamiOnePageCheckoutFactory>();
         }
     }
 }
