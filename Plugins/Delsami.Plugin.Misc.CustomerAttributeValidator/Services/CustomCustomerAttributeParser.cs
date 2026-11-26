@@ -4,7 +4,7 @@ using Nop.Services.Localization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public class CustomCustomerAttributeParser : CustomerAttributeParser, ICustomerAttributeParser
     {
@@ -52,12 +52,12 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
 
                 if (invalidStateCustomerAttribute.Name == "NationalCodeDuplicate")
                 {
-                    var nationalWarningMessage = string.Format(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.CustomerAttribute.DuplicateNationalCode"), await _localizationService.GetLocalizedAsync(invalidStateCustomerAttribute, a => a.Name));
+                    var nationalWarningMessage = string.Format(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.CustomerAttribute.DuplicateNationalCode"), await _localizationService.GetLocalizedAsync(invalidStateCustomerAttribute, a => a.Name));
                     warnings.Add(nationalWarningMessage);
                 }
                 else
                 {
-                    var warningMessage = string.Format(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.CustomerAttribute.InvalidState"), await _localizationService.GetLocalizedAsync(invalidStateCustomerAttribute, a => a.Name));
+                    var warningMessage = string.Format(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.CustomerAttribute.InvalidState"), await _localizationService.GetLocalizedAsync(invalidStateCustomerAttribute, a => a.Name));
                     warnings.Add(warningMessage);
                 }
             }

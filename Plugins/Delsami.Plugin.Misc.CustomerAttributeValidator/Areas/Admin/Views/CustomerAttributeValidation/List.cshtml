@@ -4,9 +4,9 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List.SystemName").Text);
 
     const string hideSearchBlockAttributeName = "CustomerAttributeValidationPage.HideSearchBlock";
 
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List")
+        @T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.List")
     </h1>
 
     <div class="float-right">
@@ -47,33 +47,33 @@
                         {
                         new ColumnProperty(nameof(CustomerAttributeValidationModel.CustomerAttributeName))
                         {
-                        Title = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.CustomerAttributeId").Text,
+                        Title = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.CustomerAttributeId").Text,
                         ClassName =  NopColumnClassDefaults.CenterAll,
                         Width = "100"
                         },
                         new ColumnProperty(nameof(CustomerAttributeValidationModel.RegexPattern))
                         {
-                        Title = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.RegexPattern").Text,
+                        Title = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.RegexPattern").Text,
                         ClassName =  NopColumnClassDefaults.CenterAll,
                         Width = "80"
                         },
                         new ColumnProperty(nameof(CustomerAttributeValidationModel.IsNationalCode))
                         {
-                        Title = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.IsNationalCode").Text,
+                        Title = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.IsNationalCode").Text,
                         Width = "80",
                         ClassName = NopColumnClassDefaults.CenterAll,
                         Render = new RenderBoolean()
                         },
                         new ColumnProperty(nameof(CustomerAttributeValidationModel.PreventFromShoppingInInvalidState))
                         {
-                        Title = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.PreventFromShoppingInInvalidState").Text,
+                        Title = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.PreventFromShoppingInInvalidState").Text,
                         Width = "80",
                         ClassName = NopColumnClassDefaults.CenterAll,
                         Render = new RenderBoolean()
                         },
                         new ColumnProperty(nameof(CustomerAttributeValidationModel.Active))
                         {
-                        Title = T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.Active").Text,
+                        Title = T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerAttributeValidation.Fields.Active").Text,
                         Width = "80",
                         ClassName = NopColumnClassDefaults.CenterAll,
                         Render = new RenderBoolean()

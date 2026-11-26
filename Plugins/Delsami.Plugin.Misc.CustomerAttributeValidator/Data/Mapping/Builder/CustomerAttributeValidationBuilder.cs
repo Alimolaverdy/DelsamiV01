@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Data.Mapping.Builder
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Data.Mapping.Builder
 {
     public class CustomerAttributeValidationBuilder : NopEntityBuilder<CustomerAttributeValidation>
     {

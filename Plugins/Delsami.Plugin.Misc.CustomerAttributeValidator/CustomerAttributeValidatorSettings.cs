@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator
 {
     public class CustomerAttributeValidatorSettings : ISettings
     {

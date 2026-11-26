@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public interface ICustomCustomerAttributesXMLService
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 using Nop.Web.Infrastructure;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Infrastructure
 {
     public class RouteProvider : BaseRouteProvider, IRouteProvider
     {

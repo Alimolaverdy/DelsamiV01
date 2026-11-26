@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.CustomerAttributeValidator.Services;
+﻿using Delsami.Plugin.Misc.CustomerAttributeValidator.Services;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Events;
 using Nop.Services.Events;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.EventConsumers
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.EventConsumers
 {
     public class CustomerAttributeDeletionHandler : IConsumer<EntityDeletedEvent<CustomerAttribute>>
     {

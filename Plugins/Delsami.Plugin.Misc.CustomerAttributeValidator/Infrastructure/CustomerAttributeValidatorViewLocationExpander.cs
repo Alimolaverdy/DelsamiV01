@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Infrastructure
 {
     public class CustomerAttributeValidatorViewLocationExpander : IViewLocationExpander
     {
@@ -13,7 +13,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Infrastructure
             if (context.Values.TryGetValue(THEME_KEY, out string theme) && context.AreaName == null && context.ViewName == "Components/CheckoutProgress/Default")
             {
                 viewLocations = new string[] {
-                                                $"~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Themes/{theme}/Views/Shared/Components/CheckoutProgress/Default.cshtml"
+                                                $"~/Plugins/Delsami.Misc.CustomerAttributeValidator/Themes/{theme}/Views/Shared/Components/CheckoutProgress/Default.cshtml"
                                              }
                 .Concat(viewLocations);
             }

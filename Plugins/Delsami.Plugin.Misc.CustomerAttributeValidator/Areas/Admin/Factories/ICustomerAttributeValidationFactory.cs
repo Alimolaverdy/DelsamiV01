@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
+﻿using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories
 {
     public interface ICustomerAttributeValidationFactory
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Services;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Services;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
@@ -12,7 +12,7 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -60,7 +60,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
             var model = await _customerAttributeValidationFactory.PrepareCustomerAttributeValidationSearchModelAsync(new CustomerAttributeValidationSearchModel());
 
-            return View("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/List.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/List.cshtml", model);
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
             var model = await _customerAttributeValidationFactory.PrepareCustomerAttributeValidationModelAsync(new CustomerAttributeValidationModel(), null);
 
-            return View("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Create.cshtml", model);
         }
 
         [HttpPost]
@@ -93,7 +93,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
             var customerAttributeValidationByCustomerAttribute = await _customerAttributeValidationService.GetCustomerAttributeValidationByCustomerAttributeIdAsync(model.CustomerAttributeId);
 
             if (customerAttributeValidationByCustomerAttribute != null)
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.CustomerAttributeDuplicated"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.CustomerAttributeDuplicated"));
 
             if (ModelState.IsValid)
             {
@@ -102,14 +102,14 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
                 await _customerAttributeValidationService.InsertAsync(category);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Added"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Added"));
 
                 return RedirectToAction("List");
             }
 
             model = await _customerAttributeValidationFactory.PrepareCustomerAttributeValidationModelAsync(model, null);
 
-            return View("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Create.cshtml", model);
         }
 
         public virtual async Task<IActionResult> Edit(int id)
@@ -124,7 +124,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
             var model = await _customerAttributeValidationFactory.PrepareCustomerAttributeValidationModelAsync(null, customerAttributeValidation);
 
-            return View("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Edit.cshtml", model);
         }
 
         [HttpPost]
@@ -141,7 +141,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
             var customerAttributeValidationByCustomerAttribute = await _customerAttributeValidationService.GetCustomerAttributeValidationByCustomerAttributeIdAsync(model.CustomerAttributeId, model.Id);
 
             if (customerAttributeValidationByCustomerAttribute != null)
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.CustomerAttributeDuplicated"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.CustomerAttributeDuplicated"));
 
             if (ModelState.IsValid)
             {
@@ -149,14 +149,14 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
                 await _customerAttributeValidationService.UpdateAsync(customerAttributeValidation);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Updated"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Updated"));
 
                 return RedirectToAction("List");
             }
 
             model = await _customerAttributeValidationFactory.PrepareCustomerAttributeValidationModelAsync(model, customerAttributeValidation);
 
-            return View("~/Plugins/ZarIran.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.CustomerAttributeValidator/Areas/Admin/Views/CustomerAttributeValidation/Edit.cshtml", model);
         }
 
         [HttpPost]
@@ -173,7 +173,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Controllers
 
             await _customerAttributeValidationService.DeleteAsync(customerAttributeValidation);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Deleted"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerAttributeValidator.Admin.CustomerAttributeValidation.Deleted"));
 
             return RedirectToAction("List");
         }

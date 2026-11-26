@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Validators;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Helpers;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Services;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Validators;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Helpers;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.Customers;
 using Nop.Services.Orders;
 using Nop.Web.Validators.Customer;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Infrastructure
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Infrastructure
 {
     public class NopStartup : INopStartup
     {

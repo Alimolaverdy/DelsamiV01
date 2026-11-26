@@ -1,5 +1,5 @@
 ﻿@model CheckoutProgressModel
-@inject ZarIran.Plugin.Misc.CustomerAttributeValidator.Services.ICustomerAttributeValidationService customerAttributeValidationService
+@inject Delsami.Plugin.Misc.CustomerAttributeValidator.Services.ICustomerAttributeValidationService customerAttributeValidationService
 
 @{
     var customerInfoCompeleted = await customerAttributeValidationService.CurrentCustomerInfoCompletedAsync();
@@ -48,7 +48,7 @@
                 }
             }
             <li class="@customerInfoClass">
-                <a @(customerInfoClass.Equals("active-step", StringComparison.InvariantCultureIgnoreCase) && Model.CheckoutProgressStep != CheckoutProgressStep.Complete ? @Html.Raw($" href=\"{Url.RouteUrl("CheckoutCustomerInfo")}\"") : null)>@T("ZarIran.Plugin.Misc.CustomerAttributeValidator.CustomerCheckoutInfoStep")</a>
+                <a @(customerInfoClass.Equals("active-step", StringComparison.InvariantCultureIgnoreCase) && Model.CheckoutProgressStep != CheckoutProgressStep.Complete ? @Html.Raw($" href=\"{Url.RouteUrl("CheckoutCustomerInfo")}\"") : null)>@T("Delsami.Plugin.Misc.CustomerAttributeValidator.CustomerCheckoutInfoStep")</a>
             </li>
 
             @{

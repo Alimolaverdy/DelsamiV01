@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Services;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Services;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Controllers
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Controllers
 {
     public class CustomShoppingCartController : BasePublicController
     {
@@ -197,7 +197,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Controllers
             if (!await _customerProfileValidationService.IsCheckoutCompletedAsync(customer))
             {
                 _notificationService.ErrorNotification(await _localizationService.GetResourceAsync(
-                    "ZarIran.Plugin.Misc.CustomerAttributeValidator.CompleteYourProfile"));
+                    "Delsami.Plugin.Misc.CustomerAttributeValidator.CompleteYourProfile"));
 
                 return RedirectToAction("Info", "Customer", new { returnToCheckout = true, t = GeneralHelper.GenerateUrlSafeString() });
             }

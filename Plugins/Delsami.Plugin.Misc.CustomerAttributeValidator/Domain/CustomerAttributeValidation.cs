@@ -1,6 +1,6 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Domain
 {
     public class CustomerAttributeValidation : BaseEntity
     {

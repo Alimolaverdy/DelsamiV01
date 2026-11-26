@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Helpers
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Helpers
 {
     public class ValidationHelper
     {

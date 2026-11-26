@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Infrastructure.Mapper
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Infrastructure.Mapper
 {
     public class MapperConfiguration : Profile, IOrderedMapperProfile
     {

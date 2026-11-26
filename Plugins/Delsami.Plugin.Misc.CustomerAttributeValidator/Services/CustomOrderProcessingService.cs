@@ -26,7 +26,7 @@ using Nop.Services.Tax;
 using Nop.Services.Vendors;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public class CustomOrderProcessingService : OrderProcessingService
     {
@@ -147,7 +147,7 @@ namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
 
             if (!await _customerAttributeValidationService.CurrentCustomerInfoCompletedAsync())
             {
-                result.Errors.Add(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.CustomerInfoIsInCompelete"));
+                result.Errors.Add(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.CustomerInfoIsInCompelete"));
 
                 return result;
             }

@@ -1,7 +1,7 @@
 ﻿using Humanizer;
 using Microsoft.AspNetCore.Http;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Helpers;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Helpers;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public class CustomerAttributeValidationService : ICustomerAttributeValidationService
     {

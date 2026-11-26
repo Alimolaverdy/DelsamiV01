@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
-using ZarIran.Plugin.Misc.CustomerAttributeValidator.Services;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Models;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
+using Delsami.Plugin.Misc.CustomerAttributeValidator.Services;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Areas.Admin.Factories
 {
     public class CustomerAttributeValidationFactory : ICustomerAttributeValidationFactory
     {

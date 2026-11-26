@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public class CustomCustomerAttributesXMLService : ICustomCustomerAttributesXMLService
     {

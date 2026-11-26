@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.CustomerAttributeValidator.Domain;
+﻿using Delsami.Plugin.Misc.CustomerAttributeValidator.Domain;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.CustomerAttributeValidator.Services
+namespace Delsami.Plugin.Misc.CustomerAttributeValidator.Services
 {
     public interface ICustomerAttributeValidationService
     {
