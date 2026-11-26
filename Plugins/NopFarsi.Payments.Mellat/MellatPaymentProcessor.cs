@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Payment.Core.Domain;
-using ZarIran.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Domain;
+using Delsami.Plugin.Payment.Core.Enums;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Common;
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Nop.Services.Customers;
-using ZarIran.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Misc.Core.Helpers;
 
 namespace NopFarsiIR.Payments.Mellat
 {
@@ -38,7 +38,7 @@ namespace NopFarsiIR.Payments.Mellat
         private readonly MellatPaymentSettings _MellatPaymentSettings;
         private readonly ILogger _logger;
         private readonly ICustomerService _customerService;
-        private readonly ZarIran.Plugin.Payment.Core.Services.IPaymentService _paymentService;
+        private readonly Delsami.Plugin.Payment.Core.Services.IPaymentService _paymentService;
 
         public MellatPaymentProcessor(ICurrencyService currencySettings,
             ICheckoutAttributeParser checkoutAttributeParser,
@@ -52,7 +52,7 @@ namespace NopFarsiIR.Payments.Mellat
             IWebHelper webHelper, ILogger logger,
             MellatPaymentSettings mellatPaymentSettings,
             ICustomerService customerService,
-            ZarIran.Plugin.Payment.Core.Services.IPaymentService paymentService)
+            Delsami.Plugin.Payment.Core.Services.IPaymentService paymentService)
         {
             _currencySettings = currencySettings;
             _httpContextAccessor = httpContextAccessor;

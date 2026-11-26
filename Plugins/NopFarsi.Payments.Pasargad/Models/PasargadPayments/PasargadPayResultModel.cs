@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 
 namespace NopFarsi.Payments.Pasargad.Models.PasargadPayments
 {

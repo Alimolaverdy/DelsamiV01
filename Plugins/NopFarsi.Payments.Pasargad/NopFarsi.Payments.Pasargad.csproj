@@ -37,12 +37,12 @@
 		<None Remove="Persian.dll" />
 	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="ZarIran.Plugin.Misc.Core">
-		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+		<Reference Include="Delsami.Plugin.Misc.Core">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
-		<Reference Include="ZarIran.Plugin.Payment.Core">
-		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Payment.Core\ZarIran.Plugin.Payment.Core.dll</HintPath>
+		<Reference Include="Delsami.Plugin.Payment.Core">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Payment.Core\Delsami.Plugin.Payment.Core.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
 	</ItemGroup>

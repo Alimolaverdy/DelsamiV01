@@ -1,13 +1,13 @@
 ﻿using bpm.shaparak;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Domain;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Domain;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 namespace NopFarsiIR.Payments.Mellat.Controllers;
 
 
-public class NopFarsiPaymentMellatController : BaseNopPartsPaymentController<MellatPayResultModel>
+public class NopFarsiPaymentMellatController : BaseDelsamiPaymentController<MellatPayResultModel>
 {
 
     #region Fields

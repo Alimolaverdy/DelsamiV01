@@ -12,6 +12,6 @@
   "Description": "This plugin allows paying with Bank Pasargad",
   "LimitedToStores": [],
   "LimitedToCustomerRoles": [],
-  "DependsOnSystemNames": [ "ZarIran.Payment.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Payment.Core" ]
 
 }

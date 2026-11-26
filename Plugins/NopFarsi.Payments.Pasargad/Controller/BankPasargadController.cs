@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Domain;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Domain;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
@@ -25,10 +25,11 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Delsami.Plugin.Payment.Core.Controllers;
 
 namespace NopFarsiIR.Plugin.Payments.BankPasargad.Controller;
 
-public partial class BankPasargadController : BaseNopPartsPaymentController<PasargadPayResultModel>
+public partial class BankPasargadController : BaseDelsamiPaymentController<PasargadPayResultModel>
 {
     #region Fields
 
