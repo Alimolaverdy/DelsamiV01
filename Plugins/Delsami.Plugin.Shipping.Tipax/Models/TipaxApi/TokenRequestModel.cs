@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi
+﻿namespace Delsami.Plugin.Shipping.Tipax.Models.TipaxApi
 {
     public record TokenRequestModel
     {

@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Misc.Core.Services;
-using ZarIran.Plugin.Shipping.Tipax.Services;
+﻿using Delsami.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Shipping.Tipax.Services;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
 using Nop.Services.Security;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Tipax
+namespace Delsami.Plugin.Shipping.Tipax
 {
     public class TipaxPlugin : BasePlugin, IAdminMenuPlugin, IShippingRateComputationMethod
     {
@@ -43,17 +43,17 @@ namespace ZarIran.Plugin.Shipping.Tipax
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var tipaxSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.Tipax.SystemName");
-            var tipaxName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.Tipax.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.Tipax.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.Tipax.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var tipaxSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.Tipax.SystemName");
+            var tipaxName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.Tipax.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.Tipax.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.Tipax.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -76,7 +76,7 @@ namespace ZarIran.Plugin.Shipping.Tipax
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = tipaxName,
                 SystemName = tipaxSystemName,
@@ -87,7 +87,7 @@ namespace ZarIran.Plugin.Shipping.Tipax
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -96,26 +96,26 @@ namespace ZarIran.Plugin.Shipping.Tipax
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Shipping.Tipax.Name"] = "Tipax",
-                ["ZarIran.Plugin.Shipping.Tipax.SystemName"] = "Tipax",
-                ["ZarIran.Plugin.Shipping.Tipax.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Shipping.Tipax.Configuration.SystemName"] = "TipaxConfiguration",
-                ["ZarIran.Plugin.Shipping.Tipax.Configuration.TimeoutSeconds"] = "TimeoutSeconds",
-                //["ZarIran.Plugin.Shipping.Tipax.OrderDetails.TipaxRequest"] = "Tipax request",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.VendorName"] = "Vendor name",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.OriginAddress"] = "Origin address",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.DestinationAddress"] = "Destination address",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.Status"] = "Status",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.DetailsButton"] = "Details",
-                //["ZarIran.Plugin.Shipping.Tipax.Message.AloeykRequestHasAlreadyBeenCreated"] = "The tipax request has already been created",
-                //["ZarIran.Plugin.Shipping.Tipax.Message.AloeykRequestHasBeenCreatedSuccessfully"] = "The tipax request has been created successfully",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.CreateOrder"] = "Create order",
-                //["ZarIran.Plugin.Shipping.Tipax.TipaxRequestModel.AreYouSureToCreateTipaxRequest"] = "Are you sure to create a request ?"
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Shipping.Tipax.Name"] = "Tipax",
+                ["Delsami.Plugin.Shipping.Tipax.SystemName"] = "Tipax",
+                ["Delsami.Plugin.Shipping.Tipax.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Shipping.Tipax.Configuration.SystemName"] = "TipaxConfiguration",
+                ["Delsami.Plugin.Shipping.Tipax.Configuration.TimeoutSeconds"] = "TimeoutSeconds",
+                //["Delsami.Plugin.Shipping.Tipax.OrderDetails.TipaxRequest"] = "Tipax request",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.VendorName"] = "Vendor name",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.OriginAddress"] = "Origin address",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.DestinationAddress"] = "Destination address",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.Status"] = "Status",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.DetailsButton"] = "Details",
+                //["Delsami.Plugin.Shipping.Tipax.Message.AloeykRequestHasAlreadyBeenCreated"] = "The tipax request has already been created",
+                //["Delsami.Plugin.Shipping.Tipax.Message.AloeykRequestHasBeenCreatedSuccessfully"] = "The tipax request has been created successfully",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.CreateOrder"] = "Create order",
+                //["Delsami.Plugin.Shipping.Tipax.TipaxRequestModel.AreYouSureToCreateTipaxRequest"] = "Are you sure to create a request ?"
 
             });
 

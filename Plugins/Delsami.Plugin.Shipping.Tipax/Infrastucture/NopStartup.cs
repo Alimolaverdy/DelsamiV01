@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Shipping.Tipax.Factories;
-using ZarIran.Plugin.Shipping.Tipax.Services;
+using Delsami.Plugin.Shipping.Tipax.Factories;
+using Delsami.Plugin.Shipping.Tipax.Services;
 using Nop.Core.Infrastructure;
 using System;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Infrastucture
+namespace Delsami.Plugin.Shipping.Tipax.Infrastucture
 {
     public class NopStartup : INopStartup
     {
@@ -23,7 +23,7 @@ namespace ZarIran.Plugin.Shipping.Tipax.Infrastucture
         {
             services.AddScoped<ITipaxService, TipaxService>();
             services.AddScoped<ITipaxApiService, TipaxApiService>();
-            services.AddScoped<IZarIranTipaxCityMappingService, ZarIranTiapxCityMappingService>();
+            services.AddScoped<IDelsamiTipaxCityMappingService, DelsamiTiapxCityMappingService>();
             services.AddScoped<ITipaxModelsFactory, TipaxModelsFactory>();
         }
 

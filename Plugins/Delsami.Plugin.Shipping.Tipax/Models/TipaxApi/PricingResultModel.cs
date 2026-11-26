@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Shipping.Tipax.Enums;
+﻿using Delsami.Plugin.Shipping.Tipax.Enums;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi
+namespace Delsami.Plugin.Shipping.Tipax.Models.TipaxApi
 {
     public class PricingResultModel
     {

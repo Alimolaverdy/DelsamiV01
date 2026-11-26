@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Shipping.Core.Helpers;
-using ZarIran.Plugin.Shipping.Core.Services;
-using ZarIran.Plugin.Shipping.Tipax.Factories;
-using ZarIran.Plugin.Widgets.AddressLocation;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+﻿using Delsami.Plugin.Shipping.Core.Helpers;
+using Delsami.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.Tipax.Factories;
+using Delsami.Plugin.Widgets.AddressLocation;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Services
+namespace Delsami.Plugin.Shipping.Tipax.Services
 {
     public class TipaxService : ITipaxService
     {

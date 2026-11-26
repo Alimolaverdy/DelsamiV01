@@ -7,14 +7,14 @@ using Nop.Services.Messages;
 using Nop.Services.Security;
 using System.Threading.Tasks;
 using Nop.Web.Framework.Controllers;
-using ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Models;
+using Delsami.Plugin.Shipping.Tipax.Areas.Admin.Models;
 using DocumentFormat.OpenXml.EMMA;
 using System.Collections.Generic;
-using ZarIran.Plugin.Shipping.Tipax.Services;
+using Delsami.Plugin.Shipping.Tipax.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Services.Shipping;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
+namespace Delsami.Plugin.Shipping.Tipax.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -27,7 +27,7 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
         private readonly ISettingService _settingService;
         private readonly INotificationService _notificationService;
         private readonly ILocalizationService _localizationService;
-        private readonly IZarIranTipaxCityMappingService _ZarIranTipaxCityMappingService;
+        private readonly IDelsamiTipaxCityMappingService _DelsamiTipaxCityMappingService;
         private readonly IShippingService _shippingService;
 
         #endregion
@@ -38,14 +38,14 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
                                ISettingService settingService,
                                INotificationService notificationService,
                                ILocalizationService localizationService,
-                               IZarIranTipaxCityMappingService ZarIranTipaxCityMappingService,
+                               IDelsamiTipaxCityMappingService DelsamiTipaxCityMappingService,
                                IShippingService shippingService)
         {
             _permissionService = permissionService;
             _settingService = settingService;
             _notificationService = notificationService;
             _localizationService = localizationService;
-            _ZarIranTipaxCityMappingService = ZarIranTipaxCityMappingService;
+            _DelsamiTipaxCityMappingService = DelsamiTipaxCityMappingService;
             _shippingService = shippingService;
         }
 
@@ -84,7 +84,7 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
             foreach (var sm in await _shippingService.GetAllShippingMethodsAsync())
                 configurationModel.AvailableShippingMethods.Add(new SelectListItem { Text = sm.Name, Value = sm.Id.ToString() });
 
-            return View($"~/Plugins/ZarIran.Shipping.Tipax/Areas/Admin/Views/Tipax/Configure.cshtml", configurationModel);
+            return View($"~/Plugins/Delsami.Shipping.Tipax/Areas/Admin/Views/Tipax/Configure.cshtml", configurationModel);
         }
 
         [HttpPost]
@@ -120,9 +120,9 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
                 return RedirectToAction("Configure");
             }
 
-            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Settings.Error"));
+            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Settings.Error"));
 
-            return View($"~/Plugins/ZarIran.Shipping.Tipax/Areas/Admin/Views/Tipax/Configure.cshtml", model);
+            return View($"~/Plugins/Delsami.Shipping.Tipax/Areas/Admin/Views/Tipax/Configure.cshtml", model);
         }
 
         public async Task<IActionResult> InsertCityMapping()
@@ -1686,14 +1686,14 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Controllers
             foreach (var ids in idsMappings)
             {
                 var name = namesMappings[ids.Key];
-                var ZarIranCityId = ids.Key;
+                var DelsamiCityId = ids.Key;
                 var tipaxCityId = ids.Value;
                 var stateProvicenId = stateProvincesMapping[ids.Key];
 
-                await _ZarIranTipaxCityMappingService.InsertAsync(new Domain.ZarIranTipaxCityMapping
+                await _DelsamiTipaxCityMappingService.InsertAsync(new Domain.DelsamiTipaxCityMapping
                 {
                     Name = namesMappings[ids.Key].Trim(),
-                    ZarIranCityId = ids.Key,
+                    DelsamiCityId = ids.Key,
                     TipaxCityId = ids.Value,
                     StateProvinceId = stateProvicenId
                 });

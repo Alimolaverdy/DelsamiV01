@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi;
+﻿using Delsami.Plugin.Shipping.Tipax.Models.TipaxApi;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Services
+namespace Delsami.Plugin.Shipping.Tipax.Services
 {
     public interface ITipaxApiService
     {

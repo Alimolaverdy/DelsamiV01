@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi
+namespace Delsami.Plugin.Shipping.Tipax.Models.TipaxApi
 {
     public class PricingRequestModel
     {

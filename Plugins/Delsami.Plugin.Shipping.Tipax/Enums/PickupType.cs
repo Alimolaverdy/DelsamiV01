@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Enums
+namespace Delsami.Plugin.Shipping.Tipax.Enums
 {
     public enum PickupType
     {

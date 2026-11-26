@@ -1,18 +1,18 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.Tipax.Domain;
+using Delsami.Plugin.Shipping.Tipax.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.Tipax.Data.Mapping.Builder
 {
-    internal class StateProvinceTiapxStateBuilder : NopEntityBuilder<ZarIranTipaxCityMapping>
+    internal class StateProvinceTiapxStateBuilder : NopEntityBuilder<DelsamiTipaxCityMapping>
     {
         public override void MapEntity(CreateTableExpressionBuilder table)
         {
             table
-                .WithColumn(nameof(ZarIranTipaxCityMapping.StateProvinceId)).AsInt32().NotNullable()
-                .WithColumn(nameof(ZarIranTipaxCityMapping.Name)).AsString().NotNullable()
-                .WithColumn(nameof(ZarIranTipaxCityMapping.ZarIranCityId)).AsInt32().NotNullable()
-                .WithColumn(nameof(ZarIranTipaxCityMapping.TipaxCityId)).AsInt32().NotNullable();
+                .WithColumn(nameof(DelsamiTipaxCityMapping.StateProvinceId)).AsInt32().NotNullable()
+                .WithColumn(nameof(DelsamiTipaxCityMapping.Name)).AsString().NotNullable()
+                .WithColumn(nameof(DelsamiTipaxCityMapping.DelsamiCityId)).AsInt32().NotNullable()
+                .WithColumn(nameof(DelsamiTipaxCityMapping.TipaxCityId)).AsInt32().NotNullable();
         }
     }
 }

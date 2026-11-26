@@ -5,7 +5,7 @@ using Nop.Core.Domain.Shipping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Services
+namespace Delsami.Plugin.Shipping.Tipax.Services
 {
     public interface ITipaxService
     {

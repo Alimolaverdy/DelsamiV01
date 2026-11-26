@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Shipping.Tipax.Enums;
+﻿using Delsami.Plugin.Shipping.Tipax.Enums;
 using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Shipping.Tipax
+namespace Delsami.Plugin.Shipping.Tipax
 {
     public class TipaxSettings : ISettings
     {

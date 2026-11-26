@@ -1,13 +1,13 @@
-﻿using ZarIran.Plugin.Misc.Core.Services;
-using ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi;
-using ZarIran.Plugin.Shipping.Tipax.Services;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+﻿using Delsami.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Shipping.Tipax.Models.TipaxApi;
+using Delsami.Plugin.Shipping.Tipax.Services;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Factories
+namespace Delsami.Plugin.Shipping.Tipax.Factories
 {
     public class TipaxModelsFactory : ITipaxModelsFactory
     {
@@ -15,7 +15,7 @@ namespace ZarIran.Plugin.Shipping.Tipax.Factories
 
         private readonly TipaxSettings _tipaxSettings;
         private readonly ICityService _cityService;
-        private readonly IZarIranTipaxCityMappingService _ZarIranTiapxCityMappingService;
+        private readonly IDelsamiTipaxCityMappingService _DelsamiTiapxCityMappingService;
         private readonly IAddressCityService _addressCityService;
 
         #endregion
@@ -24,12 +24,12 @@ namespace ZarIran.Plugin.Shipping.Tipax.Factories
 
         public TipaxModelsFactory(TipaxSettings tipaxSettings,
                                   ICityService cityService,
-                                  IZarIranTipaxCityMappingService ZarIranTiapxCityMappingService,
+                                  IDelsamiTipaxCityMappingService DelsamiTiapxCityMappingService,
                                   IAddressCityService addressCityService)
         {
             _tipaxSettings = tipaxSettings;
             _cityService = cityService;
-            _ZarIranTiapxCityMappingService = ZarIranTiapxCityMappingService;
+            _DelsamiTiapxCityMappingService = DelsamiTiapxCityMappingService;
             _addressCityService = addressCityService;
         }
 
@@ -55,25 +55,25 @@ namespace ZarIran.Plugin.Shipping.Tipax.Factories
             if (addressCity is null)
                 throw new ArgumentNullException(nameof(addressCity));
 
-            var originZarIranTipaxCityMapping = await _ZarIranTiapxCityMappingService.GetZarIranTiapxCityMappingByZarIranCityIdAsync(tehranCity.Id);
+            var originDelsamiTipaxCityMapping = await _DelsamiTiapxCityMappingService.GetDelsamiTiapxCityMappingByDelsamiCityIdAsync(tehranCity.Id);
 
-            if (originZarIranTipaxCityMapping is null)
+            if (originDelsamiTipaxCityMapping is null)
                 return null;
 
-            var destinationZarIranTipaxCityMapping = await _ZarIranTiapxCityMappingService.GetZarIranTiapxCityMappingByZarIranCityIdAsync(addressCity.CityId);
+            var destinationDelsamiTipaxCityMapping = await _DelsamiTiapxCityMappingService.GetDelsamiTiapxCityMappingByDelsamiCityIdAsync(addressCity.CityId);
 
-            if (destinationZarIranTipaxCityMapping is null)
+            if (destinationDelsamiTipaxCityMapping is null)
                 return null;
 
             var origin = new PricingItemRequestModel.Route
             {
-                cityId = originZarIranTipaxCityMapping.TipaxCityId
+                cityId = originDelsamiTipaxCityMapping.TipaxCityId
             };
 
 
             var destination = new PricingItemRequestModel.Route
             {
-                cityId = destinationZarIranTipaxCityMapping.TipaxCityId
+                cityId = destinationDelsamiTipaxCityMapping.TipaxCityId
             };
 
             requestModel.origin = origin;

@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Shipping.Tipax.Models.TipaxApi;
+﻿using Delsami.Plugin.Shipping.Tipax.Models.TipaxApi;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Factories
+namespace Delsami.Plugin.Shipping.Tipax.Factories
 {
     public interface ITipaxModelsFactory
     {

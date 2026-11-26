@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Shipping.Tipax.Enums;
+using Delsami.Plugin.Shipping.Tipax.Enums;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Models
+namespace Delsami.Plugin.Shipping.Tipax.Areas.Admin.Models
 {
     public record ConfigurationModel : BaseNopModel
     {
@@ -41,7 +41,7 @@ namespace ZarIran.Plugin.Shipping.Tipax.Areas.Admin.Models
 
         public IList<SelectListItem> AvailableShippingMethods { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.Tipax.Configuration.TimeoutSeconds")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.Tipax.Configuration.TimeoutSeconds")]
         public int TimeoutSeconds { get; set; }
         public decimal Multiplier { get; set; }
 
