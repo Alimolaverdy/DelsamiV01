@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.TorobApi.Infrastructure;
+using Delsami.Plugin.Misc.TorobApi.Infrastructure;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Models
+namespace Delsami.Plugin.Misc.TorobApi.Models
 {
     public class ProductResponse
     {

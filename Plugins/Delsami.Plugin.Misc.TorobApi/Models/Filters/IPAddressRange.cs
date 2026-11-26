@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Models.Filters
+namespace Delsami.Plugin.Misc.TorobApi.Models.Filters
 {
     public class IPAddressRange
     {

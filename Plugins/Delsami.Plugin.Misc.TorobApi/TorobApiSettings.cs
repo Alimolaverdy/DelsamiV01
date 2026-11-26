@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Misc.TorobApi
+namespace Delsami.Plugin.Misc.TorobApi
 {
     public class TorobApiSettings : ISettings
     {

@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Misc",
   "FriendlyName": "Torob Api",
-  "SystemName": "ZarIran.Misc.TorobApi",
+  "SystemName": "Delsami.Misc.TorobApi",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Nob Parts",
+  "Author": "AliMolaverdi",
   "DisplayOrder": 6,
-  "FileName": "ZarIran.Plugin.Misc.TorobApi.dll",
+  "FileName": "Delsami.Plugin.Misc.TorobApi.dll",
   "Description": "Torob Api",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

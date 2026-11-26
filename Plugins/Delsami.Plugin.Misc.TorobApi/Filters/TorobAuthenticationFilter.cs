@@ -8,7 +8,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using Nop.Services.Logging;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Filters
+namespace Delsami.Plugin.Misc.TorobApi.Filters
 {
     public class TorobAuthenticationFilter : IActionFilter
     {

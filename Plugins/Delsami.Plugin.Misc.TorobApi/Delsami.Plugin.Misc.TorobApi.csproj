@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Company>Nob Parts</Company>
-		<Authors>Nob Parts</Authors>
+		<Company>Delsami</Company>
+		<Authors>Delsami</Authors>
 		<PackageProjectUrl>PACKAGE_PROJECT_URL</PackageProjectUrl>
 		<RepositoryUrl>REPOSITORY_URL</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
-		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.TorobApi</OutputPath>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.TorobApi</OutputPath>
 		<OutDir>$(OutputPath)</OutDir>
 		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your    project. You need to set this parameter to true if your plugin has a nuget package to ensure that   the dlls copied from the NuGet cache to the output of your project-->
 		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
@@ -37,12 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ZarIran.Plugin.Misc.Core">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+    <Reference Include="Delsami.Plugin.Misc.Core">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ZarIran.Plugin.Misc.ExtendedOrder">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.ExtendedOrder\ZarIran.Plugin.Misc.ExtendedOrder.dll</HintPath>
+    <Reference Include="Delsami.Plugin.Misc.ExtendedOrder">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.ExtendedOrder\Delsami.Plugin.Misc.ExtendedOrder.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

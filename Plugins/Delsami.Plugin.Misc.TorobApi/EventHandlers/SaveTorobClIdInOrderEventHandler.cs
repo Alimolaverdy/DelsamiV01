@@ -4,7 +4,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Services.Events;
 using Nop.Services.Orders;
 
-namespace ZarIran.Plugin.Misc.TorobApi.EventHandlers
+namespace Delsami.Plugin.Misc.TorobApi.EventHandlers
 {
 	public class SaveTorobClIdInOrderEventHandler : IConsumer<OrderPlacedEvent>
 	{

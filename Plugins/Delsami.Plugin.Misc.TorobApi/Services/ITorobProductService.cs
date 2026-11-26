@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.TorobApi.Models;
+﻿using Delsami.Plugin.Misc.TorobApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Services
+namespace Delsami.Plugin.Misc.TorobApi.Services
 {
     public interface ITorobProductService
     {

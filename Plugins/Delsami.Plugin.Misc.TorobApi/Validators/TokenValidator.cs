@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using ZarIran.Plugin.Misc.TorobApi.Models.Validators;
+using Delsami.Plugin.Misc.TorobApi.Models.Validators;
 using Nop.Core;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Validators
+namespace Delsami.Plugin.Misc.TorobApi.Validators
 {
     public class TokenValidator : ITokenValidator
     {

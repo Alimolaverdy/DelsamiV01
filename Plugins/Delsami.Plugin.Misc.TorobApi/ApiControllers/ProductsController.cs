@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Misc.Core.Bases;
-using ZarIran.Plugin.Misc.TorobApi.Filters;
-using ZarIran.Plugin.Misc.TorobApi.Infrastructure;
-using ZarIran.Plugin.Misc.TorobApi.Models;
-using ZarIran.Plugin.Misc.TorobApi.Services;
-using ZarIran.Plugin.Misc.TorobApi.Validators;
+using Delsami.Plugin.Misc.Core.Bases;
+using Delsami.Plugin.Misc.TorobApi.Filters;
+using Delsami.Plugin.Misc.TorobApi.Infrastructure;
+using Delsami.Plugin.Misc.TorobApi.Models;
+using Delsami.Plugin.Misc.TorobApi.Services;
+using Delsami.Plugin.Misc.TorobApi.Validators;
 using Nop.Services.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.ApiControllers
+namespace Delsami.Plugin.Misc.TorobApi.ApiControllers
 {
 	[ApiController]
     [Route("api/v1/torob")]

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi
+namespace Delsami.Plugin.Misc.TorobApi
 {
     public class TorobApiPlugin : BasePlugin, IMiscPlugin,IAdminMenuPlugin
     {
@@ -47,16 +47,16 @@ namespace ZarIran.Plugin.Misc.TorobApi
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.TorobApi.Name"] = "Torob Api",
-                ["ZarIran.Plugin.Misc.TorobApi.SystemName"] = "TorobApiSystemName",
-                ["ZarIran.Plugin.Misc.TorobApi.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.TorobApi.Configuration.SystemName"] = "TorobApiConfigurationSystemName",
-                ["ZarIran.Plugin.Misc.TorobApi.Configuration.Token"] = "Torob Token",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.TorobApi.Name"] = "Torob Api",
+                ["Delsami.Plugin.Misc.TorobApi.SystemName"] = "TorobApiSystemName",
+                ["Delsami.Plugin.Misc.TorobApi.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.TorobApi.Configuration.SystemName"] = "TorobApiConfigurationSystemName",
+                ["Delsami.Plugin.Misc.TorobApi.Configuration.Token"] = "Torob Token",
 
             });
 
@@ -76,17 +76,17 @@ namespace ZarIran.Plugin.Misc.TorobApi
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var torobApiSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.TorobApi.SystemName");
-            var torobApiName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.TorobApi.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.TorobApi.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.TorobApi.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var torobApiSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.TorobApi.SystemName");
+            var torobApiName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.TorobApi.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.TorobApi.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.TorobApi.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -107,7 +107,7 @@ namespace ZarIran.Plugin.Misc.TorobApi
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = torobApiName,
                 SystemName = torobApiSystemName,
@@ -118,7 +118,7 @@ namespace ZarIran.Plugin.Misc.TorobApi
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -126,7 +126,7 @@ namespace ZarIran.Plugin.Misc.TorobApi
         public override async Task UninstallAsync()
         {
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Misc.TorobApi");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Misc.TorobApi");
 
             await base.UninstallAsync();
 

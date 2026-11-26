@@ -1,13 +1,13 @@
 ﻿using Autofac.Core;
 using Microsoft.AspNetCore.Mvc.Filters;
-using ZarIran.Plugin.Misc.TorobApi.Models.Filters;
+using Delsami.Plugin.Misc.TorobApi.Models.Filters;
 using Nop.Services.Logging;
 using StackExchange.Profiling.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Filters
+namespace Delsami.Plugin.Misc.TorobApi.Filters
 {
 	public class IpFilterAttribute : IActionFilter
 	{

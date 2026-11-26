@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Models
+namespace Delsami.Plugin.Misc.TorobApi.Models
 {
 	public class TorobOrderDto
 	{

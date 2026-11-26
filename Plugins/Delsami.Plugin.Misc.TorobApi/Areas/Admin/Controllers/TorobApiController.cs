@@ -5,10 +5,10 @@ using Nop.Services.Messages;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
-using ZarIran.Plugin.Misc.TorobApi.Areas.Admin.Models;
+using Delsami.Plugin.Misc.TorobApi.Areas.Admin.Models;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.TorobApi.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -50,7 +50,7 @@ namespace ZarIran.Plugin.Misc.TorobApi.Areas.Admin.Controllers
                 LogEnabledOrderRequest = coreSettings.LogEnabledOrderRequest,
             };
 
-            return View("~/Plugins/ZarIran.Misc.TorobApi/Areas/Admin/Views/TorobApi/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.TorobApi/Areas/Admin/Views/TorobApi/Configure.cshtml", model);
         }
 
         [HttpPost]

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.TorobApi.Models;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.TorobApi.Models;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Media;
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Services
+namespace Delsami.Plugin.Misc.TorobApi.Services
 {
     public class TorobProductService : ITorobProductService
     {

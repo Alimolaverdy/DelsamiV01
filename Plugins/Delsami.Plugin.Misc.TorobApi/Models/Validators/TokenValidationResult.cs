@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Misc.TorobApi.Models.Validators
+﻿namespace Delsami.Plugin.Misc.TorobApi.Models.Validators
 {
     public class TokenValidationResult
     {

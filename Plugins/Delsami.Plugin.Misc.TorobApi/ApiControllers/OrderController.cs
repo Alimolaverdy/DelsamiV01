@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core.Bases;
-using ZarIran.Plugin.Misc.ExtendedOrder.Services;
-using ZarIran.Plugin.Misc.TorobApi.Filters;
-using ZarIran.Plugin.Misc.TorobApi.Models;
+using Delsami.Plugin.Misc.Core.Bases;
+using Delsami.Plugin.Misc.ExtendedOrder.Services;
+using Delsami.Plugin.Misc.TorobApi.Filters;
+using Delsami.Plugin.Misc.TorobApi.Models;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.TorobApi.ApiControllers
+namespace Delsami.Plugin.Misc.TorobApi.ApiControllers
 {
     [ApiController]
     [Route("api/torob/v1/orders")]

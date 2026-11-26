@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Misc.TorobApi.Filters;
-using ZarIran.Plugin.Misc.TorobApi.Middlewares;
-using ZarIran.Plugin.Misc.TorobApi.Services;
-using ZarIran.Plugin.Misc.TorobApi.Validators;
+using Delsami.Plugin.Misc.TorobApi.Filters;
+using Delsami.Plugin.Misc.TorobApi.Middlewares;
+using Delsami.Plugin.Misc.TorobApi.Services;
+using Delsami.Plugin.Misc.TorobApi.Validators;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Misc.TorobApi.Infrastructure
+namespace Delsami.Plugin.Misc.TorobApi.Infrastructure
 {
     internal class NopStartup : INopStartup
     {
