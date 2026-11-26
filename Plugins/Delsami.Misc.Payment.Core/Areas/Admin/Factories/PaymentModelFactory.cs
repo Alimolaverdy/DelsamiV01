@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Models;
-using ZarIran.Plugin.Payment.Core.Services;
+﻿using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Models;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core;
 using Nop.Services.Catalog;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Factories
+namespace Delsami.Plugin.Payment.Core.Areas.Admin.Factories
 {
     public class PaymentModelFactory : IPaymentModelFactory
     {

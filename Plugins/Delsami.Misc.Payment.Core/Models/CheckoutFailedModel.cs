@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.Payment.Core.Models
+namespace Delsami.Plugin.Payment.Core.Models
 {
     public record CheckoutFailedModel : BaseNopModel
     {

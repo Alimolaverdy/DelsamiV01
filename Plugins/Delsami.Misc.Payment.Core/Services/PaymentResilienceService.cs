@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.Core.Models.Resilience;
-using ZarIran.Plugin.Misc.Core.Services.Resilience;
+﻿using Delsami.Plugin.Misc.Core.Models.Resilience;
+using Delsami.Plugin.Misc.Core.Services.Resilience;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Services
+namespace Delsami.Plugin.Payment.Core.Services
 {
 
     public class PaymentResilienceService : IPaymentResilienceService

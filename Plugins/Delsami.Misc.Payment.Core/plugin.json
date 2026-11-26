@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Misc",
-  "FriendlyName": "ZarIran payment core",
-  "SystemName": "ZarIran.Payment.Core",
+  "FriendlyName": "Delsami payment core",
+  "SystemName": "Delsami.Payment.Core",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 2,
-  "FileName": "ZarIran.Plugin.Payment.Core.dll",
-  "Description": "ZarIran payment core",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "FileName": "Delsami.Plugin.Payment.Core.dll",
+  "Description": "Delsami payment core",
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

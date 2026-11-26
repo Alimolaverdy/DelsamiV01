@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Misc.Core.Models.ApiCaller;
+﻿using Delsami.Plugin.Misc.Core.Models.ApiCaller;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Services
+namespace Delsami.Plugin.Payment.Core.Services
 {
     public interface IPaymentApiCaller
     {

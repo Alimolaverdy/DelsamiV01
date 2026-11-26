@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Payment.Core.Areas.Admin.Components;
-using ZarIran.Plugin.Payment.Core.Infrastructure.Permissions;
+﻿using Delsami.Plugin.Payment.Core.Areas.Admin.Components;
+using Delsami.Plugin.Payment.Core.Infrastructure.Permissions;
 using Nop.Core;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core
+namespace Delsami.Plugin.Payment.Core
 {
     public class PaymentCorePlugin : BasePlugin, IAdminMenuPlugin, IWidgetPlugin
     {
@@ -47,7 +47,7 @@ namespace ZarIran.Plugin.Payment.Core
 
         public override string GetConfigurationPageUrl()
         {
-            return _webHelper.GetStoreLocation() + "Admin/ZarIranPayment/Configure";
+            return _webHelper.GetStoreLocation() + "Admin/DelsamiPayment/Configure";
         }
 
         public Type GetWidgetViewComponent(string widgetZone)
@@ -69,42 +69,42 @@ namespace ZarIran.Plugin.Payment.Core
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Payment.Core.Name"] = "ZarIran Payment",
-                ["ZarIran.Plugin.Payment.Core.SystemName"] = "PaymentCore",
-                ["ZarIran.Plugin.Payment.Core.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Payment.Core.Configuration.SystemName"] = "materialConfiguration",
-                ["ZarIran.Plugin.Payment.Core.PaymentStatus.Completed"] = "Completed",
-                ["ZarIran.Plugin.Payment.Core.Configuration.InProgress"] = "InProgress",
-                ["ZarIran.Plugin.Payment.Core.Configuration.Failed"] = "Failed",
-                ["ZarIran.Plugin.Payment.Core.PaymentStatus.Verified"] = "Verified",
-                ["ZarIran.Plugin.Payment.Core.PaymentStatus.Initial"] = "Initial",
-                ["ZarIran.Plugin.Payment.Core.PaymentStatus.InProgress"] = "InProgress",
-                ["ZarIran.Plugin.Payment.Core.PaymentStatus.Failed"] = "Failed",
-                ["ZarIran.Plugin.Payment.Core.Payments"] = "Payments",
-                ["ZarIran.Plugin.Payment.Core.Payment.List"] = "Payment List",
-                ["ZarIran.Plugin.Payment.Core.PaymentGateway.Pasargad"] = "Pasargad",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.Id"] = "Payment Id",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.OrderId"] = "Order Id",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.Gateway"] = "Gateway",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.TeminalNo"] = "Terminal No",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.ReferenceNumber"] = "Reference Number",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.TrackId"] = "Track Id",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.MaskedCardNumber"] = "Masked Card Number",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.HashedCardNumber"] = "Hashed Card Number",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.UrlId"] = "Url Id",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.Amount"] = "Amount",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.AdditionalData"] = "Additional Data",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.CreatedDateTime"] = "Created On",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.VerifyDateTime"] = "Verified On",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.ConfirmDateTime"] = "Confirmed On",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.Status"] = "Status",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.ResultCode"] = "Result Code",
-                ["ZarIran.Plugin.Payment.Core.Admin.PaymentModel.Completed"] = "Completed",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Payment.Core.Name"] = "Delsami Payment",
+                ["Delsami.Plugin.Payment.Core.SystemName"] = "PaymentCore",
+                ["Delsami.Plugin.Payment.Core.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Payment.Core.Configuration.SystemName"] = "materialConfiguration",
+                ["Delsami.Plugin.Payment.Core.PaymentStatus.Completed"] = "Completed",
+                ["Delsami.Plugin.Payment.Core.Configuration.InProgress"] = "InProgress",
+                ["Delsami.Plugin.Payment.Core.Configuration.Failed"] = "Failed",
+                ["Delsami.Plugin.Payment.Core.PaymentStatus.Verified"] = "Verified",
+                ["Delsami.Plugin.Payment.Core.PaymentStatus.Initial"] = "Initial",
+                ["Delsami.Plugin.Payment.Core.PaymentStatus.InProgress"] = "InProgress",
+                ["Delsami.Plugin.Payment.Core.PaymentStatus.Failed"] = "Failed",
+                ["Delsami.Plugin.Payment.Core.Payments"] = "Payments",
+                ["Delsami.Plugin.Payment.Core.Payment.List"] = "Payment List",
+                ["Delsami.Plugin.Payment.Core.PaymentGateway.Pasargad"] = "Pasargad",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.Id"] = "Payment Id",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.OrderId"] = "Order Id",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.Gateway"] = "Gateway",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.TeminalNo"] = "Terminal No",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.ReferenceNumber"] = "Reference Number",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.TrackId"] = "Track Id",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.MaskedCardNumber"] = "Masked Card Number",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.HashedCardNumber"] = "Hashed Card Number",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.UrlId"] = "Url Id",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.Amount"] = "Amount",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.AdditionalData"] = "Additional Data",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.CreatedDateTime"] = "Created On",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.VerifyDateTime"] = "Verified On",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.ConfirmDateTime"] = "Confirmed On",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.Status"] = "Status",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.ResultCode"] = "Result Code",
+                ["Delsami.Plugin.Payment.Core.Admin.PaymentModel.Completed"] = "Completed",
             });
 
             await _permissionService.InstallPermissionsAsync(new PaymentCorePermission());
@@ -118,19 +118,19 @@ namespace ZarIran.Plugin.Payment.Core
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var paymentCoreSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.SystemName");
-            var paymentCoreName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.Configuration.SystemName");
-            var paymentListName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.Payment.List");
-            var paymentListSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.Payment.List.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var paymentCoreSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.SystemName");
+            var paymentCoreName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.Configuration.SystemName");
+            var paymentListName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.Payment.List");
+            var paymentListSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.Payment.List.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -160,7 +160,7 @@ namespace ZarIran.Plugin.Payment.Core
                 },
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = paymentCoreName,
                 SystemName = paymentCoreSystemName,
@@ -171,7 +171,7 @@ namespace ZarIran.Plugin.Payment.Core
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -179,7 +179,7 @@ namespace ZarIran.Plugin.Payment.Core
         public override async Task UninstallAsync()
         {
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Payment.Core");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Payment.Core");
 
             await base.UninstallAsync();
 

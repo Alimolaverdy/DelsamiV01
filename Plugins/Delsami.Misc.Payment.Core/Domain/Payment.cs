@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payment.Core.Enums;
+﻿using Delsami.Plugin.Payment.Core.Enums;
 using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Payment.Core.Domain
+namespace Delsami.Plugin.Payment.Core.Domain
 {
     public class Payment : BaseEntity
     {

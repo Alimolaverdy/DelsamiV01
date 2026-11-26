@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Models;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Models;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Models.Orders;
 using Nop.Web.Framework.Components;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Components
+namespace Delsami.Plugin.Payment.Core.Areas.Admin.Components
 {
     public class PaymentsForOrderViewComponent : NopViewComponent
     {
@@ -35,7 +35,7 @@ namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Components
 
             searchModel.SetGridPageSize();
 
-            return View("~/Plugins/ZarIran.Payment.Core/Areas/Admin/Views/Shared/Components/PaymentsForOrder/Default.cshtml", searchModel);
+            return View("~/Plugins/Delsami.Payment.Core/Areas/Admin/Views/Shared/Components/PaymentsForOrder/Default.cshtml", searchModel);
         }
     }
 }

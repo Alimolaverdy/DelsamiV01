@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core.Domain.Orders;
 
-namespace ZarIran.Plugin.Payment.Core.Models;
+namespace Delsami.Plugin.Payment.Core.Models;
 
 public class VerifyingResult
 {

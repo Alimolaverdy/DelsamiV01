@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Localization;
 using Nop.Services.Orders;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Controllers;
+namespace Delsami.Plugin.Payment.Core.Controllers;
 
-public class ZarIranErrorPageController : Controller
+public class DelsamiErrorPageController : Controller
 {
     #region Fields
 
@@ -19,7 +19,7 @@ public class ZarIranErrorPageController : Controller
 
     #region Ctor
 
-    public ZarIranErrorPageController(ILocalizationService localizationService, IOrderService orderService)
+    public DelsamiErrorPageController(ILocalizationService localizationService, IOrderService orderService)
     {
         _localizationService = localizationService;
         _orderService = orderService;
@@ -37,35 +37,35 @@ public class ZarIranErrorPageController : Controller
         //{
         //    case ErrorCode.OrderNotFound:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.OrderNotFound");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.OrderNotFound");
         //            break;
         //        }
         //    case ErrorCode.PaymentNotFound:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.PaymentNotFound");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.PaymentNotFound");
         //            break;
         //        }
         //    case ErrorCode.GatewayError:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.GatewayError");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.GatewayError");
         //            model.OrderId = orderId;
         //            break;
         //        }
         //    case ErrorCode.GetTokenNotResponse:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.GetTokenNotResponse");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.GetTokenNotResponse");
         //            model.OrderId = orderId;
         //            break;
         //        }
         //    case ErrorCode.AmountValueNotEqual:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.AmountValueNotEqual");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.AmountValueNotEqual");
         //            model.OrderId = orderId;
         //            break;
         //        }
         //    case ErrorCode.StatusProblem:
         //        {
-        //            model.ErrorMessage = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Core.ErrorCode.StatusProblem");
+        //            model.ErrorMessage = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Core.ErrorCode.StatusProblem");
         //            model.OrderId = orderId;
         //            break;
         //        }
@@ -81,7 +81,7 @@ public class ZarIranErrorPageController : Controller
         }
         model.OrderId = orderId;
 
-        return View("~/Plugins/ZarIran.Payment.Core/Views/ZarIranErrorPage/PaymentError.cshtml", model);
+        return View("~/Plugins/Delsami.Payment.Core/Views/DelsamiErrorPage/PaymentError.cshtml", model);
     }
 
     #endregion

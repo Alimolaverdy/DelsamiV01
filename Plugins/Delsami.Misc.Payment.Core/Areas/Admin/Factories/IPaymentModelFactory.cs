@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Payment.Core.Areas.Admin.Models;
+﻿using Delsami.Plugin.Payment.Core.Areas.Admin.Models;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Factories
+namespace Delsami.Plugin.Payment.Core.Areas.Admin.Factories
 {
     public interface IPaymentModelFactory
     {

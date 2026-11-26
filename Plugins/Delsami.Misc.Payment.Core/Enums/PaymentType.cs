@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ZarIran.Plugin.Payment.Core.Enums
+namespace Delsami.Plugin.Payment.Core.Enums
 {
     public enum PaymentType
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Models;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Models;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Mapper
+namespace Delsami.Plugin.Payment.Core.Areas.Admin.Mapper
 {
     public class MapperConfiguration : Profile, IOrderedMapperProfile
     {

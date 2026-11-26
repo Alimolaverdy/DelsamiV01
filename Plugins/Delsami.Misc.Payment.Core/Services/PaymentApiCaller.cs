@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.Core.Models.ApiCaller;
-using ZarIran.Plugin.Misc.Core.Models.Resilience;
-using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
+﻿using Delsami.Plugin.Misc.Core.Models.ApiCaller;
+using Delsami.Plugin.Misc.Core.Models.Resilience;
+using Delsami.Plugin.Misc.Core.Services.ApiCaller;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Services
+namespace Delsami.Plugin.Payment.Core.Services
 {
     internal class PaymentApiCaller : IPaymentApiCaller
     {

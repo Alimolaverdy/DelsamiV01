@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Payment.Core.Infrastructure
+namespace Delsami.Plugin.Payment.Core.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -13,7 +13,7 @@ namespace ZarIran.Plugin.Payment.Core.Infrastructure
             //PaymentError
             endpointRouteBuilder.MapControllerRoute(name: "Checkout/PaymentError",
                 pattern: $"Checkout/PaymentError",
-                defaults: new { controller = "ZarIranErrorPage", action = "PaymentError" });
+                defaults: new { controller = "DelsamiErrorPage", action = "PaymentError" });
 
         }
     }

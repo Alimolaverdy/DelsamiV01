@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Services.Localization;
@@ -16,9 +16,9 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Controllers;
+namespace Delsami.Plugin.Payment.Core.Controllers;
 
-public abstract class BaseNopPartsPaymentController<T> : BasePaymentController where T : BasePaymentResponseModel
+public abstract class BaseDelsamiPaymentController<T> : BasePaymentController where T : BasePaymentResponseModel
 {
     #region Fields
 
@@ -40,7 +40,7 @@ public abstract class BaseNopPartsPaymentController<T> : BasePaymentController w
 
     #region Ctor
 
-    protected BaseNopPartsPaymentController(IPaymentService paymentService,
+    protected BaseDelsamiPaymentController(IPaymentService paymentService,
                                             IOrderService orderService,
                                             IOrderProcessingService orderProcessingService,
                                             ILogger logger,

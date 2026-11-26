@@ -4,13 +4,13 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using System.Threading.Tasks;
 using Nop.Services.Security;
-using ZarIran.Plugin.Payment.Core.Infrastructure.Permissions;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Models;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Factories;
-using ZarIran.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payment.Core.Infrastructure.Permissions;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Models;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Factories;
+using Delsami.Plugin.Payment.Core.Services;
 using System;
 
-namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payment.Core.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -53,7 +53,7 @@ namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Controllers
             //prepare model
             var model = _paymentModelFactory.PreparePaymentSearchModel(new PaymentSearchModel());
 
-            return View("~/Plugins/ZarIran.Payment.Core/Areas/Admin/Views/Payment/List.cshtml", model);
+            return View("~/Plugins/Delsami.Payment.Core/Areas/Admin/Views/Payment/List.cshtml", model);
         }
 
         [HttpPost]
@@ -80,7 +80,7 @@ namespace ZarIran.Plugin.Payment.Core.Areas.Admin.Controllers
 
             var model = await _paymentModelFactory.PreparePaymentModelAsync(null, payment);
 
-            return View("~/Plugins/ZarIran.Payment.Core/Areas/Admin/Views/Payment/Details.cshtml", model);
+            return View("~/Plugins/Delsami.Payment.Core/Areas/Admin/Views/Payment/Details.cshtml", model);
         }
 
         #endregion

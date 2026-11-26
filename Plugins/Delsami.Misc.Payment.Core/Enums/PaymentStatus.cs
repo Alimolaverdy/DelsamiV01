@@ -1,25 +1,25 @@
 ﻿using System.ComponentModel;
 
-namespace ZarIran.Plugin.Payment.Core.Enums
+namespace Delsami.Plugin.Payment.Core.Enums
 {
     public enum PaymentStatus
     {
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.Confirmed")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.Confirmed")]
         Confirmed = 1,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.Verified")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.Verified")]
         Verified,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.Initial")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.Initial")]
         Initial,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.InProgress")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.InProgress")]
         InProgress,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.Failed")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.Failed")]
         Failed,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentStatus.Refunded")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentStatus.Refunded")]
         Refunded
     }
 }

@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Payment.Core.Enums;
+﻿using Delsami.Plugin.Payment.Core.Enums;
 using Nop.Core;
 using System;
 using System.Threading.Tasks;
-using PaymentDomain = ZarIran.Plugin.Payment.Core.Domain;
+using PaymentDomain = Delsami.Plugin.Payment.Core.Domain;
 
-namespace ZarIran.Plugin.Payment.Core.Services;
+namespace Delsami.Plugin.Payment.Core.Services;
 
 public interface IPaymentService
 {

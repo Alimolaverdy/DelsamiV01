@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Payment.Core.Areas.Admin.Factories;
-using ZarIran.Plugin.Payment.Core.Infrastructure.Permissions;
-using ZarIran.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payment.Core.Areas.Admin.Factories;
+using Delsami.Plugin.Payment.Core.Infrastructure.Permissions;
+using Delsami.Plugin.Payment.Core.Services;
 using Nop.Core.Infrastructure;
 using Nop.Services.Security;
 
-namespace ZarIran.Plugin.Payment.Core.Infrastructure
+namespace Delsami.Plugin.Payment.Core.Infrastructure
 {
     public class NopStartup : INopStartup
     {

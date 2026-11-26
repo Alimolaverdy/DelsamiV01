@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Payment.Core.Enums;
+﻿using Delsami.Plugin.Payment.Core.Enums;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Infrastructure;
@@ -9,9 +9,9 @@ using NUglify.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using PaymentDomain = ZarIran.Plugin.Payment.Core.Domain;
+using PaymentDomain = Delsami.Plugin.Payment.Core.Domain;
 
-namespace ZarIran.Plugin.Payment.Core.Services
+namespace Delsami.Plugin.Payment.Core.Services
 {
     public class PaymentService : IPaymentService
     {
@@ -85,7 +85,7 @@ namespace ZarIran.Plugin.Payment.Core.Services
             {
                 if (payment.Status != PaymentStatus.Failed)
                 {
-                    _notificationService.ErrorNotification(await localizationService.GetResourceAsync("ZarIran.plugin.payment.core.raceconditionError"));
+                    _notificationService.ErrorNotification(await localizationService.GetResourceAsync("Delsami.plugin.payment.core.raceconditionError"));
                     return false;
                 }
 

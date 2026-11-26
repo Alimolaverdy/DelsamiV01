@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Core.Services
+namespace Delsami.Plugin.Payment.Core.Services
 {
     public interface IPaymentResilienceService
     {

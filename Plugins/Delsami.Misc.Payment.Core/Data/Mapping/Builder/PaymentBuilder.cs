@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
 using Nop.Data.Mapping.Builders;
-using PaymentDomain = ZarIran.Plugin.Payment.Core.Domain;
+using PaymentDomain = Delsami.Plugin.Payment.Core.Domain;
 
-namespace ZarIran.Plugin.Payment.Core.Data.Mapping.Builder
+namespace Delsami.Plugin.Payment.Core.Data.Mapping.Builder
 {
     public class PaymentBuilder : NopEntityBuilder<PaymentDomain.Payment>
     {

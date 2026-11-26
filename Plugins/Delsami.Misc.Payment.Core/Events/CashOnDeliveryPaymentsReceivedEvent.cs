@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payment.Core.Events
+namespace Delsami.Plugin.Payment.Core.Events
 {
     public class CashOnDeliveryPaymentsReceivedEvent
     {

@@ -3,10 +3,10 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Payment.Core.Payment.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Payment.Core.Payment.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Payment.Core.Payment.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Payment.Core.Payment.List.SystemName").Text);
 }
 
-@await Html.PartialAsync("~/Plugins/ZarIran.Payment.Core/Areas/Admin/Views/Payment/_PaymentList.cshtml")
+@await Html.PartialAsync("~/Plugins/Delsami.Payment.Core/Areas/Admin/Views/Payment/_PaymentList.cshtml")
 

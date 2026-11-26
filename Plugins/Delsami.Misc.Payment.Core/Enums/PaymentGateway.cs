@@ -1,37 +1,37 @@
 ﻿using System.ComponentModel;
 
-namespace ZarIran.Plugin.Payment.Core.Enums
+namespace Delsami.Plugin.Payment.Core.Enums
 {
     public enum PaymentGateway
     {
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Pasargad")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Pasargad")]
         Pasargad = 1,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Tejarat")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Tejarat")]
         Tejarat,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Mellat")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Mellat")]
         Mellat,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Torob")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Torob")]
         Torob,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Saman")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Saman")]
         Saman,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Resalat")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Resalat")]
         Resalat,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Digipay")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Digipay")]
         Digipay,
 
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Tara")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Tara")]
         Tara,
         
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.DigiKala")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.DigiKala")]
         DigiKala,
         
-        [Description("ZarIran.Plugin.Payment.Core.PaymentGateway.Barook")]
+        [Description("Delsami.Plugin.Payment.Core.PaymentGateway.Barook")]
         Barook,
     }
 }

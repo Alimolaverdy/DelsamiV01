@@ -2,7 +2,7 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payment.Core.Infrastructure.Permissions
+namespace Delsami.Plugin.Payment.Core.Infrastructure.Permissions
 {
     public class PaymentCorePermission : IPermissionProvider
     {
