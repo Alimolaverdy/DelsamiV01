@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payment.Tejarat.Infrastructure
+﻿namespace Delsami.Plugin.Payment.Tejarat.Infrastructure
 {
     public class Constant
     {

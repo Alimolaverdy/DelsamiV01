@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Tejarat.Enums;
+﻿using Delsami.Plugin.Payment.Tejarat.Enums;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Models.Payments
+namespace Delsami.Plugin.Payment.Tejarat.Models.Payments
 {
     public record GetTokenRequest
     {

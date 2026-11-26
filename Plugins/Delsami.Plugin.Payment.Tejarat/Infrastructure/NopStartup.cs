@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Infrastructure
+namespace Delsami.Plugin.Payment.Tejarat.Infrastructure
 {
     public class NopStartup : INopStartup
     {

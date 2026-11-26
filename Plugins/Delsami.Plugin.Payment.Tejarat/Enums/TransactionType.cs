@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payment.Tejarat.Enums
+﻿namespace Delsami.Plugin.Payment.Tejarat.Enums
 {
     public enum TransactionType
     {

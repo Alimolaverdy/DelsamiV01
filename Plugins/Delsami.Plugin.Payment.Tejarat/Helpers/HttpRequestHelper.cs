@@ -7,7 +7,7 @@
 //using System.Threading.Tasks;
 //using static LinqToDB.DataProvider.SqlServer.SqlFn;
 
-//namespace ZarIran.Plugin.Payment.Tejarat.Helpers
+//namespace Delsami.Plugin.Payment.Tejarat.Helpers
 //{
 //    public class HttpRequestHelper
 //    {

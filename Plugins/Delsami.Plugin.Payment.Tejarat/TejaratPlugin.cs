@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Tejarat
+namespace Delsami.Plugin.Payment.Tejarat
 {
     public class TejaratPlugin : BasePlugin, IPaymentMethod, IPlugin, IAdminMenuPlugin
     {
@@ -97,7 +97,7 @@ namespace ZarIran.Plugin.Payment.Tejarat
 
         public async Task<string> GetPaymentMethodDescriptionAsync()
         {
-            return await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Tejarat.Description");
+            return await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Tejarat.Description");
         }
 
         public Type GetPublicViewComponent()
@@ -170,17 +170,17 @@ namespace ZarIran.Plugin.Payment.Tejarat
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var tejaratSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ExtendedOrder.SystemName");
-            var tejaratName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Tejarat.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Tejarat.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payment.Tejarat.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var tejaratSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ExtendedOrder.SystemName");
+            var tejaratName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Tejarat.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Tejarat.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payment.Tejarat.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -201,7 +201,7 @@ namespace ZarIran.Plugin.Payment.Tejarat
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = tejaratName,
                 SystemName = tejaratSystemName,
@@ -212,7 +212,7 @@ namespace ZarIran.Plugin.Payment.Tejarat
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -221,20 +221,20 @@ namespace ZarIran.Plugin.Payment.Tejarat
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Payment.Tejarat.Name"] = "Tejarat Bank",
-                ["ZarIran.Plugin.Payment.Tejarat.SystemName"] = "TejaratBank",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration.SystemName"] = "TejaratBankConfiguration",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration.TerminalId"] = "Terminal",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration.AcceptorId"] = "Acceptor Id",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration.PassPhrase"] = "PassPhrase",
-                ["ZarIran.Plugin.Payment.Tejarat.Configuration.RsaPublicKey"] = "RsaPublicKey",
-                ["ZarIran.Plugin.Payment.Tejarat.Description"] = "Tejarat payment gateway description",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Payment.Tejarat.Name"] = "Tejarat Bank",
+                ["Delsami.Plugin.Payment.Tejarat.SystemName"] = "TejaratBank",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration.SystemName"] = "TejaratBankConfiguration",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration.TerminalId"] = "Terminal",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration.AcceptorId"] = "Acceptor Id",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration.PassPhrase"] = "PassPhrase",
+                ["Delsami.Plugin.Payment.Tejarat.Configuration.RsaPublicKey"] = "RsaPublicKey",
+                ["Delsami.Plugin.Payment.Tejarat.Description"] = "Tejarat payment gateway description",
 
             });
 

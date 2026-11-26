@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payment.Tejarat.Enums;
-using ZarIran.Plugin.Payment.Tejarat.Helpers;
-using ZarIran.Plugin.Payment.Tejarat.Infrastructure;
-using ZarIran.Plugin.Payment.Tejarat.Models.Payments;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payment.Tejarat.Enums;
+using Delsami.Plugin.Payment.Tejarat.Helpers;
+using Delsami.Plugin.Payment.Tejarat.Infrastructure;
+using Delsami.Plugin.Payment.Tejarat.Models.Payments;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
@@ -23,9 +23,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Controllers;
+namespace Delsami.Plugin.Payment.Tejarat.Controllers;
 
-public class TejaratBankController : BaseNopPartsPaymentController<TejaratPayResultModel>
+public class TejaratBankController : BaseDelsamiPaymentController<TejaratPayResultModel>
 {
     #region Fields
 
@@ -159,7 +159,7 @@ public class TejaratBankController : BaseNopPartsPaymentController<TejaratPayRes
 
                     await _paymentService.UpdateAsync(payment);
 
-                    return View("~/Plugins/ZarIran.Payment.Tejarat/Views/Pay.cshtml", preparedForm);
+                    return View("~/Plugins/Delsami.Payment.Tejarat/Views/Pay.cshtml", preparedForm);
                 }
 
                 if (jresponse.Data != null)

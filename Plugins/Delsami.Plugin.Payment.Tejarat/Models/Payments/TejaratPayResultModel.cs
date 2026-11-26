@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Models.Payments;
+namespace Delsami.Plugin.Payment.Tejarat.Models.Payments;
 
 public class TejaratPayResultModel : BasePaymentResponseModel
 {

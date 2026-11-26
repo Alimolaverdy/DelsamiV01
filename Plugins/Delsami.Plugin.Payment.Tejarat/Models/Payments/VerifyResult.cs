@@ -1,9 +1,9 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Models.Payments;
+namespace Delsami.Plugin.Payment.Tejarat.Models.Payments;
 
 public class VerifyResult : BasePaymentResponseModel
 {

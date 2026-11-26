@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using ZarIran.Plugin.Payment.Tejarat.Models.Payments;
+using Delsami.Plugin.Payment.Tejarat.Models.Payments;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Helpers;
+namespace Delsami.Plugin.Payment.Tejarat.Helpers;
 
 public static class CreateJsonRequest
 {

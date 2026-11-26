@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Models.Payments
+namespace Delsami.Plugin.Payment.Tejarat.Models.Payments
 {
     public class RequestVerify
     {

@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Payment.Tejarat
+namespace Delsami.Plugin.Payment.Tejarat
 {
     public class TejaratSettings : ISettings
     {

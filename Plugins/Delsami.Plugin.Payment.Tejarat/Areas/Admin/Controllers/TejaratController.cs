@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payment.Tejarat.Areas.Admin.Models;
+using Delsami.Plugin.Payment.Tejarat.Areas.Admin.Models;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -9,7 +9,7 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payment.Tejarat.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payment.Tejarat.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -61,7 +61,7 @@ namespace ZarIran.Plugin.Payment.Tejarat.Areas.Admin.Controllers
                 TerminalId = settings.TerminalId,
             };
 
-            return View("~/Plugins/ZarIran.Payment.Tejarat/Areas/Admin/Views/Tejarat/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Payment.Tejarat/Areas/Admin/Views/Tejarat/Configure.cshtml", model);
         }
 
         [HttpPost]
@@ -96,7 +96,7 @@ namespace ZarIran.Plugin.Payment.Tejarat.Areas.Admin.Controllers
 
                 return RedirectToAction("Configure", model);
             }
-            return View("~/Plugins/ZarIran.Payment.Tejarat/Areas/Admin/Views/Tejarat/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Payment.Tejarat/Areas/Admin/Views/Tejarat/Configure.cshtml", model);
 
         }
         #endregion
