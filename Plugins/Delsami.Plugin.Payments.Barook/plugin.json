@@ -1,15 +1,15 @@
 ﻿{
   "Group": "Payment Methods",
   "FriendlyName": "پرداخت اعتباری باروک",
-  "SystemName": "ZarIran.Payments.Barook",
+  "SystemName": "Delsami.Payments.Barook",
   "Version": "1.00",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 3,
-  "FileName": "ZarIran.Plugin.Payments.Barook.dll",
+  "FileName": "Delsami.Plugin.Payments.Barook.dll",
   "Description": "پرداخت اعتباری باروک",
   "DependsOnSystemNames": [
-    "ZarIran.Misc.Core",
-    "ZarIran.Payment.Core"
+    "Delsami.Misc.Core",
+    "Delsami.Payment.Core"
   ]
 }

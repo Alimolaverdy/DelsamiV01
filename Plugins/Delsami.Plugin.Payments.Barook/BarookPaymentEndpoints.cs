@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payments.Barook
+﻿namespace Delsami.Plugin.Payments.Barook
 {
     public static class BarookPaymentEndpoints
     {

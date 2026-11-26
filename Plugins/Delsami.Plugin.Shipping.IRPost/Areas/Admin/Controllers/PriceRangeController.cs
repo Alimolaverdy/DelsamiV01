@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
-using ZarIran.Plugin.Shipping.IRPost.Domain;
-using ZarIran.Plugin.Shipping.IRPost.Infrastructures.Permissions;
-using ZarIran.Plugin.Shipping.IRPost.Services;
+using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
+using Delsami.Plugin.Shipping.IRPost.Domain;
+using Delsami.Plugin.Shipping.IRPost.Infrastructures.Permissions;
+using Delsami.Plugin.Shipping.IRPost.Services;
 using Nop.Core;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -16,7 +16,7 @@ using System;
 using System.Drawing.Printing;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
+namespace Delsami.Plugin.Shipping.IRPost.Areas.Admin.Controllers
 {
     public class PriceRangeController : BaseAdminController
     {
@@ -66,7 +66,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
             //prepare model
             var model = _priceRangeModelFactory.PreparePriceRangeSearchModel(new PriceRangeSearchModel());
 
-            return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/List.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/List.cshtml", model);
         }
 
         [HttpPost]
@@ -93,7 +93,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
             //prepare model
             var model = _priceRangeModelFactory.PreparePriceRangeModel(new PriceRangeModel(), null);
 
-            return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/Create.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -109,13 +109,13 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
             if (!validationResult.IsValid)
             {
                 if (validationResult.Error == WeightRangeValidationError.MaxPriceInvalid)
-                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MaxWeightInvalid"));
+                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MaxWeightInvalid"));
 
                 if (validationResult.Error == WeightRangeValidationError.MinPriceInvalid)
-                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MinWeightInvalid"));
+                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MinWeightInvalid"));
 
                 if (validationResult.Error == WeightRangeValidationError.MinAndMaxInvalid)
-                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MinAndMaxWeightInvalid"));
+                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MinAndMaxWeightInvalid"));
             }
 
             if (ModelState.IsValid)
@@ -129,7 +129,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
 
                 await _priceRangeService.InsertAsync(priceRange);
 
-                //_notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.Added"));
+                //_notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.Added"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -141,7 +141,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
             model = _priceRangeModelFactory.PreparePriceRangeModel(model, null);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/Create.cshtml", model);
         }
 
         //public virtual async Task<IActionResult> Edit(int id)
@@ -157,7 +157,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
         //    //prepare model
         //    var model = _priceRangeModelFactory.PreparePriceRangeModel(null, PriceRange);
 
-        //    return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/Edit.cshtml", model);
+        //    return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/Edit.cshtml", model);
         //}
 
         //[HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -179,13 +179,13 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
         //    if (!validationResult.IsValid)
         //    {
         //        if (validationResult.Error == WeightRangeValidationError.MaxPriceInvalid)
-        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MaxPriceInvalid"));
+        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MaxPriceInvalid"));
 
         //        if (validationResult.Error == WeightRangeValidationError.MinPriceInvalid)
-        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MinPriceInvalid"));
+        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MinPriceInvalid"));
 
         //        if (validationResult.Error == WeightRangeValidationError.MinAndMaxInvalid)
-        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.MinAndMaxPriceInvalid"));
+        //            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.MinAndMaxPriceInvalid"));
         //    }
 
 
@@ -193,7 +193,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
         //    {
         //        await _priceRangeService.UpdateAsync(priceRange);
 
-        //        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.Updated"));
+        //        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.Updated"));
 
         //        if (!continueEditing)
         //            return RedirectToAction("List");
@@ -205,7 +205,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
         //    model = _priceRangeModelFactory.PreparePriceRangeModel(model, priceRange);
 
         //    //if we got this far, something failed, redisplay form
-        //    return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/Edit.cshtml", model);
+        //    return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/Edit.cshtml", model);
         //}
 
         [HttpPost]
@@ -227,7 +227,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers
 
             await _priceRangeService.DeleteAsync(priceRange);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRange.Deleted"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRange.Deleted"));
 
             return new NullJsonResult();
         }

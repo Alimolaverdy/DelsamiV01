@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payments.TorobPay.Services.Dtos;
+﻿using Delsami.Plugin.Payments.TorobPay.Services.Dtos;
 using System.Threading.Tasks;
-using static ZarIran.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
+using static Delsami.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Services
+namespace Delsami.Plugin.Payments.TorobPay.Services
 {
     public interface ITorobPayApiService
     {

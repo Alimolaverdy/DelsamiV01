@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Payments.Saman.Services;
+using Delsami.Plugin.Payments.Saman.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Payments.Saman.Infrastructure
+namespace Delsami.Plugin.Payments.Saman.Infrastructure
 {
     public class NopStartup : INopStartup
     {

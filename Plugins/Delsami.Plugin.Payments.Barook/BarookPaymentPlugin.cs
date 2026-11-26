@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payments.Barook.Services;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payments.Barook.Services;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Orders;
@@ -24,9 +24,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using IPaymentService = ZarIran.Plugin.Payment.Core.Services.IPaymentService;
+using IPaymentService = Delsami.Plugin.Payment.Core.Services.IPaymentService;
 
-namespace ZarIran.Plugin.Payments.Barook
+namespace Delsami.Plugin.Payments.Barook
 {
     public class BarookPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
     {
@@ -91,7 +91,7 @@ namespace ZarIran.Plugin.Payments.Barook
 
         public bool SkipPaymentInfo => false;
 
-        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("ZarIran.Payments.Barook.PaymentMethodDescription");
+        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("Delsami.Payments.Barook.PaymentMethodDescription");
 
         #endregion
 
@@ -181,22 +181,22 @@ namespace ZarIran.Plugin.Payments.Barook
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Payments.Barook.SystemName"] = "Barook",
-                ["ZarIran.Plugin.Payments.Barook.Name"] = "ZarIran Barook",
-                ["ZarIran.Plugin.Payments.Barook.Configuration.SystemName"] = "Configuration",
-                ["ZarIran.Plugin.Payments.Barook.Configuration.TerminalNumber"] = "Username",
-                ["ZarIran.Plugin.Payments.Barook.Configuration.TerminalPassword"] = "Password",
-                ["ZarIran.Plugin.Payments.Barook.Configuration.BaseUrl"] = "Base Url",
-                ["ZarIran.Plugin.Payments.Barook.PaymentResult"] = "Payment Result:",
-                ["ZarIran.Plugin.Payments.Barook.TrackingCode"] = "TrackingCode:",
-                ["ZarIran.Plugin.Payments.Barook.ErrorInGetToken"] = "Error In Barook:",
-                ["ZarIran.Plugin.Payments.Barook.PaymentWasSuccessful"] = "Payment was successful",
-                ["ZarIran.Plugin.Payments.Barook.PaymentFailed"] = "خطا در پرداخت",
-                ["ZarIran.Plugin.Payments.Barook.Error"] = "Error in payment.Try again",
-                ["ZarIran.Payments.Barook.PaymentMethodDescription"] = "پرداخت اعتباری باروک",
-                ["ZarIran.Plugin.Payments.Barook.OrderIsNotInPaidStatus"] = "Order is not paid status",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Payments.Barook.SystemName"] = "Barook",
+                ["Delsami.Plugin.Payments.Barook.Name"] = "Delsami Barook",
+                ["Delsami.Plugin.Payments.Barook.Configuration.SystemName"] = "Configuration",
+                ["Delsami.Plugin.Payments.Barook.Configuration.TerminalNumber"] = "Username",
+                ["Delsami.Plugin.Payments.Barook.Configuration.TerminalPassword"] = "Password",
+                ["Delsami.Plugin.Payments.Barook.Configuration.BaseUrl"] = "Base Url",
+                ["Delsami.Plugin.Payments.Barook.PaymentResult"] = "Payment Result:",
+                ["Delsami.Plugin.Payments.Barook.TrackingCode"] = "TrackingCode:",
+                ["Delsami.Plugin.Payments.Barook.ErrorInGetToken"] = "Error In Barook:",
+                ["Delsami.Plugin.Payments.Barook.PaymentWasSuccessful"] = "Payment was successful",
+                ["Delsami.Plugin.Payments.Barook.PaymentFailed"] = "خطا در پرداخت",
+                ["Delsami.Plugin.Payments.Barook.Error"] = "Error in payment.Try again",
+                ["Delsami.Payments.Barook.PaymentMethodDescription"] = "پرداخت اعتباری باروک",
+                ["Delsami.Plugin.Payments.Barook.OrderIsNotInPaidStatus"] = "Order is not paid status",
 
             });
 
@@ -218,17 +218,17 @@ namespace ZarIran.Plugin.Payments.Barook
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
                 return;
 
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var BarookSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Barook.SystemName");
-            var BarookName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Barook.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Barook.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Barook.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var BarookSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Barook.SystemName");
+            var BarookName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Barook.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Barook.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Barook.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -250,7 +250,7 @@ namespace ZarIran.Plugin.Payments.Barook
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = BarookName,
                 SystemName = BarookSystemName,
@@ -261,7 +261,7 @@ namespace ZarIran.Plugin.Payments.Barook
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }

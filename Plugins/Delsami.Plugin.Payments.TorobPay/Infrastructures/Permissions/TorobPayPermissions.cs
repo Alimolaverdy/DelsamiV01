@@ -2,7 +2,7 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Infrastructures.Permissions
+namespace Delsami.Plugin.Payments.TorobPay.Infrastructures.Permissions
 {
     public class TorobPayPermissions : IPermissionProvider
     {

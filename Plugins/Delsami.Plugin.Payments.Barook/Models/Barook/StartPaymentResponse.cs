@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Newtonsoft.Json;
 
-namespace ZarIran.Plugin.Payments.Barook.Models.Barook
+namespace Delsami.Plugin.Payments.Barook.Models.Barook
 {
 	public class StartPaymentResponse
 	{

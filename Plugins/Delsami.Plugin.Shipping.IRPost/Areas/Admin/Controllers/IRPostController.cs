@@ -4,14 +4,14 @@ using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models;
+using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Models;
 using Nop.Services.Directory;
 using System.Linq;
 using System.Collections.Generic;
-using ZarIran.Plugin.Shipping.IRPost.Infrastructures.Permissions;
+using Delsami.Plugin.Shipping.IRPost.Infrastructures.Permissions;
 using Nop.Services.Shipping;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Shipping.IRPost.Areas.Admin.Controllers;
 
 public class IRPostController : BaseAdminController
 {
@@ -50,7 +50,7 @@ public class IRPostController : BaseAdminController
         model.AvailableStates.Add(new SelectListItem { Text = "*", Value = "0" });
 
 
-        return View("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/IRPost/Configure.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/IRPost/Configure.cshtml", model);
     }
 
 

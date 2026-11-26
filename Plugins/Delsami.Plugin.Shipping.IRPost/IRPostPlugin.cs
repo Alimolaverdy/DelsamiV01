@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Shipping.IRPost.Infrastructures.Permissions;
-using ZarIran.Plugin.Shipping.IRPost.Services;
+﻿using Delsami.Plugin.Shipping.IRPost.Infrastructures.Permissions;
+using Delsami.Plugin.Shipping.IRPost.Services;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost
+namespace Delsami.Plugin.Shipping.IRPost
 {
     public class IRPostPlugin : BasePlugin, IAdminMenuPlugin, IShippingRateComputationMethod
     {
@@ -47,19 +47,19 @@ namespace ZarIran.Plugin.Shipping.IRPost
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var IRPostSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.SystemName");
-            var IRPostName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.Configuration.SystemName");
-            var priceRangeName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.List");
-            var priceRangeSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.List.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var IRPostSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.SystemName");
+            var IRPostName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.Configuration.SystemName");
+            var priceRangeName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.List");
+            var priceRangeSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.List.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -93,7 +93,7 @@ namespace ZarIran.Plugin.Shipping.IRPost
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = IRPostName,
                 SystemName = IRPostSystemName,
@@ -104,7 +104,7 @@ namespace ZarIran.Plugin.Shipping.IRPost
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -113,27 +113,27 @@ namespace ZarIran.Plugin.Shipping.IRPost
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Shipping.IRPost.SystemName"] = "IRPost",
-                ["ZarIran.Plugin.Shipping.IRPost.Name"] = "ZarIran IRPost",
-                ["ZarIran.Plugin.Shipping.IRPost.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Shipping.IRPost.Configuration.SystemName"] = "IRPostConfiguration",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringProvinces"] = "NeighbouringProvinces",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringZeroToOneKgPostPrice"] = "NeighbouringZeroToOneKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NonNeighbouringZeroToOneKgPostPrice"] = "NonNeighbouringZeroToOneKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringOneToTwoKgPostPrice"] = "NeighbouringOneToTwoKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NonNeighbouringOneToTwoKgPostPrice"] = "NonNeighbouringOneToTwoKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringTwoToThreeKgPostPrice"] = "NeighbouringTwoToThreeKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NonNeighbouringTwoToThreeKgPostPrice"] = "NonNeighbouringTwoToThreeKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringThreeToFiveKgPostPrice"] = "NeighbouringThreeToFiveKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NonNeighbouringThreeToFiveKgPostPrice"] = "NonNeighbouringThreeToFiveKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringFiveToNineKgPostPrice"] = "NeighbouringFiveToNineKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NonNeighbouringFiveToNineKgPostPrice"] = "NonNeighbouringFiveToNineKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.NeighbouringMoreThanNineKgPostPrice"] = "NeighbouringMoreThanNineKgPostPrice",
-                ["ZarIran.Plugin.Shipping.IRPost.PostSettings"] = "PostSettings",
-                ["ZarIran.Plugin.Shipping.IRPost.State.Error"] = " Destination state/province is not specified",
-                ["ZarIran.Plugins.Shipping.IRPost.PostShippingMethod"] = " PostShippingMethod"
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Shipping.IRPost.SystemName"] = "IRPost",
+                ["Delsami.Plugin.Shipping.IRPost.Name"] = "Delsami IRPost",
+                ["Delsami.Plugin.Shipping.IRPost.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Shipping.IRPost.Configuration.SystemName"] = "IRPostConfiguration",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringProvinces"] = "NeighbouringProvinces",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringZeroToOneKgPostPrice"] = "NeighbouringZeroToOneKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NonNeighbouringZeroToOneKgPostPrice"] = "NonNeighbouringZeroToOneKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringOneToTwoKgPostPrice"] = "NeighbouringOneToTwoKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NonNeighbouringOneToTwoKgPostPrice"] = "NonNeighbouringOneToTwoKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringTwoToThreeKgPostPrice"] = "NeighbouringTwoToThreeKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NonNeighbouringTwoToThreeKgPostPrice"] = "NonNeighbouringTwoToThreeKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringThreeToFiveKgPostPrice"] = "NeighbouringThreeToFiveKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NonNeighbouringThreeToFiveKgPostPrice"] = "NonNeighbouringThreeToFiveKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringFiveToNineKgPostPrice"] = "NeighbouringFiveToNineKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NonNeighbouringFiveToNineKgPostPrice"] = "NonNeighbouringFiveToNineKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.NeighbouringMoreThanNineKgPostPrice"] = "NeighbouringMoreThanNineKgPostPrice",
+                ["Delsami.Plugin.Shipping.IRPost.PostSettings"] = "PostSettings",
+                ["Delsami.Plugin.Shipping.IRPost.State.Error"] = " Destination state/province is not specified",
+                ["Delsami.Plugins.Shipping.IRPost.PostShippingMethod"] = " PostShippingMethod"
 
             });
 

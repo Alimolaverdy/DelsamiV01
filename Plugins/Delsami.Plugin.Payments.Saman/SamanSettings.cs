@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Payments.Saman
+namespace Delsami.Plugin.Payments.Saman
 {
     public class SamanSettings : ISettings
     {

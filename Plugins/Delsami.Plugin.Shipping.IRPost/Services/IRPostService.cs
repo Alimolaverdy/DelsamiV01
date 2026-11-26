@@ -1,10 +1,10 @@
 using Newtonsoft.Json;
-using ZarIran.Plugin.Misc.Core.Models.Resilience;
-using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
-using ZarIran.Plugin.Shipping.Core.Helpers;
-using ZarIran.Plugin.Shipping.Core.Services;
-using ZarIran.Plugin.Shipping.IRPost.Models;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+using Delsami.Plugin.Misc.Core.Models.Resilience;
+using Delsami.Plugin.Misc.Core.Services.ApiCaller;
+using Delsami.Plugin.Shipping.Core.Helpers;
+using Delsami.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.IRPost.Models;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Catalog;
 using Nop.Services.Logging;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Services;
+namespace Delsami.Plugin.Shipping.IRPost.Services;
 
 public class IRPostService : IIRPostService
 {
@@ -28,7 +28,7 @@ public class IRPostService : IIRPostService
     private readonly IPriceRangeService _priceRangeService;
     private readonly IApiCaller _apiCaller;
     private readonly IAddressCityService _addressCityService;
-    private readonly IZarIranPostCityMappingService _ZarIranPostCityMappingService;
+    private readonly IDelsamiPostCityMappingService _DelsamiPostCityMappingService;
     private readonly ICartonService _cartonService;
     private readonly IOrderTotalCalculationService _orderTotalCalculationService;
     ResilienceOptions resilienceOptions = new()
@@ -48,7 +48,7 @@ public class IRPostService : IIRPostService
                          IApiCaller apiCaller,
                          ILogger logger,
                          IAddressCityService addressCityService,
-                         IZarIranPostCityMappingService ZarIranPostCityMappingService,
+                         IDelsamiPostCityMappingService DelsamiPostCityMappingService,
                          IShippingService shippingService,
                          ICartonService cartonService,
                          IProductService productService,
@@ -58,7 +58,7 @@ public class IRPostService : IIRPostService
 
         _settings = iRPostSettings;
         _addressCityService = addressCityService;
-        _ZarIranPostCityMappingService = ZarIranPostCityMappingService;
+        _DelsamiPostCityMappingService = DelsamiPostCityMappingService;
         _apiCaller = apiCaller;
         _shippingService = shippingService;
         _productService = productService;
@@ -225,9 +225,9 @@ public class IRPostService : IIRPostService
         if (addressCity is null)
             return new List<GetBarCodeRequest>();
 
-        var originZarIranPostCityMapping = await _ZarIranPostCityMappingService.GetZarIranTiapxCityMappingByZarIranCityIdAsync(addressCity.CityId);
+        var originDelsamiPostCityMapping = await _DelsamiPostCityMappingService.GetDelsamiTiapxCityMappingByDelsamiCityIdAsync(addressCity.CityId);
 
-        if (originZarIranPostCityMapping is null)
+        if (originDelsamiPostCityMapping is null)
             return new List<GetBarCodeRequest>();
 
         var total = (int)Math.Ceiling(totalWeight);
@@ -248,7 +248,7 @@ public class IRPostService : IIRPostService
             servicetype = 5,
             parceltype = 18,
             sourcecode = 1,
-            destcode = originZarIranPostCityMapping.PostCityId,
+            destcode = originDelsamiPostCityMapping.PostCityId,
             receivername = "استعلام",
             receiverpostalcode = "",
             weight = weight,

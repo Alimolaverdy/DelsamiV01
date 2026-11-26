@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
-using ZarIran.Plugin.Shipping.IRPost.Domain;
-using ZarIran.Plugin.Shipping.IRPost.Services;
+using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
+using Delsami.Plugin.Shipping.IRPost.Domain;
+using Delsami.Plugin.Shipping.IRPost.Services;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Framework.Models.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Factories
+namespace Delsami.Plugin.Shipping.IRPost.Areas.Admin.Factories
 {
     public class PriceRangeModelFactory : IPriceRangeModelFactory
     {

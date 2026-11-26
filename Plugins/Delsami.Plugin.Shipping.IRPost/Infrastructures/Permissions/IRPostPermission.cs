@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Infrastructures.Permissions
+namespace Delsami.Plugin.Shipping.IRPost.Infrastructures.Permissions
 {
     public class IRPostPermission : IPermissionProvider
     {

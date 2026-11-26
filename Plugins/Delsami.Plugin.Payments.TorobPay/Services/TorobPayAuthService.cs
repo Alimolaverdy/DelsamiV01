@@ -6,10 +6,10 @@
 //using System.Text.Json;
 //using System.Threading.Tasks;
 //using Microsoft.Extensions.Caching.Memory;
-//using ZarIran.Plugin.Payments.TorobPay.Services.Dtos;
+//using Delsami.Plugin.Payments.TorobPay.Services.Dtos;
 
 
-//namespace ZarIran.Plugin.Payments.TorobPay.Services
+//namespace Delsami.Plugin.Payments.TorobPay.Services
 //{
 //    public class TorobPayAuthService : ITorobPayAuthService
 //    {

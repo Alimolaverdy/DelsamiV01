@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Shipping.IRPost.Models;
+﻿using Delsami.Plugin.Shipping.IRPost.Models;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Shipping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Services;
+namespace Delsami.Plugin.Shipping.IRPost.Services;
 
 public interface IIRPostService
 {

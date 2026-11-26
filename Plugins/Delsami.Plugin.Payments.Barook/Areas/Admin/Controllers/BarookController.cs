@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
-using ZarIran.Plugin.Payments.Barook.Areas.Admin.Models;
+using Delsami.Plugin.Payments.Barook.Areas.Admin.Models;
 using Nop.Core;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Barook.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Payments.Barook.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -72,7 +72,7 @@ public class BarookController : BasePluginController
 			new SelectListItem { Text = "90", Value = "90" }
 		};
 
-		return View("~/Plugins/ZarIran.Payments.Barook/Areas/Admin/Views/Barook/Configure.cshtml", model);
+		return View("~/Plugins/Delsami.Payments.Barook/Areas/Admin/Views/Barook/Configure.cshtml", model);
 	}
 
 	[HttpPost]

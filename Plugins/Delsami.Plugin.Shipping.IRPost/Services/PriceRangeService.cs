@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
-using ZarIran.Plugin.Shipping.IRPost.Domain;
+﻿using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Models.PriceRanges;
+using Delsami.Plugin.Shipping.IRPost.Domain;
 using Nop.Core;
 using Nop.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Services
+namespace Delsami.Plugin.Shipping.IRPost.Services
 {
     public class PriceRangeService : IPriceRangeService
     {

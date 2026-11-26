@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payments.TorobPay.Services.Dtos
+﻿namespace Delsami.Plugin.Payments.TorobPay.Services.Dtos
 {
     public class EligibleDto
     {

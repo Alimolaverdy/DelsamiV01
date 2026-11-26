@@ -1,14 +1,14 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Domain
+namespace Delsami.Plugin.Shipping.IRPost.Domain
 {
-    public class ZarIranPostCityMapping : BaseEntity
+    public class DelsamiPostCityMapping : BaseEntity
     {
         public string Name { get; set; }
 
         public int StateProvinceId { get; set; }
 
-        public int ZarIranCityId { get; set; }
+        public int DelsamiCityId { get; set; }
 
         public int PostCityId { get; set; }
     }

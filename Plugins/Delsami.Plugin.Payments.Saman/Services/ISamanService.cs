@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Payments.Saman.Models.Saman;
+﻿using Delsami.Plugin.Payments.Saman.Models.Saman;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Saman.Services;
+namespace Delsami.Plugin.Payments.Saman.Services;
 
 public interface ISamanService
 {

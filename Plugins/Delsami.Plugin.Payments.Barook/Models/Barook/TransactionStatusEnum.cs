@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ZarIran.Plugin.Payments.Barook.Models.Barook
+namespace Delsami.Plugin.Payments.Barook.Models.Barook
 {
 	[JsonConverter(typeof(JsonStringEnumConverter))]
 	public enum TransactionStatusEnum

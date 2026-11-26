@@ -1,31 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payments.Saman.Services;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payments.Saman.Services;
 using Nop.Core;
-using Nop.Core.Caching;
 using Nop.Core.Domain.Orders;
-using Nop.Services.Catalog;
-using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Messages;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
 using Nop.Services.Security;
 using Nop.Web.Framework.Menu;
-using NUglify.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using IPaymentService = ZarIran.Plugin.Payment.Core.Services.IPaymentService;
+using IPaymentService = Delsami.Plugin.Payment.Core.Services.IPaymentService;
 
-namespace ZarIran.Plugin.Payments.Saman
+namespace Delsami.Plugin.Payments.Saman
 {
     public class SamanPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
     {
@@ -90,7 +84,7 @@ namespace ZarIran.Plugin.Payments.Saman
 
         public bool SkipPaymentInfo => false;
 
-        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("ZarIran.Payments.Saman.PaymentMethodDescription");
+        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("Delsami.Payments.Saman.PaymentMethodDescription");
 
         #endregion
 
@@ -183,25 +177,25 @@ namespace ZarIran.Plugin.Payments.Saman
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Payments.Saman.SystemName"] = "Saman",
-                ["ZarIran.Plugin.Payments.Saman.Name"] = "ZarIran Saman",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.TerminalNumber"] = "Username",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.TerminalPassword"] = "Password",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.BaseUrl"] = "Base Url",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.SamanVersion"] = "Saman Version",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.DescriptionText"] = "Saman Payment Description",
-                ["ZarIran.Plugin.Payments.Saman.PaymentResult"] = "Payment Result:",
-                ["ZarIran.Plugin.Payments.Saman.TrackingCode"] = "TrackingCode:",
-                ["ZarIran.Plugin.Payments.Saman.ErrorInGetToken"] = "Error In Saman:",
-                ["ZarIran.Plugin.Payments.Saman.PaymentWasSuccessful"] = "Payment was successful",
-                ["ZarIran.Plugin.Payments.Saman.PaymentFailed"] = "خطا در پرداخت",
-                ["ZarIran.Plugin.Payments.Saman.Error"] = "Error in payment.Try again",
-                ["ZarIran.Payments.Saman.PaymentMethodDescription"] = "پرداخت با درگاه بانک سامان",
-                ["ZarIran.Plugin.Payments.Saman.OrderIsNotInPaidStatus"] = "Order is not paid status",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.TokenCacheMinutes"] = "Access Token cache in minutes (Default is 20)",
-                ["ZarIran.Plugin.Payments.Saman.Configuration.TimeOutSeconds"] = "TimeOut for operation in Seconds (Default is 30)",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Payments.Saman.SystemName"] = "Saman",
+                ["Delsami.Plugin.Payments.Saman.Name"] = "Delsami Saman",
+                ["Delsami.Plugin.Payments.Saman.Configuration.TerminalNumber"] = "Username",
+                ["Delsami.Plugin.Payments.Saman.Configuration.TerminalPassword"] = "Password",
+                ["Delsami.Plugin.Payments.Saman.Configuration.BaseUrl"] = "Base Url",
+                ["Delsami.Plugin.Payments.Saman.Configuration.SamanVersion"] = "Saman Version",
+                ["Delsami.Plugin.Payments.Saman.Configuration.DescriptionText"] = "Saman Payment Description",
+                ["Delsami.Plugin.Payments.Saman.PaymentResult"] = "Payment Result:",
+                ["Delsami.Plugin.Payments.Saman.TrackingCode"] = "TrackingCode:",
+                ["Delsami.Plugin.Payments.Saman.ErrorInGetToken"] = "Error In Saman:",
+                ["Delsami.Plugin.Payments.Saman.PaymentWasSuccessful"] = "Payment was successful",
+                ["Delsami.Plugin.Payments.Saman.PaymentFailed"] = "خطا در پرداخت",
+                ["Delsami.Plugin.Payments.Saman.Error"] = "Error in payment.Try again",
+                ["Delsami.Payments.Saman.PaymentMethodDescription"] = "پرداخت با درگاه بانک سامان",
+                ["Delsami.Plugin.Payments.Saman.OrderIsNotInPaidStatus"] = "Order is not paid status",
+                ["Delsami.Plugin.Payments.Saman.Configuration.TokenCacheMinutes"] = "Access Token cache in minutes (Default is 20)",
+                ["Delsami.Plugin.Payments.Saman.Configuration.TimeOutSeconds"] = "TimeOut for operation in Seconds (Default is 30)",
             });
 
             await base.InstallAsync();
@@ -222,17 +216,17 @@ namespace ZarIran.Plugin.Payments.Saman
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
                 return;
 
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var SamanSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Saman.SystemName");
-            var SamanName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Saman.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Saman.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Saman.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var SamanSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Saman.SystemName");
+            var SamanName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Saman.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Saman.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Saman.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -254,7 +248,7 @@ namespace ZarIran.Plugin.Payments.Saman
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = SamanName,
                 SystemName = SamanSystemName,
@@ -265,7 +259,7 @@ namespace ZarIran.Plugin.Payments.Saman
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }

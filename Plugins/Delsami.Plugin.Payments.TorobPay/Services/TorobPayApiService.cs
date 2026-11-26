@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.TorobPay.Services.Dtos;
+using Delsami.Plugin.Misc.Core.Services.ApiCaller;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.TorobPay.Services.Dtos;
 using Nop.Core.Domain.Logging;
 using Nop.Plugin.Payments.TorobPay;
 using Nop.Services.Logging;
@@ -14,9 +14,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using static ZarIran.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
+using static Delsami.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Services
+namespace Delsami.Plugin.Payments.TorobPay.Services
 {
     public class TorobPayApiService : ITorobPayApiService
     {

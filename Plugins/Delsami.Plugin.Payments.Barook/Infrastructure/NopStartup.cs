@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Payments.Barook.Services;
+using Delsami.Plugin.Payments.Barook.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Payments.Barook.Infrastructure
+namespace Delsami.Plugin.Payments.Barook.Infrastructure
 {
     public class NopStartup : INopStartup
     {

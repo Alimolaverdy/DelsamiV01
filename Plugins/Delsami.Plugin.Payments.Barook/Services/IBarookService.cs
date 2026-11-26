@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payments.Barook.Models.Barook;
+﻿using Delsami.Plugin.Payments.Barook.Models.Barook;
 using Nop.Core.Domain.Customers;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Barook.Services;
+namespace Delsami.Plugin.Payments.Barook.Services;
 
 public interface IBarookService
 {

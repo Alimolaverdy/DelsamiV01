@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payments.Saman
+﻿namespace Delsami.Plugin.Payments.Saman
 {
     public static class SamanPaymentEndpoints
     {

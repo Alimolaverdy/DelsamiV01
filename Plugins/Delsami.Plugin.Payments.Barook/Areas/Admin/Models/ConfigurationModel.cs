@@ -4,23 +4,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace ZarIran.Plugin.Payments.Barook.Areas.Admin.Models
+namespace Delsami.Plugin.Payments.Barook.Areas.Admin.Models
 {
     public record ConfigurationModel : BaseNopModel
     {
-        [NopResourceDisplayName("ZarIran.Plugin.Payments.Barook.Configuration.TerminalCode")]
+        [NopResourceDisplayName("Delsami.Plugin.Payments.Barook.Configuration.TerminalCode")]
         public string TerminalCode { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Payments.Barook.Configuration.TerminalPassword")]
+        [NopResourceDisplayName("Delsami.Plugin.Payments.Barook.Configuration.TerminalPassword")]
         public string TerminalPassword { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Payments.Barook.Configuration.BaseUrl")]
+        [NopResourceDisplayName("Delsami.Plugin.Payments.Barook.Configuration.BaseUrl")]
         public string BaseUrl { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Payments.Barook.Configuration.businessServiceSlug")]
+        [NopResourceDisplayName("Delsami.Plugin.Payments.Barook.Configuration.businessServiceSlug")]
         public string businessServiceSlug { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Payments.Barook.Configuration.paymentDailyCount")]
+        [NopResourceDisplayName("Delsami.Plugin.Payments.Barook.Configuration.paymentDailyCount")]
         public int paymentDailyCount { get; set; }
 
 

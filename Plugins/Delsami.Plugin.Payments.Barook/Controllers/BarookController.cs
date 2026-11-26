@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Barook.Models.Barook;
-using ZarIran.Plugin.Payments.Barook.Services;
+﻿using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.Barook.Models.Barook;
+using Delsami.Plugin.Payments.Barook.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Services.Localization;
@@ -15,9 +15,9 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Barook.Controllers;
+namespace Delsami.Plugin.Payments.Barook.Controllers;
 
-public class BarookController : BaseNopPartsPaymentController<BarookPaymentCallback>
+public class BarookController : BaseDelsamiPaymentController<BarookPaymentCallback>
 {
     #region Fields
 

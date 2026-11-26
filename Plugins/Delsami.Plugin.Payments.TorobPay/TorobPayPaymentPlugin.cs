@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using ZarIran.Plugin.Payments.TorobPay.Infrastructures.Permissions;
-using ZarIran.Plugin.Payments.TorobPay.Services;
+using Delsami.Plugin.Payments.TorobPay.Infrastructures.Permissions;
+using Delsami.Plugin.Payments.TorobPay.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
@@ -20,10 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static ZarIran.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
-using IPaymentService = ZarIran.Plugin.Payment.Core.Services.IPaymentService;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Domain;
+using static Delsami.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
+using IPaymentService = Delsami.Plugin.Payment.Core.Services.IPaymentService;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Domain;
 
 namespace Nop.Plugin.Payments.TorobPay
 {
@@ -103,7 +103,7 @@ namespace Nop.Plugin.Payments.TorobPay
 
         public Task<ProcessPaymentRequest> GetPaymentInfoAsync(IFormCollection form) => Task.FromResult(new ProcessPaymentRequest());
 
-        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.TorobPay.Description");
+        public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.TorobPay.Description");
 
         public Type GetPublicViewComponent() => null;
 
@@ -193,7 +193,7 @@ namespace Nop.Plugin.Payments.TorobPay
                     Gateway = PaymentGateway.Torob,
                     Amount = order.OrderTotal,
                     CreatedDateTime = DateTime.UtcNow,
-                    Status = ZarIran.Plugin.Payment.Core.Enums.PaymentStatus.Initial,
+                    Status = Delsami.Plugin.Payment.Core.Enums.PaymentStatus.Initial,
                     TeminalNo = _settings.ClientId,
                     PaymentType = PaymentType.CPG
                 };
@@ -228,7 +228,7 @@ namespace Nop.Plugin.Payments.TorobPay
                 var tokenResp = await _apiService.CreatePaymentTokenAsync(req);
                 payment.UrlId = tokenResp.paymentToken;
                 order.AuthorizationTransactionCode = tokenResp.paymentToken;
-                payment.Status = ZarIran.Plugin.Payment.Core.Enums.PaymentStatus.InProgress;
+                payment.Status = Delsami.Plugin.Payment.Core.Enums.PaymentStatus.InProgress;
                 await _paymentService.UpdateAsync(payment);
                 await _orderService.UpdateOrderAsync(order);
                 _httpContextAccessor.HttpContext.Response.Redirect(tokenResp.paymentPageUrl);
@@ -305,17 +305,17 @@ namespace Nop.Plugin.Payments.TorobPay
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var torobPaySystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.TorobPay.SystemName");
-            var torobPayName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.TorobPay.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.TorobPay.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.TorobPay.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var torobPaySystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.TorobPay.SystemName");
+            var torobPayName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.TorobPay.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.TorobPay.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.TorobPay.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -337,7 +337,7 @@ namespace Nop.Plugin.Payments.TorobPay
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = torobPayName,
                 SystemName = torobPaySystemName,
@@ -348,7 +348,7 @@ namespace Nop.Plugin.Payments.TorobPay
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -357,31 +357,31 @@ namespace Nop.Plugin.Payments.TorobPay
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Payments.TorobPay.SystemName"] = "TorobPay",
-                ["ZarIran.Plugin.Payments.TorobPay.Name"] = "ZarIran TorobPay",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.SystemName"] = "TorobPayConfiguration",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.ClientId"] = "ClientId",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.ClientSecret"] = "ClientSecret",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.Username"] = "Username",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.Password"] = "Password",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.ReturnUrl"] = "ReturnUrl",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.BaseUrl"] = "BaseUrl",
-                ["ZarIran.Plugin.Payments.TorobPay.Configuration.TokenCacheMinutes"] = "TokenCacheMinutes",
-                ["ZarIran.Plugin.Payments.TorobPay.Description"] = "Torob Pay",
-                ["ZarIran.Plugin.Payments.TorobPay.MinimumAllowedAmount"] = "MinimumAllowedAmount",
-                ["ZarIran.Plugin.Payments.TorobPay.MaximumAllowedAmount"] = "MaximumAllowedAmount",
-                ["ZarIran.Plugin.Payments.TorobPay.TimeoutSeconds"] = "TimeoutSeconds",
-                ["ZarIran.Plugin.Payments.TorobPay.TimeoutSeconds"] = "TimeoutSeconds"
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Payments.TorobPay.SystemName"] = "TorobPay",
+                ["Delsami.Plugin.Payments.TorobPay.Name"] = "Delsami TorobPay",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.SystemName"] = "TorobPayConfiguration",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.ClientId"] = "ClientId",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.ClientSecret"] = "ClientSecret",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.Username"] = "Username",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.Password"] = "Password",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.ReturnUrl"] = "ReturnUrl",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.BaseUrl"] = "BaseUrl",
+                ["Delsami.Plugin.Payments.TorobPay.Configuration.TokenCacheMinutes"] = "TokenCacheMinutes",
+                ["Delsami.Plugin.Payments.TorobPay.Description"] = "Torob Pay",
+                ["Delsami.Plugin.Payments.TorobPay.MinimumAllowedAmount"] = "MinimumAllowedAmount",
+                ["Delsami.Plugin.Payments.TorobPay.MaximumAllowedAmount"] = "MaximumAllowedAmount",
+                ["Delsami.Plugin.Payments.TorobPay.TimeoutSeconds"] = "TimeoutSeconds",
+                ["Delsami.Plugin.Payments.TorobPay.TimeoutSeconds"] = "TimeoutSeconds"
             });
 
             await _permissionService.InstallPermissionsAsync(new TorobPayPermissions());
 
             if (_settingService.LoadSettingAsync<TorobPaySettings>() == null)
             {
-                var setting = new TorobPaySettings { ClientId = "92129000", ClientSecret = "mF1Ur0I7FmByxp7gQA7RTQckdUMbzNOLtQVqvbRjA9g1EpvGBWlrpL1PVCYriBfz", Username = "ZarIran.com", Password = "eIMEL5CIs9R0uiwV", BaseUrl = "https://cpg.torobpay.com", TokenCacheMinutes = 55, MinimumAllowedAmount = 200000, MaximumAllowedAmount = 1000000000, TimeoutSeconds = 5 };
+                var setting = new TorobPaySettings { ClientId = "92129000", ClientSecret = "mF1Ur0I7FmByxp7gQA7RTQckdUMbzNOLtQVqvbRjA9g1EpvGBWlrpL1PVCYriBfz", Username = "Delsami.com", Password = "eIMEL5CIs9R0uiwV", BaseUrl = "https://cpg.torobpay.com", TokenCacheMinutes = 55, MinimumAllowedAmount = 200000, MaximumAllowedAmount = 1000000000, TimeoutSeconds = 5 };
                 await _settingService.SaveSettingAsync(setting);
             }
             await base.InstallAsync();

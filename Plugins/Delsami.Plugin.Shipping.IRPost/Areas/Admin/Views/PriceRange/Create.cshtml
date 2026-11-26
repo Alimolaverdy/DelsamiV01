@@ -4,18 +4,18 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.AddNew").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.AddNew").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.List.SystemName").Text);
 }
 
 <form asp-controller="PriceRange" asp-action="Create" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.AddNew")
+            @T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.AddNew")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.BackToList")</a>
+                <a asp-action="List">@T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
@@ -25,5 +25,5 @@
             </button>
         </div>
     </div>
-    @await Html.PartialAsync("~/Plugins/ZarIran.Shipping.IRPost/Areas/Admin/Views/PriceRange/_CreateOrUpdate.cshtml", Model)
+    @await Html.PartialAsync("~/Plugins/Delsami.Shipping.IRPost/Areas/Admin/Views/PriceRange/_CreateOrUpdate.cshtml", Model)
 </form>

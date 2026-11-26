@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZarIran.Plugin.Payments.Saman.Models.Saman;
+namespace Delsami.Plugin.Payments.Saman.Models.Saman;
 
 public class TokenResult
 {

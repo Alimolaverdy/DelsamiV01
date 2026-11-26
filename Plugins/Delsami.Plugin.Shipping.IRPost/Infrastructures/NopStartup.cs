@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.IRPost.Services;
+using Delsami.Plugin.Shipping.IRPost.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.IRPost.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Infrastructures
+namespace Delsami.Plugin.Shipping.IRPost.Infrastructures
 {
     public class NopStartup : INopStartup
     {
@@ -20,7 +20,7 @@ namespace ZarIran.Plugin.Shipping.IRPost.Infrastructures
             services.AddScoped<IIRPostService, IRPostService>();
             services.AddScoped<IPriceRangeService, PriceRangeService>();
             services.AddScoped<IPriceRangeModelFactory, PriceRangeModelFactory>();
-            services.AddScoped<IZarIranPostCityMappingService, ZarIranPostCityMappingService>();
+            services.AddScoped<IDelsamiPostCityMappingService, DelsamiPostCityMappingService>();
         }
     }
 }

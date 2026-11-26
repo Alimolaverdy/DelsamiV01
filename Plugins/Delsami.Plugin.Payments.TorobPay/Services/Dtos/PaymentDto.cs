@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Services.Dtos
+namespace Delsami.Plugin.Payments.TorobPay.Services.Dtos
 {
     public class PaymentDto
     {

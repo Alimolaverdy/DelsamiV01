@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.IRPost.Domain;
+using Delsami.Plugin.Shipping.IRPost.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.IRPost.Data.Mapping.Builder
 {
     public class PriceRangeBuilder : NopEntityBuilder<PriceRange>
     {

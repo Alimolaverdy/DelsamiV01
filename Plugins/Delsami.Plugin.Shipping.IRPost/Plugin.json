@@ -1,15 +1,15 @@
 ﻿{
   "Group": "Shipping",
   "FriendlyName": "IR POST",
-  "SystemName": "ZarIran.Shipping.IRPost",
+  "SystemName": "Delsami.Shipping.IRPost",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 5,
-  "FileName": "ZarIran.Plugin.Shipping.IRPost.dll",
+  "FileName": "Delsami.Plugin.Shipping.IRPost.dll",
   "Description": "Calculating rates based on provinces",
   "DependsOnSystemNames": [
-    "ZarIran.Misc.Core",
-    "ZarIran.Shipping.Core"
+    "Delsami.Misc.Core",
+    "Delsami.Shipping.Core"
   ]
 }

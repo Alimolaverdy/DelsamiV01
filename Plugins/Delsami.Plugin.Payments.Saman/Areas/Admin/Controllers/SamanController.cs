@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payments.Saman.Areas.Admin.Models;
+using Delsami.Plugin.Payments.Saman.Areas.Admin.Models;
 using Nop.Core;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -10,7 +10,7 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Saman.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Payments.Saman.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -61,7 +61,7 @@ public class SamanController : BasePluginController
             TerminalPassword=SamanSettings.TerminalPassword,
         };
 
-        return View("~/Plugins/ZarIran.Payments.Saman/Areas/Admin/Views/Saman/Configure.cshtml", model);
+        return View("~/Plugins/Delsami.Payments.Saman/Areas/Admin/Views/Saman/Configure.cshtml", model);
     }
 
     [HttpPost]

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace ZarIran.Plugin.Payments.Barook.Models.Barook
+namespace Delsami.Plugin.Payments.Barook.Models.Barook
 {
 	public class VerifyPaymentRequest
 	{

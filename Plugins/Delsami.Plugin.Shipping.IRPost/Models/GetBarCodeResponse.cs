@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Shipping.IRPost.Models;
+﻿namespace Delsami.Plugin.Shipping.IRPost.Models;
 
 public class GetBarCodeResponse
 {

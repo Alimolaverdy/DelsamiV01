@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Misc.Core.Services;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Barook.Models.Barook;
+﻿using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core.Services;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.Barook.Models.Barook;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Services.Catalog;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Barook.Services
+namespace Delsami.Plugin.Payments.Barook.Services
 {
     public class BarookService : IBarookService
 	{
@@ -24,7 +24,7 @@ namespace ZarIran.Plugin.Payments.Barook.Services
 		private readonly IWebHelper _webHelper;
 		private readonly IPaymentApiCaller _paymentApiCaller;
 		private readonly CoreSettings _coreSettings;
-		private readonly IZarIranCustomerService  _ZarIranCustomerService;
+		private readonly IDelsamiCustomerService  _DelsamiCustomerService;
 		private readonly IOrderService _orderService;
 		private readonly IProductService  _productService;
 
@@ -37,7 +37,7 @@ namespace ZarIran.Plugin.Payments.Barook.Services
 							IPaymentApiCaller paymentApiCaller,
 							IWebHelper webHelper,
 							CoreSettings coreSettings,
-                            IZarIranCustomerService ZarIranCustomerService,
+                            IDelsamiCustomerService DelsamiCustomerService,
 							IOrderService orderService,
 							IProductService productService)
 		{
@@ -46,7 +46,7 @@ namespace ZarIran.Plugin.Payments.Barook.Services
 			_webHelper = webHelper;
 			_paymentApiCaller = paymentApiCaller;
 			_coreSettings = coreSettings;
-            _ZarIranCustomerService = ZarIranCustomerService;
+            _DelsamiCustomerService = DelsamiCustomerService;
 			_orderService = orderService;
 			_productService = productService;
 		}
@@ -65,7 +65,7 @@ namespace ZarIran.Plugin.Payments.Barook.Services
 				if (currentStoreUrl.EndsWith("/"))
 					currentStoreUrl = currentStoreUrl.Substring(0, currentStoreUrl.Length - 1);
 
-				var nationalCode = _ZarIranCustomerService.GetNationalCode(customer.CustomCustomerAttributesXML);
+				var nationalCode = _DelsamiCustomerService.GetNationalCode(customer.CustomCustomerAttributesXML);
 
 				var BasketDetailItems = await PrepareOrderItems(payment.OrderId);
 

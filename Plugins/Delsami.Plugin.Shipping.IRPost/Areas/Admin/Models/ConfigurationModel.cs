@@ -3,77 +3,77 @@ using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Areas.Admin.Models
+namespace Delsami.Plugin.Shipping.IRPost.Areas.Admin.Models
 {
     public record ConfigurationModel : BaseSearchModel
     {
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.User")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.User")]
         public string User { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.Password")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.Password")]
         public string Password { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.ContractCode")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.ContractCode")]
         public int ContractCode { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.PostNodeCode")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.PostNodeCode")]
         public string PostNodeCode { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.BaseUrl")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.BaseUrl")]
         public string BaseUrl { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringProvinces")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringProvinces")]
         public IList<string> NeighbouringProvinces { get; set; } 
         
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.EnableManualCalc")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.EnableManualCalc")]
         public bool EnableManualCalc { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringZeroToOneKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringZeroToOneKgPostPrice")]
         //public decimal NeighbouringZeroToOneKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NonNeighbouringZeroToOneKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NonNeighbouringZeroToOneKgPostPrice")]
         //public decimal NonNeighbouringZeroToOneKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringOneToTwoKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringOneToTwoKgPostPrice")]
         //public decimal NeighbouringOneToTwoKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NonNeighbouringOneToTwoKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NonNeighbouringOneToTwoKgPostPrice")]
         //public decimal NonNeighbouringOneToTwoKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringTwoToThreeKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringTwoToThreeKgPostPrice")]
         //public decimal NeighbouringTwoToThreeKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NonNeighbouringTwoToThreeKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NonNeighbouringTwoToThreeKgPostPrice")]
         //public decimal NonNeighbouringTwoToThreeKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringThreeToFiveKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringThreeToFiveKgPostPrice")]
         //public decimal NeighbouringThreeToFiveKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NonNeighbouringThreeToFiveKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NonNeighbouringThreeToFiveKgPostPrice")]
         //public decimal NonNeighbouringThreeToFiveKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringFiveToNineKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringFiveToNineKgPostPrice")]
         //public decimal NeighbouringFiveToNineKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NonNeighbouringFiveToNineKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NonNeighbouringFiveToNineKgPostPrice")]
         //public decimal NonNeighbouringFiveToNineKgPostPrice { get; set; }
 
 
-        //[NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.NeighbouringMoreThanNineKgPostPrice")]
+        //[NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.NeighbouringMoreThanNineKgPostPrice")]
         //public decimal NeighbouringMoreThanNineKgPostPrice { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.IRPost.PostShippingMethod")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.IRPost.PostShippingMethod")]
         public int ShippingMethodId { get; set; }
 
         public ConfigurationModel()

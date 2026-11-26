@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payments.TorobPay
+﻿namespace Delsami.Plugin.Payments.TorobPay
 {
     public static class TorobPayPaymentDefaults
     {

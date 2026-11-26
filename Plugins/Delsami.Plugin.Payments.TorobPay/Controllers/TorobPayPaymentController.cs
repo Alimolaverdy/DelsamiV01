@@ -1,25 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Payments.TorobPay.Services;
+using Delsami.Plugin.Payments.TorobPay.Services;
 using Nop.Services.Orders;
 using System;
 using System.Threading.Tasks;
 using Nop.Services.Logging;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payment.Core.Enums;
 using Nop.Core.Events;
 using Nop.Services.Messages;
 using Nop.Services.Localization;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Models;
 using Nop.Core.Domain.Orders;
-using static ZarIran.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
-using ZarIran.Plugin.Payments.TorobPay.Services.Dtos;
-using ZarIran.Plugin.Misc.Core;
+using static Delsami.Plugin.Payments.TorobPay.Services.Dtos.PaymentDto;
+using Delsami.Plugin.Payments.TorobPay.Services.Dtos;
+using Delsami.Plugin.Misc.Core;
 
 
-namespace ZarIran.Plugin.Payments.TorobPay.Controllers;
+namespace Delsami.Plugin.Payments.TorobPay.Controllers;
 
-public class TorobPayPaymentController : BaseNopPartsPaymentController<TorobPayResultModel>
+public class TorobPayPaymentController : BaseDelsamiPaymentController<TorobPayResultModel>
 {
     #region Fields
 

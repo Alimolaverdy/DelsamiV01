@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payments.Saman.Models.Saman;
+namespace Delsami.Plugin.Payments.Saman.Models.Saman;
 
 public class SamanCallbackResult:BasePaymentResponseModel
 {

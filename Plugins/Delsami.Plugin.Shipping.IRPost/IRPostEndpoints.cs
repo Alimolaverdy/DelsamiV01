@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Shipping.IRPost;
+﻿namespace Delsami.Plugin.Shipping.IRPost;
 
 internal class IRPostEndpoints
 {

@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Payments.Barook
+namespace Delsami.Plugin.Payments.Barook
 {
 	public class BarookSettings : ISettings
     {

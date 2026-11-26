@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Services.Dtos
+namespace Delsami.Plugin.Payments.TorobPay.Services.Dtos
 {
     public class TorobPayResultModel : BasePaymentResponseModel
     {

@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Shipping.IRPost
+namespace Delsami.Plugin.Shipping.IRPost
 {
     public class IRPostSettings : ISettings
     {

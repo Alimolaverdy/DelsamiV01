@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Payments.TorobPay.Services;
+using Delsami.Plugin.Payments.TorobPay.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Infrastructures;
+namespace Delsami.Plugin.Payments.TorobPay.Infrastructures;
 
 public class NopStartup : INopStartup
 {

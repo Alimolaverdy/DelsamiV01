@@ -1,10 +1,5 @@
-﻿using ZarIran.Plugin.Misc.Core;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Models;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Saman.Models.Saman;
-using ZarIran.Plugin.Payments.Saman.Services;
+﻿using Delsami.Plugin.Payments.Saman.Models.Saman;
+using Delsami.Plugin.Payments.Saman.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Services.Localization;
@@ -14,10 +9,15 @@ using Nop.Services.Orders;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Misc.Core;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payments.Saman.Controllers;
+namespace Delsami.Plugin.Payments.Saman.Controllers;
 
-public class SamanController : BaseNopPartsPaymentController<SamanCallbackResult>
+public class SamanController : BaseDelsamiPaymentController<SamanCallbackResult>
 {
     #region Fields
 

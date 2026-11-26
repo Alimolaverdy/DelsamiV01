@@ -4,9 +4,9 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Shipping.IRPost.PriceRange.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Shipping.IRPost.PriceRange.List.SystemName").Text);
 
     const string hideSearchBlockAttributeName = "PriceRangePage.HideSearchBlock";
 
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Shipping.IRPost.PriceRange.List")
+        @T("Delsami.Plugin.Shipping.IRPost.PriceRange.List")
     </h1>
 
     <div class="float-right">
@@ -48,25 +48,25 @@
                                                 {
                                                 new ColumnProperty(nameof(PriceRangeModel.MinWieght))
                                                 {
-                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.MinWieght").Text,
+                                                Title = T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.MinWieght").Text,
                                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                                 Width = "100"
                                                 },
                                                 new ColumnProperty(nameof(PriceRangeModel.MaxWeight))
                                                 {
-                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.MaxWeight").Text,
+                                                Title = T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.MaxWeight").Text,
                                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                                 Width = "80"
                                                 },
                                                 new ColumnProperty(nameof(PriceRangeModel.NeighbouringPrice))
                                                 {
-                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.NeighbouringPrice").Text,
+                                                Title = T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.NeighbouringPrice").Text,
                                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                                 Width = "80"
                                                 },
                                                 new ColumnProperty(nameof(PriceRangeModel.NonNeighbouringPrice))
                                                 {
-                                                Title = T("ZarIran.Plugin.Shipping.IRPost.PriceRangeModel.NonNeighbouringPrice").Text,
+                                                Title = T("Delsami.Plugin.Shipping.IRPost.PriceRangeModel.NonNeighbouringPrice").Text,
                                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                                 Width = "80"
                                                 },

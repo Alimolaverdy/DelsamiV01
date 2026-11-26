@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payments.Barook.Models.Barook
+namespace Delsami.Plugin.Payments.Barook.Models.Barook
 {
 	public class VerifyPaymentResponse : BasePaymentResponseModel
 	{

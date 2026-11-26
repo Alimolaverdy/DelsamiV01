@@ -3,14 +3,14 @@ using Nop.Plugin.Payments.TorobPay;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Controllers;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Payments.TorobPay.Areas.Admin.Models;
+using Delsami.Plugin.Payments.TorobPay.Areas.Admin.Models;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Framework;
 
-namespace ZarIran.Plugin.Payments.TorobPay.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payments.TorobPay.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -59,7 +59,7 @@ namespace ZarIran.Plugin.Payments.TorobPay.Areas.Admin.Controllers
                 TimeoutSeconds = settings.TimeoutSeconds,
             };
 
-            return View("~/Plugins/ZarIran.Payments.TorobPay/Areas/Admin/Views/TorobPay/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Payments.TorobPay/Areas/Admin/Views/TorobPay/Configure.cshtml", model);
         }
 
 

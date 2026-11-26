@@ -4,7 +4,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace ZarIran.Plugin.Payments.TorobPay.Services
+//namespace Delsami.Plugin.Payments.TorobPay.Services
 //{
 //    public interface ITorobPayAuthService
 //    {

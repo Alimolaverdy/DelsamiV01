@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Misc.Core.Services.ApiCaller;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Saman.Models.Saman;
+﻿using Delsami.Plugin.Misc.Core.Services.ApiCaller;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.Saman.Models.Saman;
 using Nop.Core;
 using Nop.Services.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Saman.Services
+namespace Delsami.Plugin.Payments.Saman.Services
 {
     public class SamanService : ISamanService
     {

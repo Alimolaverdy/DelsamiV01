@@ -1,18 +1,18 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.IRPost.Domain;
+using Delsami.Plugin.Shipping.IRPost.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.IRPost.Data.Mapping.Builder
 {
-    internal class StateProvincePostStateBuilder : NopEntityBuilder<ZarIranPostCityMapping>
+    internal class StateProvincePostStateBuilder : NopEntityBuilder<DelsamiPostCityMapping>
     {
         public override void MapEntity(CreateTableExpressionBuilder table)
         {
             table
-                .WithColumn(nameof(ZarIranPostCityMapping.StateProvinceId)).AsInt32().NotNullable()
-                .WithColumn(nameof(ZarIranPostCityMapping.Name)).AsString().NotNullable()
-                .WithColumn(nameof(ZarIranPostCityMapping.ZarIranCityId)).AsInt32().NotNullable()
-                .WithColumn(nameof(ZarIranPostCityMapping.PostCityId)).AsInt32().NotNullable();
+                .WithColumn(nameof(DelsamiPostCityMapping.StateProvinceId)).AsInt32().NotNullable()
+                .WithColumn(nameof(DelsamiPostCityMapping.Name)).AsString().NotNullable()
+                .WithColumn(nameof(DelsamiPostCityMapping.DelsamiCityId)).AsInt32().NotNullable()
+                .WithColumn(nameof(DelsamiPostCityMapping.PostCityId)).AsInt32().NotNullable();
         }
     }
 }

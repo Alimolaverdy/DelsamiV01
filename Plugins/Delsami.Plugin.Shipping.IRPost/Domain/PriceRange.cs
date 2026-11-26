@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Shipping.IRPost.Domain
+namespace Delsami.Plugin.Shipping.IRPost.Domain
 {
     public class PriceRange : BaseEntity
     {
