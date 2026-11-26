@@ -1,5 +1,5 @@
 ﻿@using Nop.Web.Components
-@using ZarIran.Plugin.Widgets.AddressLocation
+@using Delsami.Plugin.Widgets.AddressLocation
 
 @model AddressModel
 @inject AddressLocationSettings addressLocationSettings
@@ -10,7 +10,7 @@
 }
 
 
-<link href="/plugins/ZarIran.widgets.addresslocation/contents/style.css" rel="stylesheet" />
+<link href="/plugins/Delsami.widgets.addresslocation/contents/style.css" rel="stylesheet" />
 
 
 
@@ -39,7 +39,7 @@
     </div>
 
     <div class="address-input-container">
-        <input type="text" name="search-address" class="form-control address-input" placeholder="@T("ZarIran.Plugin.Widgets.AddressLocation.SearchTermPlaceHolder")" />
+        <input type="text" name="search-address" class="form-control address-input" placeholder="@T("Delsami.Plugin.Widgets.AddressLocation.SearchTermPlaceHolder")" />
         <div class="loader"></div>
     </div>
 
@@ -50,15 +50,15 @@
 <div id="map" class="al-map-container" style="">
     <div class="find-my-location-container">
         <button id="find-my-location" type="button">
-            <img src="/icons/ZarIran-icon-pack/GPS.svg" />
+            <img src="/icons/Delsami-icon-pack/GPS.svg" />
         </button>
     </div>
 </div>
 
-@if (addressLocationSettings.MapType == ZarIran.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
+@if (addressLocationSettings.MapType == Delsami.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
 {
-    <link href="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
-    <script src="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
+    <link href="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
+    <script src="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
 }
 else
 {
@@ -138,7 +138,7 @@ else
                 [24.5, 44.0],
                 [40.5, 63.5]
             );
-    @if (addressLocationSettings.MapType == ZarIran.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
+    @if (addressLocationSettings.MapType == Delsami.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
     {
                                                                                                         <text>
                                                                                                                         map = L.map('map').setView([lat, lng], zoomSize)
@@ -381,7 +381,7 @@ else
             }
             else
             {
-                alert("@T("ZarIran.Plugin.Widgets.AddressLocation.PleaseSelectLocation")")
+                alert("@T("Delsami.Plugin.Widgets.AddressLocation.PleaseSelectLocation")")
             }
         });
 
@@ -399,7 +399,7 @@ else
             //             }
             //         },
             //         error: function (xhr, status, error) {
-            //             alert('@T("ZarIran.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
+            //             alert('@T("Delsami.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
             //         }
             //     });
             // });
@@ -500,7 +500,7 @@ else
                         $("#ShippingNewAddress_City").val(cityname)
                 },
                 error: function (xhr, status, error) {
-                    // alert('@T("ZarIran.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
+                    // alert('@T("Delsami.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
                 }
             });
         }
@@ -513,7 +513,7 @@ else
 <input class="address-id" asp-for="Id" type="hidden" />
 <div class="edit-address" style="display:none">
     <div id="show-map-container" style="display:none">
-        <button id="show-map" type="button" class="button-1">@T("ZarIran.Plugin.Widgets.AddressLocation.Button.ShowMap")</button>
+        <button id="show-map" type="button" class="button-1">@T("Delsami.Plugin.Widgets.AddressLocation.Button.ShowMap")</button>
     </div>
     <div class="inputs">
         <label asp-for="FirstName" asp-postfix=":"></label>

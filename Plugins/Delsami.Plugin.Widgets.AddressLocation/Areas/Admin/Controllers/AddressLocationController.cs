@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.Widgets.AddressLocation.Areas.Admin.Models;
+using Delsami.Plugin.Widgets.AddressLocation.Areas.Admin.Models;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Customers;
@@ -14,7 +14,7 @@ using Nop.Web.Framework.Mvc.Filters;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Areas.Admin.Controllers
+namespace Delsami.Plugin.Widgets.AddressLocation.Areas.Admin.Controllers
 {
     [AutoValidateAntiforgeryToken]
     [AuthorizeAdmin]
@@ -87,7 +87,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Areas.Admin.Controllers
             model.NeshanServiceTimeoutAsMilliseconds = _addressLocationSettings.NeshanServiceTimeoutAsMilliseconds;
             model.MapType = _addressLocationSettings.MapType;
 
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Areas/Admin/Views/AddressLocation/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Areas/Admin/Views/AddressLocation/Configure.cshtml", model);
         }
 
         [HttpPost]
@@ -108,7 +108,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Areas.Admin.Controllers
 
                 _settingService.SaveSetting(_addressLocationSettings);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.SettingsSavedSuccessfully"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.SettingsSavedSuccessfully"));
 
                 return RedirectToAction("Configure", "AddressLocation");
             }
@@ -120,9 +120,9 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Areas.Admin.Controllers
                                                                                                 Value = addAttr.Id.ToString(),
                                                                                             }).ToList();
 
-            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Settings.Error"));
+            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Settings.Error"));
 
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Areas/Admin/Views/AddressLocation/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Areas/Admin/Views/AddressLocation/Configure.cshtml", model);
         }
 
 

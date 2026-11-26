@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Widgets.AddressLocation.Enums;
+﻿using Delsami.Plugin.Widgets.AddressLocation.Enums;
 using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation
+namespace Delsami.Plugin.Widgets.AddressLocation
 {
     public class AddressLocationSettings : ISettings
     {

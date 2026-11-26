@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
+namespace Delsami.Plugin.Widgets.AddressLocation.Infrastructure
 {
     public class AddressLocationViewExapnder : IViewLocationExpander
     {
@@ -13,12 +13,12 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
         {
             if (context.AreaName == "Admin" && context.ViewName.Equals("EditorTemplates/Address", StringComparison.InvariantCultureIgnoreCase))
             {
-                viewLocations = new string[] { $"~/Plugins/ZarIran.Widgets.AddressLocation/Areas/Admin/Views/Shared/EditorTemplates/Address.cshtml" }.Concat(viewLocations);
+                viewLocations = new string[] { $"~/Plugins/Delsami.Widgets.AddressLocation/Areas/Admin/Views/Shared/EditorTemplates/Address.cshtml" }.Concat(viewLocations);
             }
 
             if (context.Values.TryGetValue(THEME_KEY, out string theme2) && context.AreaName == null && context.ViewName.Equals("_CreateOrUpdateAddress", StringComparison.InvariantCultureIgnoreCase))
             {
-                viewLocations = new string[] { $"~/Plugins/ZarIran.Widgets.AddressLocation/Views/Shared/_CreateOrUpdateAddress.cshtml" }.Concat(viewLocations);
+                viewLocations = new string[] { $"~/Plugins/Delsami.Widgets.AddressLocation/Views/Shared/_CreateOrUpdateAddress.cshtml" }.Concat(viewLocations);
             }
 
             return viewLocations;

@@ -6,11 +6,11 @@
 
 
 <div id="map-billing" class="al-map-container" style="height: 500px;"></div>
-@if (addressLocationSettings.MapType == ZarIran.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
+@if (addressLocationSettings.MapType == Delsami.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
 {
-    <link href="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
+    <link href="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
 
-    <script src="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
+    <script src="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
     <script asp-location="Footer">
         $(document).ready(function () {
         var map;

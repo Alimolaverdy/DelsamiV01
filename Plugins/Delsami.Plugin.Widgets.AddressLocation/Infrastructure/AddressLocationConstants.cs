@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
+﻿namespace Delsami.Plugin.Widgets.AddressLocation.Infrastructure
 {
     public class AddressLocationConstants
     {

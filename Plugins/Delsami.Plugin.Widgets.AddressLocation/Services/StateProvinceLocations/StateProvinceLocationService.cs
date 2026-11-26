@@ -1,9 +1,9 @@
-﻿using ZarIran.Plugin.Widgets.AddressLocation.Domain;
+﻿using Delsami.Plugin.Widgets.AddressLocation.Domain;
 using Nop.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations
+namespace Delsami.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations
 {
     public class StateProvinceLocationService : IStateProvinceLocationService
     {

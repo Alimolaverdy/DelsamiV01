@@ -1,4 +1,4 @@
-﻿@model ZarIranCustomerAddressEditModel
+﻿@model DelsamiCustomerAddressEditModel
 
 @{
     Layout = "_ColumnsTwo";
@@ -15,7 +15,7 @@
 {
     @await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = CustomerNavigationEnum.Addresses })
 }
-<form asp-route="ZarIranOnePageCheckoutAddAddress" method="post" id="AddAddress">
+<form asp-route="DelsamiOnePageCheckoutAddAddress" method="post" id="AddAddress">
     <input type="hidden" name="ReturnToCheckout" value="@((bool?)ViewData["ReturnToCheckout"] == true ? "true" : "false")" />
     <div class="page account-page address-edit-page">
         <div class="page-title">

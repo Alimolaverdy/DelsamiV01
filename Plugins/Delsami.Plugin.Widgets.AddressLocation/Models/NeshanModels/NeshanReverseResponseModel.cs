@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Widgets.AddressLocation.Models.NeshanModels
+﻿namespace Delsami.Plugin.Widgets.AddressLocation.Models.NeshanModels
 {
     internal class NeshanReverseResponseModel
     {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Widgets.AddressLocation.Domain;
-using ZarIran.Plugin.Widgets.AddressLocation.Models.Addresses;
-using ZarIran.Plugin.Widgets.AddressLocation.Models.NeshanModels;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
-using ZarIran.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Widgets.AddressLocation.Domain;
+using Delsami.Plugin.Widgets.AddressLocation.Models.Addresses;
+using Delsami.Plugin.Widgets.AddressLocation.Models.NeshanModels;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
+using Delsami.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Services.Common;
@@ -22,9 +22,9 @@ using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Services.CityService;
+using Delsami.Plugin.Misc.Core.Services.CityService;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
+namespace Delsami.Plugin.Widgets.AddressLocation.Controllers
 {
     [AutoValidateAntiforgeryToken]
     public class AddressLocationController : BasePluginController
@@ -156,7 +156,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            var model = new ZarIranCustomerAddressEditModel();
+            var model = new DelsamiCustomerAddressEditModel();
             await _addressModelFactory.PrepareAddressModelAsync(model.Address,
                 address: null,
                 excludeProperties: false,
@@ -172,11 +172,11 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
             model.Address.LastName = currentCustomer.LastName;
             model.Address.PhoneNumber = currentCustomer.Username;
 
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Views/AddressLocation/AddressAdd.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Views/AddressLocation/AddressAdd.cshtml", model);
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> AddressAdd(ZarIranCustomerAddressEditModel model, IFormCollection form, bool returnToCheckout)
+        public virtual async Task<IActionResult> AddressAdd(DelsamiCustomerAddressEditModel model, IFormCollection form, bool returnToCheckout)
         {
             var customer = await _workContext.GetCurrentCustomerAsync();
             if (!await _customerService.IsRegisteredAsync(customer))
@@ -225,7 +225,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
                 if (!returnToCheckout)
                     return RedirectToAction("Addresses", "Customer");
                 else
-                    return RedirectToAction("OnePageCheckout", "ZarIranCheckout", new { t = GeneralHelper.GenerateUrlSafeString() });
+                    return RedirectToAction("OnePageCheckout", "DelsamiCheckout", new { t = GeneralHelper.GenerateUrlSafeString() });
 
             }
 
@@ -240,7 +240,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
             ViewData["ReturnToCheckout"] = returnToCheckout;
             ViewData["SaveMap"] = true;
 
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Views/AddressLocation/AddressAdd.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Views/AddressLocation/AddressAdd.cshtml", model);
         }
 
         public virtual async Task<IActionResult> AddressEdit(int addressId)
@@ -255,7 +255,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
                 //address is not found
                 return RedirectToRoute("CustomerAddresses");
 
-            var model = new ZarIranCustomerAddressEditModel();
+            var model = new DelsamiCustomerAddressEditModel();
             await _addressModelFactory.PrepareAddressModelAsync(model.Address,
                 address: address,
                 excludeProperties: false,
@@ -272,11 +272,11 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
                 if (city is not null)
                     model.Address.City = city.Name;
             }
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Views/AddressLocation/AddressEdit.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Views/AddressLocation/AddressEdit.cshtml", model);
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> AddressEdit(ZarIranCustomerAddressEditModel model, IFormCollection form)
+        public virtual async Task<IActionResult> AddressEdit(DelsamiCustomerAddressEditModel model, IFormCollection form)
         {
             var customer = await _workContext.GetCurrentCustomerAsync();
             if (!await _customerService.IsRegisteredAsync(customer))
@@ -344,7 +344,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Controllers
                 loadCountries: async () => await _countryService.GetAllCountriesAsync((await _workContext.GetWorkingLanguageAsync()).Id),
                 overrideAttributesXml: customAttributes);
 
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Views/AddressLocation/AddressEdit.cshtml", model);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Views/AddressLocation/AddressEdit.cshtml", model);
         }
 
         public async Task<IActionResult> GetCitiesByStateProvinceId(int stateProvinceId)

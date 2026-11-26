@@ -1,11 +1,11 @@
 ﻿using FluentMigrator;
-using ZarIran.Plugin.Widgets.AddressLocation.Domain;
+using Delsami.Plugin.Widgets.AddressLocation.Domain;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Data
+namespace Delsami.Plugin.Widgets.AddressLocation.Data
 {
-    [NopMigration("2025/07/07 09:38:00", "ZarIran.Plugin.Widgets.AddressLocation base schema")]
+    [NopMigration("2026/11/26 09:38:00", "Delsami.Plugin.Widgets.AddressLocation base schema")]
     public class SchemaMigration : AutoReversingMigration
     {
         public override void Up()

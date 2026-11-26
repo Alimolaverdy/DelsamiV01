@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Widgets.AddressLocation.Infrastructure;
+using Delsami.Plugin.Widgets.AddressLocation.Infrastructure;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Data;
 using Nop.Services.Common;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Services
+namespace Delsami.Plugin.Widgets.AddressLocation.Services
 {
     public class ALAddressAttributeService : AddressAttributeService, IALAddressAttributeService
     {

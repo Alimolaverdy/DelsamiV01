@@ -1,6 +1,6 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Domain
+namespace Delsami.Plugin.Widgets.AddressLocation.Domain
 {
     public class AddressCity : BaseEntity
     {

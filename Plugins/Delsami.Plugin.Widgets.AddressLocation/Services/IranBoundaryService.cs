@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Services
+namespace Delsami.Plugin.Widgets.AddressLocation.Services
 {
     public class IranBoundaryService
     {
@@ -17,7 +17,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Services
         public IranBoundaryService(INopFileProvider fileProvider)
         {
             var filePath = fileProvider.MapPath(
-                "~/Plugins/ZarIran.Widgets.AddressLocation/Contents/iran.geojson");
+                "~/Plugins/Delsami.Widgets.AddressLocation/Contents/iran.geojson");
 
             if (!File.Exists(filePath))
                 throw new FileNotFoundException("Iran boundary file was not found.", filePath);

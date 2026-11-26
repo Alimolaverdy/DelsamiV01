@@ -1,7 +1,7 @@
 ﻿@model Nop.Web.Areas.Admin.Models.Common.AddressModel
 
 @using Nop.Web.Components
-@using ZarIran.Plugin.Widgets.AddressLocation
+@using Delsami.Plugin.Widgets.AddressLocation
 
 @inject AddressLocationSettings addressLocationSettings
 
@@ -42,17 +42,17 @@
 
 
 <div class="button-container">
-    <button id="find-my-location" type="button">@T("ZarIran.Plugin.Widgets.AddressLocation.Button.FindMyLocation")</button>
+    <button id="find-my-location" type="button">@T("Delsami.Plugin.Widgets.AddressLocation.Button.FindMyLocation")</button>
 </div>
 
 <div id="map" class="al-map-container" style="height: 500px;">
 </div>
 
 
-@if(addressLocationSettings.MapType == ZarIran.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
+@if(addressLocationSettings.MapType == Delsami.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
 {
-    <link href="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
-    <script src="/plugins/ZarIran.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
+    <link href="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.css" rel="stylesheet" />
+    <script src="/plugins/Delsami.widgets.addresslocation/contents/Leaflet/leaflet.js"></script>
 }
 else
 {
@@ -135,7 +135,7 @@ else
                 var lat = !lat || lat === "" ? defaultLat : lat;
                 var lng = !lng || lng === "" ? defaultLng : lng;
 
-                @if(addressLocationSettings.MapType == ZarIran.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
+                @if(addressLocationSettings.MapType == Delsami.Plugin.Widgets.AddressLocation.Enums.MapType.OpenStreetMap)
                 {
                     <text>
                     map = L.map('map')
@@ -262,7 +262,7 @@ else
                     }
                 },
                 error: function (xhr, status, error) {
-                    // alert('@T("ZarIran.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
+                    // alert('@T("Delsami.Plugin.Widgets.AddressLocation.InvalidStateProvince")');
                 }
             });
         }

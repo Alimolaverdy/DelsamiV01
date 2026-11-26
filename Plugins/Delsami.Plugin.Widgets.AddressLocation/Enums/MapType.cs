@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Widgets.AddressLocation.Enums
+﻿namespace Delsami.Plugin.Widgets.AddressLocation.Enums
 {
     public enum MapType
     {

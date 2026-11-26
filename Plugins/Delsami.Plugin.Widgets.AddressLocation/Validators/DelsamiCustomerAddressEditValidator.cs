@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ZarIran.Plugin.Widgets.AddressLocation.Models.Addresses;
+using Delsami.Plugin.Widgets.AddressLocation.Models.Addresses;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Services.Directory;
@@ -7,11 +7,11 @@ using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
 using System.Linq;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Validators
+namespace Delsami.Plugin.Widgets.AddressLocation.Validators
 {
-    public class ZarIranCustomerAddressEditValidator : AbstractValidator<ZarIranCustomerAddressEditModel>
+    public class DelsamiCustomerAddressEditValidator : AbstractValidator<DelsamiCustomerAddressEditModel>
     {
-        public ZarIranCustomerAddressEditValidator(ILocalizationService localizationService,
+        public DelsamiCustomerAddressEditValidator(ILocalizationService localizationService,
             IStateProvinceService stateProvinceService,
             AddressSettings addressSettings,
             CustomerSettings customerSettings)

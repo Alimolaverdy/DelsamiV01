@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
+namespace Delsami.Plugin.Widgets.AddressLocation.Infrastructure
 {
     public class RouteProvider : IRouteProvider
     {
@@ -10,12 +10,12 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
 
         public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
         {
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranAddressLocationAddAddress",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiAddressLocationAddAddress",
                 pattern: $"/customer/addressadd",
                 defaults: new { controller = "AddressLocation", action = "AddressAdd" }
             );
 
-            endpointRouteBuilder.MapControllerRoute(name: "ZarIranAddressLocationEditAddress",
+            endpointRouteBuilder.MapControllerRoute(name: "DelsamiAddressLocationEditAddress",
                 pattern: $"/customer/addressedit/{{addressId:min(0)}}",
                 defaults: new { controller = "AddressLocation", action = "AddressEdit" }
             );

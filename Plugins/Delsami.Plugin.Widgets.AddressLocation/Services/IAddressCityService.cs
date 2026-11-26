@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Widgets.AddressLocation.Domain;
+﻿using Delsami.Plugin.Widgets.AddressLocation.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Services
+namespace Delsami.Plugin.Widgets.AddressLocation.Services
 {
     public interface IAddressCityService
     {

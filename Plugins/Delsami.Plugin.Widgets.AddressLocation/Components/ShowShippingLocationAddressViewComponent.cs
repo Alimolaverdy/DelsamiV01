@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Nop.Web.Framework.Components;
 using Nop.Services.Configuration;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Components
+namespace Delsami.Plugin.Widgets.AddressLocation.Components
 {
     public class ShowShippingLocationAddressViewComponent : NopViewComponent
     {
@@ -17,7 +17,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Components
 
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
-            return View("~/Plugins/ZarIran.Widgets.AddressLocation/Views/ShowShippingLocationAddress.cshtml", additionalData);
+            return View("~/Plugins/Delsami.Widgets.AddressLocation/Views/ShowShippingLocationAddress.cshtml", additionalData);
         }
 
     }

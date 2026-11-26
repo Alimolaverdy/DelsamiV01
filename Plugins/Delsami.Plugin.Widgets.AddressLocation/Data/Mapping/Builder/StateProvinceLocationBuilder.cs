@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Widgets.AddressLocation.Domain;
+using Delsami.Plugin.Widgets.AddressLocation.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Data.Mapping.Builder
+namespace Delsami.Plugin.Widgets.AddressLocation.Data.Mapping.Builder
 {
     public class StateProvinceLocationBuilder : NopEntityBuilder<StateProvinceLocation>
     {

@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
-using ZarIran.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations;
-using ZarIran.Plugin.Widgets.AddressLocation.Validators;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
+using Delsami.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations;
+using Delsami.Plugin.Widgets.AddressLocation.Validators;
 using Nop.Core.Infrastructure;
 using Nop.Services.Common;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
+namespace Delsami.Plugin.Widgets.AddressLocation.Infrastructure
 {
     public class NopStartup : INopStartup
     {
@@ -43,7 +43,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation.Infrastructure
                 options.ViewLocationExpanders.Add(new AddressLocationViewExapnder());
             });
 
-            services.AddValidatorsFromAssemblyContaining<ZarIranCustomerAddressEditValidator>();
+            services.AddValidatorsFromAssemblyContaining<DelsamiCustomerAddressEditValidator>();
         }
 
         /// <summary>

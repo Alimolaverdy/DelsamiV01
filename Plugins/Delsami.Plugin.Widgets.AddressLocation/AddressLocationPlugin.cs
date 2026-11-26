@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Widgets.AddressLocation.Components;
-using ZarIran.Plugin.Widgets.AddressLocation.Infrastructure;
-using ZarIran.Plugin.Widgets.AddressLocation.Services;
+using Delsami.Plugin.Widgets.AddressLocation.Components;
+using Delsami.Plugin.Widgets.AddressLocation.Infrastructure;
+using Delsami.Plugin.Widgets.AddressLocation.Services;
 using Nop.Core;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
@@ -14,7 +14,7 @@ using Nop.Services.Security;
 using Nop.Web.Framework.Infrastructure;
 using Nop.Web.Framework.Menu;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation
+namespace Delsami.Plugin.Widgets.AddressLocation
 {
     public class AddressLocationPlugin : BasePlugin, IWidgetPlugin, IAdminMenuPlugin
     {
@@ -97,25 +97,25 @@ namespace ZarIran.Plugin.Widgets.AddressLocation
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "Zar Iran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Button.FindMyLocation"] = "Find My Location",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.LatitudeAddressAttributeId"] = "Address attribute for latitude",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.LongitudeAddressAttributeId"] = "Address attribute for longitude",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.CityAddressAttributeId"] = "Address attribute for city",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.MainAddressAttributeId"] = "Address attribute for main address",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.NeshanApiKey"] = "Neshan api key",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Name"] = "AddressLocation",
-                ["ZarIran.Plugin.Widgets.AddressLocation.SystemName"] = "AddressLocation",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Widgets.AddressLocation.Configuration.SystemName"] = "AddressLocationConfiguration",
-                ["ZarIran.Plugin.Widgets.AddressLocation.LocateByState"] = "LocateByState",
-                ["ZarIran.Plugin.Widgets.AddressLocation.InvalidStateProvince"] = "InvalidStateProvince",
-                ["ZarIran.Plugin.Widgets.AddressLocation.SearchTermTitle"] = "SearchTermTitle",
-                ["ZarIran.Plugin.Widgets.AddressLocation.SearchTermPlaceHolder"] = "SearchTermPlaceHolder"
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Widgets.AddressLocation.Button.FindMyLocation"] = "Find My Location",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.LatitudeAddressAttributeId"] = "Address attribute for latitude",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.LongitudeAddressAttributeId"] = "Address attribute for longitude",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.CityAddressAttributeId"] = "Address attribute for city",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.MainAddressAttributeId"] = "Address attribute for main address",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.NeshanApiKey"] = "Neshan api key",
+                ["Delsami.Plugin.Widgets.AddressLocation.Name"] = "AddressLocation",
+                ["Delsami.Plugin.Widgets.AddressLocation.SystemName"] = "AddressLocation",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Widgets.AddressLocation.Configuration.SystemName"] = "AddressLocationConfiguration",
+                ["Delsami.Plugin.Widgets.AddressLocation.LocateByState"] = "LocateByState",
+                ["Delsami.Plugin.Widgets.AddressLocation.InvalidStateProvince"] = "InvalidStateProvince",
+                ["Delsami.Plugin.Widgets.AddressLocation.SearchTermTitle"] = "SearchTermTitle",
+                ["Delsami.Plugin.Widgets.AddressLocation.SearchTermPlaceHolder"] = "SearchTermPlaceHolder"
             });
 
             var latAddressAttribute = await _aLAddressAttributeService.GetAddressAttributeByNameAsync(AddressLocationConstants.LATITUDE_NAME);
@@ -151,7 +151,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation
             await _settingService.DeleteSettingAsync<AddressLocationSettings>();
 
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Widgets.AddressLocation");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Widgets.AddressLocation");
 
             await base.UninstallAsync();
         }
@@ -162,17 +162,17 @@ namespace ZarIran.Plugin.Widgets.AddressLocation
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var carInfoSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Widgets.AddressLocation.SystemName");
-            var carInfoName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Widgets.AddressLocation.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Widgets.AddressLocation.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Widgets.AddressLocation.Configuration.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var carInfoSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Widgets.AddressLocation.SystemName");
+            var carInfoName = await _localizationService.GetResourceAsync("Delsami.Plugin.Widgets.AddressLocation.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Widgets.AddressLocation.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Widgets.AddressLocation.Configuration.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -193,7 +193,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation
                 }
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = carInfoName,
                 SystemName = carInfoSystemName,
@@ -203,7 +203,7 @@ namespace ZarIran.Plugin.Widgets.AddressLocation
             });
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }

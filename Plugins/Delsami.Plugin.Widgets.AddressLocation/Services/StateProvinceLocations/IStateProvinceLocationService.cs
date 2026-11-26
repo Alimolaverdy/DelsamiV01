@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using ZarIran.Plugin.Widgets.AddressLocation.Domain;
+using Delsami.Plugin.Widgets.AddressLocation.Domain;
 
-namespace ZarIran.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations
+namespace Delsami.Plugin.Widgets.AddressLocation.Services.StateProvinceLocations
 {
     public interface IStateProvinceLocationService
     {
