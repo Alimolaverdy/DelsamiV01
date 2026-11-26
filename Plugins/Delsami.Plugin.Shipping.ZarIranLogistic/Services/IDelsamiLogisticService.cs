@@ -3,9 +3,9 @@ using Nop.Services.Shipping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Services
 {
-    public interface IZarIranLogisticService
+    public interface IDelsamiLogisticService
     {
         Task<IList<ShippingOption>> PrepareShippingOptionsAsync(GetShippingOptionRequest getShippingOptionRequest);
     }

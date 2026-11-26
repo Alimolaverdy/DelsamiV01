@@ -24,8 +24,8 @@
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
     <div class="header-links-wrapper zar-header-row np-container">
         <div class="zar-header-tools">
-            <button type="button" class="zar-icon-button zar-menu-toggle" aria-label="باز کردن دسته‌بندی‌ها" aria-controls="zar-navigation" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#menu")"></use></svg></button>
-            <button type="button" class="zar-icon-button zar-search-toggle" aria-label="جست‌وجوی محصولات" aria-controls="zar-search-panel" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/zariran/icons.svg#search")"></use></svg></button>
+            <button type="button" class="zar-icon-button zar-menu-toggle" aria-label="باز کردن دسته‌بندی‌ها" aria-controls="zar-navigation" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/Delsami/icons.svg#menu")"></use></svg></button>
+            <button type="button" class="zar-icon-button zar-search-toggle" aria-label="جست‌وجوی محصولات" aria-controls="zar-search-panel" aria-expanded="false"><svg class="zar-icon" aria-hidden="true"><use href="@Url.Content("~/Themes/Traction/Content/Delsami/icons.svg#search")"></use></svg></button>
             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
         </div>
         @await Html.PartialAsync("_ZarBrand")

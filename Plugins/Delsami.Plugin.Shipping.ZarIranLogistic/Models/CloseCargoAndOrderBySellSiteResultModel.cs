@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Models
+﻿namespace Delsami.Plugin.Shipping.DelsamiLogistic.Models
 {
     public class CloseCargoAndOrderBySellSiteResultModel
     {

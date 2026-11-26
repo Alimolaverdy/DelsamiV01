@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Infrastructures.Permissions;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Infrastructures.Permissions;
 using Nop.Services.Configuration;
 using Nop.Services.Security;
 using Nop.Services.Shipping;
 using Nop.Web.Areas.Admin.Controllers;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Models;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Areas.Admin.Models;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Controllers
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Areas.Admin.Controllers
 {
-    public class ZarIranLogisticController : BaseAdminController
+    public class DelsamiLogisticController : BaseAdminController
     {
         #region Fields
         private readonly IPermissionService _permissionService;
@@ -24,7 +24,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Controllers
 
         #region Ctor
 
-        public ZarIranLogisticController(IPermissionService permissionService,
+        public DelsamiLogisticController(IPermissionService permissionService,
                                           ISettingService settingService,
                                           ILocalizationService localizationService,
                                           INotificationService notificationService,
@@ -42,10 +42,10 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Controllers
         #region Methods
         public async Task<IActionResult> Configure()
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranLogisticPermission.ManageZarIranLogistic))
+            if (!await _permissionService.AuthorizeAsync(DelsamiLogisticPermission.ManageDelsamiLogistic))
                 return await AccessDeniedDataTablesJson();
 
-            var settings = await _settingService.LoadSettingAsync<ZarIranLogisticSettings>();
+            var settings = await _settingService.LoadSettingAsync<DelsamiLogisticSettings>();
             var model = new ConfigurationModel
             {
                 ShippingMethodId = settings.ShippingMethodId,
@@ -66,17 +66,17 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Controllers
             foreach (var sm in await _shippingService.GetAllShippingMethodsAsync())
                 model.AvailableShippingMethods.Add(new SelectListItem { Text = sm.Name, Value = sm.Id.ToString() });
 
-            return View("~/Plugins/ZarIran.Shipping.ZarIranLogistic/Areas/Admin/Views/ZarIranLogistic/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.DelsamiLogistic/Areas/Admin/Views/DelsamiLogistic/Configure.cshtml", model);
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Configure(ConfigurationModel model)
         {
-            if (!await _permissionService.AuthorizeAsync(ZarIranLogisticPermission.ManageZarIranLogistic))
+            if (!await _permissionService.AuthorizeAsync(DelsamiLogisticPermission.ManageDelsamiLogistic))
                 return await AccessDeniedDataTablesJson();
 
-            var settings = await _settingService.LoadSettingAsync<ZarIranLogisticSettings>();
+            var settings = await _settingService.LoadSettingAsync<DelsamiLogisticSettings>();
 
             settings.ShippingMethodId = model.ShippingMethodId;
             settings.PickupTruckShippingMethodId = model.PickupTruckShippingMethodId;

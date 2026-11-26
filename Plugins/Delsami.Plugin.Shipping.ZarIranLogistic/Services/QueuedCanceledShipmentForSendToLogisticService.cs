@@ -1,11 +1,11 @@
-﻿using ZarIran.Plugin.Shipping.ZarIranLogistic.Domain;
+﻿using Delsami.Plugin.Shipping.DelsamiLogistic.Domain;
 using Nop.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Services
 {
     public class QueuedCanceledShipmentForSendToLogisticService : IQueuedCanceledShipmentForSendToLogisticService
     {

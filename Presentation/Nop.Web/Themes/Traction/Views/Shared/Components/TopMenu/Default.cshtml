@@ -27,7 +27,7 @@
         };
         @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
     }
-    <li><a href="@Url.RouteUrl("ZarIran.Plugin.Misc.GoldPurchase.Buy")">خرید و فروش طلای آنلاین</a></li>
+    <li><a href="@Url.RouteUrl("Delsami.Plugin.Misc.GoldPurchase.Buy")">خرید و فروش طلای آنلاین</a></li>
     @foreach (var topic in Model.Topics)
     {
         <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>

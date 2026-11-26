@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Domain
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Domain
 {
     public class QueuedCanceledShipmentForSendToLogistic : BaseEntity
     {

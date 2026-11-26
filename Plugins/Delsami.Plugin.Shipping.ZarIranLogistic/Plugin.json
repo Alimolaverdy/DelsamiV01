@@ -1,14 +1,14 @@
 ﻿{
   "Group": "Shipping",
-  "FriendlyName": "ZarIran Logistic",
-  "SystemName": "ZarIran.Shipping.ZarIranLogistic",
+  "FriendlyName": "Delsami Logistic",
+  "SystemName": "Delsami.Shipping.DelsamiLogistic",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 2,
-  "FileName": "ZarIran.Plugin.Shipping.ZarIranLogistic.dll",
-  "Description": "Fix Rates OF ZarIran Logistic",
+  "FileName": "Delsami.Plugin.Shipping.DelsamiLogistic.dll",
+  "Description": "Fix Rates OF Delsami Logistic",
   "DependsOnSystemNames": [
-    "ZarIran.Misc.Core"
+    "Delsami.Misc.Core"
   ]
 }

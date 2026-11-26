@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Domain;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Data.Mapping.Builder
 {
     internal class QueuedCanceledShipmentForSendToLogisticBuilder : NopEntityBuilder<QueuedCanceledShipmentForSendToLogistic>
     {

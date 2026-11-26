@@ -1,8 +1,8 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic
+namespace Delsami.Plugin.Shipping.DelsamiLogistic
 {
-    public class ZarIranLogisticSettings : ISettings
+    public class DelsamiLogisticSettings : ISettings
     {
 
         public int ShippingMethodId { get; set; }

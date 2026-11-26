@@ -7,9 +7,9 @@ using Nop.Services.Shipping;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Services
 {
-    public class ZarIranLogisticService : IZarIranLogisticService
+    public class DelsamiLogisticService : IDelsamiLogisticService
     {
 
         #region Fields
@@ -23,7 +23,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
         #endregion
 
         #region Ctor
-        public ZarIranLogisticService(ISettingService settingService, ILocalizationService localizationService, IShippingService shippingService, IProductService productService, ILogger logger)
+        public DelsamiLogisticService(ISettingService settingService, ILocalizationService localizationService, IShippingService shippingService, IProductService productService, ILogger logger)
         {
             _settingService = settingService;
             _shippingService = shippingService;
@@ -39,7 +39,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
         {
             var shippingOptions = new List<ShippingOption>();
 
-            var settings = await _settingService.LoadSettingAsync<ZarIranLogisticSettings>();
+            var settings = await _settingService.LoadSettingAsync<DelsamiLogisticSettings>();
 
             var (totalWeight, totalVolume, hasOversizedProduct) = await CalculatePackageMetricsAsync(getShippingOptionRequest, settings);
             bool mustUsePickupTruck = ShouldUsePickupTruck(totalWeight, totalVolume, hasOversizedProduct, settings);
@@ -95,7 +95,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
 
         #region Internal Methods
 
-        private async Task<(decimal totalWeight, decimal totalVolume, bool hasOversizedProduct)> CalculatePackageMetricsAsync(GetShippingOptionRequest request, ZarIranLogisticSettings settings)
+        private async Task<(decimal totalWeight, decimal totalVolume, bool hasOversizedProduct)> CalculatePackageMetricsAsync(GetShippingOptionRequest request, DelsamiLogisticSettings settings)
         {
             decimal totalWeight = 0;
             decimal totalVolume = 0;
@@ -123,7 +123,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
             return (totalWeight, totalVolume, hasOversizedProduct);
         }
 
-        private bool ShouldUsePickupTruck(decimal totalWeight, decimal totalVolume, bool hasOversizedProduct, ZarIranLogisticSettings settings)
+        private bool ShouldUsePickupTruck(decimal totalWeight, decimal totalVolume, bool hasOversizedProduct, DelsamiLogisticSettings settings)
         {
             return hasOversizedProduct
                    || totalVolume > settings.VolumeMustCarryByPickupTruckInCM3

@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Models
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Areas.Admin.Models
 {
     public class ConfigurationModel
     {
@@ -11,45 +11,45 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Areas.Admin.Models
             AvailableShippingMethods = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.ShippingMethodId")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.ShippingMethodId")]
         public int ShippingMethodId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.PickupTrucShippingMethodId")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.PickupTrucShippingMethodId")]
         public int PickupTruckShippingMethodId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.ScheduledShippingMethodId")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.ScheduledShippingMethodId")]
         public int ScheduledShippingMethodId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.ScheduledShippingMethodWithTruckId")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.ScheduledShippingMethodWithTruckId")]
         public int ScheduledShippingMethodWithTruckId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.Price")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.Price")]
         public decimal Price { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.PickupTruckPrice")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.PickupTruckPrice")]
         public decimal PickupTruckPrice { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.ScheduledPrice")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.ScheduledPrice")]
         public decimal ScheduledPrice { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.ScheduledPriceForHeavyOrBigBasket")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.ScheduledPriceForHeavyOrBigBasket")]
         public decimal ScheduledPriceForHeavyOrBigBasket { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.ApiBaseUrl")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.ApiBaseUrl")]
         public string ApiBaseUrl { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugins.Shipping.ZarIranLogistic.ApiToken")]
+        [NopResourceDisplayName("Delsami.Plugins.Shipping.DelsamiLogistic.ApiToken")]
         public string ApiToken { get; set; }
 
         public IList<SelectListItem> AvailableShippingMethods { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.WeightMustCarryByPickupTruckInGrams")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.WeightMustCarryByPickupTruckInGrams")]
         public decimal WeightMustCarryByPickupTruckInGrams { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.volumeMustCarryByPickupTruckInCM3")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.volumeMustCarryByPickupTruckInCM3")]
         public decimal VolumeMustCarryByPickupTruckInCM3 { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Shipping.ZarIranLogistic.OverSizeProductVolumeMustCarryByPickupTruckInCM3")]
+        [NopResourceDisplayName("Delsami.Plugin.Shipping.DelsamiLogistic.OverSizeProductVolumeMustCarryByPickupTruckInCM3")]
         public decimal OverSizeProductVolumeMustCarryByPickupTruckInCM3 { get; set; }
 
 

@@ -2,14 +2,14 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Infrastructures.Permissions
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Infrastructures.Permissions
 {
-    public class ZarIranLogisticPermission : IPermissionProvider
+    public class DelsamiLogisticPermission : IPermissionProvider
     {
-        public static readonly PermissionRecord ManageZarIranLogistic = new PermissionRecord
+        public static readonly PermissionRecord ManageDelsamiLogistic = new PermissionRecord
         {
-            Name = "Admin area. ManageZarIranLogistic",
-            SystemName = "ManageZarIranLogistic",
+            Name = "Admin area. ManageDelsamiLogistic",
+            SystemName = "ManageDelsamiLogistic",
             Category = "Plugin"
         };
 
@@ -17,14 +17,14 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Infrastructures.Permissions
         {
             return new[]
             {
-                ManageZarIranLogistic,
+                ManageDelsamiLogistic,
             };
         }
         public HashSet<(string systemRoleName, PermissionRecord[] permissions)> GetDefaultPermissions()
         {
             return new HashSet<(string systemRoleName, PermissionRecord[] permissions)>
         {
-            ("Administrators", new[] { ManageZarIranLogistic }),
+            ("Administrators", new[] { ManageDelsamiLogistic }),
 
         };
         }

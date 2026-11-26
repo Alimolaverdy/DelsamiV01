@@ -1,28 +1,28 @@
-﻿using ZarIran.Plugin.Shipping.ZarIranLogistic.Services;
+﻿using Delsami.Plugin.Shipping.DelsamiLogistic.Services;
 using Nop.Core.Domain.Orders;
 using Nop.Services.ScheduleTasks;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.ScheduleTasks
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.ScheduleTasks
 {
     public class SentCancelShipmentToLogisticScheduleTask : IScheduleTask
     {
         #region Fields
 
         private readonly IQueuedCanceledShipmentForSendToLogisticService _queuedCanceledShipmentForSendToLogisticService;
-        private readonly IZarIranLogisticApiService _ZarIranLogisticApiService;
+        private readonly IDelsamiLogisticApiService _DelsamiLogisticApiService;
 
         #endregion
 
         #region Ctor
 
         public SentCancelShipmentToLogisticScheduleTask(IQueuedCanceledShipmentForSendToLogisticService queuedCanceledShipmentForSendToLogisticService,
-                                                        IZarIranLogisticApiService ZarIranLogisticApiService)
+                                                        IDelsamiLogisticApiService DelsamiLogisticApiService)
         {
             _queuedCanceledShipmentForSendToLogisticService = queuedCanceledShipmentForSendToLogisticService;
-            _ZarIranLogisticApiService = ZarIranLogisticApiService;
+            _DelsamiLogisticApiService = DelsamiLogisticApiService;
         }
 
         #endregion
@@ -38,7 +38,7 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.ScheduleTasks
 
             foreach (var queuedCanceledShipmentForSendToLogistic in notSentQueuedCanceledShipmentForSendToLogistics)
             {
-                var result = await _ZarIranLogisticApiService.CloseCargoAndOrderBySellSiteAsync(queuedCanceledShipmentForSendToLogistic.ShipmentId);
+                var result = await _DelsamiLogisticApiService.CloseCargoAndOrderBySellSiteAsync(queuedCanceledShipmentForSendToLogistic.ShipmentId);
 
                 var now = DateTime.UtcNow;
 

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Services;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Infrastructures
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Infrastructures
 {
     public class NopStartup : INopStartup
     {
@@ -16,8 +16,8 @@ namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Infrastructures
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IZarIranLogisticService, ZarIranLogisticService>();
-            services.AddScoped<IZarIranLogisticApiService, ZarIranLogisticApiService>();
+            services.AddScoped<IDelsamiLogisticService, DelsamiLogisticService>();
+            services.AddScoped<IDelsamiLogisticApiService, DelsamiLogisticApiService>();
             services.AddScoped<IQueuedCanceledShipmentForSendToLogisticService, QueuedCanceledShipmentForSendToLogisticService>();
             
         }

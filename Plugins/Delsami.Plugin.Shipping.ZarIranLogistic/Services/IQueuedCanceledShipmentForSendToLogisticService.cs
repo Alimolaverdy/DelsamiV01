@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Shipping.ZarIranLogistic.Domain;
+﻿using Delsami.Plugin.Shipping.DelsamiLogistic.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Services
 {
     public interface IQueuedCanceledShipmentForSendToLogisticService
     {

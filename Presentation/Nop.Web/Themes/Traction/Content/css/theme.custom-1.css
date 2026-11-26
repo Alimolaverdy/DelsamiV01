@@ -118,7 +118,7 @@ div.title.carousel-title {
 }
 
 .car-select-mobile .ico-car {
-    background: url('/Plugins/ZarIran.Misc.CarInfo/Content/images/car-white.png') left center no-repeat !important;
+    background: url('/Plugins/Delsami.Misc.CarInfo/Content/images/car-white.png') left center no-repeat !important;
     border: none;
     color: #fff;
 }
@@ -338,13 +338,13 @@ div.title.carousel-title {
 }
 
     .variant-overview .add-to-cart-panel .change-quantity-button[class*="increase-quantity"] {
-        background-image: url('/icons/ZarIran-icon-pack/Plus-Black.svg');
+        background-image: url('/icons/Delsami-icon-pack/Plus-Black.svg');
         background-position: center center;
         background-repeat: no-repeat;
     }
 
     .variant-overview .add-to-cart-panel .change-quantity-button[class*="decrease-quantity"] {
-        background-image: url('/icons/ZarIran-icon-pack/Minus-Black.svg');
+        background-image: url('/icons/Delsami-icon-pack/Minus-Black.svg');
         background-position: center center;
         background-repeat: no-repeat;
     }
@@ -996,7 +996,7 @@ div.title.carousel-title.has-navigation {
 }
 
 .phone-icon {
-    background: url('/icons/ZarIran-icon-pack/phone.svg') left center no-repeat;
+    background: url('/icons/Delsami-icon-pack/phone.svg') left center no-repeat;
 }
 
 /*.phone-white-icon {
@@ -1358,7 +1358,7 @@ ul {
 }
 
 .header-links .ico-register, .header-links .ico-account {
-    background: url('/icons/ZarIran-icon-pack/Profile.svg') left center no-repeat;
+    background: url('/icons/Delsami-icon-pack/Profile.svg') left center no-repeat;
     color: var(--Text---color-text-navigation, #2B2B2B);
     font-size: var(--type-scale-second-major-size-md, 16px);
     font-style: normal;
@@ -1827,7 +1827,7 @@ ul {
     border-radius: 100%;
     background-color: #eef1ff;
     border: 1px solid #e2e7ff;
-    background-image: url("/icons/ZarIran-icon-pack/Plus.svg");
+    background-image: url("/icons/Delsami-icon-pack/Plus.svg");
     background-size: 100%;
     background-position: center center;
     transition: .1s all linear;
@@ -1897,7 +1897,7 @@ ul {
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        background: url(/icons/ZarIran-icon-pack/car-colored.svg) right center no-repeat;
+        background: url(/icons/Delsami-icon-pack/car-colored.svg) right center no-repeat;
         padding-right: 28px;
         margin-bottom: 1rem;
     }
@@ -1910,7 +1910,7 @@ ul {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: url(/icons/ZarIran-icon-pack/categories.svg) right center no-repeat;
+    background: url(/icons/Delsami-icon-pack/categories.svg) right center no-repeat;
     padding-right: 28px;
     margin-bottom: 1rem;
     font-size: 12px;
@@ -1922,7 +1922,7 @@ ul {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: url(/icons/ZarIran-icon-pack/shield-check.svg) right center no-repeat;
+    background: url(/icons/Delsami-icon-pack/shield-check.svg) right center no-repeat;
     padding-right: 28px;
     margin-bottom: 1rem;
     font-size: 12px;
@@ -2110,15 +2110,15 @@ ul {
     }
 
     .footer .footer-block .phone {
-        background: url('/icons/ZarIran-icon-pack/phone.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/phone.svg') right center no-repeat;
     }
 
     .footer .footer-block .email {
-        background: url('/icons/ZarIran-icon-pack/email.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/email.svg') right center no-repeat;
     }
 
     .footer .footer-block .location {
-        background: url('/icons/ZarIran-icon-pack/location.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/location.svg') right center no-repeat;
         white-space: normal;
     }
 
@@ -2202,7 +2202,7 @@ ul {
 
     .product-details-page .additional-details .product-vendor span.value {
         padding-right: 32px;
-        background: url('/icons/ZarIran-icon-pack/NobParts.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/NobParts.svg') right center no-repeat;
     }
 
         .product-details-page .additional-details .product-vendor span.value a {
@@ -2427,13 +2427,13 @@ ul {
     .product-details-page .product-specifications > div.bdp-brands {
         padding-right: 32px;
         margin: .5rem 0;
-        background: url('/icons/ZarIran-icon-pack/Tag.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/Tag.svg') right center no-repeat;
     }
 
     .product-details-page .product-specifications > div.bdp-categories {
         padding-right: 32px;
         margin: .5rem 0;
-        background: url('/icons/ZarIran-icon-pack/Wrench.svg') right center no-repeat;
+        background: url('/icons/Delsami-icon-pack/Wrench.svg') right center no-repeat;
     }
 
 
@@ -2443,17 +2443,17 @@ ul {
 
 .product-details-page .product-specifications > div.manufacturerName {
     padding-right: 32px;
-    background: url('/icons/ZarIran-icon-pack/Tag.svg') right center no-repeat;
+    background: url('/icons/Delsami-icon-pack/Tag.svg') right center no-repeat;
 }
 
 .product-details-page .product-specifications > div.adminComment {
     padding-right: 32px;
-    background: url('/icons/ZarIran-icon-pack/Box.svg') right center no-repeat;
+    background: url('/icons/Delsami-icon-pack/Box.svg') right center no-repeat;
 }
 
 .product-details-page .product-specifications > div.manufacturerPartNumber {
     padding-right: 32px;
-    background: url('/icons/ZarIran-icon-pack/Box.svg') right center no-repeat;
+    background: url('/icons/Delsami-icon-pack/Box.svg') right center no-repeat;
 }
 
 .product-details-page .product-specifications > div.short-description {

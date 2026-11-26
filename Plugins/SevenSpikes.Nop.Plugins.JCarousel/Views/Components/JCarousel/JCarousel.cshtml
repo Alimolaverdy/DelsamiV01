@@ -10,7 +10,7 @@
 @inject Nop.Services.Seo.IUrlRecordService urlRecordService
 @inject Nop.Services.Media.IPictureService pictureService
 @inject Nop.Services.Catalog.IProductService productService
-@inject ZarIran.Plugin.Misc.Core.Services.IVirtualProductMappingService virtualProductMappingService
+@inject Delsami.Plugin.Misc.Core.Services.IVirtualProductMappingService virtualProductMappingService
 @inject Nop.Core.Domain.Media.MediaSettings mediaSettings
 
 @{
@@ -77,7 +77,7 @@
     var category = useHomeProductLayout
         ? (await itemsMappingService.GetCategoriesMappedToTheJCarouselAsync(carousel.Settings.Id)).FirstOrDefault()
         : null;
-    var carouselLayoutClass = useHomeProductLayout ? "zariran-home-carousel" : string.Empty;
+    var carouselLayoutClass = useHomeProductLayout ? "Delsami-home-carousel" : string.Empty;
     var productWeights = new Dictionary<int, (decimal Minimum, decimal Maximum)>();
     if (carousel.DataSourceTypeClass == "product-grid" &&
         string.Equals(currentThemeName, "Traction", StringComparison.OrdinalIgnoreCase))
@@ -218,7 +218,7 @@
             var categoryImage = await pictureService.GetPictureUrlAsync(
                 category.PictureId, mediaSettings.CategoryThumbPictureSize, showDefaultPicture: false);
 
-            <a class="zariran-carousel-category" href="@categoryUrl">
+            <a class="Delsami-carousel-category" href="@categoryUrl">
                 @if (!string.IsNullOrEmpty(categoryImage))
                 {
                     <img src="@categoryImage" alt="" loading="lazy" />

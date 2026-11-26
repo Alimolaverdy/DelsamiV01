@@ -1,21 +1,21 @@
-﻿using ZarIran.Plugin.Shipping.ZarIranLogistic.Models;
+﻿using Delsami.Plugin.Shipping.DelsamiLogistic.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.Services
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.Services
 {
-    public class ZarIranLogisticApiService : IZarIranLogisticApiService
+    public class DelsamiLogisticApiService : IDelsamiLogisticApiService
     {
         #region Fields
 
-        private readonly ZarIranLogisticSettings _settings;
+        private readonly DelsamiLogisticSettings _settings;
 
         #endregion
 
         #region Ctor
 
-        public ZarIranLogisticApiService(ZarIranLogisticSettings settings)
+        public DelsamiLogisticApiService(DelsamiLogisticSettings settings)
         {
             _settings = settings;
         }

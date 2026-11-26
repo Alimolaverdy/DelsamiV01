@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Misc.Core.Events;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Domain;
-using ZarIran.Plugin.Shipping.ZarIranLogistic.Services;
+﻿using Delsami.Plugin.Misc.Core.Events;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Domain;
+using Delsami.Plugin.Shipping.DelsamiLogistic.Services;
 using Nop.Services.Events;
 using Nop.Services.Shipping;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.ZarIranLogistic.EventHandlers
+namespace Delsami.Plugin.Shipping.DelsamiLogistic.EventHandlers
 {
     public class OrderCanceledEventHandlers : IConsumer<OrderCanceledEvent>
     {
