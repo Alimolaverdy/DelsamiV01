@@ -1,0 +1,696 @@
+﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
+using Irony.Parsing;
+using LinqToDB;
+using LinqToDB.Data;
+using Delsami.Plugin.Misc.Core.Domain;
+using Delsami.Plugin.Misc.Core.Enums;
+using Delsami.Plugin.Misc.ProductManagement.Infrastructure.Cache;
+using Nop.Core;
+using Nop.Core.Caching;
+using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Discounts;
+using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Shipping;
+using Nop.Core.Events;
+using Nop.Data;
+using Nop.Plugin.Misc.AdvRedirect.Enums;
+using Nop.Services.Catalog;
+using Nop.Services.Customers;
+using Nop.Services.Localization;
+using Nop.Services.Security;
+using Nop.Services.Shipping.Date;
+using Nop.Services.Stores;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Delsami.Plugin.Misc.ProductManagement.Services;
+
+public class CustomDelsamiProductService : ICustomDelsamiProductService
+{
+
+	#region Fields
+
+	protected readonly CatalogSettings _catalogSettings;
+	protected readonly IVirtualProductMappingService _virtualProductservice;
+	protected readonly IBundleProductService _bundleProductService;
+	protected readonly IAclService _aclService;
+	protected readonly ICustomerService _customerService;
+	protected readonly IDateRangeService _dateRangeService;
+	protected readonly ILanguageService _languageService;
+	protected readonly ILocalizationService _localizationService;
+	protected readonly IProductAttributeParser _productAttributeParser;
+	protected readonly IProductAttributeService _productAttributeService;
+	protected readonly IRepository<Category> _categoryRepository;
+	protected readonly IRepository<CrossSellProduct> _crossSellProductRepository;
+	protected readonly IRepository<DiscountProductMapping> _discountProductMappingRepository;
+	protected readonly IRepository<LocalizedProperty> _localizedPropertyRepository;
+	protected readonly IRepository<Manufacturer> _manufacturerRepository;
+	protected readonly IRepository<Product> _productRepository;
+	protected readonly IRepository<ProductAttributeCombination> _productAttributeCombinationRepository;
+	protected readonly IRepository<ProductAttributeMapping> _productAttributeMappingRepository;
+	protected readonly IRepository<ProductCategory> _productCategoryRepository;
+	protected readonly IRepository<ProductManufacturer> _productManufacturerRepository;
+	protected readonly IRepository<ProductPicture> _productPictureRepository;
+	protected readonly IRepository<ProductProductTagMapping> _productTagMappingRepository;
+	protected readonly IRepository<ProductReview> _productReviewRepository;
+	protected readonly IRepository<ProductReviewHelpfulness> _productReviewHelpfulnessRepository;
+	protected readonly IRepository<ProductSpecificationAttribute> _productSpecificationAttributeRepository;
+	protected readonly IRepository<ProductTag> _productTagRepository;
+	protected readonly IRepository<ProductVideo> _productVideoRepository;
+	protected readonly IRepository<ProductWarehouseInventory> _productWarehouseInventoryRepository;
+	protected readonly IRepository<RelatedProduct> _relatedProductRepository;
+	protected readonly IRepository<Shipment> _shipmentRepository;
+	protected readonly IRepository<StockQuantityHistory> _stockQuantityHistoryRepository;
+	protected readonly IRepository<TierPrice> _tierPriceRepository;
+	protected readonly ISearchPluginManager _searchPluginManager;
+	protected readonly IStaticCacheManager _staticCacheManager;
+	protected readonly IStoreMappingService _storeMappingService;
+	protected readonly IStoreService _storeService;
+	protected readonly IWorkContext _workContext;
+	protected readonly LocalizationSettings _localizationSettings;
+	private readonly IEventPublisher _eventPublisher;
+
+	#endregion
+
+	#region Ctor
+
+	public CustomDelsamiProductService(CatalogSettings catalogSettings,
+		IAclService aclService,
+		IBundleProductService bundleProductService,
+		IVirtualProductMappingService virtualProduct,
+		ICustomerService customerService,
+		IDateRangeService dateRangeService,
+		ILanguageService languageService,
+		ILocalizationService localizationService,
+		IProductAttributeParser productAttributeParser,
+		IProductAttributeService productAttributeService,
+		IRepository<Category> categoryRepository,
+		IRepository<CrossSellProduct> crossSellProductRepository,
+		IRepository<DiscountProductMapping> discountProductMappingRepository,
+		IRepository<LocalizedProperty> localizedPropertyRepository,
+		IRepository<Manufacturer> manufacturerRepository,
+		IRepository<Product> productRepository,
+		IRepository<ProductAttributeCombination> productAttributeCombinationRepository,
+		IRepository<ProductAttributeMapping> productAttributeMappingRepository,
+		IRepository<ProductCategory> productCategoryRepository,
+		IRepository<ProductManufacturer> productManufacturerRepository,
+		IRepository<ProductPicture> productPictureRepository,
+		IRepository<ProductProductTagMapping> productTagMappingRepository,
+		IRepository<ProductReview> productReviewRepository,
+		IRepository<ProductReviewHelpfulness> productReviewHelpfulnessRepository,
+		IRepository<ProductSpecificationAttribute> productSpecificationAttributeRepository,
+		IRepository<ProductTag> productTagRepository,
+		IRepository<ProductVideo> productVideoRepository,
+		IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
+		IRepository<RelatedProduct> relatedProductRepository,
+		IRepository<Shipment> shipmentRepository,
+		IRepository<StockQuantityHistory> stockQuantityHistoryRepository,
+		IRepository<TierPrice> tierPriceRepository,
+		ISearchPluginManager searchPluginManager,
+		IStaticCacheManager staticCacheManager,
+		IStoreService storeService,
+		IStoreMappingService storeMappingService,
+		IWorkContext workContext,
+		LocalizationSettings localizationSettings)
+	{
+		_catalogSettings = catalogSettings;
+		_virtualProductservice = virtualProduct;
+		_aclService = aclService;
+		_customerService = customerService;
+		_dateRangeService = dateRangeService;
+		_languageService = languageService;
+		_localizationService = localizationService;
+		_productAttributeParser = productAttributeParser;
+		_productAttributeService = productAttributeService;
+		_categoryRepository = categoryRepository;
+		_crossSellProductRepository = crossSellProductRepository;
+		_discountProductMappingRepository = discountProductMappingRepository;
+		_localizedPropertyRepository = localizedPropertyRepository;
+		_manufacturerRepository = manufacturerRepository;
+		_productRepository = productRepository;
+		_productAttributeCombinationRepository = productAttributeCombinationRepository;
+		_productAttributeMappingRepository = productAttributeMappingRepository;
+		_productCategoryRepository = productCategoryRepository;
+		_productManufacturerRepository = productManufacturerRepository;
+		_productPictureRepository = productPictureRepository;
+		_productTagMappingRepository = productTagMappingRepository;
+		_productReviewRepository = productReviewRepository;
+		_productReviewHelpfulnessRepository = productReviewHelpfulnessRepository;
+		_productSpecificationAttributeRepository = productSpecificationAttributeRepository;
+		_productTagRepository = productTagRepository;
+		_productVideoRepository = productVideoRepository;
+		_productWarehouseInventoryRepository = productWarehouseInventoryRepository;
+		_relatedProductRepository = relatedProductRepository;
+		_shipmentRepository = shipmentRepository;
+		_stockQuantityHistoryRepository = stockQuantityHistoryRepository;
+		_tierPriceRepository = tierPriceRepository;
+		_searchPluginManager = searchPluginManager;
+		_staticCacheManager = staticCacheManager;
+		_storeMappingService = storeMappingService;
+		_storeService = storeService;
+		_workContext = workContext;
+		_localizationSettings = localizationSettings;
+		_bundleProductService = bundleProductService;
+	}
+
+	#endregion
+
+	public async Task ImportAsync(List<ProductSpecificationAttribute> records)
+	{
+		await _productSpecificationAttributeRepository.Table.DeleteAsync(a => records.Select(p => p.ProductId).Contains(a.ProductId));
+		List<ProductSpecificationAttribute> newRecord = new();
+		foreach (var product in records)
+		{
+
+			var childs = await _productRepository.Table.Where(a => a.ParentGroupedProductId == product.ProductId)
+													 .ToListAsync();
+			await _productSpecificationAttributeRepository.Table.DeleteAsync(a => childs.Select(p => p.Id).Contains(a.ProductId));
+
+			var relationForChilds = childs.Select(a => new ProductSpecificationAttribute()
+			{
+				ProductId = a.Id,
+				AllowFiltering = true,
+				AttributeTypeId = 0,
+				DisplayOrder = 0,
+				ShowOnProductPage = true,
+				SpecificationAttributeOptionId = product.SpecificationAttributeOptionId,
+
+			}).ToList();
+
+			newRecord.Add(product);
+			newRecord.AddRange(relationForChilds);
+
+
+		}
+
+		await _productSpecificationAttributeRepository.InsertAsync(newRecord, false);
+	}
+
+
+	public async Task<IPagedList<Product>> SearchProductsAsync(int pageIndex = 0,
+															int pageSize = int.MaxValue,
+															IList<int> categoryIds = null,
+															IList<int> manufacturerIds = null,
+															int storeId = 0,
+															int vendorId = 0,
+															int warehouseId = 0,
+															ProductTypes? productType = null,
+															bool visibleIndividuallyOnly = false,
+															bool excludeFeaturedProducts = false,
+															decimal? priceMin = null,
+															decimal? priceMax = null,
+															int productTagId = 0,
+															string keywords = null,
+															bool searchDescriptions = false,
+															bool searchManufacturerPartNumber = true,
+															bool searchSku = true,
+															bool searchProductTags = false,
+															int languageId = 0,
+															IList<SpecificationAttributeOption> filteredSpecOptions = null,
+															ProductSortingEnum orderBy = ProductSortingEnum.Position,
+															bool showHidden = false,
+															bool? overridePublished = null)
+
+	{
+
+		//some databases don't support int.MaxValue
+		if (pageSize == int.MaxValue)
+			pageSize = int.MaxValue - 1;
+
+
+		if (productType == ProductTypes.Virtual)
+		{
+			return await GetVirtualProductsAsync(pageIndex,
+												 pageSize,
+												 categoryIds,
+												 manufacturerIds,
+												 storeId,
+												 vendorId,
+												 keywords);
+		}
+
+		if (productType == ProductTypes.BundleProduct)
+		{
+			var bundleProducts = await _bundleProductService.GetBundleProductsAsync(showHidden: showHidden);
+
+			var productIds = bundleProducts.Select(bp => bp.ProductId1).Distinct().ToList();
+
+			var products = await _productRepository.Table
+				.Where(p => productIds.Contains(p.Id) && !p.Deleted && (showHidden || p.Published))
+				.ToListAsync();
+
+			return new PagedList<Product>(products, pageIndex, products.Count);
+		}
+
+		var productsQuery = _productRepository.Table;
+
+
+		if (!showHidden)
+			productsQuery = productsQuery.Where(p => p.Published);
+		else if (overridePublished.HasValue)
+			productsQuery = productsQuery.Where(p => p.Published == overridePublished.Value);
+
+		if (!showHidden)
+		{
+			//apply store mapping constraints
+			productsQuery = await _storeMappingService.ApplyStoreMapping(productsQuery, storeId);
+
+			//apply ACL constraints
+			var customer = await _workContext.GetCurrentCustomerAsync();
+			productsQuery = await _aclService.ApplyAcl(productsQuery, customer);
+		}
+		productsQuery =
+			from p in productsQuery
+			where !p.Deleted &&
+					(!visibleIndividuallyOnly || p.VisibleIndividually) &&
+					(vendorId == 0 || p.VendorId == vendorId) &&
+					(
+						warehouseId == 0 ||
+						(
+							!p.UseMultipleWarehouses ? p.WarehouseId == warehouseId :
+								_productWarehouseInventoryRepository.Table.Any(pwi => pwi.WarehouseId == warehouseId && pwi.ProductId == p.Id)
+						)
+					) &&
+					(showHidden ||
+							DateTime.UtcNow >= (p.AvailableStartDateTimeUtc ?? DateTime.MinValue) &&
+							DateTime.UtcNow <= (p.AvailableEndDateTimeUtc ?? DateTime.MaxValue)
+					) &&
+					(priceMin == null || p.Price >= priceMin) &&
+					(priceMax == null || p.Price <= priceMax)
+
+			select p;
+
+
+		if (productType is not null)
+		{
+
+			var virtualProductIds = _productRepository.Table.Where(a => a.AllowAddingOnlyExistingAttributeCombinations)
+															.Select(vp => vp.Id);
+
+			//var parentsWithVirtualChildren = (
+			//    from pChild in productsQuery
+			//    join vp in virtualQuery on pChild.Id equals vp.VirtualProductId
+			//    where pChild.ParentGroupedProductId != 0 && !vp.Deleted
+			//    select pChild.ParentGroupedProductId
+			//).Distinct();
+
+			int productTypeId = (int)productType;
+
+			if (productTypeId == (int)ProductTypes.SimpleWithVirtualProduct)
+				productTypeId = (int)ProductType.SimpleProduct;
+
+			productsQuery = from p in productsQuery
+							where !p.Deleted
+								  && p.ProductTypeId == productTypeId
+							//&& !virtualProductIds.Contains(p.Id)  
+							//&& !parentsWithVirtualChildren.Contains(p.Id)  
+							select p;
+
+			if (productType == ProductTypes.SimpleProduct)
+				productsQuery = productsQuery.Where(p => !virtualProductIds.Contains(p.Id));
+		}
+
+		if (!string.IsNullOrEmpty(keywords))
+		{
+			var langs = await _languageService.GetAllLanguagesAsync(showHidden: true);
+
+			//Set a flag which will to points need to search in localized properties. If showHidden doesn't set to true should be at least two published languages.
+			var searchLocalizedValue = languageId > 0 && langs.Count >= 2 && (showHidden || langs.Count(l => l.Published) >= 2);
+			IQueryable<int> productsByKeywords;
+
+			var customer = await _workContext.GetCurrentCustomerAsync();
+			var activeSearchProvider = await _searchPluginManager.LoadPrimaryPluginAsync(customer, storeId);
+
+			if (activeSearchProvider is not null)
+			{
+				productsByKeywords = (await activeSearchProvider.SearchProductsAsync(keywords, searchLocalizedValue)).AsQueryable();
+			}
+			else
+			{
+				productsByKeywords =
+					from p in _productRepository.Table
+					where p.Name.Contains(keywords) ||
+						(searchDescriptions &&
+							(p.ShortDescription.Contains(keywords) || p.FullDescription.Contains(keywords))) ||
+						(searchManufacturerPartNumber && p.ManufacturerPartNumber == keywords) ||
+						(searchSku && p.Sku == keywords)
+					select p.Id;
+
+				if (searchLocalizedValue)
+				{
+					productsByKeywords = productsByKeywords.Union(
+						from lp in _localizedPropertyRepository.Table
+						let checkName = lp.LocaleKey == nameof(Product.Name) &&
+										lp.LocaleValue.Contains(keywords)
+						let checkShortDesc = searchDescriptions &&
+										lp.LocaleKey == nameof(Product.ShortDescription) &&
+										lp.LocaleValue.Contains(keywords)
+						where
+							lp.LocaleKeyGroup == nameof(Product) && lp.LanguageId == languageId && (checkName || checkShortDesc)
+
+						select lp.EntityId);
+				}
+			}
+
+			//search by SKU for ProductAttributeCombination
+			if (searchSku)
+			{
+				productsByKeywords = productsByKeywords.Union(
+					from pac in _productAttributeCombinationRepository.Table
+					where pac.Sku == keywords
+					select pac.ProductId);
+			}
+
+			//search by category name if admin allows
+			if (_catalogSettings.AllowCustomersToSearchWithCategoryName)
+			{
+				productsByKeywords = productsByKeywords.Union(
+					from pc in _productCategoryRepository.Table
+					join c in _categoryRepository.Table on pc.CategoryId equals c.Id
+					where c.Name.Contains(keywords)
+					select pc.ProductId
+				);
+
+				if (searchLocalizedValue)
+				{
+					productsByKeywords = productsByKeywords.Union(
+					from pc in _productCategoryRepository.Table
+					join lp in _localizedPropertyRepository.Table on pc.CategoryId equals lp.EntityId
+					where lp.LocaleKeyGroup == nameof(Category) &&
+						  lp.LocaleKey == nameof(Category.Name) &&
+						  lp.LocaleValue.Contains(keywords) &&
+						  lp.LanguageId == languageId
+					select pc.ProductId);
+				}
+			}
+
+			//search by manufacturer name if admin allows
+			if (_catalogSettings.AllowCustomersToSearchWithManufacturerName)
+			{
+				productsByKeywords = productsByKeywords.Union(
+					from pm in _productManufacturerRepository.Table
+					join m in _manufacturerRepository.Table on pm.ManufacturerId equals m.Id
+					where m.Name.Contains(keywords)
+					select pm.ProductId
+				);
+
+				if (searchLocalizedValue)
+				{
+					productsByKeywords = productsByKeywords.Union(
+					from pm in _productManufacturerRepository.Table
+					join lp in _localizedPropertyRepository.Table on pm.ManufacturerId equals lp.EntityId
+					where lp.LocaleKeyGroup == nameof(Manufacturer) &&
+						  lp.LocaleKey == nameof(Manufacturer.Name) &&
+						  lp.LocaleValue.Contains(keywords) &&
+						  lp.LanguageId == languageId
+					select pm.ProductId);
+				}
+			}
+
+			if (searchProductTags)
+			{
+				productsByKeywords = productsByKeywords.Union(
+					from pptm in _productTagMappingRepository.Table
+					join pt in _productTagRepository.Table on pptm.ProductTagId equals pt.Id
+					where pt.Name.Contains(keywords)
+					select pptm.ProductId
+				);
+
+				if (searchLocalizedValue)
+				{
+					productsByKeywords = productsByKeywords.Union(
+					from pptm in _productTagMappingRepository.Table
+					join lp in _localizedPropertyRepository.Table on pptm.ProductTagId equals lp.EntityId
+					where lp.LocaleKeyGroup == nameof(ProductTag) &&
+						  lp.LocaleKey == nameof(ProductTag.Name) &&
+						  lp.LocaleValue.Contains(keywords) &&
+						  lp.LanguageId == languageId
+					select pptm.ProductId);
+				}
+			}
+
+			productsQuery =
+				from p in productsQuery
+				join pbk in productsByKeywords on p.Id equals pbk
+				select p;
+		}
+
+		if (categoryIds is not null)
+		{
+			if (categoryIds.Contains(0))
+				categoryIds.Remove(0);
+
+			if (categoryIds.Any())
+			{
+				var productCategoryQuery =
+					from pc in _productCategoryRepository.Table
+					where (!excludeFeaturedProducts || !pc.IsFeaturedProduct) &&
+						categoryIds.Contains(pc.CategoryId)
+					group pc by pc.ProductId into pc
+					select new
+					{
+						ProductId = pc.Key,
+						DisplayOrder = pc.First().DisplayOrder
+					};
+
+				productsQuery =
+					from p in productsQuery
+					join pc in productCategoryQuery on p.Id equals pc.ProductId
+					orderby pc.DisplayOrder, p.Name
+					select p;
+			}
+		}
+
+		if (manufacturerIds is not null)
+		{
+			if (manufacturerIds.Contains(0))
+				manufacturerIds.Remove(0);
+
+			if (manufacturerIds.Any())
+			{
+				var productManufacturerQuery =
+					from pm in _productManufacturerRepository.Table
+					where (!excludeFeaturedProducts || !pm.IsFeaturedProduct) &&
+						manufacturerIds.Contains(pm.ManufacturerId)
+					group pm by pm.ProductId into pm
+					select new
+					{
+						ProductId = pm.Key,
+						DisplayOrder = pm.First().DisplayOrder
+					};
+
+				productsQuery =
+					from p in productsQuery
+					join pm in productManufacturerQuery on p.Id equals pm.ProductId
+					orderby pm.DisplayOrder, p.Name
+					select p;
+			}
+		}
+
+		if (productTagId > 0)
+		{
+			productsQuery =
+				from p in productsQuery
+				join ptm in _productTagMappingRepository.Table on p.Id equals ptm.ProductId
+				where ptm.ProductTagId == productTagId
+				select p;
+		}
+
+		if (filteredSpecOptions?.Count > 0)
+		{
+			var specificationAttributeIds = filteredSpecOptions
+				.Select(sao => sao.SpecificationAttributeId)
+				.Distinct();
+
+			foreach (var specificationAttributeId in specificationAttributeIds)
+			{
+				var optionIdsBySpecificationAttribute = filteredSpecOptions
+					.Where(o => o.SpecificationAttributeId == specificationAttributeId)
+					.Select(o => o.Id);
+
+				var productSpecificationQuery =
+					from psa in _productSpecificationAttributeRepository.Table
+					where psa.AllowFiltering && optionIdsBySpecificationAttribute.Contains(psa.SpecificationAttributeOptionId)
+					select psa;
+
+				productsQuery =
+					from p in productsQuery
+					where productSpecificationQuery.Any(pc => pc.ProductId == p.Id)
+					select p;
+			}
+		}
+
+		return await productsQuery.OrderBy(_localizedPropertyRepository, await _workContext.GetWorkingLanguageAsync(), orderBy).ToPagedListAsync(pageIndex, pageSize);
+	}
+
+
+	public Task<List<Product>> GetProductsByName(List<string> productNames)
+	{
+		return _productRepository.Table.Where(p => productNames.Any(n => n == p.Name)).ToListAsync();
+	}
+
+	public async Task<List<Product>> GetAllProductsByIds(List<int> ids)
+	{
+		return await _productRepository.Table.Where(a => ids.Contains(a.Id)).ToListAsync();
+	}
+
+	public async Task<IPagedList<Product>> GetVirtualProductsAsync(int pageIndex = 0,
+																   int pageSize = int.MaxValue,
+																   IList<int> categoryIds = null,
+																   IList<int> manufacturerIds = null,
+																   int storeId = 0,
+																   int vendorId = 0,
+																   string keywords = null,
+																   bool? hasMainProduct = null)
+	{
+
+		//AllowAddingOnlyExistingAttributeCombinations is 'IsVirtual'
+		//DeliveryDateId is 'MainProductId'
+		var query = _productRepository.Table.Where(p => !p.Deleted && p.AllowAddingOnlyExistingAttributeCombinations);
+
+		if (hasMainProduct.HasValue)
+		{
+			if (hasMainProduct.Value)
+				query = query.Where(p => p.DeliveryDateId != 0);
+			else
+				query = query.Where(p => p.DeliveryDateId == 0);
+		}
+
+		if (!string.IsNullOrEmpty(keywords))
+			query = query.Where(p => p.Name.Contains(keywords));
+
+		if (categoryIds is not null)
+		{
+			if (categoryIds.Contains(0))
+				categoryIds.Remove(0);
+
+			if (categoryIds.Any())
+			{
+				var productCategoryQuery =
+					from pc in _productCategoryRepository.Table
+					where !pc.IsFeaturedProduct &&
+						  categoryIds.Contains(pc.CategoryId)
+					group pc by pc.ProductId into g
+					select new
+					{
+						ProductId = g.Key,
+						g.First().DisplayOrder
+					};
+
+				query =
+					from p in query
+					join pc in productCategoryQuery
+						on p.Id equals pc.ProductId
+					orderby pc.DisplayOrder, p.Name
+					select p;
+			}
+		}
+
+		if (manufacturerIds is not null)
+		{
+			if (manufacturerIds.Contains(0))
+				manufacturerIds.Remove(0);
+
+			if (manufacturerIds.Any())
+			{
+				var productManufacturerQuery =
+					from pm in _productManufacturerRepository.Table
+					where !pm.IsFeaturedProduct &&
+						  manufacturerIds.Contains(pm.ManufacturerId)
+					group pm by pm.ProductId into g
+					select new
+					{
+						ProductId = g.Key,
+						g.First().DisplayOrder
+					};
+
+				query =
+					from p in query
+					join pm in productManufacturerQuery
+						on p.Id equals pm.ProductId
+					orderby pm.DisplayOrder, p.Name
+					select p;
+			}
+		}
+
+		return await query
+			.OrderBy(_localizedPropertyRepository,
+					 await _workContext.GetWorkingLanguageAsync(),
+					 ProductSortingEnum.Position)
+			.ToPagedListAsync(pageIndex, pageSize);
+	}
+
+	public async Task<IList<Product>> GetVirtualProductsByMainProductIdAsync(int mainProductId)
+	{
+		return await _productRepository.GetAllAsync(query =>
+		{
+			return query.Where(a => a.DeliveryDateId == mainProductId
+														 && a.AllowAddingOnlyExistingAttributeCombinations
+														 && !a.Deleted);
+		}, cache => _staticCacheManager.PrepareKeyForDefaultCache(DelsamiProductCacheDefaults.VirtualProductsByMainProductIdCacheKey, mainProductId));
+	}
+
+	public Task<bool> HasVirtualProducts(int productId)
+	{
+		return _productRepository.Table.AnyAsync(a => a.DeliveryDateId == productId &&
+													  a.AllowAddingOnlyExistingAttributeCombinations &&
+													  !a.Deleted);
+	}
+
+	public async Task ImportRelatedProductAsync(List<RelatedProduct> records)
+	{
+		if (records == null || records.Count == 0)
+			return;
+
+		var logicRelations = records
+			.GroupBy(x => x.ProductId1)
+			.SelectMany(group =>
+			{
+				var ids = group
+					.Select(x => x.ProductId2)
+					.Prepend(group.Key)
+					.Distinct()
+					.ToList();
+
+				return ids.SelectMany(id =>
+					ids.Where(nextId => nextId != id)
+						.Select(nextId => new RelatedProduct
+						{
+							ProductId1 = id,
+							ProductId2 = nextId,
+							DisplayOrder = 0
+						}));
+
+			}).ToList();
+
+		records.AddRange(logicRelations);
+
+		var pairs = records
+			.Select(x => (x.ProductId1, x.ProductId2))
+			.Distinct()
+			.Select(x => new RelatedProduct
+			{
+				ProductId1 = x.ProductId1,
+				ProductId2 = x.ProductId2,
+				DisplayOrder = 0
+			})
+			.ToList();
+
+		var newRecords = await pairs
+			.Where(p => !_relatedProductRepository.Table
+				.Any(r => r.ProductId1 == p.ProductId1 &&
+						  r.ProductId2 == p.ProductId2))
+			.ToListAsync();
+
+		if (newRecords.Count > 0)
+			await _relatedProductRepository.InsertAsync(newRecords);
+	}
+
+}
+
+
+
+
+

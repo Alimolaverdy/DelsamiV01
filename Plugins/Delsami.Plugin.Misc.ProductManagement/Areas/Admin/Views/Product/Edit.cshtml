@@ -1,0 +1,259 @@
+﻿@model DelsamiProductModel
+
+@using Nop.Core.Domain.Catalog
+
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Catalog.Products.EditProductDetails").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Products");
+}
+<style>
+    .fullwidth {
+        width: 100% !important;
+    }
+
+    .k-i-close {
+        right: 90% !important;
+    }
+
+    .k-select {
+        background-color: white;
+    }
+
+</style>
+<form asp-controller="CustomProduct" asp-action="NewEdit" asp-route-id="@Model.Id" method="post" id="product-form">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Catalog.Products.EditProductDetails") - @Model.Name
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List" asp-controller="Product">@T("Admin.Catalog.Products.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            @if(!string.IsNullOrEmpty(Model.SeName))
+            {
+            <button type="button" onclick="javascript:OpenWindow('@(Url.RouteUrl<Product>(new { SeName = Model.SeName }))', 800, 600, true); return false;" class="btn btn-info">
+                <i class="far fa-eye"></i>
+                @T("Admin.Common.Preview")
+            </button>
+            }
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            <button type="submit" name="save-continue" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.SaveContinue")
+            </button>
+            <button type="button" name="copyproduct" class="btn bg-olive" data-toggle="modal" data-target="#copyproduct-window">
+                <i class="far fa-clone"></i>
+                @T("Admin.Catalog.Products.Copy")
+            </button>
+            <span id="product-delete" class="btn btn-danger" data-id="@Model.Id" data-toggle="modal" data-target="#deleteModal">
+                <i class="far fa-trash-alt"></i>
+                @T("Admin.Common.Delete")
+            </span>
+            @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductDetailsButtons, additionalData = Model })
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/Delsami.Misc.ProductManagement/Areas/Admin/Views/Product/_CreateOrUpdate.cshtml", Model)
+</form>
+@* <nop-delete-confirmation asp-model-id="@Model.Id"   asp-button-id="product-delete" /> *@
+@if (Model.ProductTypeId == 10)
+{
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-dialog-title">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 150%;">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="delete-dialog-title">@T("Admin.Common.AreYouSure")</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-action="DeleteGroupProduct" asp-controller="CustomProduct">
+                    <div class="form-horizontal">
+                        <div class="modal-body">
+                            @T("Admin.Common.DeleteConfirmation")
+
+                            <div class="form-group mt-3">
+                                <div class="form-check">
+                                    <input type="hidden" id="id" name="id" />
+                                    <input type="checkbox" value="true" class="form-check-input" checked id="ChangeRedirect" name="ChangeRedirect">
+                                    <label class="form-check-label" for="ChangeRedirect" style="font-weight: bold;">
+                                        @T("Delsami.Plugin.Misc.ProductManagement.CustomProduct.DeleteModal.IsRedirect")
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-2" id="ProductDropdownContainer">
+                                <input type="hidden" id="RedirectProductId" name="RedirectProductId" />
+                                <input id="ProductDropdown" style="width:100% !important; padding-right:0 !important" />
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <span class="btn btn-default" data-dismiss="modal">@T("Admin.Common.NoCancel")</span>
+                            <button type="submit" class="btn btn-danger float-right">
+                                @T("Admin.Common.Delete")
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="product-delete" />
+
+}
+
+@if (!Model.IsLoggedInAsVendor)
+{
+    //product editor settings modal
+    @await Html.PartialAsync("~/Plugins/Delsami.Misc.ProductManagement/Areas/Admin/Views/Product/_ProductEditorSettingsModal.cshtml", Model)
+}
+
+@*copy product form*@
+<div id="copyproduct-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="copyproduct-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="copyproduct-window-title">@T("Admin.Catalog.Products.Copy")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form asp-controller="Product" asp-action="CopyProduct" method="post">
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <input asp-for="CopyProductModel.Id" type="hidden" />
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <nop-label asp-for="CopyProductModel.Name" />
+                            </div>
+                            <div class="col-md-8">
+                                <nop-editor asp-for="CopyProductModel.Name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <nop-label asp-for="CopyProductModel.Published" />
+                            </div>
+                            <div class="col-md-8">
+                                <nop-editor asp-for="CopyProductModel.Published" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <nop-label asp-for="CopyProductModel.CopyMultimedia" />
+                            </div>
+                            <div class="col-md-8">
+                                <nop-editor asp-for="CopyProductModel.CopyMultimedia" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            @T("Admin.Catalog.Products.Copy")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#deleteModal').on('shown.bs.modal', function () {
+        var combo = $("#ProductDropdown").data("kendoComboBox");
+        if (combo) {
+            combo.dataSource.read().done(function () {
+                var dataItems = combo.dataSource.view();
+                var selectedItem = dataItems.find(function (item) {
+                    return item.Selected === true;
+                });
+
+                if (selectedItem) {
+                    combo.value(selectedItem.Value);
+                }
+                else {
+                    combo.open();
+                }
+
+            });
+        }
+    });
+
+    $(function () {
+
+        $("#ChangeRedirect").change(function () {
+            if ($(this).is(":checked")) {
+                $("#ProductDropdownContainer").show();
+            } else {
+                $("#ProductDropdownContainer").hide();
+            }
+        });
+
+        $("#ProductDropdown").kendoComboBox({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            filter: "contains",
+            minLength: 0,
+            placeholder: '@T("Delsami.Plugin.Misc.ProductManagement.CustomProduct.DeleteModal.RedirectPlaceHolder")',
+            autoBind: false,
+            height: 400,
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        url: "/Admin/CustomProduct/ProductLookup",
+                        dataType: "json",
+                        data: function () {
+                            return {
+                                term: $("#ProductDropdown").data("kendoComboBox").input.val(),
+                                productId: @Model.Id
+                                    };
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    $('#deleteModal').on('shown.bs.modal', function () {
+
+        var combo = $("#ProductDropdown").data("kendoComboBox");
+
+        if (combo) {
+            combo.wrapper.addClass("k-rtl fullwidth");
+        }
+
+        selectedId = $("#product-delete").data("id");
+        $("#id").val(selectedId);
+    });
+
+
+    $("form").on("submit", function () {
+
+        if ($("#deleteModal").hasClass("show") && $("#ChangeRedirect").is(":checked")) {
+            var combo = $("#ProductDropdown").data("kendoComboBox");
+            var selectedValue = combo.value();
+
+            if (!selectedValue || selectedValue.trim() === '') {
+                alert('درصورت تمایل به ریدایرکت لطفا یک گزینه را انتخاب نمایید');
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        $("#RedirectProductId").val(selectedValue);
+        return true;
+
+    });
+</script>

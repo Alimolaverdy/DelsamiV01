@@ -35,7 +35,6 @@ namespace Delsami.Plugin.Misc.Core.Infrastructure
             services.AddScoped<IOtpService, OtpService>();
             services.AddScoped<IDelsamiCustomerService, DelsamiCustomerService>();
             services.AddScoped<IEnumHelper, EnumHelper>();
-            services.AddScoped<IVirtualProductMappingService, VirtualProductMappingService>();
             services.AddScoped<IProductStockHistoryService, ProductStockHistoryService>();
             services.AddScoped<IImportReportService, ImportReportService>();
 

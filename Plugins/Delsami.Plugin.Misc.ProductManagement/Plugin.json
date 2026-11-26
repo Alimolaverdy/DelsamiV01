@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Product Management",
+  "SystemName": "Delsami.Misc.ProductManagement",
+  "Version": "1",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "AliMolaverdi",
+  "DisplayOrder": 4,
+  "FileName": "Delsami.Plugin.Misc.ProductManagement.dll",
+  "Description": "Product Management",
+  "DependsOnSystemNames": [
+    "Delsami.Misc.Core",
+    "Delsami.Widgets.AddressLocation"
+  ]
+}

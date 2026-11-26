@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Delsami.Plugin.Misc.Core.Services
+namespace Delsami.Plugin.Misc.ProductManagement.Services
 {
     public class VirtualProductMappingService : IVirtualProductMappingService
     {
@@ -83,13 +83,13 @@ namespace Delsami.Plugin.Misc.Core.Services
                 {
                     var productCategoryQuery =
                         from pc in _productCategoryRepo.Table
-                        where !pc.IsFeaturedProduct &&
+                        where (!pc.IsFeaturedProduct) &&
                             categoryIds.Contains(pc.CategoryId)
                         group pc by pc.ProductId into pc
                         select new
                         {
                             ProductId = pc.Key,
-                            pc.First().DisplayOrder
+                            DisplayOrder = pc.First().DisplayOrder
                         };
 
                     query =
@@ -109,13 +109,13 @@ namespace Delsami.Plugin.Misc.Core.Services
                 {
                     var productManufacturerQuery =
                         from pm in _productManufacturerRepo.Table
-                        where !pm.IsFeaturedProduct &&
+                        where (!pm.IsFeaturedProduct) &&
                             manufacturerIds.Contains(pm.ManufacturerId)
                         group pm by pm.ProductId into pm
                         select new
                         {
                             ProductId = pm.Key,
-                            pm.First().DisplayOrder
+                            DisplayOrder = pm.First().DisplayOrder
                         };
 
                     query =
@@ -160,13 +160,13 @@ namespace Delsami.Plugin.Misc.Core.Services
                 {
                     var productCategoryQuery =
                         from pc in _productCategoryRepo.Table
-                        where !pc.IsFeaturedProduct &&
+                        where (!pc.IsFeaturedProduct) &&
                             categoryIds.Contains(pc.CategoryId)
                         group pc by pc.ProductId into pc
                         select new
                         {
                             ProductId = pc.Key,
-                            pc.First().DisplayOrder
+                            DisplayOrder = pc.First().DisplayOrder
                         };
 
                     query =
@@ -186,13 +186,13 @@ namespace Delsami.Plugin.Misc.Core.Services
                 {
                     var productManufacturerQuery =
                         from pm in _productManufacturerRepo.Table
-                        where !pm.IsFeaturedProduct &&
+                        where (!pm.IsFeaturedProduct) &&
                             manufacturerIds.Contains(pm.ManufacturerId)
                         group pm by pm.ProductId into pm
                         select new
                         {
                             ProductId = pm.Key,
-                            pm.First().DisplayOrder
+                            DisplayOrder = pm.First().DisplayOrder
                         };
 
                     query =
@@ -222,19 +222,14 @@ namespace Delsami.Plugin.Misc.Core.Services
 
         public async Task<(bool IsVirtualPrdocut, Product MainProduct)> GetMainProductByVirtualProductIdAsync(int virtualProductId)
         {
-            var isVirtualProduct = false;
             Product mainProduct = null;
 
-            var virtualProductMapping = await GetVirtualProductMappingByVirtualProductIdAsync(virtualProductId);
+            var product = await _productRepo.GetByIdAsync(virtualProductId);
 
-            isVirtualProduct = virtualProductMapping is not null;
+            if (product.AllowAddingOnlyExistingAttributeCombinations)
+                mainProduct = await _productRepo.GetByIdAsync(product.DeliveryDateId);
 
-            var mainProductId = virtualProductMapping?.MainProductId;
-
-            if (mainProductId.HasValue)
-                mainProduct = await _productRepo.GetByIdAsync(mainProductId.Value);
-
-            return (isVirtualProduct, mainProduct);
+            return (product.AllowAddingOnlyExistingAttributeCombinations, mainProduct);
         }
 
         public virtual async Task<IList<VirtualProductMapping>> GetVirtualProductMappingsByProductIdAsync(int mainProductId, bool showHidden = false)
@@ -283,7 +278,7 @@ namespace Delsami.Plugin.Misc.Core.Services
             if (virtualProduct is null)
                 throw new ArgumentNullException(nameof(virtualProduct));
 
-            virtualProduct.Deleted = false;
+            virtualProduct.Deleted=false;
             await _virtualProductMappingRepo.InsertAsync(virtualProduct);
         }
 
@@ -295,7 +290,7 @@ namespace Delsami.Plugin.Misc.Core.Services
             await _virtualProductMappingRepo.UpdateAsync(virtualProduct);
         }
 
-        public async Task<IList<VirtualProductMapping>> GetVirtualProductsByMainProductIdAsync(int mainProductId, bool showHidden = false)
+        private async Task<IList<VirtualProductMapping>> GetVirtualProductsByMainProductIdAsync(int mainProductId, bool showHidden = false)
         {
             if (mainProductId == 0)
                 return new List<VirtualProductMapping>();
@@ -325,22 +320,6 @@ namespace Delsami.Plugin.Misc.Core.Services
         public async Task<bool> IsMainProductAsync(int productId)
         {
             return await _virtualProductMappingRepo.Table.AnyAsync(a => a.MainProductId == productId && !a.Deleted);
-        }
-
-        public async Task<Dictionary<int, Product>> GetMainProductsBySimpleProductIdsAsync(List<int> productIds)
-        {
-            var query = from p in _productRepo.Table.Where(w => !w.Deleted && w.ProductTypeId == (int)ProductType.SimpleProduct && productIds.Contains(w.Id))
-                        join vp in _virtualProductMappingRepo.Table.Where(w => !w.Deleted) on p.Id equals vp.VirtualProductId into vpGroup
-                        from vp in vpGroup.DefaultIfEmpty()
-                        join mp in _productRepo.Table.Where(w => !w.Deleted && w.ProductTypeId == (int)ProductType.SimpleProduct && productIds.Contains(w.Id))
-                        on vp.MainProductId equals mp.Id into mpGroup
-                        from mp in mpGroup.DefaultIfEmpty()
-                        select new
-                        {
-                            simpleProductId = p.Id,
-                            MainProduct = mp ?? p
-                        };
-            return await query.ToDictionaryAsync(x => x.simpleProductId, d => d.MainProduct);
         }
 
         #endregion

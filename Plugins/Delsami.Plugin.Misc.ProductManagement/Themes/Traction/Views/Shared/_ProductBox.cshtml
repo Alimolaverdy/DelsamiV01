@@ -1,0 +1,233 @@
+﻿@model DelsamiProductOverviewModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Orders
+@using Nop.Core.Domain.Tax
+
+@inject CatalogSettings catalogSettings
+@inject IWorkContext workContext
+@inject IViewComponentSelector viewComponentSelector
+
+@{
+    //prepare "Add to cart" AJAX link
+    var addtocartlink = "";
+    var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+    if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+    }
+    else
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity });
+    }
+
+    var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
+    // int summaryCount = 75;
+    // int summaryCountMob = 55;
+    // var productName = (Model.Name.Length > summaryCount == true ? Model.Name.Substring(0, summaryCount) : Model.Name);
+    // var productNameMob = (Model.Name.Length > summaryCountMob == true ? Model.Name.Substring(0, summaryCountMob) : Model.Name);
+
+    decimal oldPrice = Model.ProductPrice.OldPriceValue ?? 0m;
+    decimal price = Model.ProductPrice.PriceValue ?? 0m;
+
+    decimal discountPercent =
+    oldPrice > 0m
+    ? Math.Round((oldPrice - price) / oldPrice * 100m, MidpointRounding.ToPositiveInfinity)
+    : 0m;
+}
+<div class="product-item" data-productid="@Model.Id">
+    <div class="picture">
+        @if (Model.PictureModels.Count > 1)
+        {
+            <div class="swiper" id="swiper-@Model.Id" dir="rtl">
+                <div class="swiper-wrapper">
+                    @foreach (var picture in Model.PictureModels)
+                    {
+                        <a class="swiper-slide" href="/@Model.SeName" title="@picture.Title">
+@*                             @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
+                            {
+                                @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                                {
+                                    ("src", picture.ImageUrl),
+                                        ("alt", picture.AlternateText),
+                                        ("title", picture.Title)
+                                        })
+                                        }
+                            else
+                            { *@
+                                <img class="picture-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@picture.AlternateText" data-lazyloadsrc="@picture.ImageUrl" title="@picture.Title" />
+                            @* } *@
+                        </a>
+                    }
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <script asp-location="Footer">
+                new Swiper('#swiper-@(Model.Id)', {
+                    pagination: {
+                        clickable: true,
+                        el: '.swiper-pagination',
+                    },
+                });
+            </script>
+        }
+        else
+        {
+            var picture = Model.PictureModels.FirstOrDefault();
+            <a href="/@Model.SeName" title="@picture?.Title">
+                @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
+                {
+                    @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                    {
+                        ("src", picture.ImageUrl),
+                        ("alt", picture.AlternateText),
+                        ("title", picture.Title)
+                        })
+                        }
+                else
+                {
+                    <img class="picture-img" alt="@picture?.AlternateText" src="@picture?.ImageUrl" title="@picture?.Title" />
+                }
+            </a>
+        }
+    </div>
+
+
+    @if (discountPercent > 0)
+    {
+        <div class="prices-discount-percent">
+            @discountPercent%
+        </div>
+    }
+    <div class="details">
+        <h4 class="product-title">
+            <a href="/@Model.SeName" title="@Model.Name">
+                @Model.Name
+            </a>
+        </h4>
+        <h4 class="product-title-mob">
+            <a href="/@Model.SeName" title="@Model.Name">
+                @Model.Name
+            </a>
+        </h4>
+
+        @if (catalogSettings.ShowSkuOnCatalogPages && !string.IsNullOrEmpty(Model.Sku))
+        {
+            <div class="sku">
+                @Model.Sku
+            </div>
+        }
+
+        <div class="add-info">
+            @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBoxAddinfoBefore, additionalData = Model }) *@
+            <div class="description" @(catalogSettings.ShowShortDescriptionOnCatalogPages ? "" : "data-short-description=none")>
+                <a href="/@Model.SeName" title="@Model.PictureModels.FirstOrDefault()?.Title">
+                    @Html.Raw(Model.ShortDescription)
+                </a>
+            </div>
+
+            <div class="blp-basket-product-item-info-container">
+                @if (Model.BundleItemsCount > 1)
+                {
+                    <div class="blp-product-count">
+                        @Model.BundleItemsCount @T("Products.BundleItemsCount")
+                    </div>
+                }
+                <div class="blp-company-guarantee">
+                    @T("Products.Guarantee")
+                </div>
+
+            </div>
+
+@*             @if (Model.ReviewOverviewModel.AllowCustomerReviews)
+            {
+                var ratingPercent = 0;
+                if (Model.ReviewOverviewModel.TotalReviews != 0)
+                {
+                    ratingPercent = ((Model.ReviewOverviewModel.RatingSum * 100) / Model.ReviewOverviewModel.TotalReviews) / 5;
+                }
+                <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
+                    <div class="rating">
+                        <div style="width: @(ratingPercent)%">
+                        </div>
+                    </div>
+                </div>
+            }
+ *@
+            @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBoxAddinfoMiddle, additionalData = Model }) *@
+            <div class="item-box-footer @(Model.HasTradeDiscount ? "bpl-has-company-discount" : "")">
+                @if (Model.HasTradeDiscount)
+                {
+                    <div class="bpl-has-company-discount-title">
+                        @T("Products.TradePrice")
+                    </div>
+                }
+                <div class="button-price-container d-flex align-items-center justify-between w-100 px-2">
+                    <div class="buttons">
+                        @if (!Model.ProductPrice.DisableAddToCompareListButton)
+                        {
+                            <div class="compare-products">
+                                <button type="button" class="button-2 add-to-compare-list-button" title="@T("ShoppingCart.AddToCompareList")" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">
+                                    @T("ShoppingCart.AddToCompareList")
+                                </button>
+                            </div>
+                        }
+                        @if (!Model.ProductPrice.DisableBuyButton)
+                        {
+                            var addToCartText = T("ShoppingCart.AddToCart").Text;
+                            if (Model.ProductPrice.IsRental)
+                            {
+                                addToCartText = T("ShoppingCart.Rent").Text;
+                            }
+                            if (Model.ProductPrice.AvailableForPreOrder)
+                            {
+                                addToCartText = T("ShoppingCart.PreOrder").Text;
+                            }
+                            @* <div class="clearfix"></div> *@
+                            <button type="button" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@T("ShoppingCart.ShowProduct")</button>
+                        }
+
+                        @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBoxAddinfoAfter, additionalData = Model }) *@
+                    </div>
+
+                    <div class="prices">
+                        @if (discountPercent > 0)
+                        {
+                            <div class="old-price-container">
+                                <span class="price old-price">@Model.ProductPrice.OldPrice</span>
+                                <span class="price old-price-discount-percent">@discountPercent%</span>
+                            </div>
+                        }
+                        @if (Model.ProductPrice.PriceValue != 0)
+                        {
+                            <span class="price actual-price">@Model.ProductPrice.Price</span>
+                        }
+
+                        @if (Model.ProductPrice.DisplayTaxShippingInfo)
+                        {
+                            var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+                            //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
+                            //of course, you can modify appropriate locales to include VAT info there
+                            <span class="tax-shipping-info">
+                                @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
+                            </span>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ProductPrice.BasePricePAngV))
+                        {
+                            <div class="base-price-pangv">
+                                @Model.ProductPrice.BasePricePAngV
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <a class="dummy-link" href="/@Model.SeName" title="@Model.Name"></a>
+        </div>
+
+
+
+    </div>
+</div>

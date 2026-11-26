@@ -4,7 +4,7 @@ using Nop.Core.Domain.Catalog;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Delsami.Plugin.Misc.Core.Services
+namespace Delsami.Plugin.Misc.ProductManagement.Services
 {
     public interface IVirtualProductMappingService
     {
@@ -18,13 +18,13 @@ namespace Delsami.Plugin.Misc.Core.Services
                                                           bool? hasMainProduct = null);
 
         Task<IPagedList<Product>> GetNullMainVirtualProductsAsync(int pageIndex = 0,
-                                                  int pageSize = int.MaxValue,
-                                                  IList<int> categoryIds = null,
-                                                  IList<int> manufacturerIds = null,
-                                                  int storeId = 0,
-                                                  int vendorId = 0,
-                                                  string keywords = null,
-                                                  bool? hasMainProduct = null);
+                                                                  int pageSize = int.MaxValue,
+                                                                  IList<int> categoryIds = null,
+                                                                  IList<int> manufacturerIds = null,
+                                                                  int storeId = 0,
+                                                                  int vendorId = 0,
+                                                                  string keywords = null,
+                                                                  bool? hasMainProduct = null);
 
         Task<VirtualProductMapping> GetVirtualProductMappingByVirtualProductIdAsync(int virtualProductId);
 
@@ -53,8 +53,6 @@ namespace Delsami.Plugin.Misc.Core.Services
         Task<bool> IsVirtualProductsAsync(List<int> productIds);
 
         Task<bool> IsMainProductAsync(int productId);
-
-        Task<Dictionary<int, Product>> GetMainProductsBySimpleProductIdsAsync(List<int> productIds);
 
     }
 }
