@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Exceptions;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.ExternalServices;
-using ZarIran.Plugin.Misc.SMS.Model;
+using Delsami.Plugin.Misc.SMS.Exceptions;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Infrastructure.ExternalServices;
+using Delsami.Plugin.Misc.SMS.Model;
 
-namespace ZarIran.Plugin.Misc.SMS.Servicecs
+namespace Delsami.Plugin.Misc.SMS.Servicecs
 {
     public class SMSSender : ISMSSender
     {

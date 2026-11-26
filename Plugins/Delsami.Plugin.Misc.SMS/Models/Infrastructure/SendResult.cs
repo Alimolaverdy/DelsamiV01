@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZarIran.Plugin.Misc.SMS.Helpers;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Helpers;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
 
-namespace ZarIran.Plugin.Misc.SMS.Models.Infrastructure
+namespace Delsami.Plugin.Misc.SMS.Models.Infrastructure
 {
     public class SendResult
     {

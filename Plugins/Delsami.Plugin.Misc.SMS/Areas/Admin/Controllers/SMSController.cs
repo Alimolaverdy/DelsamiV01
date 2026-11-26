@@ -4,13 +4,13 @@ using Nop.Services.Security;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
-using ZarIran.Plugin.Misc.SMS.Areas.Admin.Models;
+using Delsami.Plugin.Misc.SMS.Areas.Admin.Models;
 using System.Threading.Tasks;
 using Nop.Services.Messages;
 using Nop.Services.Localization;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Permissions;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Permissions;
 
-namespace ZarIran.Plugin.Misc.SMS.Areas.Admin.Controllers
+namespace Delsami.Plugin.Misc.SMS.Areas.Admin.Controllers
 {
 
     [AuthorizeAdmin]
@@ -49,7 +49,7 @@ namespace ZarIran.Plugin.Misc.SMS.Areas.Admin.Controllers
             model.Apikey = smsSettings.Apikey;
             model.BaseUrl = smsSettings.BaseUrl;
 
-            return View("~/Plugins/ZarIran.Misc.SMS/Areas/Admin/Views/SMS/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.Misc.SMS/Areas/Admin/Views/SMS/Configure.cshtml", model);
         }
 
         [HttpPost]

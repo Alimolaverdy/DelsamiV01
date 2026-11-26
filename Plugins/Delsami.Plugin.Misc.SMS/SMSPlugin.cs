@@ -7,9 +7,9 @@ using Nop.Web.Framework.Menu;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Permissions;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Permissions;
 
-namespace ZarIran.Plugin.Misc.SMS
+namespace Delsami.Plugin.Misc.SMS
 {
     public class SMSPlugin : BasePlugin, IAdminMenuPlugin
     {
@@ -50,19 +50,19 @@ namespace ZarIran.Plugin.Misc.SMS
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var smsSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.SystemName");
-            var smsName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.Configuration.SystemName");
-            var queuedSMSListName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.QueuedSMS.List");
-            var queuedSMSListSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.SMS.QueuedSMS.List.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var smsSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.SystemName");
+            var smsName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.Configuration.SystemName");
+            var queuedSMSListName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.QueuedSMS.List");
+            var queuedSMSListSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.SMS.QueuedSMS.List.SystemName");
 
-            var zarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (zarIranSiteMapNode == null)
-                zarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -85,7 +85,7 @@ namespace ZarIran.Plugin.Misc.SMS
                 }
             };
 
-            zarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = smsName,
                 SystemName = smsSystemName,
@@ -96,7 +96,7 @@ namespace ZarIran.Plugin.Misc.SMS
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(zarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -105,29 +105,29 @@ namespace ZarIran.Plugin.Misc.SMS
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Misc.SMS.SystemName"] = "SMS",
-                ["ZarIran.Plugin.Misc.SMS.Name"] = "SMS",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.SMS.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.SystemName"] = "SMSConfiguration",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMS.List.SystemName"] = "QueuedSMSList",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMS.List"] = "Queued SMSs",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.SenderNumber"] = "Sender number",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.ReceiverNumber"] = "Receiver number",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.Body"] = "Message body",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.CreatedDateTimeStr"] = "Created date",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.SentDateTimeStr"] = "Sent date",
-                ["ZarIran.Plugin.Misc.SMS.QueuedSMSs.Fields.SentTries"] = "Sent tries",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.ApiKey"] = "ApiKey",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.SenderNumber"] = "Number Of Sender",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.MaximumLengthOfSMS"] = "Maximum Length Of SMS",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.ExchangeName"] = "Exchange Name",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.RoutingKey"] = "Routing Key",
-                ["ZarIran.Plugin.Misc.SMS.Configuration.Password"] = "Password Of SMS Service",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Misc.SMS.SystemName"] = "SMS",
+                ["Delsami.Plugin.Misc.SMS.Name"] = "SMS",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.SMS.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.SMS.Configuration.SystemName"] = "SMSConfiguration",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMS.List.SystemName"] = "QueuedSMSList",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMS.List"] = "Queued SMSs",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.SenderNumber"] = "Sender number",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.ReceiverNumber"] = "Receiver number",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.Body"] = "Message body",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.CreatedDateTimeStr"] = "Created date",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.SentDateTimeStr"] = "Sent date",
+                ["Delsami.Plugin.Misc.SMS.QueuedSMSs.Fields.SentTries"] = "Sent tries",
+                ["Delsami.Plugin.Misc.SMS.Configuration.ApiKey"] = "ApiKey",
+                ["Delsami.Plugin.Misc.SMS.Configuration.SenderNumber"] = "Number Of Sender",
+                ["Delsami.Plugin.Misc.SMS.Configuration.MaximumLengthOfSMS"] = "Maximum Length Of SMS",
+                ["Delsami.Plugin.Misc.SMS.Configuration.ExchangeName"] = "Exchange Name",
+                ["Delsami.Plugin.Misc.SMS.Configuration.RoutingKey"] = "Routing Key",
+                ["Delsami.Plugin.Misc.SMS.Configuration.Password"] = "Password Of SMS Service",
 
             });
 

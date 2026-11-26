@@ -5,12 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using ZarIran.Plugin.Misc.SMS.Exceptions;
-using ZarIran.Plugin.Misc.SMS.Helpers;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
-using ZarIran.Plugin.Misc.SMS.Models.Infrastructure;
+using Delsami.Plugin.Misc.SMS.Exceptions;
+using Delsami.Plugin.Misc.SMS.Helpers;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Models.Infrastructure;
 
-namespace ZarIran.Plugin.Misc.SMS.Infrastructure.ExternalServices
+namespace Delsami.Plugin.Misc.SMS.Infrastructure.ExternalServices
 {
     public class KavehNegarSMSSenderService : IKavehNegarSMSSenderService
     {

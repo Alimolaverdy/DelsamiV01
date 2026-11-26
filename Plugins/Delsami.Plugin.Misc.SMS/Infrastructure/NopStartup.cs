@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.ExternalServices;
-using ZarIran.Plugin.Misc.SMS.Servicecs;
+using Delsami.Plugin.Misc.SMS.Infrastructure.ExternalServices;
+using Delsami.Plugin.Misc.SMS.Servicecs;
 
-namespace ZarIran.Plugin.Misc.SMS.Infrastructure
+namespace Delsami.Plugin.Misc.SMS.Infrastructure
 {
     public class NopStartup : INopStartup
     {

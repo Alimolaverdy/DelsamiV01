@@ -1,8 +1,8 @@
 ﻿using Nop.Services.ScheduleTasks;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Servicecs;
+using Delsami.Plugin.Misc.SMS.Servicecs;
 
-namespace ZarIran.Plugin.Misc.SMS.ScheduleTasks
+namespace Delsami.Plugin.Misc.SMS.ScheduleTasks
 {
     public class SendPendingQueuedSMS : IScheduleTask
     {

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Model;
+using Delsami.Plugin.Misc.SMS.Model;
 
-namespace ZarIran.Plugin.Misc.SMS.Data.Mapping.Builder
+namespace Delsami.Plugin.Misc.SMS.Data.Mapping.Builder
 {
     internal class QueuedSMSBuilder : NopEntityBuilder<QueuedSMS>
     {

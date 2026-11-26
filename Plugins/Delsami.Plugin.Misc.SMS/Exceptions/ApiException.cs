@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
 
-namespace ZarIran.Plugin.Misc.SMS.Exceptions
+namespace Delsami.Plugin.Misc.SMS.Exceptions
 {
     public class ApiException : KavehNegarException
     {

@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Misc.SMS
+namespace Delsami.Plugin.Misc.SMS
 {
     public class SMSSettings : ISettings
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using Nop.Core;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
 
-namespace ZarIran.Plugin.Misc.SMS.Model
+namespace Delsami.Plugin.Misc.SMS.Model
 {
     public class QueuedSMS : BaseEntity
     {

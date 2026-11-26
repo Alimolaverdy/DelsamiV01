@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.SMS.Model;
+using Delsami.Plugin.Misc.SMS.Model;
 
-namespace ZarIran.Plugin.Misc.SMS.Servicecs
+namespace Delsami.Plugin.Misc.SMS.Servicecs
 {
     public interface ISMSSender
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace ZarIran.Plugin.Misc.SMS.Helpers
+namespace Delsami.Plugin.Misc.SMS.Helpers
 {
     public class NPDateTimeHelper
     {

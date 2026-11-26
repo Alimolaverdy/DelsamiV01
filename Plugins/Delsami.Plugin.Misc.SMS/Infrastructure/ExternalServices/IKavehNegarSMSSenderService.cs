@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZarIran.Plugin.Misc.SMS.Infrastructure.Enums;
-using ZarIran.Plugin.Misc.SMS.Models.Infrastructure;
+using Delsami.Plugin.Misc.SMS.Infrastructure.Enums;
+using Delsami.Plugin.Misc.SMS.Models.Infrastructure;
 
-namespace ZarIran.Plugin.Misc.SMS.Infrastructure.ExternalServices
+namespace Delsami.Plugin.Misc.SMS.Infrastructure.ExternalServices
 {
     public interface IKavehNegarSMSSenderService
     {

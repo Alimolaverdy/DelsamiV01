@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Misc.SMS.Infrastructure.Permissions
+namespace Delsami.Plugin.Misc.SMS.Infrastructure.Permissions
 {
     internal class SMSPermission : IPermissionProvider
     {
