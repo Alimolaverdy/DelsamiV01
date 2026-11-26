@@ -5,7 +5,7 @@ using Nop.Plugin.Misc.AdvRedirect.Domain;
 
 namespace Nop.Plugin.Misc.AdvRedirect.Data
 {
-    [NopMigration("2026/11/18 09:09:17:6455442", "Misc.AdvRedirect base schema", MigrationProcessType.Installation)]
+    [NopMigration("2026/11/26 09:09:17:6455442", "Misc.AdvRedirect base schema", MigrationProcessType.Installation)]
     public class SchemaMigration : AutoReversingMigration
     {
         #region Methods

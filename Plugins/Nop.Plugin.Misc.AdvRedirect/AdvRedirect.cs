@@ -66,17 +66,17 @@ namespace Nop.Plugin.Misc.AdvRedirect
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.AdvRedirect.Name"] = "Adv redirect",
-                ["ZarIran.Plugin.Misc.AdvRedirect.SystemName"] = "AdvRedirect",
-                ["ZarIran.Plugin.Misc.AdvRedirect.Configuration"] = "Configuration",
-                ["ZarIran.Plugin.Misc.AdvRedirect.Configuration.SystemName"] = "AdvRedirectConfiguration",
-                ["ZarIran.Plugin.Misc.AdvRedirect.RedirectionRule.List.SystemName"] = "RedirectionRuleList",
-                ["ZarIran.Plugin.Misc.AdvRedirect.RedirectionRule.List"] = "Redirection Rule List",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.AdvRedirect.Name"] = "Adv redirect",
+                ["Delsami.Plugin.Misc.AdvRedirect.SystemName"] = "AdvRedirect",
+                ["Delsami.Plugin.Misc.AdvRedirect.Configuration"] = "Configuration",
+                ["Delsami.Plugin.Misc.AdvRedirect.Configuration.SystemName"] = "AdvRedirectConfiguration",
+                ["Delsami.Plugin.Misc.AdvRedirect.RedirectionRule.List.SystemName"] = "RedirectionRuleList",
+                ["Delsami.Plugin.Misc.AdvRedirect.RedirectionRule.List"] = "Redirection Rule List",
             });
 
             await base.InstallAsync();
@@ -98,19 +98,19 @@ namespace Nop.Plugin.Misc.AdvRedirect
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var advRedirectSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.SystemName");
-            var advRedirectName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.Name");
-            var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.Configuration");
-            var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.Configuration.SystemName");
-            var redirectionRuleListName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.RedirectionRule.List");
-            var redirectionRuleListSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.AdvRedirect.RedirectionRule.List.SystemName");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var advRedirectSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.SystemName");
+            var advRedirectName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.Name");
+            var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.Configuration");
+            var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.Configuration.SystemName");
+            var redirectionRuleListName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.RedirectionRule.List");
+            var redirectionRuleListSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.AdvRedirect.RedirectionRule.List.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -149,7 +149,7 @@ namespace Nop.Plugin.Misc.AdvRedirect
                 },
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = advRedirectName,
                 SystemName = advRedirectSystemName,
@@ -160,7 +160,7 @@ namespace Nop.Plugin.Misc.AdvRedirect
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
