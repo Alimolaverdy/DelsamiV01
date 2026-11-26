@@ -64,7 +64,7 @@
 else
 {
     <script>
-        ZarIran.documentReady(function () {
+        Delsami.documentReady(function () {
             var selectedShippingOption = $('input[name=shippingoption]:checked').val();
 
             if (selectedShippingOption == '' || selectedShippingOption == null)
@@ -115,9 +115,9 @@ else
 
 @if (Model.IsOpc)
 {
-    @await Html.PartialAsync("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/_OpcShippingMethodOverrideNextButtonAction.cshtml")
+    @await Html.PartialAsync("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/_OpcShippingMethodOverrideNextButtonAction.cshtml")
 }
 else
 {
-    @await Html.PartialAsync("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/_ShippingMethodOverrideNextButtonAction.cshtml")
+    @await Html.PartialAsync("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/_ShippingMethodOverrideNextButtonAction.cshtml")
 }

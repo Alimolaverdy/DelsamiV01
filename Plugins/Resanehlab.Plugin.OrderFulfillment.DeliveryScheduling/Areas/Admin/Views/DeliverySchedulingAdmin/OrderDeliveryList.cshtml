@@ -7,12 +7,12 @@
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList").Text;
 
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.OrderDelivery");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.OrderDelivery");
 
-    const string hideSearchBlockAttributeName = "ZarIran.DeliveryScheduling.OrderDeliveryListPage.HideSearchBlock";
+    const string hideSearchBlockAttributeName = "Delsami.DeliveryScheduling.OrderDeliveryListPage.HideSearchBlock";
     var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
 }
 
@@ -21,13 +21,13 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList")
+            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList")
         </h1>
         <div class="float-right">
             <div class="btn-group">
                 <button type="button" class="btn bg-purple">
                     <i class="fa fa-file-pdf-o"></i>
-                    @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery")
+                    @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery")
                 </button>
                 <button type="button" class="btn bg-purple dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
@@ -36,12 +36,12 @@
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-item">
                         <button type="submit" name="pdf-all">
-                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery.All")
+                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="pdf-selected">
-                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery.Selected")
+                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.PdfOrdersDelivery.Selected")
                         </button>
                     </li>
                 </ul>
@@ -138,27 +138,27 @@
                              },
                               new ColumnProperty(nameof(OrderDeliveryModel.OrderName))
                              {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.OrderId").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.OrderId").Text,
                              Width = "150",
                              Render = new RenderLink(new DataUrl("/Admin/Order/Edit", nameof(OrderDeliveryModel.OrderId)))
                             },
                                new ColumnProperty(nameof(OrderDeliveryModel.DeliveryDate))
                              {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.DeliveryDateTime").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.DeliveryDateTime").Text,
                              Width = "200",
                              Editable = true,
                              EditType = EditType.String
                              },
                                new ColumnProperty(nameof(OrderDeliveryModel.ShippingMethodName))
                              {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.ShippingMethodName").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.ShippingMethodName").Text,
                              Width = "100",
                              Editable = true,
                              EditType = EditType.String
                              },
                                 new ColumnProperty(nameof(OrderDeliveryModel.StoreName))
                              {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.StoreName").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryList.StoreName").Text,
                              Width = "100",
                              Editable = true,
                              EditType = EditType.String

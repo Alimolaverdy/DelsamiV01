@@ -2,14 +2,14 @@
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Vendors;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public interface IOrderShippingMethodCapacityMappingService
     {

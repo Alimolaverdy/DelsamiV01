@@ -1,8 +1,8 @@
 ﻿using Nop.Core;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public interface IOverriddenStartDisplayDaysOffsetService
     {

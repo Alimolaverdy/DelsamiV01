@@ -27,11 +27,11 @@ using Nop.Services.Stores;
 using Nop.Services.Vendors;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,7 +39,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public class OrderShippingMethodCapacityMappingService : IOrderShippingMethodCapacityMappingService
     {
@@ -503,7 +503,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
                 {
                     var customValues = new Dictionary<string, object>();
 
-                    customValues.Add(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryPdf.DeliveryInformation.DeliveryDate", lang.Id), await orderShippingMethodCapacityMapping.DeliveryDateOnUtc.FormatDateTimeAsync());
+                    customValues.Add(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryPdf.DeliveryInformation.DeliveryDate", lang.Id), await orderShippingMethodCapacityMapping.DeliveryDateOnUtc.FormatDateTimeAsync());
 
                     var shippingMethodCapacity = await _shippingMethodCapacityService.GetShippingMethodCapacityByIdAsync(orderShippingMethodCapacityMapping.ShippingMethodCapacityId);
                     if (shippingMethodCapacity != null)
@@ -514,7 +514,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
                             var availableDeliveryTimeRange = await _availableDeliveryTimeRangeService.GetAvailableDeliveryTimeRangeByIdAsync(availableDeliveryDateTimeRange.AvailableDeliveryTimeRangeId);
                             if (availableDeliveryTimeRange != null)
                             {
-                                customValues.Add(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryPdf.DeliveryInformation.DeliveryTime", lang.Id), await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, d => d.Time));
+                                customValues.Add(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDeliveryPdf.DeliveryInformation.DeliveryTime", lang.Id), await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, d => d.Time));
                             }
                         }
                     }

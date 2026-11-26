@@ -3,7 +3,7 @@
 }
 
 <script>
-    ZarIran.documentReady(function () {
+    Delsami.documentReady(function () {
         $(".shipping-method form").unbind("submit");
 
         $(".shipping-method .buttons").detach().insertAfter("#available-delivery-datetimes");
@@ -13,7 +13,7 @@
 
             var selectedRadioButton = $("input[name='deliveryDateTimesRadioGroup']:checked");
             if (!selectedRadioButton.val()) {
-                alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
+                alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
                 return false;
             }
 
@@ -34,7 +34,7 @@
                     type: 'post',
                     success: function (data) {
                         if (!data.Success) {
-                            alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                            alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                             return false;
                         }
                         else {

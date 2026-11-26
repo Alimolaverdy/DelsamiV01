@@ -7,7 +7,7 @@
 <ul class="loadDeliveryDateTimes" style="display:none">
     <li class="delivery-date">
         <span class="label">
-            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDetails.DeliveryDate"):
+            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDetails.DeliveryDate"):
         </span>
         <span class="value">
             @Model.DeliveryDate
@@ -15,7 +15,7 @@
     </li>
     <li class="delivery-time">
         <span class="label">
-            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.OrderDetails.DeliveryTime"):
+            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.OrderDetails.DeliveryTime"):
         </span>
         <span class="value">
             @Model.DeliveryTime
@@ -37,7 +37,7 @@
 else
 {
     <script>
-        ZarIran.documentReady(function () {
+        Delsami.documentReady(function () {
             var elem = $(".order-review-data .shipping-method");
             if (elem.length) {
                 $(".loadDeliveryDateTimes").children().insertAfter(elem);

@@ -1,14 +1,14 @@
-﻿using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
-using ZarIran.Plugin.Shipping.Core.Services;
+﻿using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.Shipping.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Factories
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Factories
 {
     public partial class AvailableDeliveryDateTimeTableModelFactory : IAvailableDeliveryDateTimeTableModelFactory
     {

@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain
 {
     public class OrderShippingMethodCapacityMapping : BaseEntity
     {

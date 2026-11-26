@@ -1,11 +1,11 @@
 ﻿using Nop.Core;
 using Nop.Data;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public class ExceptionDateService : IExceptionDateService
     {

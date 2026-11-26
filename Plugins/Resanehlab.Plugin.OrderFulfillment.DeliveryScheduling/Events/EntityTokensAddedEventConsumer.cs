@@ -6,14 +6,14 @@ using Nop.Services.Customers;
 using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Events
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Events
 {
     public partial class EntityTokensAddedEventConsumer :
         IConsumer<EntityTokensAddedEvent<Order, Token>>

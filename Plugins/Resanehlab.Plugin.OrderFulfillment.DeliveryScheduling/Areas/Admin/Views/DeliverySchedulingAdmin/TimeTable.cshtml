@@ -2,9 +2,9 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities");
 
     Layout = "_AdminLayout";
 
@@ -18,14 +18,14 @@
 
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.Capacities")
+            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.Capacities")
         </h1>
     </div>
 
     if (Model.HasConfirmedTimeRange)
     {
         <div class="content-header">
-            <div class="well">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities.Hint")</div>
+            <div class="well">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ManageAvailableDeliveryDateTimeCapacities.Hint")</div>
         </div>
     }
 
@@ -75,7 +75,7 @@
             }
             else
             {
-                <div class="alert alert-warning">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")</div>
+                <div class="alert alert-warning">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")</div>
             }
         </div>
     </section>

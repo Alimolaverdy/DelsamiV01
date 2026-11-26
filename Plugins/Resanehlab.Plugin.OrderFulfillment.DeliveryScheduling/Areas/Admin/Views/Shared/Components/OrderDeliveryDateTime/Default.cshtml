@@ -4,11 +4,11 @@
     @inject IGenericAttributeService genericAttributeService
     @inject IWorkContext workContext
 
-    const string hideOrderDeliverySchedulingBlockAttributeName = "ZarIran.DeliveryScheduling.OrderPage.HideDeliverySchedulingBlock";
+    const string hideOrderDeliverySchedulingBlockAttributeName = "Delsami.DeliveryScheduling.OrderPage.HideDeliverySchedulingBlock";
     var hideOrderDeliverySchedulingBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideOrderDeliverySchedulingBlockAttributeName);
 }
 
-<nop-card asp-name="order-delivery-date-time" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Orders.DeliveryScheduling")" asp-hide-block-attribute-name="@hideOrderDeliverySchedulingBlockAttributeName" asp-hide="@hideOrderDeliverySchedulingBlock" asp-advanced="false">
+<nop-card asp-name="order-delivery-date-time" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Orders.DeliveryScheduling")" asp-hide-block-attribute-name="@hideOrderDeliverySchedulingBlockAttributeName" asp-hide="@hideOrderDeliverySchedulingBlock" asp-advanced="false">
     <div class="card-body">
         <div class="card-body">
             <div class="form-group row">

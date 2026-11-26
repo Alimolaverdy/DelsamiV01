@@ -2,9 +2,9 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.ManageExceptionDates");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.ManageExceptionDates");
 
     Layout = "_AdminLayout";
 
@@ -16,7 +16,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.List")
+        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.List")
     </h1>
 </div>
 
@@ -56,7 +56,7 @@
                 <div class="content-header clearfix">
                     <div class="float-right">
                         <a href="@(Url.Action("Create", "ExceptionDateAdmin", new { StoreId = Model.StoreId}))" class="btn bg-blue">
-                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddButton")
+                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddButton")
                         </a>
                     </div>
                 </div>
@@ -76,14 +76,14 @@
                                     {
                                     new ColumnProperty(nameof(ExceptionDateModel.DateOnUtcStr))
                                     {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc").Text,
                                     Width = "200",
                                     Editable = true,
                                     EditType = EditType.String
                                     },
                                      new ColumnProperty(nameof(ExceptionDateModel.Title))
                                     {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title").Text,
                                     Width = "200",
                                     Editable = true,
                                     EditType = EditType.String
@@ -112,7 +112,7 @@
             }
             else
             {
-                <div class="alert alert-warning">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")</div>
+                <div class="alert alert-warning">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")</div>
             }
         </div>
     </div>

@@ -2,7 +2,7 @@
 using Nop.Core.Domain.Localization;
 using System;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain
 {
     public class ExceptionDate : BaseEntity, ILocalizedEntity
     {

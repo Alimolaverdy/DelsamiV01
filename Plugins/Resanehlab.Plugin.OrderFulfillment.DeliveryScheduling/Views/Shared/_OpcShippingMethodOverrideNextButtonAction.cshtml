@@ -9,7 +9,7 @@
         this.onclick = function (event) {
             var selectedRadioButton = $("input[name='deliveryDateTimesRadioGroup']:checked");
             if (!selectedRadioButton.val()) {
-                alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
+                alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
                 return false;
             }
             else {
@@ -29,7 +29,7 @@
                         if (data.Success)
                             $(elem).data('onclick').call(elem, event || window.event);
                         else {
-                            alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                            alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                             return false;
                         }
                     },

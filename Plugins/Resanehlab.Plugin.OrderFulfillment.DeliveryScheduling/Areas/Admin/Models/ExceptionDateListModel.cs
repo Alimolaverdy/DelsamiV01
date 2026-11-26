@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public class ExceptionDateListModel
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using Nop.Core;
 using Nop.Services.Configuration;
 using Nop.Services.Helpers;
@@ -23,7 +23,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers;
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers;
 
 public class ExceptionDateAdminController : BaseAdminController
 {
@@ -119,7 +119,7 @@ public class ExceptionDateAdminController : BaseAdminController
             {
                 new SelectListItem
                 {
-                    Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
+                    Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
                     Value = ""
                 }
             };
@@ -132,7 +132,7 @@ public class ExceptionDateAdminController : BaseAdminController
             model.AvailableStores = availableStores;
         }
 
-        return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/List.cshtml", model);
+        return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/List.cshtml", model);
     }
 
     [HttpPost]
@@ -201,7 +201,7 @@ public class ExceptionDateAdminController : BaseAdminController
         var availablityDeliveryTimeRanges = await _availableDeliveryTimeRangeService.GetTimeRangeByExceptionDateIdAsync(exceptionDateId, storeId.Value);
         if (availablityDeliveryTimeRanges?.Count() == 0)
         {
-            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.YouCouldntAddExceptionDateWithoutTimeRange"));
+            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.YouCouldntAddExceptionDateWithoutTimeRange"));
             return Json(new { Result = false });
         }
 
@@ -232,7 +232,7 @@ public class ExceptionDateAdminController : BaseAdminController
 
         }
 
-        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
         return Json(new { Result = true });
     }
@@ -255,7 +255,7 @@ public class ExceptionDateAdminController : BaseAdminController
 
         await AddLocalesAsync(_languageService, model.Locales);
 
-        return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Create.cshtml", model);
+        return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Create.cshtml", model);
     }
 
     [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -318,7 +318,7 @@ public class ExceptionDateAdminController : BaseAdminController
                     }
                 }
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
                 if (continueEditing)
                 {
@@ -331,12 +331,12 @@ public class ExceptionDateAdminController : BaseAdminController
             }
             else
             {
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.SameDateError"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.SameDateError"));
             }
         }
 
         model.AvailableShippingMethods = await GetAvailableShippingMethods();
-        return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Create.cshtml", model);
+        return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Create.cshtml", model);
     }
 
     public virtual async Task<IActionResult> Edit(int id, int? storeId = null, int? shippingMethodId = null)
@@ -376,7 +376,7 @@ public class ExceptionDateAdminController : BaseAdminController
         {
             new SelectListItem
             {
-                Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
+                Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
                 Value = ""
             }
         };
@@ -389,7 +389,7 @@ public class ExceptionDateAdminController : BaseAdminController
             locale.Title = await _localizationService.GetLocalizedAsync(exceptionDate, x => x.Title, languageId, false, false);
         });
 
-        return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Edit.cshtml", model);
+        return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Edit.cshtml", model);
     }
 
     [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -423,7 +423,7 @@ public class ExceptionDateAdminController : BaseAdminController
                 }
             }
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
             if (continueEditing)
             {
@@ -443,13 +443,13 @@ public class ExceptionDateAdminController : BaseAdminController
                 Value = s.Id.ToString()
             }).ToListAsync();
 
-            var items = new List<SelectListItem> { new SelectListItem { Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "" } };
+            var items = new List<SelectListItem> { new SelectListItem { Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "" } };
 
             items.AddRange(await GetAvailableShippingMethods());
 
             model.AvailableShippingMethods = items;
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/Edit.cshtml", model);
         }
     }
 
@@ -466,7 +466,7 @@ public class ExceptionDateAdminController : BaseAdminController
         DateTime? selectedDate = null;
 
         if (!string.IsNullOrWhiteSpace(selectedDateStr))
-            selectedDate = ZarIran.Plugin.Misc.Core.Helpers.DateTimeHelper.GetDateTimeFromPersian(WebUtility.UrlDecode(selectedDateStr));
+            selectedDate = Delsami.Plugin.Misc.Core.Helpers.DateTimeHelper.GetDateTimeFromPersian(WebUtility.UrlDecode(selectedDateStr));
 
         if (selectedDate.HasValue && !isCustomTimeRange)
         {
@@ -518,7 +518,7 @@ public class ExceptionDateAdminController : BaseAdminController
         model.SelectedShippingMethodId = shippingMethodId;
         model.StoreId = exceptionDate.StoreId;
 
-        return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/TimeTableList.cshtml", model);
+        return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/TimeTableList.cshtml", model);
     }
 
     public virtual async Task<IActionResult> Delete(int id)

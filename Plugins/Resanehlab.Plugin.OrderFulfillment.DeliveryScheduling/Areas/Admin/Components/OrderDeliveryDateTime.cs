@@ -3,14 +3,14 @@ using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Models.Orders;
 using Nop.Web.Framework.Components;
 using Nop.Web.Framework.UI;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Components
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Components
 {
     public class OrderDeliveryDateTime : NopViewComponent
     {
@@ -64,12 +64,12 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Compone
 
                 var model = new DeliverySchedulingOrderModel()
                 {
-                    DeliveryTimeRange = orderShippingMethodCapacityMapping != null ? await orderShippingMethodCapacityMapping.DeliveryDateOnUtc.FormatDateTimeAsync() : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.NoData"),
-                    DeliveryTime = orderShippingMethodCapacityMapping != null ? await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, d => d.Time) : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.NoData"),
-                    ShippingMethodName = orderShippingMethodCapacityMapping != null ? orderModel.ShippingMethod : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.NoData")
+                    DeliveryTimeRange = orderShippingMethodCapacityMapping != null ? await orderShippingMethodCapacityMapping.DeliveryDateOnUtc.FormatDateTimeAsync() : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.NoData"),
+                    DeliveryTime = orderShippingMethodCapacityMapping != null ? await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, d => d.Time) : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.NoData"),
+                    ShippingMethodName = orderShippingMethodCapacityMapping != null ? orderModel.ShippingMethod : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.NoData")
                 };
 
-                return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/Shared/Components/OrderDeliveryDateTime/Default.cshtml", model);
+                return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/Shared/Components/OrderDeliveryDateTime/Default.cshtml", model);
             }
 
             return Content(string.Empty);

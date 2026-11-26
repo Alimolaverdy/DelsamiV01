@@ -1,12 +1,12 @@
 ﻿using Nop.Core;
 using Nop.Core.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions
 {
     public static class DateTimeExtension
     {

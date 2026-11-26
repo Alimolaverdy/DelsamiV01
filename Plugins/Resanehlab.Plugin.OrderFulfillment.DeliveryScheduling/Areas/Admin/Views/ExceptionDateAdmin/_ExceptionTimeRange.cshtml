@@ -83,25 +83,25 @@
                                 {
                                 new ColumnProperty(nameof(Model.ExceptionTimeRange.Time))
                                 {
-                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time").Text,
+                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time").Text,
                                 Width = "100",
                                 Editable = false,
                                 },
                                 new ColumnProperty(nameof(Model.ExceptionTimeRange.StartHour))
                                 {
-                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour").Text,
+                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour").Text,
                                 Width = "100",
                                 Editable = false,
                                 },
                                 new ColumnProperty(nameof(Model.ExceptionTimeRange.EndHour))
                                 {
-                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour").Text,
+                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour").Text,
                                 Width = "100",
                                 Editable = false,
                                 },
                                 new ColumnProperty(nameof(Model.ExceptionTimeRange.ShippingMethodTexts))
                                 {
-                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods").Text,
+                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods").Text,
                                 Editable = false,
                                 Width = "400",
                                 },
@@ -114,7 +114,7 @@
                                 },
                                 new ColumnProperty(nameof(Model.ExceptionTimeRange.IsConfirmed))
                                 {
-                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.IsConfirmed").Text,
+                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.IsConfirmed").Text,
                                 Width = "100",
                                 Render = new RenderCustom("renderIsConfirmed")
                                 }
@@ -131,10 +131,10 @@
 
      function renderIsConfirmed(data, type, row, meta) {
           if (row.IsConfirmed === true) {
-            return '<span class=\"alert alert-success\">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmedText")</span>'
+            return '<span class=\"alert alert-success\">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmedText")</span>'
           }
           else {
-            return '<span class=\"alert alert-warning\">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.NotConfirmedText")</span>'
+            return '<span class=\"alert alert-warning\">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.NotConfirmedText")</span>'
           }
       }
 
@@ -180,7 +180,7 @@
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: "@Url.RouteUrl("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Admin.AvailableDeliveryTimeRangeAdmin.Create")",
+                url: "@Url.RouteUrl("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Admin.AvailableDeliveryTimeRangeAdmin.Create")",
                 data: postData,
                 success: function (data) {
                     if (data.Result) {
@@ -218,7 +218,7 @@
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: "@Url.RouteUrl("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Admin.ExceptionDateAdmin.ConfirmingTimeRanges")",
+                url: "@Url.RouteUrl("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Admin.ExceptionDateAdmin.ConfirmingTimeRanges")",
                 data: postData,
                 success: function (data) {
                     if (data.Result) {

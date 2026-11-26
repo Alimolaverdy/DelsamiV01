@@ -1,9 +1,9 @@
 ﻿@model AvailableDeliveryTimeRangeListModel
 @{
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.ManageAvailableDeliveryTimeRanges");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.ManageAvailableDeliveryTimeRanges");
 
     Layout = "_AdminLayout";
 
@@ -15,7 +15,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.List")
+        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.List")
     </h1>
 </div>
 
@@ -55,18 +55,18 @@
                     @if (!Model.IsConfirmed)
                     {
                         <a href="@(Url.Action("Create", "AvailableDeliveryTimeRangeAdmin", new { StoreId = Model.StoreId}))" class="btn bg-blue">
-                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.AddButton")
+                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.AddButton")
                         </a>
                         if (Model.ItemsCount > 0)
                         {
                             <a href="@(Url.Action("Confirm", "AvailableDeliveryTimeRangeAdmin", new { StoreId = Model.StoreId}))" class="btn btn-success">
-                                @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmButton")
+                                @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmButton")
                             </a>
                         }
                     }
                     else
                     {
-                        <a class="btn btn-danger" href="@(Url.Action("DeleteAll", "AvailableDeliveryTimeRangeAdmin", new { StoreId = Model.StoreId}))" onclick="return confirm('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.DeleteConfirmation")')">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.DeleteButton")</a>
+                        <a class="btn btn-danger" href="@(Url.Action("DeleteAll", "AvailableDeliveryTimeRangeAdmin", new { StoreId = Model.StoreId}))" onclick="return confirm('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.DeleteConfirmation")')">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.DeleteButton")</a>
                     }
                 </div>
             </div>
@@ -85,42 +85,42 @@
                                          {
                                 new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.Time))
                                 {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time").Text,
                                 Width = "200",
                                 Editable = true,
                                 EditType = EditType.String
                                 },
                                 new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.StartHour))
                                 {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour").Text,
                                 Width = "100",
                                 Editable = true,
                                 EditType = EditType.String
                                 },
                                 new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.EndHour))
                                 {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour").Text,
                                 Width = "100",
                                 Editable = true,
                                 EditType = EditType.String
                                 },
                                 new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.SelectedDayText))
                                 {
-                                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DaysOfWeek").Text,
+                                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DaysOfWeek").Text,
                                 Width = "400",
                                 Editable = true,
                                 EditType = EditType.String
                                 },
                                 new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.ShippingMethodTexts))
                                 {
-                                Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods").Text,
+                                Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods").Text,
                                 Width = "400",
                                 Editable = true,
                                 EditType = EditType.String
                                 },
                                  new ColumnProperty(nameof(AvailableDeliveryTimeRangeModel.IsConfirmed))
                                 {
-                        Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.IsConfirmed").Text,
+                        Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.IsConfirmed").Text,
                                 Width = "100",
                                 Render = new RenderCustom("renderIsConfirmed")
                                 }
@@ -129,10 +129,10 @@
                         <script>
                             function renderIsConfirmed(data, type, row, meta) {
                                 if (row.IsConfirmed === true) {
-                                    return '<span class=\"alert alert-success\">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmedText")</span>'
+                                    return '<span class=\"alert alert-success\">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.ConfirmedText")</span>'
                                 }
                                 else {
-                                    return '<span class=\"alert alert-warning\">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.NotConfirmedText")</span>'
+                                    return '<span class=\"alert alert-warning\">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.NotConfirmedText")</span>'
                                 }
                             }
                         </script>

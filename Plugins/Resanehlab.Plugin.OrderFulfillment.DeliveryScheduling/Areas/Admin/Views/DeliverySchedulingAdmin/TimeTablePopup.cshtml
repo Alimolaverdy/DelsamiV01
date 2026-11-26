@@ -6,21 +6,21 @@
     NopHtml.AppendCssFileParts(string.Format(Constants.PluginOutputPath + Constants.DeliverySchedulingCssPath + "{0}", "adminStyle.css"));
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable").Text;
 }
 
 <div class="cards-group">
     <div class="card card-default">
         <div class="card-body">
 
-            <div class="well">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable.Hint")</div>
+            <div class="well">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable.Hint")</div>
 
             @if (Model != null && Model.Count > 0)
             {
                 <table class="table table-bordered  table-striped time-table time-table-popup">
                     <thead>
                         <tr>
-                            <th>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable")</th>
+                            <th>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTable")</th>
                             @foreach (var time in Model.First().Times)
                             {
                                 <th>@time.Time</th>

@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
@@ -31,7 +31,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers
 {
     public partial class DeliverySchedulingAdminController : BaseAdminController
     {
@@ -220,7 +220,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
             model.AvailableShippingMethods = (await _shippingService.GetAllShippingMethodsAsync()).Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString(), Selected = disabledShippingMethodIds.Contains(s.Id) }).ToList();
             model.SelectedDisabledShippingMethodIds = disabledShippingMethodIds;
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/Configure.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/Configure.cshtml", model);
         }
 
         [HttpPost]
@@ -253,7 +253,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
             await _settingService.ClearCacheAsync();
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
             return await Configure();
         }
@@ -269,7 +269,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
             shippingMethods = shippingMethods.Where(w => !_deliverySchedulingSetting.DisabledShippingMethodIdsAsInt.Contains(w.Id)).ToList();
 
-            model.AvailableShippingMethods.Add(new SelectListItem { Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "0" });
+            model.AvailableShippingMethods.Add(new SelectListItem { Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "0" });
 
             model.AvailableShippingMethods.AddRange(shippingMethods.Select(s => new SelectListItem
             {
@@ -302,7 +302,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
             model.HasConfirmedTimeRange = await availableDeliveryTimeRanges.AnyAwaitAsync(async a => (await _availableDeliveryDateTimeRangeService.GetAvailableDeliveryDateTimeRangesAsync(availableDeliveryTimeRangeIds: new List<int> { a.Id })).Any());
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTable.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTable.cshtml", model);
         }
 
         public virtual async Task<IActionResult> TimeTableList(int shippingMethodId, int? storeId = null)
@@ -383,7 +383,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
             model.ShippingMethodId = shippingMethodId;
             model.StoreId = storeId;
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTableList.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTableList.cshtml", model);
 
         }
 
@@ -431,10 +431,10 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 {
                     warnings = warnings.Distinct().ToList();
 
-                    _notificationService.WarningNotification(string.Format(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.OverloadingOrder"), string.Join(" - ", warnings)));
+                    _notificationService.WarningNotification(string.Format(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.OverloadingOrder"), string.Join(" - ", warnings)));
                 }
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
                 return RedirectToAction("TimeTable", new { storeId = model.StoreId, shippingMethodId = model.ShippingMethodId });
             }
@@ -444,7 +444,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
                 shippingMethods = shippingMethods.Where(w => !_deliverySchedulingSetting.DisabledShippingMethodIdsAsInt.Contains(w.Id)).ToList();
 
-                model.AvailableShippingMethods.Add(new SelectListItem { Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "0" });
+                model.AvailableShippingMethods.Add(new SelectListItem { Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"), Value = "0" });
                 model.AvailableShippingMethods.AddRange(shippingMethods.Select(s => new SelectListItem
                 {
                     Text = s.Name,
@@ -469,7 +469,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
                 model.HasConfirmedTimeRange = await availableDeliveryTimeRanges.AnyAwaitAsync(async a => (await _availableDeliveryDateTimeRangeService.GetAvailableDeliveryDateTimeRangesAsync(availableDeliveryTimeRangeIds: new List<int> { a.Id })).Any());
 
-                return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTable.cshtml", model);
+                return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTable.cshtml", model);
             }
         }
 
@@ -490,7 +490,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
             var model = await _availableDeliveryDateTimeTableModelFactory.PrepareAvailableDeliveryDateTimesTableAsync(shippingMethod.Id, storeId.Value, (await _workContext.GetWorkingLanguageAsync()).Id, firstSelectableDay);
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTablePopup.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/TimeTablePopup.cshtml", model);
         }
 
         public virtual async Task<IActionResult> OrderDeliveryList()
@@ -516,7 +516,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
             //prepare model
             model = PrepareOrderDeliverySearchModel(model);
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/OrderDeliveryList.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/DeliverySchedulingAdmin/OrderDeliveryList.cshtml", model);
         }
 
         [HttpPost]
@@ -550,10 +550,10 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                     return new OrderDeliveryModel
                     {
                         DeliveryDate = s.DeliveryDateOnUtc.ToShortDateString(),
-                        DeliveryTime = shippingMethodCapacity != null ? await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, a => a.Time) : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
+                        DeliveryTime = shippingMethodCapacity != null ? await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, a => a.Time) : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
                         OrderId = s.OrderId,
-                        ShippingMethodName = order != null ? order.ShippingMethod : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
-                        StoreName = store != null ? store.Name : await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
+                        ShippingMethodName = order != null ? order.ShippingMethod : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
+                        StoreName = store != null ? store.Name : await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Unknown"),
                         OrderName = "Order details"
                     };
                 });

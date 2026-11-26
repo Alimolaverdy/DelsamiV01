@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public record AvailableDeliveryTimeRangeModel : BaseNopEntityModel, ILocalizedModel<AvailableDeliveryTimeRangeLocalizedModel>
     {
@@ -15,17 +15,17 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 
         }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time")]
         public string Time { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DisplayOrder")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DisplayOrder")]
 
         public int DisplayOrder { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.StartHour")]
         public TimeSpan StartHour { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.EndHour")]
         public TimeSpan EndHour { get; set; }
 
         public int StoreId { get; set; }
@@ -36,12 +36,12 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 
         public IList<AvailableDeliveryTimeRangeLocalizedModel> Locales { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DaysOfWeek")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.DaysOfWeek")]
         public IList<int> SelectedDayIds { get; set; }
         public string SelectedDayText { get; set; }
         public IList<SelectListItem> AvailableDays { get; set; } = new List<SelectListItem>();
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.ShippingMethods")]
         public IList<int> ShippingMethodIds { get; set; }
         public string ShippingMethodTexts { get; set; }
         public IList<SelectListItem> AvailableShippingMethod { get; set; } = new List<SelectListItem>();
@@ -51,7 +51,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
     {
         public int LanguageId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.Fields.Time")]
         public string Time { get; set; }
     }
 }

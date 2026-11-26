@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public record AvailableDeliveryTimeRangeListModel : BaseNopEntityModel
     {

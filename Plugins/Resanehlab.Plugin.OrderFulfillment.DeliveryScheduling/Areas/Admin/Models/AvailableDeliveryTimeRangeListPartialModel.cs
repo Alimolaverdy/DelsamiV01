@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public record AvailableDeliveryTimeRangeListPartialModel : BasePagedListModel<AvailableDeliveryTimeRangeModel>
     {

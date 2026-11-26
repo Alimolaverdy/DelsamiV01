@@ -1,7 +1,7 @@
-﻿//using ZarIran.Plugin.Core.Bases.Infrastructure;
+﻿//using Delsami.Plugin.Core.Bases.Infrastructure;
 //using System;
 
-//namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Data.StoredProcedures
+//namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Data.StoredProcedures
 //{
 //    public class GetOrderShippingMethodCapacitiesSPPresenter : RLBaseStoredProcedurePresenter
 //    {

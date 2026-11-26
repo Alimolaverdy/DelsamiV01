@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings
 {
     public class DeliverySchedulingSetting :ISettings
     {

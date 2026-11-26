@@ -8,7 +8,7 @@
 @Html.HiddenFor(model => model.StoreId)
 
 @{
-    const string hideInfoBlockAttributeName = "ZarIran.DeliveryScheduling.AvailableDeliveryTimeRangePage.HideInfoBlock";
+    const string hideInfoBlockAttributeName = "Delsami.DeliveryScheduling.AvailableDeliveryTimeRangePage.HideInfoBlock";
     var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideInfoBlockAttributeName);
 }
 
@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="form-horizontal">
             <nop-cards id="available-delivery-times-cards">
-                <nop-card asp-name="available-delivery-times-info" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.AvailableDeliveryTime")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
+                <nop-card asp-name="available-delivery-times-info" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryTimeRange.AvailableDeliveryTime")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
                     <div class="card-body">
                        
                         <div class="form-group row">

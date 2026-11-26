@@ -1,15 +1,15 @@
 ﻿using Nop.Core;
 using Nop.Data;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public class AvailableDeliveryDateTimeRangeService : IAvailableDeliveryDateTimeRangeService
     {

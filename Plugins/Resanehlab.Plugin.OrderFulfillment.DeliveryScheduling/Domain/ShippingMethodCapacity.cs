@@ -1,6 +1,6 @@
 ﻿using Nop.Core;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain
 {
     public class ShippingMethodCapacity : BaseEntity
     {

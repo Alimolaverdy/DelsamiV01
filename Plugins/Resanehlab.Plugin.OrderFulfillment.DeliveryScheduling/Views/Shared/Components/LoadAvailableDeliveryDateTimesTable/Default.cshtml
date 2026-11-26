@@ -18,7 +18,7 @@
                         $(".confirm-order-next-step-button").click(function () { ConfirmOrder.save(); });
                     }
                     else {
-                        alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                        alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                         return false;
                     }
                 },
@@ -33,7 +33,7 @@
     else
     {
         <script>
-            ZarIran.documentReady(function () {
+            Delsami.documentReady(function () {
                 $.ajax({
                     url: '/DeliveryScheduling/RemoveSelectedDateTime',
                     type: 'post',
@@ -42,7 +42,7 @@
                             $(".shipping-method form").unbind("submit");
                         }
                         else {
-                            alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                            alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                             return false;
                         }
                     },
@@ -90,7 +90,7 @@ else
             <div class="delivery-time-table">
                 <div class="delivery-times-container">
                     <div class="deliveryTimeContainer not-selected">
-                        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.DeliveryDateTime.PleaseSelectDate")
+                        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.DeliveryDateTime.PleaseSelectDate")
                     </div>
                     @foreach (var deliveryDateTime in Model.AvailableDeliveryDateTimesTable)
                     {
@@ -106,7 +106,7 @@ else
                                                 <span data-shippingmethod-capacity-id="@time.ShippingMethodCapacityId" data-deliverydate-on-utc="@deliveryDateTime.DeliveryDateOnUtc"
                                                       data-delivery-time="@time.Time" data-available-delivery-time-range-id="@time.AvailableDeliveryTimeRangeId">
                                                     <input type="radio"  name="deliveryDateTimesRadioGroup" />
-                                                    @*  @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.Hour") *@ @time.Time
+                                                    @*  @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.Hour") *@ @time.Time
                                                 </span>
                                             </label>
                                         </div>
@@ -115,7 +115,7 @@ else
                                     {
                                         <div class="deliveryTime bookedup" data-deliverydate="@deliveryDateTime.DeliveryDateString">
                                             <span>
-                                                @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.BookedUp")
+                                                @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.BookedUp")
                                             </span>
                                         </div>
                                     }
@@ -131,7 +131,7 @@ else
     }
     else
     {
-        <div class="alert alert-danger">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoDefinedDeliveryDateTimes")</div>
+        <div class="alert alert-danger">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoDefinedDeliveryDateTimes")</div>
     }
 
     if (Model.IsOpc)
@@ -146,7 +146,7 @@ else
                 this.onclick = function (event) {
                     var selectedRadioButton = $("input[name='deliveryDateTimesRadioGroup']:checked");
                     if (!selectedRadioButton.val()) {
-                        alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
+                        alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
                         return false;
                     }
                     else {
@@ -164,7 +164,7 @@ else
                                 if (data.Success)
                                     ConfirmOrder.save();
                                 else {
-                                    alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                                    alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                                     return false;
                                 }
                             },
@@ -193,7 +193,7 @@ else
     else
     {
         <script>
-            ZarIran.documentReady(function () {
+            Delsami.documentReady(function () {
                 $(".shipping-method form").unbind("submit");
                 $(".shipping-method .buttons").detach().insertAfter("#available-delivery-datetimes");
                 var flag = true;
@@ -202,7 +202,7 @@ else
 
                     var selectedRadioButton = $("input[name='deliveryDateTimesRadioGroup']:checked");
                     if (!selectedRadioButton.val()) {
-                        alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
+                        alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.MustBeSelectedAtLeastOne")');
                         return false;
                     }
 
@@ -223,7 +223,7 @@ else
                             type: 'post',
                             success: function (data) {
                                 if (!data.Success) {
-                                    alert('@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
+                                    alert('@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.AvailableDeliveryDateTime.NoLongerAvailable")');
                                     return false;
                                 }
                                 else {

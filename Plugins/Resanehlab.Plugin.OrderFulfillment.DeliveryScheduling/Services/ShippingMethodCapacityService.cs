@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+﻿using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
 using Nop.Core;
 using Nop.Data;
 using NUglify.Helpers;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services
 {
     public class ShippingMethodCapacityService : IShippingMethodCapacityService
     {

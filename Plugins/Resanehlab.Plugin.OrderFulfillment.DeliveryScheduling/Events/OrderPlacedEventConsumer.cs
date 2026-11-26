@@ -3,14 +3,14 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Common;
 using Nop.Services.Events;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Events
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Events
 {
     public class OrderPlacedEventConsumer : IConsumer<OrderPlacedEvent>
     {
@@ -52,7 +52,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Events
             if (eventMessage.Order.ShippingStatus == ShippingStatus.ShippingNotRequired)
                 return;
 
-            if (eventMessage.Order.ShippingRateComputationMethodSystemName != "ZarIran.Shipping.ZarIranLogistic")
+            if (eventMessage.Order.ShippingRateComputationMethodSystemName != "Delsami.Shipping.DelsamiLogistic")
                 return;
 
             var shippingMethodCapacityId = await _genericAttributeService.GetAttributeAsync<int>(await _workContext.GetCurrentCustomerAsync(), Constants.SystemCustomerAttributeNames_ShippingMethodCapacityId);

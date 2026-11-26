@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public class AvailableDeliveryDateTimesTableModel
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using Nop.Core;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Configuration;
@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Controllers
 {
     public class AvailableDeliveryTimeRangeAdminController : BaseAdminController
     {
@@ -121,7 +121,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 {
                     new SelectListItem
                     {
-                        Text = await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
+                        Text = await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.DefaultSelect"),
                         Value = ""
                     }
                 };
@@ -135,7 +135,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 model.AvailableStores = availableStores;
             }
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/AvailableDeliveryTimeRangeAdmin/List.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/AvailableDeliveryTimeRangeAdmin/List.cshtml", model);
         }
 
         [HttpPost]
@@ -189,7 +189,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 model.AvailableDays = PrepareDayOfWeek();
                 model.AvailableShippingMethod = await GetAvailableShippingMethods();
 
-                return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/AvailableDeliveryTimeRangeAdmin/Create.cshtml", model);
+                return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/AvailableDeliveryTimeRangeAdmin/Create.cshtml", model);
             }
             else
                 return RedirectToAction("List", new { storeId = storeId });
@@ -251,7 +251,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 //        });
                 //    }
                 //}
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
 
                 return RedirectToAction("List", new { storeId = entity.StoreId });
@@ -270,7 +270,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
             if (adt != null && !(await _availableDeliveryDateTimeRangeService.GetAvailableDeliveryDateTimeRangesAsync(availableDeliveryTimeRangeIds: new List<int> { adt.Id })).Any())
             {
                 await _availableDeliveryTimeRangeService.DeleteAvailableDeliveryTimeRangeAsync(adt);
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
             }
 
             return RedirectToAction("List", new { storeId = storeId ?? null });
@@ -295,7 +295,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 await _shippingMethodCapacityService.DeleteByDateTimeIdsAsync(shippingCapacites.Select(a => a.AvailableDeliveryDateTimeRangeId).ToList());
 
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
                 return new NullJsonResult();
 
             }
@@ -347,7 +347,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
                 }
             }
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
             return RedirectToAction("List", new { storeId = storeId });
         }
@@ -392,7 +392,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Control
 
             await _shippingMethodCapacityService.DeleteAllNotCustomExceptionAsync(customExceptionsDateTimeIds);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.SuccessNotification"));
 
 
             return RedirectToAction("List", new { storeId = storeId });

@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+﻿using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models
 {
     public class AvailableDeliveryDateTimeTableModel
     {

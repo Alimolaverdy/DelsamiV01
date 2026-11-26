@@ -4,14 +4,14 @@ using Nop.Core.Domain.Orders;
 using Nop.Services.Common;
 using Nop.Web.Framework.Components;
 using Nop.Web.Framework.UI;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Components
 {
     public class LoadOrderSummaryDeliveryDateTime : NopViewComponent
     {
@@ -49,7 +49,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
                 IsOpc = _orderSettings.OnePageCheckoutEnabled
             };
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadOrderSummaryDeliveryDateTime/Default.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadOrderSummaryDeliveryDateTime/Default.cshtml", model);
         }
     }
 }

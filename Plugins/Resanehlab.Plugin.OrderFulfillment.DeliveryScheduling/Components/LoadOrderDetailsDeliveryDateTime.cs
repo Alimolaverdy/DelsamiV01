@@ -2,13 +2,13 @@
 using Nop.Services.Localization;
 using Nop.Web.Framework.Components;
 using Nop.Web.Framework.UI;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Components
 {
     public class LoadOrderDetailsDeliveryDateTime : NopViewComponent
     {
@@ -66,7 +66,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
                 DeliveryTime = await _localizationService.GetLocalizedAsync(availableDeliveryTimeRange, d => d.Time)
             };
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadOrderDetailsDeliveryDateTime/Default.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadOrderDetailsDeliveryDateTime/Default.cshtml", model);
         }
     }
 }

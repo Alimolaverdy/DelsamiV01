@@ -3,7 +3,7 @@ using LinqToDB.Data;
 using System;
 using System.Data;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Helpers
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Helpers
 {
     public static partial class SqlParameterHelper
     {

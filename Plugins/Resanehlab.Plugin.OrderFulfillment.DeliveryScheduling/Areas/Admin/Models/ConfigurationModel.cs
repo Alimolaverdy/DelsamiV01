@@ -4,7 +4,7 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public record ConfigurationModel : BaseNopModel
     {
@@ -16,37 +16,37 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 
         public int ActiveStoreScopeConfiguration { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.EnablePlugin")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.EnablePlugin")]
         public bool EnablePlugin { get; set; }
         public bool EnablePlugin_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.NumberOfDisplayDays")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.NumberOfDisplayDays")]
         public int NumberOfDisplayDays { get; set; }
         public bool NumberOfDisplayDays_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.StartDisplayDaysOffset")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.StartDisplayDaysOffset")]
         public int StartDisplayDaysOffset { get; set; }
         public bool StartDisplayDaysOffset_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.StartHourOffsetIfDaysOffsetIsZero")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.StartHourOffsetIfDaysOffsetIsZero")]
         public int StartHourOffsetIfDaysOffsetIsZero { get; set; }
         public bool StartHourOffsetIfDaysOffsetIsZero_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.DisabledShippingMethodIds")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.DisabledShippingMethodIds")]
         [UIHint("MultiSelect")]
         public IList<int> SelectedDisabledShippingMethodIds { get; set; }
 
         public IList<SelectListItem> AvailableShippingMethods { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.HideUnselectableDays")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.HideUnselectableDays")]
         public bool HideUnselectableDays { get; set; }
         public bool HideUnselectableDays_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.DeliveryDateTimeFormatString")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.DeliveryDateTimeFormatString")]
         public string DeliveryDateTimeFormatString { get; set; }
         public bool DeliveryDateTimeFormatString_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.FormatDeliveryDateTimesBasedOnCustomerLanguage")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.FormatDeliveryDateTimesBasedOnCustomerLanguage")]
         public bool FormatDeliveryDateTimesBasedOnCustomerLanguage { get; set; }
         public bool FormatDeliveryDateTimesBasedOnCustomerLanguage_OverrideForStore { get; set; }
     }

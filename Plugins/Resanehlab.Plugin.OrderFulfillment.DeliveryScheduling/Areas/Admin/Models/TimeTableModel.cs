@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public class TimeTableModel
     {
@@ -25,7 +25,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 
         public int? StoreId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.Fields.ShippingMethod")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.Fields.ShippingMethod")]
         public int ShippingMethodId { get; set; }
 
         public IList<SelectListItem> AvailableStores { get; set; }

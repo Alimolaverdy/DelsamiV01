@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Helpers;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure
 {
     public class PluginStartup : INopStartup
     {

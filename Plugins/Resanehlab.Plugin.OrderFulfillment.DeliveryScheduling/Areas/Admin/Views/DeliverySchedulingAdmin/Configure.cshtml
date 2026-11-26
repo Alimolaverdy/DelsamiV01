@@ -7,15 +7,15 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.Configuration");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.Configuration");
 
     Layout = "_ConfigurePlugin";
 
-    NopHtml.AddCssFileParts($"~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Content/Styles/resanehlab-core-admin.css");
+    NopHtml.AddCssFileParts($"~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Content/Styles/resanehlab-core-admin.css");
 
-    const string hideSettingsBlockAttributeName = "ZarIran.DeliveryScheduling.ConfigurationPage.HideSettingsBlock";
+    const string hideSettingsBlockAttributeName = "Delsami.DeliveryScheduling.ConfigurationPage.HideSettingsBlock";
     var hideSettingsBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSettingsBlockAttributeName);
 
     var overriddenStartDisplayDaysOffsetSearchModel = new OverriddenStartDisplayDaysOffsetSearchModel();
@@ -45,7 +45,7 @@
                 </div>
 
                 <nop-cards id="delivery-scheduling-configure">
-                    <nop-card asp-name="delivery-configuration-common" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration")" asp-hide-block-attribute-name="@hideSettingsBlockAttributeName" asp-hide="@hideSettingsBlock" asp-advanced="false">
+                    <nop-card asp-name="delivery-configuration-common" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration")" asp-hide-block-attribute-name="@hideSettingsBlockAttributeName" asp-hide="@hideSettingsBlock" asp-advanced="false">
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-md-3">
@@ -88,7 +88,7 @@
                                         <text>
                                                 categoryIdsInput.setOptions({
                                                     enable: false,
-                                                    placeholder: '@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.ShippingMethods.NoShippingMethodsAvailable")'
+                                                    placeholder: '@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.Fields.ShippingMethods.NoShippingMethodsAvailable")'
                                                 });
                                             categoryIdsInput._placeholder();
                                             categoryIdsInput._enable();
@@ -153,9 +153,9 @@
                                 <div class="col-md-3">
                                     <div class="label-wrapper">
                                         <label class="control-label">
-                                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.OverriddenStartDisplayDaysOffsetsByCategories")
+                                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.OverriddenStartDisplayDaysOffsetsByCategories")
                                         </label>
-                                        <div title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.OverriddenStartDisplayDaysOffsetsByCategories.Hint")" data-toggle="tooltip" class="ico-help">
+                                        <div title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.OverriddenStartDisplayDaysOffsetsByCategories.Hint")" data-toggle="tooltip" class="ico-help">
                                             <i class="fa fa-question-circle"></i>
                                         </div>
                                     </div>
@@ -172,11 +172,11 @@
                                     {
                                     new ColumnProperty("CategoryName")
                                     {
-                                    Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.Category").Text
+                                    Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.Category").Text
                                     },
                                     new ColumnProperty("StartDisplayDaysOffset")
                                     {
-                                    Title = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.StartDisplayDaysOffset").Text,
+                                    Title = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.StartDisplayDaysOffset").Text,
                                     Width = "250"
                                     },
                                     new ColumnProperty("Id")
@@ -243,7 +243,7 @@
                                         function compileKendoEditorTemplate() {
                                             var template = kendo.template($("#oddog-kendo-editor-template").html());
 
-                                            var createOrUpdateButtonName = "@T("ZarIran.Plugin.Core.Admin.Common.Create")";
+                                            var createOrUpdateButtonName = "@T("Delsami.Plugin.Core.Admin.Common.Create")";
                                             if (oddogCreateOrUpdateFlag == "Update")
                                                 createOrUpdateButtonName = "@T("Admin.Common.Update")";
 
@@ -372,7 +372,7 @@
                                     <script type="text/x-kendo-template" id="oddog-kendo-editor-template">
                                         <div class="k-edit-label">
                                             <label>
-                                        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.Category")
+                                        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.Category")
                                             </label>
                                         </div>
                                         <div class="k-edit-field">
@@ -381,7 +381,7 @@
                                         </div>
                                         <div class="k-edit-label">
                                             <label>
-                                        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.StartDisplayDaysOffset")
+                                        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Configuration.OverrideStartDisplayDaysOffsets.StartDisplayDaysOffset")
                                             </label>
                                         </div>
                                         <div class="k-edit-field">

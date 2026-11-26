@@ -1,5 +1,5 @@
 ﻿
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models
 {
     public class ShippingMethodContentModel
     {

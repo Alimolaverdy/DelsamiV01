@@ -2,9 +2,9 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddNew").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddNew").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("ZarIran.DeliveryScheduling.ManageExceptionDates");
+    NopHtml.SetActiveMenuItemSystemName("Delsami.DeliveryScheduling.ManageExceptionDates");
 
     Layout = "_AdminLayout";
 }
@@ -14,8 +14,8 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddNew")
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.BackToList").Text, "List")</small>
+            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.AddNew")
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.BackToList").Text, "List")</small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn bg-blue">
@@ -28,5 +28,5 @@
             </button>
         </div>
     </div>
-    @await Html.PartialAsync("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/_CreateOrUpdate.cshtml", Model)
+    @await Html.PartialAsync("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/_CreateOrUpdate.cshtml", Model)
 }

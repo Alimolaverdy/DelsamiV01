@@ -1,11 +1,11 @@
 ﻿using Nop.Core.Domain.Shipping;
 using Nop.Core.Events;
 using Nop.Services.Events;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Events
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Events
 {
     public class ShippingMethodInsertEventConsumer : IConsumer<EntityInsertedEvent<ShippingMethod>>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public class GetPlacedOrdersCountModel
     {

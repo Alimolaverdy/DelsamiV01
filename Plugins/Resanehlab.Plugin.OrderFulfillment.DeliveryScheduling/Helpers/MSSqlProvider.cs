@@ -1,9 +1,9 @@
 ﻿using Nop.Data;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Helpers
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Helpers
 {
     public class MSSqlProvider : IRLSqlProvider
     {

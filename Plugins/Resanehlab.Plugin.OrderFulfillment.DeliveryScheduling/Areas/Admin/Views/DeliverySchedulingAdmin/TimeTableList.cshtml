@@ -15,11 +15,11 @@
     <div class="cards-group">
         <div class="card card-default">
             <div class="card-body">
-                <a class="btn btn-info" href='javascript:OpenWindow("@Url.Content("~/Admin/Plugin/DeliveryScheduling/DeliverySchedulingAdmin/TimeTablePopup")?storeId=@Model.StoreId&shippingMethodId=@Model.ShippingMethodId", 800, 320, true);'>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTableText")</a>
+                <a class="btn btn-info" href='javascript:OpenWindow("@Url.Content("~/Admin/Plugin/DeliveryScheduling/DeliverySchedulingAdmin/TimeTablePopup")?storeId=@Model.StoreId&shippingMethodId=@Model.ShippingMethodId", 800, 320, true);'>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.LoadTimeTableText")</a>
                 <table class="table table-bordered  table-striped time-table">
                     <thead>
                         <tr>
-                            <th>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.DaysOfWeek")</th>
+                            <th>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.DaysOfWeek")</th>
                             @foreach (var availableDeliveryTimeRange in Model.AvailableDeliveryTimeRanges)
                             {
                                 <th>@availableDeliveryTimeRange.Time</th>
@@ -34,37 +34,37 @@
                                     @switch (i + 1)
                                     {
                                         case 6:
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Saturday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Saturday")</span>
                                             ;
                                             break;
                                         case 1:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Monday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Monday")</span>
                                             ;
                                             break;
                                         case 2:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Tuesday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Tuesday")</span>
                                             ;
                                             break;
                                         case 3:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Wednesday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Wednesday")</span>
                                             ;
                                             break;
                                         case 4:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Thursday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Thursday")</span>
                                             ;
                                             break;
                                         case 5:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Friday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Friday")</span>
                                             ;
                                             break;
                                         default:
 
-                                            <span>@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Sunday")</span>
+                                            <span>@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Sunday")</span>
                                             ;
                                             break;
                                     }
@@ -104,6 +104,6 @@
 else
 {
     <div class="alert alert-warning">
-        @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")
+        @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.TimeTable.HasNotConfimedTimeRange")
     </div>
 }

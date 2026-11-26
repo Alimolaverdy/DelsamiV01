@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 {
     public record ExceptionDateModel : BaseNopEntityModel, ILocalizedModel<ExceptionDateLocalizedModel>
     {
@@ -21,11 +21,11 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
         }
 
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title")]
         public string Title { get; set; }
 
         [UIHint("Date")]
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc")]
         public DateTime DateOnUtc { get; set; }
 
         public string DateOnUtcStr
@@ -38,7 +38,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
 
         public int? StoreId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.SelectedShippingMethod")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.SelectedShippingMethod")]
 
         public int? SelectedShippingMethodId { get; set; }
 
@@ -50,7 +50,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
         public IList<AvailableDeliveryTimeRangeModel> ExceptionTimeRangeList { get; set; } = new List<AvailableDeliveryTimeRangeModel>();
         //public IList<int> ShippingMethodIds { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.IsCustomTimeRange")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.IsCustomTimeRange")]
         public bool IsCustomTimeRange { get; set; } 
 
         public IList<AvailableDeliveryTimeRangeModel> AvailableDeliveryTimeRanges { get; set; }
@@ -68,7 +68,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models
     {
         public int LanguageId { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title")]
+        [NopResourceDisplayName("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.Title")]
         public string Title { get; set; }
     }
 }

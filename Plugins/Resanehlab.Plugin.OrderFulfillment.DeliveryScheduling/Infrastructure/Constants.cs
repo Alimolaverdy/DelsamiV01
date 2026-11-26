@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure
 {
     public class Constants
     {
-        public const string SystemName = "ZarIran.OrderFulfillment.DeliveryScheduling";
+        public const string SystemName = "Delsami.OrderFulfillment.DeliveryScheduling";
 
         public const string PluginOutputPath = "~/Plugins/" + SystemName;
 

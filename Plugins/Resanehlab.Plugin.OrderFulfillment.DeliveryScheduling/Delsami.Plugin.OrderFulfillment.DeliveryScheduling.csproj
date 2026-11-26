@@ -7,13 +7,13 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Copyright>Copyright © ZarIran</Copyright>
-		<Company>ZarIran</Company>
+		<Copyright>Copyright © Delsami</Copyright>
+		<Company>Delsami</Company>
 		<Authors>AliMolaverdi</Authors>
 		<RepositoryType>Git</RepositoryType>
-		<AssemblyName>ZarIran.Plugin.OrderFulfillment.DeliveryScheduling</AssemblyName>
-		<RootNamespace>ZarIran.Plugin.OrderFulfillment.DeliveryScheduling</RootNamespace>
-		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.OrderFulfillment.DeliveryScheduling</OutputPath>
+		<AssemblyName>Delsami.Plugin.OrderFulfillment.DeliveryScheduling</AssemblyName>
+		<RootNamespace>Delsami.Plugin.OrderFulfillment.DeliveryScheduling</RootNamespace>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Delsami.OrderFulfillment.DeliveryScheduling</OutputPath>
 		<OutDir>$(OutputPath)</OutDir>
 	</PropertyGroup>
 
@@ -159,12 +159,12 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="ZarIran.Plugin.Misc.Core">
-	    <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+	  <Reference Include="Delsami.Plugin.Misc.Core">
+	    <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
-	  <Reference Include="ZarIran.Plugin.Shipping.Core">
-	    <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Shipping.Core\ZarIran.Plugin.Shipping.Core.dll</HintPath>
+	  <Reference Include="Delsami.Plugin.Shipping.Core">
+	    <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Shipping.Core\Delsami.Plugin.Shipping.Core.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	</ItemGroup>

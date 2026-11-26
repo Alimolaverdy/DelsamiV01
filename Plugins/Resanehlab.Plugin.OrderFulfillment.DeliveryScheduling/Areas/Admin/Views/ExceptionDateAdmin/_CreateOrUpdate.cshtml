@@ -8,12 +8,12 @@
 @Html.HiddenFor(model => model.StoreId)
 
 @{
-    const string hideInfoBlockAttributeName = "ZarIran.DeliveryScheduling.ExceptionDatePage.HideInfoBlock";
+    const string hideInfoBlockAttributeName = "Delsami.DeliveryScheduling.ExceptionDatePage.HideInfoBlock";
     var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideInfoBlockAttributeName);
 
     var hideTime = !Model.IsCustomTimeRange;
 
-    const string hideTimeTableBlockAttributeName = "ZarIran.DeliveryScheduling.ExceptionDatePage.HideSTimeTableBlock";
+    const string hideTimeTableBlockAttributeName = "Delsami.DeliveryScheduling.ExceptionDatePage.HideSTimeTableBlock";
     var hideTimeTableBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideTimeTableBlockAttributeName);
     NopHtml.AppendScriptParts(ResourceLocation.Head, "~/Plugins/NopShop.Misc.Calendare/Content/js/jquery.md.bootstrap.datetimepicker.js", "");
 }
@@ -21,11 +21,11 @@
 <section class="content">
     <div class="container-fluid">
         <div class="content-header">
-            <div class="well">@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Hint")</div>
+            <div class="well">@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Hint")</div>
         </div>
         <div class="form-horizontal">
             <nop-cards id="exception-date-cards">
-                <nop-card asp-name="exception-date-info" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
+                <nop-card asp-name="exception-date-info" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
                     <div class="card-body">
                         @Html.HiddenFor(x => x.StoreId)
 
@@ -67,12 +67,12 @@
 
                 @if (Model.ExceptionTimeRange != null)
                 {
-                    <nop-card asp-name="language-info" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeRanges")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
-                        @await Html.PartialAsync("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/_ExceptionTimeRange.cshtml", Model)
+                    <nop-card asp-name="language-info" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeRanges")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
+                        @await Html.PartialAsync("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Areas/Admin/Views/ExceptionDateAdmin/_ExceptionTimeRange.cshtml", Model)
                     </nop-card>
                 }
 
-                <nop-card asp-name="exception-date-time-table" asp-icon="fas fa-info" asp-title="@T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeTable")" asp-hide-block-attribute-name="@hideTimeTableBlockAttributeName" asp-hide="@hideTimeTableBlock" asp-advanced="false">
+                <nop-card asp-name="exception-date-time-table" asp-icon="fas fa-info" asp-title="@T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeTable")" asp-hide-block-attribute-name="@hideTimeTableBlockAttributeName" asp-hide="@hideTimeTableBlock" asp-advanced="false">
                     <div class="card-body">
                         @if (Model.Id > 0)
                         {
@@ -89,7 +89,7 @@
                         }
                         else
                         {
-                            @T("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeTable.SaveBeforeEdit")
+                            @T("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.TimeTable.SaveBeforeEdit")
                         }
 
                         <script>

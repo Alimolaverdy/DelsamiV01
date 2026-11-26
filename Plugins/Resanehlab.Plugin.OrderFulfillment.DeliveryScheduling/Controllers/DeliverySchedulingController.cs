@@ -3,13 +3,13 @@ using Nop.Core;
 using Nop.Services.Common;
 using Nop.Web.Controllers;
 using Nop.Web.Framework.UI;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Controllers
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Controllers
 {
     public class DeliverySchedulingController : BasePublicController
     {

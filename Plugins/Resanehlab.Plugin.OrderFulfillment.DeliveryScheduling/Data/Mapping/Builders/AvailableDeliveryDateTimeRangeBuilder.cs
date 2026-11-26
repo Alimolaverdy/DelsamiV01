@@ -1,9 +1,9 @@
 ﻿using FluentMigrator.Builders.Create.Table;
 using Nop.Data.Extensions;
 using Nop.Data.Mapping.Builders;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Domain;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Data.Mapping.Builders
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Data.Mapping.Builders
 {
     public class AvailableDeliveryDateTimeRangeBuilder : NopEntityBuilder<AvailableDeliveryDateTimeRange>
     {

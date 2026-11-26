@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using Nop.Core.Domain.Orders;
 using Nop.Web.Framework.Components;
 using Nop.Web.Framework.UI;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Components
 {
     public class LoadShippingMethodContent : NopViewComponent
     {
@@ -35,7 +35,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
 
             _nopHtmlHelper.AddCssFileParts($"{Constants.PluginOutputPathWithoutTilde}{Constants.DeliverySchedulingCssPath}style.css");
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadShippingMethodContent/Default.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadShippingMethodContent/Default.cshtml", model);
         }
     }
 }

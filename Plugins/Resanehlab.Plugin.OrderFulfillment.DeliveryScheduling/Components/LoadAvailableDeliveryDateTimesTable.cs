@@ -7,16 +7,16 @@ using Nop.Services.Orders;
 using Nop.Services.Shipping;
 using Nop.Web.Framework.Components;
 using Nop.Web.Framework.UI;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Models;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Services;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Factories;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Infrastructure;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Services;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Settings;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Components
 {
     public class LoadAvailableDeliveryDateTimesTable : NopViewComponent
     {
@@ -105,7 +105,7 @@ namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Components
                 #endregion
             }
 
-            return View("~/Plugins/ZarIran.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadAvailableDeliveryDateTimesTable/Default.cshtml", model);
+            return View("~/Plugins/Delsami.OrderFulfillment.DeliveryScheduling/Views/Shared/Components/LoadAvailableDeliveryDateTimesTable/Default.cshtml", model);
         }
     }
 }

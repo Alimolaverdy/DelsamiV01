@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
-using ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
+using Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Models;
 
-namespace ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Validators
+namespace Delsami.Plugin.OrderFulfillment.DeliveryScheduling.Areas.Admin.Validators
 {
     public class ExceptionDateValidator : BaseNopValidator<ExceptionDateModel>
     {
         public ExceptionDateValidator(ILocalizationService localizationService)
         {
-            RuleFor(x => x.DateOnUtc).NotNull().WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc.Required"));
+            RuleFor(x => x.DateOnUtc).NotNull().WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.OrderFulfillment.DeliveryScheduling.ExceptionDate.Fields.DateOnUtc.Required"));
         }
     }
 }
