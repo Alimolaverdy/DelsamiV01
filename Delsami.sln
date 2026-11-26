@@ -66,50 +66,136 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.Core", "Plugins\Delsami.Plugin.Misc.Core\Delsami.Plugin.Misc.Core.csproj", "{D09834A8-21DC-43FA-882D-878CEA890057}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.CategoryEnhancer", "Plugins\Delsami.Plugin.Misc.CategoryEnhancer\Delsami.Plugin.Misc.CategoryEnhancer.csproj", "{CA8C55EE-C215-492C-BE65-39119D1B1442}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payment.Core", "Plugins\Delsami.Misc.Payment.Core\Delsami.Plugin.Payment.Core.csproj", "{B4123D22-9F10-4C2D-BD09-59D022FFDD76}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.CustomerAttributeValidator", "Plugins\Delsami.Plugin.Misc.CustomerAttributeValidator\Delsami.Plugin.Misc.CustomerAttributeValidator.csproj", "{7276649A-F845-4156-B4A9-F127E9DE2F0C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.ShoppingCartManagement", "Plugins\Delsami.Plugin.Misc.ShoppingCartManagement\Delsami.Plugin.Misc.ShoppingCartManagement.csproj", "{249168D5-A579-49DE-84EF-369E393EF698}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.SMS", "Plugins\Delsami.Plugin.Misc.SMS\Delsami.Plugin.Misc.SMS.csproj", "{460ED8C0-128B-4F09-9A1E-67F428D8F45F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Shipping.Core", "Plugins\Delsami.Plugin.Shipping.Core\Delsami.Plugin.Shipping.Core.csproj", "{D69C745F-3887-47AB-9D7D-7028F220F14C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Widgets.AddressLocation", "Plugins\Delsami.Plugin.Widgets.AddressLocation\Delsami.Plugin.Widgets.AddressLocation.csproj", "{E4F172D5-715B-4554-A318-5FDB07BDE195}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Shipping.DelsamiLogistic", "Plugins\Delsami.Plugin.Shipping.ZarIranLogistic\Delsami.Plugin.Shipping.DelsamiLogistic.csproj", "{B760680D-B1F5-4BA3-B32F-104FF6D8870B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NopShop.Plugin.Misc.LoginWithMobile", "Plugins\NopShop.Plugin.Misc.LoginWithMobile\NopShop.Plugin.Misc.LoginWithMobile.csproj", "{05B936BE-6636-4ECA-BC16-38227603E283}"
+	ProjectSection(ProjectDependencies) = postProject
+		{460ED8C0-128B-4F09-9A1E-67F428D8F45F} = {460ED8C0-128B-4F09-9A1E-67F428D8F45F}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nop.Plugin.Misc.AdvRedirect", "Plugins\Nop.Plugin.Misc.AdvRedirect\Nop.Plugin.Misc.AdvRedirect.csproj", "{BF098796-37B3-4804-881C-083A3DED5856}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NopShop.Plugin.Misc.Wallet", "Plugins\NopShop.Plugin.Misc.Wallet\NopShop.Plugin.Misc.Wallet.csproj", "{7049EDDA-1B2A-4C9F-BF6D-A845E3D48AAF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.OrderFulfillment.DeliveryScheduling", "Plugins\Resanehlab.Plugin.OrderFulfillment.DeliveryScheduling\Delsami.Plugin.OrderFulfillment.DeliveryScheduling.csproj", "{3B2271DD-6509-4B7C-BFBD-95691EDD2605}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{D69C745F-3887-47AB-9D7D-7028F220F14C} = {D69C745F-3887-47AB-9D7D-7028F220F14C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.ExtendedOrder", "Plugins\Delsami.Plugin.Misc.ExtendOrder\Delsami.Plugin.Misc.ExtendedOrder.csproj", "{F8F1763E-16F6-44B8-AA89-449872135538}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B2271DD-6509-4B7C-BFBD-95691EDD2605} = {3B2271DD-6509-4B7C-BFBD-95691EDD2605}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.CustomPdfGenerator", "Plugins\Delsami.Plugin.Misc.CustomPdfGenerator\Delsami.Plugin.Misc.CustomPdfGenerator.csproj", "{9A68B5B5-608D-46B7-9886-CF9CA1BE5420}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B2271DD-6509-4B7C-BFBD-95691EDD2605} = {3B2271DD-6509-4B7C-BFBD-95691EDD2605}
+		{F8F1763E-16F6-44B8-AA89-449872135538} = {F8F1763E-16F6-44B8-AA89-449872135538}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.ProductManagement", "Plugins\Delsami.Plugin.Misc.ProductManagement\Delsami.Plugin.Misc.ProductManagement.csproj", "{836D5F79-9D46-4EF0-895A-8D1A70A1DE9C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BF098796-37B3-4804-881C-083A3DED5856} = {BF098796-37B3-4804-881C-083A3DED5856}
+		{CA8C55EE-C215-492C-BE65-39119D1B1442} = {CA8C55EE-C215-492C-BE65-39119D1B1442}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{E4F172D5-715B-4554-A318-5FDB07BDE195} = {E4F172D5-715B-4554-A318-5FDB07BDE195}
+		{F8F1763E-16F6-44B8-AA89-449872135538} = {F8F1763E-16F6-44B8-AA89-449872135538}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.OnePageCheckout", "Plugins\Delsami.Plugin.Misc.OnePageCheckout\Delsami.Plugin.Misc.OnePageCheckout.csproj", "{03B5637F-5FCC-45DE-B997-AA45946C8E48}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B2271DD-6509-4B7C-BFBD-95691EDD2605} = {3B2271DD-6509-4B7C-BFBD-95691EDD2605}
+		{B760680D-B1F5-4BA3-B32F-104FF6D8870B} = {B760680D-B1F5-4BA3-B32F-104FF6D8870B}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{F8F1763E-16F6-44B8-AA89-449872135538} = {F8F1763E-16F6-44B8-AA89-449872135538}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.ShipmentManagement", "Plugins\Delsami.Plugin.Misc.ShipmentManagement\Delsami.Plugin.Misc.ShipmentManagement.csproj", "{DB11687D-ACD8-4538-B17B-42C737F926AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B2271DD-6509-4B7C-BFBD-95691EDD2605} = {3B2271DD-6509-4B7C-BFBD-95691EDD2605}
+		{460ED8C0-128B-4F09-9A1E-67F428D8F45F} = {460ED8C0-128B-4F09-9A1E-67F428D8F45F}
+		{B4123D22-9F10-4C2D-BD09-59D022FFDD76} = {B4123D22-9F10-4C2D-BD09-59D022FFDD76}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.ShoppingCartPage", "Plugins\Delsami.Plugin.Misc.ShoppingCartPage\Delsami.Plugin.Misc.ShoppingCartPage.csproj", "{21648067-2E37-4967-A24B-5D48E2DFAF1A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Misc.TorobApi", "Plugins\Delsami.Plugin.Misc.TorobApi\Delsami.Plugin.Misc.TorobApi.csproj", "{E54F3327-B6EA-4AA9-AF51-90B2BB939A3D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{F8F1763E-16F6-44B8-AA89-449872135538} = {F8F1763E-16F6-44B8-AA89-449872135538}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payment.Tejarat", "Plugins\Delsami.Plugin.Payment.Tejarat\Delsami.Plugin.Payment.Tejarat.csproj", "{5F699FB8-3E1C-4C86-89F5-D3A648BC25A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4123D22-9F10-4C2D-BD09-59D022FFDD76} = {B4123D22-9F10-4C2D-BD09-59D022FFDD76}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payments.ManagePaymentMethod", "Plugins\Delsami.Plugin.Payments.ManagePaymentMethod\Delsami.Plugin.Payments.ManagePaymentMethod.csproj", "{421C07BA-35E0-49D9-8081-DA44FBC020FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{E4F172D5-715B-4554-A318-5FDB07BDE195} = {E4F172D5-715B-4554-A318-5FDB07BDE195}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Payments.Digipay", "Plugins\Delsami.Plugin.Payments.Digipay\Delsami.Plugin.Payments.Digipay.csproj", "{B9D2E58C-E1C9-48EE-989D-8BD6854560D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4123D22-9F10-4C2D-BD09-59D022FFDD76} = {B4123D22-9F10-4C2D-BD09-59D022FFDD76}
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delsami.Plugin.Shipping.ManageShippingMethod", "Plugins\Delsami.Plugin.Shipping.ManageShippingMethod\Delsami.Plugin.Shipping.ManageShippingMethod.csproj", "{9AC6AC7E-DC94-49E1-BB75-FEEE62C91783}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09834A8-21DC-43FA-882D-878CEA890057} = {D09834A8-21DC-43FA-882D-878CEA890057}
+		{D69C745F-3887-47AB-9D7D-7028F220F14C} = {D69C745F-3887-47AB-9D7D-7028F220F14C}
+		{E4F172D5-715B-4554-A318-5FDB07BDE195} = {E4F172D5-715B-4554-A318-5FDB07BDE195}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenSpikes.Nop.Plugins.AjaxCart", "Plugins\SevenSpikes.Nop.Plugins.AjaxCart\SevenSpikes.Nop.Plugins.AjaxCart.csproj", "{2048859B-4B2C-4B83-BEFF-734B5A2C7438}"
 EndProject
@@ -120,6 +206,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenSpikes.Nop.Plugins.HtmlWidgets", "Plugins\SevenSpikes.Nop.Plugins.HtmlWidgets\SevenSpikes.Nop.Plugins.HtmlWidgets.csproj", "{7F398B1C-41C7-461F-9516-BE18F06D938B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenSpikes.Nop.Plugins.JCarousel", "Plugins\SevenSpikes.Nop.Plugins.JCarousel\SevenSpikes.Nop.Plugins.JCarousel.csproj", "{9FF962AC-883C-4754-8F3F-3C90BC6A6ABA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{836D5F79-9D46-4EF0-895A-8D1A70A1DE9C} = {836D5F79-9D46-4EF0-895A-8D1A70A1DE9C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
