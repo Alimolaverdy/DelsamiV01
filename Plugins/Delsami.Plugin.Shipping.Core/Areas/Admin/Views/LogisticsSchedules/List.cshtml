@@ -1,19 +1,19 @@
-﻿@using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
-@using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException
+﻿@using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
+@using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException
 @model LogisticsScheduleSearchModel
 
 @{
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName").Text);
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List")
+        @T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List")
     </h1>
 
     <div class="float-right">
@@ -46,25 +46,25 @@
                             {
                                 new ColumnProperty(nameof(LogisticsScheduleModel.DayOfWeekStr))
                                 {
-                                    Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.DayOfWeek").Text,
+                                    Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.DayOfWeek").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "100"
                                 },
                                 new ColumnProperty(nameof(LogisticsScheduleModel.StartTime))
                                 {
-                                                Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.StartTime").Text,
+                                                Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.StartTime").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },
                                 new ColumnProperty(nameof(LogisticsScheduleModel.EndTime))
                                 {
-                                Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.EndTime").Text,
+                                Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.EndTime").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },
                                 // new ColumnProperty(nameof(LogisticsScheduleModel.ValidFrom))
                                 // {
-                                //     Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.ValidFrom").Text,
+                                //     Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleModel.ValidFrom").Text,
                                 //     ClassName =  NopColumnClassDefaults.CenterAll,
                                 //     Width = "80"
                                 // },
@@ -90,7 +90,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleException.List")
+        @T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleException.List")
     </h1>
 
     <div class="float-right">
@@ -122,19 +122,19 @@
                             {
                                 new ColumnProperty(nameof(LogisticsScheduleExceptionModel.ExceptionDateStr))
                                 {
-                                    Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.ExceptionDate").Text,
+                                    Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.ExceptionDate").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "100"
                                 },
                                 new ColumnProperty(nameof(LogisticsScheduleExceptionModel.StartTime))
                                 {
-                                     Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.StartTime").Text,
+                                     Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.StartTime").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },
                                 new ColumnProperty(nameof(LogisticsScheduleExceptionModel.EndTime))
                                 {
-                                Title = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.EndTime").Text,
+                                Title = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.EndTime").Text,
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Width = "80"
                                 },

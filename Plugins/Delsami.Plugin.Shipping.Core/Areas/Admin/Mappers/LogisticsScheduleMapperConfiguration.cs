@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
+using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core.Infrastructure.Mapper;
 using System;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Mappers
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Mappers
 {
     public class LogisticsScheduleMapperConfiguration : Profile, IOrderedMapperProfile
     {

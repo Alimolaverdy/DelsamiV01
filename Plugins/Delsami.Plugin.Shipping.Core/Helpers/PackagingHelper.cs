@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
-using ZarIran.Plugin.Shipping.Core.Model;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Model;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZarIran.Plugin.Shipping.Core.Helpers
+namespace Delsami.Plugin.Shipping.Core.Helpers
 {
     public class PackagingHelper
     {

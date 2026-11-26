@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
+using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core.Infrastructure.Mapper;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Mappers
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Mappers
 {
     public class CartonMapperConfiguration : Profile, IOrderedMapperProfile
     {

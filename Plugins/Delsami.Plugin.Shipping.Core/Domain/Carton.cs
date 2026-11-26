@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace ZarIran.Plugin.Shipping.Core.Domain
+namespace Delsami.Plugin.Shipping.Core.Domain
 {
     public class Carton : BaseEntity
     {

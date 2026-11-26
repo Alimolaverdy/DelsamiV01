@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
+﻿using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories;
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Factories;
 
 public interface ILogisticsScheduleExceptionModelFactory
 {

@@ -1,22 +1,22 @@
-@using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
+@using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
 @model LogisticsScheduleModel
 
 @{
     Layout = "_AdminLayout";
 
     //page title
-    ViewBag.PageTitle = T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.AddNew").Text;
+    ViewBag.PageTitle = T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.AddNew").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName").Text);
+    NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName").Text);
 }
 
 <form asp-controller="LogisticsSchedule" asp-action="Edit" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.Edit")
+            @T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.Edit")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.BackToList")</a>
+                <a asp-action="List">@T("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
@@ -32,6 +32,6 @@
 
         </div>
     </div>
-    @await Html.PartialAsync("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/_CreateOrUpdate.cshtml", Model)
+    @await Html.PartialAsync("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/_CreateOrUpdate.cshtml", Model)
 </form>
 <nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="car-brand-model-delete" />

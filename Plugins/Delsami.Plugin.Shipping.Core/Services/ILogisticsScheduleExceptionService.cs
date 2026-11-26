@@ -1,9 +1,9 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Services;
+namespace Delsami.Plugin.Shipping.Core.Services;
 
 public interface ILogisticsScheduleExceptionService
 {

@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Shipping.Core.Data.Mapping.Builder
+namespace Delsami.Plugin.Shipping.Core.Data.Mapping.Builder
 {
     public class CartonBuilder : NopEntityBuilder<Carton>
     {

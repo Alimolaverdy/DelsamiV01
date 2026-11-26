@@ -1,7 +1,7 @@
 ﻿using Nop.Core;
 using System;
 
-namespace ZarIran.Plugin.Shipping.Core.Domain
+namespace Delsami.Plugin.Shipping.Core.Domain
 {
     public class LogisticsScheduleException : BaseEntity
     {

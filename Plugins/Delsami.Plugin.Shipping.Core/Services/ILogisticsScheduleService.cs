@@ -1,9 +1,9 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Services
+namespace Delsami.Plugin.Shipping.Core.Services
 {
     public interface ILogisticsScheduleService
     {
@@ -19,7 +19,7 @@ namespace ZarIran.Plugin.Shipping.Core.Services
 
         Task<IPagedList<LogisticsSchedule>> GetLogisticsSchedulesAsync(int pageIndex = 0, int pageSize = int.MaxValue);
 
-        Task<IPagedList<LogisticsSchedule>> GetLogisticsSchedulesByZarIranEventAsync(int pageIndex = 0, int pageSize = int.MaxValue);
+        Task<IPagedList<LogisticsSchedule>> GetLogisticsSchedulesByDelsamiEventAsync(int pageIndex = 0, int pageSize = int.MaxValue);
 
         Task<bool> IsLogisticsActiveAsync(DateTime dateTime);
 

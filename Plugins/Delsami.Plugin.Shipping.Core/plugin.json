@@ -1,12 +1,12 @@
 ﻿{
   "Group": "Misc",
   "FriendlyName": "Shipping Core",
-  "SystemName": "ZarIran.Shipping.Core",
+  "SystemName": "Delsami.Shipping.Core",
   "Version": "1",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 2,
-  "FileName": "ZarIran.Plugin.Shipping.Core.dll",
+  "FileName": "Delsami.Plugin.Shipping.Core.dll",
   "Description": "This plugin allows Manage shipping business",
-  "DependsOnSystemNames": [ "ZarIran.Misc.Core" ]
+  "DependsOnSystemNames": [ "Delsami.Misc.Core" ]
 }

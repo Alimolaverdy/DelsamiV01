@@ -1,4 +1,4 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Data;
@@ -6,9 +6,9 @@ using Nop.Services.Catalog;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Infrastructure.Cache;
+using Delsami.Plugin.Misc.Core.Infrastructure.Cache;
 
-namespace ZarIran.Plugin.Shipping.Core.Services
+namespace Delsami.Plugin.Shipping.Core.Services
 {
     public class LogisticsScheduleService : ILogisticsScheduleService
     {
@@ -50,21 +50,21 @@ namespace ZarIran.Plugin.Shipping.Core.Services
 
         public virtual async Task InsertAsync(LogisticsSchedule logisticsScheduleInfo)
         {
-            await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+            await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
             await _logisticsScheduleRepo.InsertAsync(logisticsScheduleInfo);
         }
 
         public virtual async Task UpdateAsync(LogisticsSchedule logisticsScheduleInfo)
         {
-            await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+            await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
             await _logisticsScheduleRepo.UpdateAsync(logisticsScheduleInfo);
         }
 
         public virtual async Task DeleteAsync(LogisticsSchedule logisticsScheduleInfo)
         {
-            await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+            await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
             await _logisticsScheduleRepo.DeleteAsync(logisticsScheduleInfo);
         }
@@ -82,7 +82,7 @@ namespace ZarIran.Plugin.Shipping.Core.Services
             return logisticsSchedules;
         }
 
-        public virtual async Task<IPagedList<LogisticsSchedule>> GetLogisticsSchedulesByZarIranEventAsync(int pageIndex = 0, int pageSize = int.MaxValue)
+        public virtual async Task<IPagedList<LogisticsSchedule>> GetLogisticsSchedulesByDelsamiEventAsync(int pageIndex = 0, int pageSize = int.MaxValue)
         {
             var logisticsSchedules = await _logisticsScheduleRepo.GetAllPagedAsync(query =>
             {
@@ -108,7 +108,7 @@ namespace ZarIran.Plugin.Shipping.Core.Services
 
         public virtual async Task<bool> IsLogisticsActiveForScheduleAsync(DateTime dateTime, TimeSpan startHour, TimeSpan endHour)
         {
-            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(ZarIranModelCacheDefaults.CheckLogisticIsActiveCacheKey, dateTime, startHour, endHour);
+            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(DelsamiModelCacheDefaults.CheckLogisticIsActiveCacheKey, dateTime, startHour, endHour);
 
             var result = await _staticCacheManager.GetAsync(cacheKey, async () =>
             {

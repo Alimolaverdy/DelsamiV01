@@ -1,10 +1,10 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core;
 using Nop.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Services
+namespace Delsami.Plugin.Shipping.Core.Services
 {
     public class CartonService : ICartonService
     {
@@ -56,7 +56,7 @@ namespace ZarIran.Plugin.Shipping.Core.Services
             return cartons;
         }
 
-        public virtual async Task<IPagedList<Carton>> GetCartonsByZarIranEventAsync(int pageIndex = 0, int pageSize = int.MaxValue)
+        public virtual async Task<IPagedList<Carton>> GetCartonsByDelsamiEventAsync(int pageIndex = 0, int pageSize = int.MaxValue)
         {
             var cartons = await _cartonRepo.GetAllPagedAsync(query =>
             {

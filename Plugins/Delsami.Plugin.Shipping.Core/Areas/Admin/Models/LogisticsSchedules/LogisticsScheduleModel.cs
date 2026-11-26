@@ -4,7 +4,7 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
 {
     public record LogisticsScheduleModel : BaseNopEntityModel
     {
@@ -13,10 +13,10 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
             AvailableDays = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.StartTime")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.StartTime")]
         public string StartTimeStr { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.EndTime")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.EndTime")]
         public string EndTimeStr { get; set; }
 
 
@@ -24,16 +24,16 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
 
         public TimeSpan EndTime { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.ValidFrom")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.ValidFrom")]
         public DateTime? ValidFrom { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.ValidTo")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.ValidTo")]
         public DateTime? ValidTo { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.DayOfWeek")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.DayOfWeek")]
         public DayOfWeek DayOfWeek { get; set; }
 
-        [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.DayOfWeekStr")]
+        [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.DayOfWeekStr")]
         public string DayOfWeekStr
         {
             get

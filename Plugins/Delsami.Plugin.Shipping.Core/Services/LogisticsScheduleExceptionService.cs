@@ -1,13 +1,13 @@
-﻿using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ZarIran.Plugin.Misc.Core.Infrastructure.Cache;
+using Delsami.Plugin.Misc.Core.Infrastructure.Cache;
 
-namespace ZarIran.Plugin.Shipping.Core.Services;
+namespace Delsami.Plugin.Shipping.Core.Services;
 
 public class LogisticsScheduleExceptionService : ILogisticsScheduleExceptionService
 {
@@ -37,21 +37,21 @@ public class LogisticsScheduleExceptionService : ILogisticsScheduleExceptionServ
 
     public virtual async Task InsertAsync(LogisticsScheduleException logisticsScheduleInfo)
     {
-        await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+        await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
         await _logisticsScheduleExceptionRepo.InsertAsync(logisticsScheduleInfo);
     }
 
     public virtual async Task UpdateAsync(LogisticsScheduleException logisticsScheduleInfo)
     {
-        await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+        await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
         await _logisticsScheduleExceptionRepo.UpdateAsync(logisticsScheduleInfo);
     }
 
     public virtual async Task DeleteAsync(LogisticsScheduleException logisticsScheduleInfo)
     {
-        await _staticCacheManager.RemoveByPrefixAsync(ZarIranModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
+        await _staticCacheManager.RemoveByPrefixAsync(DelsamiModelCacheDefaults.CheckLogisticIsActivePrefixCacheKey);
 
         await _logisticsScheduleExceptionRepo.DeleteAsync(logisticsScheduleInfo);
     }

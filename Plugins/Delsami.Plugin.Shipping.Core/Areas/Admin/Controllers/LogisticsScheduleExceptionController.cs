@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
-using ZarIran.Plugin.Shipping.Core.Domain;
-using ZarIran.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
+using Delsami.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Services;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
@@ -12,7 +12,7 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers;
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Controllers;
 
 [AuthorizeAdmin]
 [Area(AreaNames.Admin)]
@@ -72,7 +72,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
         //prepare model
         var model = new LogisticsScheduleExceptionModel();
 
-        return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Create.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Create.cshtml", model);
     }
 
     [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -84,7 +84,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
         var exception = await _logisticsScheduleExceptionService.IsExistException(model.ExceptionDate);
 
         if (exception != null)
-            ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.ExistException"));
+            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.ExistException"));
 
         if (ModelState.IsValid)
         {
@@ -93,13 +93,13 @@ public class LogisticsScheduleExceptionController : BasePluginController
 
             await _logisticsScheduleExceptionService.InsertAsync(logisticsScheduleException);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Added"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Added"));
 
             return RedirectToAction("List", "LogisticsSchedule", new { area = "admin" });
         }
 
 
-        return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Create.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Create.cshtml", model);
     }
 
     public virtual async Task<IActionResult> Edit(int id)
@@ -113,7 +113,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
 
         var model = logisticsScheduleException.ToModel<LogisticsScheduleExceptionModel>();
 
-        return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Edit.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Edit.cshtml", model);
     }
 
     [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -131,7 +131,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
         var exception = await _logisticsScheduleExceptionService.IsExistException(model.ExceptionDate);
 
         if (exception != null && exception.Id!=model.Id)
-            ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.ExistException"));
+            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.ExistException"));
 
         if (ModelState.IsValid)
         {
@@ -139,7 +139,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
 
             await _logisticsScheduleExceptionService.UpdateAsync(LogisticsScheduleException);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Updated"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Updated"));
 
             if (!continueEditing)
                 return RedirectToAction("List", "LogisticsSchedule", new { area = "admin" });
@@ -147,7 +147,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
             return RedirectToAction("Edit", new { id = LogisticsScheduleException.Id });
         }
 
-        return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Edit.cshtml", model);
+        return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedulesException/Edit.cshtml", model);
     }
 
     [HttpPost]
@@ -163,7 +163,7 @@ public class LogisticsScheduleExceptionController : BasePluginController
 
         await _logisticsScheduleExceptionService.DeleteAsync(LogisticsScheduleException);
 
-        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Deleted"));
+        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsScheduleException.Deleted"));
 
         return RedirectToAction("List", "LogisticsSchedule", new { area = "admin" });
     }

@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
+using Delsami.Plugin.Shipping.Core.Domain;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Factories
 {
     public interface ICartonModelFactory
     {

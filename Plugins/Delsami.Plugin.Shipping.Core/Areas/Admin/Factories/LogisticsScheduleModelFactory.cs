@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
-using ZarIran.Plugin.Shipping.Core.Domain;
-using ZarIran.Plugin.Shipping.Core.Services;
+﻿using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
+using Delsami.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Services;
 using Nop.Services.Catalog;
 using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Factories
 {
     public class LogisticsScheduleModelFactory : ILogisticsScheduleModelFactory
     {

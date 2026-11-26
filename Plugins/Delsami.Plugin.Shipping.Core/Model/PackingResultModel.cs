@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Shipping.Core.Model
+namespace Delsami.Plugin.Shipping.Core.Model
 {
     public class PackingResultModel
     {

@@ -3,17 +3,17 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
 
 public record LogisticsScheduleExceptionModel : BaseNopEntityModel
 {
-    [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.StartTime")]
+    [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.StartTime")]
     public string StartTimeStr { get; set; }
 
-    [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.EndTime")]
+    [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.EndTime")]
     public string EndTimeStr { get; set; }
 
-    [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.IsHoliday")]
+    [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.IsHoliday")]
     public bool IsHoliday { get; set; }
 
 
@@ -25,7 +25,7 @@ public record LogisticsScheduleExceptionModel : BaseNopEntityModel
     public DateTime ExceptionDate { get; set; }=DateTime.Now;
 
 
-    [NopResourceDisplayName("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.ExceptionDateStr")]
+    [NopResourceDisplayName("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsScheduleExceptionModel.ExceptionDateStr")]
     public string ExceptionDateStr
     {
         get

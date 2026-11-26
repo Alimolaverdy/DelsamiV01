@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
-using ZarIran.Plugin.Shipping.Core.Domain;
+﻿using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
+using Delsami.Plugin.Shipping.Core.Domain;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Factories
 {
     public interface ILogisticsScheduleModelFactory
     {

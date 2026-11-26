@@ -1,12 +1,12 @@
-﻿using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
-using ZarIran.Plugin.Shipping.Core.Services;
+﻿using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedulesException;
+using Delsami.Plugin.Shipping.Core.Services;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Framework.Models.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories;
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Factories;
 
 public class LogisticsScheduleExceptionModelFactory : ILogisticsScheduleExceptionModelFactory
 {

@@ -7,12 +7,12 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using System.Threading.Tasks;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
-using ZarIran.Plugin.Shipping.Core.Services;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.Cartons;
+using Delsami.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.Core.Domain;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -61,7 +61,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _cartonFactory.PrepareCartonSearchModel(new CartonSearchModel());
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/Carton/List.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/Carton/List.cshtml", model);
         }
 
         [HttpPost]
@@ -88,7 +88,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _cartonFactory.PrepareCartonModel(new CartonModel(), null);
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/Carton/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/Carton/Create.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -103,7 +103,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
                 await _cartonService.InsertAsync(carBrandModel);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Added"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.Carton.Added"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -115,7 +115,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             model = _cartonFactory.PrepareCartonModel(model, null);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/Carton/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/Carton/Create.cshtml", model);
         }
 
         public virtual async Task<IActionResult> Edit(int id)
@@ -131,7 +131,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _cartonFactory.PrepareCartonModel(null, carton);
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/Carton/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/Carton/Edit.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -153,7 +153,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
                 await _cartonService.UpdateAsync(Carton);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Updated"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.Carton.Updated"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -165,7 +165,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             model = _cartonFactory.PrepareCartonModel(model, Carton);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/Carton/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/Carton/Edit.cshtml", model);
         }
 
         [HttpPost]
@@ -182,7 +182,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
             await _cartonService.DeleteAsync(Carton);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Deleted"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.Carton.Deleted"));
 
             return RedirectToAction("List");
         }

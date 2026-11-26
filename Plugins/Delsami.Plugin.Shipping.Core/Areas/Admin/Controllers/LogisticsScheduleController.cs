@@ -1,9 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using Microsoft.AspNetCore.Mvc;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Factories;
-using ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
-using ZarIran.Plugin.Shipping.Core.Domain;
-using ZarIran.Plugin.Shipping.Core.Services;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Factories;
+using Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules;
+using Delsami.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Services;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
@@ -15,7 +15,7 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]
@@ -64,7 +64,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _logisticsScheduleFactory.PrepareLogisticsScheduleSearchModel(new LogisticsScheduleSearchModel());
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/List.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/List.cshtml", model);
         }
 
         [HttpPost]
@@ -91,7 +91,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _logisticsScheduleFactory.PrepareLogisticsScheduleModel(new LogisticsScheduleModel(), null);
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Create.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -103,7 +103,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             var isExist = await _logisticsScheduleService.IsExistDayOfWeek(model.DayOfWeek);
 
             if (isExist)
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.IsExistDayOfWeek"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.IsExistDayOfWeek"));
 
             if (ModelState.IsValid)
             {
@@ -114,7 +114,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
                     await _logisticsScheduleService.InsertAsync(logisticsSchedule);
 
-                    _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Added"));
+                    _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Added"));
                 }
 
                 return RedirectToAction("List");
@@ -124,7 +124,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             model = _logisticsScheduleFactory.PrepareLogisticsScheduleModel(model, null);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Create.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Create.cshtml", model);
         }
 
         public virtual async Task<IActionResult> Edit(int id)
@@ -140,7 +140,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             //prepare model
             var model = _logisticsScheduleFactory.PrepareLogisticsScheduleModel(null, logisticsSchedule);
 
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Edit.cshtml", model);
         }
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
@@ -160,7 +160,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             var isExist = await _logisticsScheduleService.IsExistDayOfWeek(dayOfWeek, model.Id);
 
             if (isExist)
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.IsExistDayOfWeek"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.IsExistDayOfWeek"));
 
             if (ModelState.IsValid)
             {
@@ -168,7 +168,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
                 await _logisticsScheduleService.UpdateAsync(LogisticsSchedule);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Updated"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Updated"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -180,7 +180,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
             model = _logisticsScheduleFactory.PrepareLogisticsScheduleModel(model, LogisticsSchedule);
 
             //if we got this far, something failed, redisplay form
-            return View("~/Plugins/ZarIran.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Edit.cshtml", model);
+            return View("~/Plugins/Delsami.Shipping.Core/Areas/Admin/Views/LogisticsSchedules/Edit.cshtml", model);
         }
 
         [HttpPost]
@@ -197,7 +197,7 @@ namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Controllers
 
             await _logisticsScheduleService.DeleteAsync(LogisticsSchedule);
 
-            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Deleted"));
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Message.LogisticsSchedule.Deleted"));
 
             return RedirectToAction("List");
         }

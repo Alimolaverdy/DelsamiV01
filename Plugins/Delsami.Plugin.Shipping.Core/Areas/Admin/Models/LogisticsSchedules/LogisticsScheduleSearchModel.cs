@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
+namespace Delsami.Plugin.Shipping.Core.Areas.Admin.Models.LogisticsSchedules
 {
     public record LogisticsScheduleSearchModel : BaseSearchModel
     {

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace ZarIran.Plugin.Shipping.Core
+namespace Delsami.Plugin.Shipping.Core
 {
     public class ShippingCorePlugin : BasePlugin, IAdminMenuPlugin
     {
@@ -59,25 +59,25 @@ namespace ZarIran.Plugin.Shipping.Core
         {
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
-                ["ZarIran.Plugin.BaseName"] = "ZarIran",
-                ["ZarIran.Plugin.SystemName"] = "ZarIran",
-                ["ZarIran.Plugin.Settings.Saved"] = "Settings saved successfully",
-                ["ZarIran.Plugin.Settings.Error"] = "Error in saving settings",
-                ["ZarIran.Plugin.Error"] = "Error saving settings",
-                ["ZarIran.Plugin.Misc.ShippingCore.Name"] = "Shipping Core",
-                ["ZarIran.Plugin.Misc.ShippingCore.SystemName"] = "Shipping Core",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.List"] = "Carton management",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.List.SystemName"] = "CartonManagementSystemName",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.CartonModel.Name"] = "Name",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.CartonModel.Width"] = "Width",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.CartonModel.Height"] = "Height",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.CartonModel.Length"] = "Length",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.AddNew"] = "Add new carton",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.Edit"] = "Edit carton",
-                ["ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.BackToList"] = "Back to list",
-                ["ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Added"] = "Carton added successfully",
-                ["ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Updated"] = "Carton updated successfully",
-                ["ZarIran.Plugin.Misc.ShippingCore.Message.Carton.Deleted"] = "Carton deleted successfully",
+                ["Delsami.Plugin.BaseName"] = "Delsami",
+                ["Delsami.Plugin.SystemName"] = "Delsami",
+                ["Delsami.Plugin.Settings.Saved"] = "Settings saved successfully",
+                ["Delsami.Plugin.Settings.Error"] = "Error in saving settings",
+                ["Delsami.Plugin.Error"] = "Error saving settings",
+                ["Delsami.Plugin.Misc.ShippingCore.Name"] = "Shipping Core",
+                ["Delsami.Plugin.Misc.ShippingCore.SystemName"] = "Shipping Core",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.Carton.List"] = "Carton management",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.Carton.List.SystemName"] = "CartonManagementSystemName",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.CartonModel.Name"] = "Name",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.CartonModel.Width"] = "Width",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.CartonModel.Height"] = "Height",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.CartonModel.Length"] = "Length",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.Carton.AddNew"] = "Add new carton",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.Carton.Edit"] = "Edit carton",
+                ["Delsami.Plugin.Misc.ShippingCore.Admin.Carton.BackToList"] = "Back to list",
+                ["Delsami.Plugin.Misc.ShippingCore.Message.Carton.Added"] = "Carton added successfully",
+                ["Delsami.Plugin.Misc.ShippingCore.Message.Carton.Updated"] = "Carton updated successfully",
+                ["Delsami.Plugin.Misc.ShippingCore.Message.Carton.Deleted"] = "Carton deleted successfully",
 
             });
 
@@ -90,21 +90,21 @@ namespace ZarIran.Plugin.Shipping.Core
             {
                 return;
             }
-            var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-            var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-            var shippingCoreSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.SystemName");
-            var shippingCoreName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Name");
+            var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+            var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+            var shippingCoreSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.SystemName");
+            var shippingCoreName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Name");
 
-            var cartonManagementName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.List");
-            var cartonManagementSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Admin.Carton.List.SystemName");
+            var cartonManagementName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Admin.Carton.List");
+            var cartonManagementSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Admin.Carton.List.SystemName");
 
-            var logisticsScheduleName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List");
-            var logisticsScheduleSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName");
+            var logisticsScheduleName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List");
+            var logisticsScheduleSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Misc.ShippingCore.Admin.LogisticsSchedule.List.SystemName");
 
-            var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+            var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-            if (ZarIranSiteMapNode == null)
-                ZarIranSiteMapNode = new SiteMapNode
+            if (DelsamiSiteMapNode == null)
+                DelsamiSiteMapNode = new SiteMapNode
                 {
                     Title = baseName,
                     SystemName = systemName,
@@ -135,7 +135,7 @@ namespace ZarIran.Plugin.Shipping.Core
                 },
             };
 
-            ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+            DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
             {
                 Title = shippingCoreName,
                 SystemName = shippingCoreSystemName,
@@ -146,7 +146,7 @@ namespace ZarIran.Plugin.Shipping.Core
 
 
             if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-                rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+                rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
             await Task.CompletedTask;
         }
@@ -161,7 +161,7 @@ namespace ZarIran.Plugin.Shipping.Core
             //await _settingService.DeleteSettingAsync<ShipmentManagementSettings>();
 
             //locales
-            await _localizationService.DeleteLocaleResourcesAsync("ZarIran.Plugin.Misc.ShippingCore");
+            await _localizationService.DeleteLocaleResourcesAsync("Delsami.Plugin.Misc.ShippingCore");
 
             await base.UninstallAsync();
         }

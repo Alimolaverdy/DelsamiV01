@@ -1,7 +1,7 @@
 ﻿using Nop.Core.Configuration;
 using System;
 
-namespace ZarIran.Plugin.Shipping.Core
+namespace Delsami.Plugin.Shipping.Core
 {
     public class ShippingCoreSettings : ISettings
     {

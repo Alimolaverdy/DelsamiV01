@@ -1,11 +1,11 @@
 ﻿using FluentMigrator;
-using ZarIran.Plugin.Shipping.Core.Domain;
+using Delsami.Plugin.Shipping.Core.Domain;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
 
-namespace ZarIran.Plugin.Shipping.Core.Data
+namespace Delsami.Plugin.Shipping.Core.Data
 {
-    [NopMigration("2026/06/27 18:38:00", "ZarIran.Plugin.Misc.ShippingCore base schema")]
+    [NopMigration("2026/11/26 18:38:00", "Delsami.Plugin.Misc.ShippingCore base schema")]
     public class SchemaMigration : AutoReversingMigration
     {
         public override void Up()
