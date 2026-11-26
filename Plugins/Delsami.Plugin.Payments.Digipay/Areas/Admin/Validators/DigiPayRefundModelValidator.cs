@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
 using System.Linq;
 using FluentValidation;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
 using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
 
-namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Validators
+namespace Delsami.Plugin.Payments.Digipay.Areas.Admin.Validators
 {
     public class DigiPayRefundModelValidator : BaseNopValidator<DigiPayRefundModel>
     {
@@ -13,15 +13,15 @@ namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Validators
         {
             RuleFor(x => x.Amount)
 				.NotEmpty().NotNull().Must(IsValidAmount)
-                .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Fields.Amount.Invalid"));
+                .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Fields.Amount.Invalid"));
 
             RuleFor(x => x.PaymentTrackingCode)
                 .NotEmpty().NotNull()
-                .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Fields.PaymentTrackingCode.Required"));
+                .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Fields.PaymentTrackingCode.Required"));
 
             RuleFor(x => x.PaymentType)
                 .IsInEnum()
-                .WithMessageAwait(localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Fields.PaymentType.Invalid"));
+                .WithMessageAwait(localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Fields.PaymentType.Invalid"));
         }
 
         private static bool IsValidAmount(string value)

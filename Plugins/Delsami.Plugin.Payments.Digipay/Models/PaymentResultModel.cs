@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace ZarIran.Plugin.Payments.Digipay.Models
+namespace Delsami.Plugin.Payments.Digipay.Models
 {
     public record PaymentResultModel : BaseNopModel
     {

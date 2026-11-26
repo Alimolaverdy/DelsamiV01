@@ -1,15 +1,15 @@
 ﻿{
   "Group": "Payment Methods",
   "FriendlyName": "پرداخت قسطی با دیجی پی",
-  "SystemName": "ZarIran.Payments.Digipay",
+  "SystemName": "Delsami.Payments.Digipay",
   "Version": "1.00",
   "SupportedVersions": [ "4.60" ],
   "Author": "AliMolaverdi",
   "DisplayOrder": 3,
-  "FileName": "ZarIran.Plugin.Payments.DigiPay.dll",
+  "FileName": "Delsami.Plugin.Payments.DigiPay.dll",
   "Description": "پرداخت قسطی با دیجی پی",
   "DependsOnSystemNames": [
-    "ZarIran.Misc.Core",
-    "ZarIran.Payment.Core"
+    "Delsami.Misc.Core",
+    "Delsami.Payment.Core"
   ]
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Infrastructure.Permissions;
-using ZarIran.Plugin.Payments.Digipay.Factories;
-using ZarIran.Plugin.Payments.Digipay.Infrastructure.Permissions;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
-using ZarIran.Plugin.Payments.Digipay.Services;
+using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.Digipay.Factories;
+using Delsami.Plugin.Payments.Digipay.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
+using Delsami.Plugin.Payments.Digipay.Services;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Common;
@@ -21,9 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IPaymentService = ZarIran.Plugin.Payment.Core.Services.IPaymentService;
+using IPaymentService = Delsami.Plugin.Payment.Core.Services.IPaymentService;
 
-namespace ZarIran.Plugin.Payments.Digipay;
+namespace Delsami.Plugin.Payments.Digipay;
 
 public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 {
@@ -97,7 +97,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
     public bool SkipPaymentInfo => false;
 
-    public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("ZarIran.Payments.Digipay.PaymentMethodDescription");
+    public async Task<string> GetPaymentMethodDescriptionAsync() => await _localizationService.GetResourceAsync("Delsami.Payments.Digipay.PaymentMethodDescription");
 
     #endregion
 
@@ -120,32 +120,32 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
         await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
         {
-            ["ZarIran.Plugin.BaseName"] = "ZarIran",
-            ["ZarIran.Plugin.SystemName"] = "ZarIran",
-            ["ZarIran.Plugin.Payments.Digipay.SystemName"] = "TorobPay",
-            ["ZarIran.Plugin.Payments.Digipay.Name"] = "ZarIran Digipay",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.Username"] = "Username",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.Password"] = "Password",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.GrantType"] = "Grant Type",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.ClientId"] = "Client ID",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.ClientSecret"] = "Client Secret",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.BaseUrl"] = "Base Url",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.DigiPayVersion"] = "Digipay Version",
-            ["ZarIran.Plugin.Payments.Digipay.Configuration.DescriptionText"] = "Digipay BPG Description",
-            ["ZarIran.Plugin.Payments.Digipay.PaymentResult"] = "Payment Result:",
-            ["ZarIran.Plugin.Payments.Digipay.TrackingCode"] = "TrackingCode:",
-            ["ZarIran.Plugin.Payments.Digipay.AmountMismatch"] = "The paid amount does not match the order amount.Please check your payment:",
-            ["ZarIran.Plugin.Payments.Digipay.ErrorInGetToken"] = "Error In digipay:",
-            ["ZarIran.Plugin.Payments.Digipay.ErrorInCreateTicket"] = "Error in digipay",
-            ["ZarIran.Plugin.Payments.Digipay.PaymentWasSuccessful"] = "Payment was successful",
-            ["ZarIran.Plugin.Payments.Digipay.PaymentFailed"] = "Payment failed",
-            ["ZarIran.Plugin.Payments.Digipay.Message"] = "TrackingCode:",
-            ["ZarIran.Plugin.Payments.Digipay.Error"] = "Error in payment.Try again",
-            ["ZarIran.Plugin.Payments.Digipay.ErrorInRefund"] = "Error in digipay refund",
-            ["ZarIran.Plugin.Payments.Digipay.OrderIsNotInPaidStatus"] = "Order is not paid status",
-            ["ZarIran.Plugin.Payments.Digipay.Refund.SystemName"] = "RefundPaymnet",
-            ["ZarIran.Plugin.Payments.Digipay.Refund.Name"] = "Refund Paymnet",
-            ["ZarIran.Plugin.payments.Digipay.Refund.Title"] = "Refund payment",
+            ["Delsami.Plugin.BaseName"] = "Delsami",
+            ["Delsami.Plugin.SystemName"] = "Delsami",
+            ["Delsami.Plugin.Payments.Digipay.SystemName"] = "TorobPay",
+            ["Delsami.Plugin.Payments.Digipay.Name"] = "Delsami Digipay",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.Username"] = "Username",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.Password"] = "Password",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.GrantType"] = "Grant Type",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.ClientId"] = "Client ID",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.ClientSecret"] = "Client Secret",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.BaseUrl"] = "Base Url",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.DigiPayVersion"] = "Digipay Version",
+            ["Delsami.Plugin.Payments.Digipay.Configuration.DescriptionText"] = "Digipay BPG Description",
+            ["Delsami.Plugin.Payments.Digipay.PaymentResult"] = "Payment Result:",
+            ["Delsami.Plugin.Payments.Digipay.TrackingCode"] = "TrackingCode:",
+            ["Delsami.Plugin.Payments.Digipay.AmountMismatch"] = "The paid amount does not match the order amount.Please check your payment:",
+            ["Delsami.Plugin.Payments.Digipay.ErrorInGetToken"] = "Error In digipay:",
+            ["Delsami.Plugin.Payments.Digipay.ErrorInCreateTicket"] = "Error in digipay",
+            ["Delsami.Plugin.Payments.Digipay.PaymentWasSuccessful"] = "Payment was successful",
+            ["Delsami.Plugin.Payments.Digipay.PaymentFailed"] = "Payment failed",
+            ["Delsami.Plugin.Payments.Digipay.Message"] = "TrackingCode:",
+            ["Delsami.Plugin.Payments.Digipay.Error"] = "Error in payment.Try again",
+            ["Delsami.Plugin.Payments.Digipay.ErrorInRefund"] = "Error in digipay refund",
+            ["Delsami.Plugin.Payments.Digipay.OrderIsNotInPaidStatus"] = "Order is not paid status",
+            ["Delsami.Plugin.Payments.Digipay.Refund.SystemName"] = "RefundPaymnet",
+            ["Delsami.Plugin.Payments.Digipay.Refund.Name"] = "Refund Paymnet",
+            ["Delsami.Plugin.payments.Digipay.Refund.Title"] = "Refund payment",
         });
 
         await _permissionService.InstallPermissionsAsync(new DigiPayRefundPermission());
@@ -168,19 +168,19 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
         if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins) && !await _permissionService.AuthorizeAsync(DigiPayRefundPermission.DigiPayRefund))
             return;
 
-        var baseName = await _localizationService.GetResourceAsync("ZarIran.Plugin.BaseName");
-        var systemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.SystemName");
-        var digipaySystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.SystemName");
-        var digipayName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Name");
-        var configurationName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Configuration");
-        var configurationSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Configuration.SystemName");
-        var refundSystemName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Refund.SystemName");
-        var refundName = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Refund.Name");
+        var baseName = await _localizationService.GetResourceAsync("Delsami.Plugin.BaseName");
+        var systemName = await _localizationService.GetResourceAsync("Delsami.Plugin.SystemName");
+        var digipaySystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.SystemName");
+        var digipayName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Name");
+        var configurationName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Configuration");
+        var configurationSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Configuration.SystemName");
+        var refundSystemName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Refund.SystemName");
+        var refundName = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Refund.Name");
 
-        var ZarIranSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
+        var DelsamiSiteMapNode = rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).FirstOrDefault();
 
-        if (ZarIranSiteMapNode == null)
-            ZarIranSiteMapNode = new SiteMapNode
+        if (DelsamiSiteMapNode == null)
+            DelsamiSiteMapNode = new SiteMapNode
             {
                 Title = baseName,
                 SystemName = systemName,
@@ -220,7 +220,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
         }
 
 
-        ZarIranSiteMapNode.ChildNodes.Add(new SiteMapNode
+        DelsamiSiteMapNode.ChildNodes.Add(new SiteMapNode
         {
             Title = digipayName,
             SystemName = digipaySystemName,
@@ -231,7 +231,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
 
         if (!rootNode.ChildNodes.Where(w => w.SystemName.Equals(systemName)).Any())
-            rootNode.ChildNodes.Add(ZarIranSiteMapNode);
+            rootNode.ChildNodes.Add(DelsamiSiteMapNode);
 
         await Task.CompletedTask;
     }
@@ -353,7 +353,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
         if (order.PaymentStatus != Nop.Core.Domain.Payments.PaymentStatus.Paid)
         {
-            result.AddError(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.OrderIsNotInPaidStatus"));
+            result.AddError(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.OrderIsNotInPaidStatus"));
             return result;
         }
 
@@ -362,7 +362,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
         if (!token.CallIsSuccess)
         {
-            result.AddError(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.ErrorInRefund"));
+            result.AddError(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.ErrorInRefund"));
 
             return result;
         }
@@ -400,7 +400,7 @@ public class DigiPayPaymentPlugin : BasePlugin, IPaymentMethod, IAdminMenuPlugin
 
         if (!refundIsSuccess)
         {
-            result.AddError(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.ErrorInRefund"));
+            result.AddError(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.ErrorInRefund"));
 
             return result;
         }

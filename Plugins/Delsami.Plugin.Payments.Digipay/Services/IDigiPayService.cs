@@ -1,12 +1,12 @@
 ﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using ZarIran.Plugin.Misc.Core.Models.ApiCaller;
-using ZarIran.Plugin.Payments.Digipay.Domain;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
+using Delsami.Plugin.Misc.Core.Models.ApiCaller;
+using Delsami.Plugin.Payments.Digipay.Domain;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
 using Nop.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Digipay.Services
+namespace Delsami.Plugin.Payments.Digipay.Services
 {
     public interface IDigiPayService
     {

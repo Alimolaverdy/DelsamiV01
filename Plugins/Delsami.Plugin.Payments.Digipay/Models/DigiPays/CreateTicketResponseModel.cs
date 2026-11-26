@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ZarIran.Plugin.Payments.Digipay.Models.DigiPays
+namespace Delsami.Plugin.Payments.Digipay.Models.DigiPays
 {
     public class CreateTicketResponseModel
     {

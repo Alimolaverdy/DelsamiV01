@@ -1,6 +1,6 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 
-namespace ZarIran.Plugin.Payments.Digipay.Models.DigiPays
+namespace Delsami.Plugin.Payments.Digipay.Models.DigiPays
 {
     public class VerifyResultModel : BasePaymentResponseModel
     {

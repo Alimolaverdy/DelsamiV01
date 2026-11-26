@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Validators;
-using ZarIran.Plugin.Payments.Digipay.Factories;
-using ZarIran.Plugin.Payments.Digipay.Services;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Validators;
+using Delsami.Plugin.Payments.Digipay.Factories;
+using Delsami.Plugin.Payments.Digipay.Services;
 using Nop.Core.Infrastructure;
 
-namespace ZarIran.Plugin.Payments.Digipay.Infrastructure
+namespace Delsami.Plugin.Payments.Digipay.Infrastructure
 {
     public class NopStartup : INopStartup
     {

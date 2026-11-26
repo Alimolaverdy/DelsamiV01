@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace ZarIran.Plugin.Payments.Digipay
+namespace Delsami.Plugin.Payments.Digipay
 {
     public class DigiPaySettings : ISettings
     {

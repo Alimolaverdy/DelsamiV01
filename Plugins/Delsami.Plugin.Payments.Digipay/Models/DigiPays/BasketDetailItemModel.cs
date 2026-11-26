@@ -1,4 +1,4 @@
-﻿namespace ZarIran.Plugin.Payments.Digipay.Models.DigiPays
+﻿namespace Delsami.Plugin.Payments.Digipay.Models.DigiPays
 {
     public class BasketDetailItemModel
     {

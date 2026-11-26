@@ -3,13 +3,13 @@ using FluentMigrator.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ZarIran.Plugin.Misc.Core.Helpers;
-using ZarIran.Plugin.Misc.Core.Models.ApiCaller;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
-using ZarIran.Plugin.Payments.Digipay.Domain;
-using ZarIran.Plugin.Payments.Digipay.Infrastructure.Permissions;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
-using ZarIran.Plugin.Payments.Digipay.Services;
+using Delsami.Plugin.Misc.Core.Helpers;
+using Delsami.Plugin.Misc.Core.Models.ApiCaller;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
+using Delsami.Plugin.Payments.Digipay.Domain;
+using Delsami.Plugin.Payments.Digipay.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
+using Delsami.Plugin.Payments.Digipay.Services;
 using Nop.Core;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
@@ -23,7 +23,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payments.Digipay.Areas.Admin.Controllers
 {
 	[AuthorizeAdmin]
 	[Area(AreaNames.Admin)]
@@ -73,7 +73,7 @@ namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
 
 			searchModel.SetGridPageSize(10);
 
-			return View("~/Plugins/ZarIran.Payments.Digipay/Areas/Admin/Views/DigiPay/RefundList.cshtml", searchModel);
+			return View("~/Plugins/Delsami.Payments.Digipay/Areas/Admin/Views/DigiPay/RefundList.cshtml", searchModel);
 		}
 
 		[HttpPost]
@@ -132,9 +132,9 @@ namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
 				await InsertDigiPayRefundRecordAsync(result.CallIsSuccess,result.RefundResponse?.Data,errorMessage,model);
 
 				if (result.CallIsSuccess)
-					_notificationService.SuccessNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.SuccessfullyRefund"));
+					_notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.SuccessfullyRefund"));
 				else
-					_notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.ErrorInRefund"));
+					_notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.ErrorInRefund"));
 
 				return RedirectToAction("RefundList");
 
@@ -142,7 +142,7 @@ namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
 			catch (Exception ex)
 			{
 				await _logger.ErrorAsync($"DigiPay Payment Refund with tracking Code({model.RefundTrackingCode}) Was Failed Due to: {JsonConvert.SerializeObject(ex.Message)}", ex);
-				_notificationService.ErrorNotification(await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.ErrorInRefund"));
+				_notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.ErrorInRefund"));
 
 				await InsertDigiPayRefundRecordAsync(false, null, ex.Message, model);
 

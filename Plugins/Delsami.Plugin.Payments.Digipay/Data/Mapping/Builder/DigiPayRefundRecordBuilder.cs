@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
-using ZarIran.Plugin.Payments.Digipay.Domain;
+using Delsami.Plugin.Payments.Digipay.Domain;
 using Nop.Data.Mapping.Builders;
 
-namespace ZarIran.Plugin.Payments.Digipay.Data.Mapping.Builder
+namespace Delsami.Plugin.Payments.Digipay.Data.Mapping.Builder
 {
 	public class DigiPayRefundRecordBuilder : NopEntityBuilder<DigiPayRefundRecord>
 	{

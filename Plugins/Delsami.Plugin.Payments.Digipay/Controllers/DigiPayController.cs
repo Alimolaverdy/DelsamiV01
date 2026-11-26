@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payment.Core.Enums;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Digipay.Factories;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
-using ZarIran.Plugin.Payments.Digipay.Services;
+﻿using Delsami.Plugin.Payment.Core.Enums;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.Digipay.Factories;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
+using Delsami.Plugin.Payments.Digipay.Services;
 using Nop.Core;
 using Nop.Core.Events;
 using Nop.Services.Catalog;
@@ -14,15 +14,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Nop.Services.Logging;
-using ZarIran.Plugin.Payment.Core.Controllers;
-using ZarIran.Plugin.Payment.Core.Models;
+using Delsami.Plugin.Payment.Core.Controllers;
+using Delsami.Plugin.Payment.Core.Models;
 using Nop.Core.Domain.Orders;
 using System.Text.Json;
-using ZarIran.Plugin.Misc.Core;
+using Delsami.Plugin.Misc.Core;
 
-namespace ZarIran.Plugin.Payments.Digipay.Controllers;
+namespace Delsami.Plugin.Payments.Digipay.Controllers;
 
-public class DigiPayController : BaseNopPartsPaymentController<VerifyResultModel>
+public class DigiPayController : BaseDelsamiPaymentController<VerifyResultModel>
 {
     #region Fields
 

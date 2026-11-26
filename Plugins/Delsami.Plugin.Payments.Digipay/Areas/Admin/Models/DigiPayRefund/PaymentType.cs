@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund
+namespace Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund
 {
     public enum PaymentType
     {

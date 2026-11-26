@@ -1,8 +1,8 @@
-﻿using ZarIran.Plugin.Payment.Core.Models;
+﻿using Delsami.Plugin.Payment.Core.Models;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
-namespace ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
+namespace Delsami.Plugin.Payments.Digipay.Models.DigiPays;
 
 public class VerifyResponseModel : BasePaymentResponseModel
 {

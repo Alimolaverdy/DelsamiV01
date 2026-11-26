@@ -1,7 +1,7 @@
-﻿using ZarIran.Plugin.Misc.Core.Models.ApiCaller;
-using ZarIran.Plugin.Payment.Core.Services;
-using ZarIran.Plugin.Payments.Digipay.Domain;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
+﻿using Delsami.Plugin.Misc.Core.Models.ApiCaller;
+using Delsami.Plugin.Payment.Core.Services;
+using Delsami.Plugin.Payments.Digipay.Domain;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
 using Nop.Core;
 using Nop.Data;
 using Nop.Services.Logging;
@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Digipay.Services
+namespace Delsami.Plugin.Payments.Digipay.Services
 {
 	public class DigiPayService : IDigiPayService
 	{

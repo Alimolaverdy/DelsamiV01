@@ -2,7 +2,7 @@
 using Nop.Services.Security;
 using System.Collections.Generic;
 
-namespace ZarIran.Plugin.Payments.Digipay.Infrastructure.Permissions
+namespace Delsami.Plugin.Payments.Digipay.Infrastructure.Permissions
 {
 	public class DigiPayRefundPermission : IPermissionProvider
 	{

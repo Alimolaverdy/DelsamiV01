@@ -1,5 +1,5 @@
-﻿using ZarIran.Plugin.Payment.Core.Domain;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
+﻿using Delsami.Plugin.Payment.Core.Domain;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Customers;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Digipay.Factories
+namespace Delsami.Plugin.Payments.Digipay.Factories
 {
     public class BPGModelFactory : IBPGModelFactory
     {

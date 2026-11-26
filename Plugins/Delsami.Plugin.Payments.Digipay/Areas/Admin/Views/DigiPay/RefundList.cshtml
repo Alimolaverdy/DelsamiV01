@@ -1,16 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Routing
-@using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund
+@using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund
 @using Nop.Web.Framework.Models.DataTables
 @model DigiPayRefundSearchModel
 @{
 	Layout = "_AdminLayout";
-	NopHtml.SetActiveMenuItemSystemName(T("ZarIran.Plugin.payments.Digipay.Refund.SystemName").Text);
+	NopHtml.SetActiveMenuItemSystemName(T("Delsami.Plugin.payments.Digipay.Refund.SystemName").Text);
 	const string hideSearchBlockAttributeName = "DigiPay.HideSearchBlock";
 	var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
 }
 <div class="content">
 
-	@await Html.PartialAsync("~/Plugins/ZarIran.Payments.Digipay/Areas/Admin/Views/DigiPay/_Create.cshtml", Model.RefundRecord)
+	@await Html.PartialAsync("~/Plugins/Delsami.Payments.Digipay/Areas/Admin/Views/DigiPay/_Create.cshtml", Model.RefundRecord)
 
 
 	<div class="container-fluid">
@@ -58,50 +58,50 @@
 							{
 							new ColumnProperty(nameof(DigiPayRefundModel.PaymentTrackingCode))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.PaymentTrackingCode").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.PaymentTrackingCode").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "100"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.RefundTrackingCode))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.RefundTrackingCode").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.RefundTrackingCode").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "100"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.Amount))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Amount").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.Amount").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "100"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.PaymentTypeStr))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.PaymentType").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.PaymentType").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "100"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.Status))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Status").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.Status").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "50",
 							Render = new RenderCustom("renderColumnStatus")
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.Customer))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Customer").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.Customer").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "80"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.Message))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.Message").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.Message").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "80"
 							},
 							new ColumnProperty(nameof(DigiPayRefundModel.RefundDateTimeOnUtcStr))
 							{
-							Title = T("ZarIran.Plugin.Payments.DigiPay.Refund.RefundDateTimeOnUtc").Text,
+							Title = T("Delsami.Plugin.Payments.DigiPay.Refund.RefundDateTimeOnUtc").Text,
 							ClassName =  NopColumnClassDefaults.CenterAll,
 							Width = "80"
 							}

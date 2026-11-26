@@ -1,8 +1,8 @@
 ﻿using System;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models.DigiPayRefund;
 using Nop.Core;
 
-namespace ZarIran.Plugin.Payments.Digipay.Domain
+namespace Delsami.Plugin.Payments.Digipay.Domain
 {
 	public class DigiPayRefundRecord : BaseEntity
 	{

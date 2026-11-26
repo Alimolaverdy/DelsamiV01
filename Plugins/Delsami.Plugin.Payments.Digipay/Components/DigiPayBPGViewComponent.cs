@@ -1,11 +1,11 @@
 ﻿//using Microsoft.AspNetCore.Mvc;
-//using ZarIran.Plugin.Payments.Digipay.Models;
+//using Delsami.Plugin.Payments.Digipay.Models;
 //using Nop.Core;
 //using Nop.Services.Localization;
 //using Nop.Web.Framework.Components;
 //using System.Threading.Tasks;
 
-//namespace ZarIran.Plugin.Payments.Digipay.Components
+//namespace Delsami.Plugin.Payments.Digipay.Components
 //{
 //    [ViewComponent(Name = "DigiPay")]
 //    public class DigiPayBPGViewComponent : NopViewComponent
@@ -30,7 +30,7 @@
 //        {
 //            var model = new PaymentInfoModel
 //            {
-//                DescriptionText = await _localizationService.GetResourceAsync("ZarIran.Plugin.Payments.Digipay.Configuration.DescriptionText")
+//                DescriptionText = await _localizationService.GetResourceAsync("Delsami.Plugin.Payments.Digipay.Configuration.DescriptionText")
 //            };
 
 //            return View("~/Plugins/IFC.Payments.DigiPay/Views/PaymentInfo.cshtml", model);

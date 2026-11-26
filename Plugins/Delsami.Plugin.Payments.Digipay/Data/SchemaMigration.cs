@@ -1,11 +1,11 @@
 ﻿using FluentMigrator;
-using ZarIran.Plugin.Payments.Digipay.Domain;
+using Delsami.Plugin.Payments.Digipay.Domain;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
 
-namespace ZarIran.Plugin.Payments.Digipay.Data
+namespace Delsami.Plugin.Payments.Digipay.Data
 {
-	[NopMigration("2026/06/16 09:38:00", "ZarIran.Plugin.Payments.DigiPay add refund record")]
+	[NopMigration("2026/11/26 09:38:00", "Delsami.Plugin.Payments.DigiPay add refund record")]
 	public class SchemaMigration : AutoReversingMigration
 	{
 		public override void Up()

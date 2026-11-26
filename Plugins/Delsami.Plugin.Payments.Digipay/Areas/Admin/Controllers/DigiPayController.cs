@@ -1,10 +1,10 @@
 ﻿using DocumentFormat.OpenXml.EMMA;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ZarIran.Plugin.Payments.Digipay.Areas.Admin.Models;
-using ZarIran.Plugin.Payments.Digipay.Infrastructure.Permissions;
-using ZarIran.Plugin.Payments.Digipay.Models.DigiPays;
-using ZarIran.Plugin.Payments.Digipay.Services;
+using Delsami.Plugin.Payments.Digipay.Areas.Admin.Models;
+using Delsami.Plugin.Payments.Digipay.Infrastructure.Permissions;
+using Delsami.Plugin.Payments.Digipay.Models.DigiPays;
+using Delsami.Plugin.Payments.Digipay.Services;
 using Nop.Core;
 using Nop.Core.Domain.Logging;
 using Nop.Services.Configuration;
@@ -18,7 +18,7 @@ using Nop.Web.Framework.Mvc.Filters;
 using System;
 using System.Threading.Tasks;
 
-namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
+namespace Delsami.Plugin.Payments.Digipay.Areas.Admin.Controllers
 {
 	[AuthorizeAdmin]
 	[Area(AreaNames.Admin)]
@@ -85,7 +85,7 @@ namespace ZarIran.Plugin.Payments.Digipay.Areas.Admin.Controllers
 				GrantType = checkMoneyOrderPaymentSettings.GrantType
 			};
 
-			return View("~/Plugins/ZarIran.Payments.Digipay/Areas/Admin/Views/DigiPay/Configure.cshtml", model);
+			return View("~/Plugins/Delsami.Payments.Digipay/Areas/Admin/Views/DigiPay/Configure.cshtml", model);
 		}
 
 		[HttpPost]
