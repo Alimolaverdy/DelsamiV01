@@ -12,7 +12,7 @@ namespace Delsami.Plugin.Misc.SMS.Data.Mapping
     {
         public Dictionary<Type, string> TableNames => new Dictionary<Type, string>
         {
-            { typeof(QueuedSMS), $" D_S_{nameof(QueuedSMS)}"},
+            { typeof(QueuedSMS), $"D_S_{nameof(QueuedSMS)}"},
         };
 
         public Dictionary<(Type, string), string> ColumnName => new Dictionary<(Type, string), string> { };

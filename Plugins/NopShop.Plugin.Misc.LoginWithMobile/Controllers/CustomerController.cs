@@ -1031,7 +1031,8 @@ namespace NopShop.Plugin.Misc.LoginWithMobile.Controllers
 
             await _otpService.Insert(otp);
 
-            await _smsSender.SendSMSAsync(queueSMS);
+            //for Dev
+            //await _smsSender.SendSMSAsync(queueSMS);
 
             return (otp, activationCode, sentToMarketer, recipientUsername);
         }
