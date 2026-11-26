@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Company>Nob Parts</Company>
-		<Authors>Nob Parts</Authors>
+		<Company>Delsami</Company>
+		<Authors>Delsami</Authors>
 		<PackageProjectUrl>PACKAGE_PROJECT_URL</PackageProjectUrl>
 		<RepositoryUrl>REPOSITORY_URL</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
@@ -22,12 +22,12 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="ZarIran.Plugin.Misc.Core">
-		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.Core\ZarIran.Plugin.Misc.Core.dll</HintPath>
+		<Reference Include="Delsami.Plugin.Misc.Core">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.Core\Delsami.Plugin.Misc.Core.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
-		<Reference Include="ZarIran.Plugin.Misc.SMS">
-		  <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.SMS\ZarIran.Plugin.Misc.SMS.dll</HintPath>
+		<Reference Include="Delsami.Plugin.Misc.SMS">
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.SMS\Delsami.Plugin.Misc.SMS.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
 		<Reference Include="SevenSpikes.Nop.Core">

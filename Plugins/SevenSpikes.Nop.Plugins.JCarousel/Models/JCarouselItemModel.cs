@@ -1,12 +1,12 @@
 using Nop.Web.Models.Catalog;
-using ZarIran.Plugin.Misc.ProductManagements.Models;
 using static Nop.Web.Models.Catalog.CategoryModel;
+using Delsami.Plugin.Misc.ProductManagement.Models;
 
 namespace SevenSpikes.Nop.Plugins.JCarousel.Models;
 
 public class JCarouselItemModel
 {
-    public ZarIranProductOverviewModel ProductOverviewModel { get; set; }
+    public DelsamiProductOverviewModel ProductOverviewModel { get; set; }
 
     public ManufacturerModel ManufacturerModel { get; set; }
 
@@ -16,7 +16,7 @@ public class JCarouselItemModel
 
     public JCarouselItemModel()
     {
-        ProductOverviewModel = new ZarIranProductOverviewModel();
+        ProductOverviewModel = new DelsamiProductOverviewModel();
         ManufacturerModel = new ManufacturerModel();
         VendorModel = new VendorModel();
         CategoryModel = new SubCategoryModel();

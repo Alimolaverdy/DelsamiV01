@@ -21,6 +21,9 @@
     <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Delsami.Plugin.Misc.ProductManagement">
+      <HintPath>..\..\Presentation\Nop.Web\Plugins\Delsami.Misc.ProductManagement\Delsami.Plugin.Misc.ProductManagement.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json" />
     <Reference Include="FluentMigrator" />
     <Reference Include="FluentValidation" />
@@ -35,10 +38,6 @@
       <HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Mappings.dll</HintPath>
     </Reference>
     <Reference Include="System.Linq.Async" />
-    <Reference Include="ZarIran.Plugin.Misc.ProductManagements">
-      <HintPath>..\..\Presentation\Nop.Web\Plugins\ZarIran.Misc.ProductManagements\ZarIran.Plugin.Misc.ProductManagements.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Update="Areas\Admin\Views\JCarouselAdmin\Create.cshtml">

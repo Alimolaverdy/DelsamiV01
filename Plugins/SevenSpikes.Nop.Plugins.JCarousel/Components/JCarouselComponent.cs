@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Delsami.Plugin.Misc.ProductManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Caching;
@@ -31,7 +32,6 @@ using SevenSpikes.Nop.Plugins.JCarousel.Domain;
 using SevenSpikes.Nop.Plugins.JCarousel.Infrastructure.Constants;
 using SevenSpikes.Nop.Plugins.JCarousel.Models;
 using SevenSpikes.Nop.Plugins.JCarousel.Services;
-using ZarIran.Plugin.Misc.ProductManagements.Models;
 using static Nop.Web.Models.Catalog.CategoryModel;
 
 namespace SevenSpikes.Nop.Plugins.JCarousel.Components;
@@ -383,7 +383,7 @@ public class JCarouselComponent : ViewComponent
 
     private IList<JCarouselItemModel> CreateJCarouselProductModel(IEnumerable<ProductOverviewModel> products)
     {
-        return products.Select(product => new JCarouselItemModel { ProductOverviewModel = (ZarIranProductOverviewModel)product }).ToList();
+        return products.Select(product => new JCarouselItemModel { ProductOverviewModel = (DelsamiProductOverviewModel)product }).ToList();
     }
 
     private IList<JCarouselItemModel> CreateJCarouselItemModelForManufacturers(IEnumerable<ManufacturerModel> manufacturers)
